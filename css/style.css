@@ -1,0 +1,38 @@
+css
+/* Configuración base de Tailwind CSS */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  Puedes añadir estilos personalizados o componentes aquí usando @layer o @apply si es necesario.
+  Ejemplo:
+  @layer components {
+    .card {
+      @apply bg-white dark:bg-gray-800 rounded-lg shadow p-4;
+    }
+  }
+
+  Para este proyecto, priorizamos el uso de clases de utilidad directamente en el HTML
+  y configuración via CDN script o tailwind.config.js.
+*/
+
+/* Asegura que el body ocupe toda la altura para el footer pegajoso si es necesario */
+/* html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex-grow: 1;
+} */
+
+/* Pequeños ajustes globales si son necesarios */
+body {
+  /* Ya aplicado via @apply en <style> o tailwind.config.js */
+  /* @apply bg-gnius-dark text-gnius-light font-sans; */
+}

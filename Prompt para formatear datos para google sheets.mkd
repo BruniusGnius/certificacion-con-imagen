@@ -1,0 +1,67 @@
+### Prompt Ejemplo para IA Asistente (Formateo de Datos para Google Sheets)
+
+```
+Actúa como un asistente de entrada de datos para Gnius Club. Necesito formatear la información del siguiente proyecto para pegarla en celdas específicas de una hoja de cálculo de Google Sheets (que luego se convertirá a JSON). La hoja usa un formato especial para listas dentro de una celda: los elementos se separan con ' | ' (espacio, barra vertical, espacio) y las propiedades dentro de cada elemento se separan con ';' (punto y coma).
+
+Formatea la siguiente información del proyecto '[PON AQUÍ EL NOMBRE DEL PROYECTO]' según estas reglas para las columnas indicadas:
+
+1.  **Columna 'teamMembers':** Necesito una cadena de texto formateada para esta celda. La información de cada miembro debe tener el formato: `Nombre;Rol;LinkSBT(o vacío);NombreCursoCertificado;NombreInsigniaCertificado;NivelCertificado;HabilidadesSeparadasPorPuntoyComa;CriteriosSeparadosPorPuntoyComa;ColegioCertificado;FechaEmisionCertificado(YYYY-MM-DD)`
+    *   Miembro 1:
+        *   Nombre: [Nombre del Miembro 1]
+        *   Rol: [Rol del Miembro 1]
+        *   Link SBT: [URL del SBT del Miembro 1, o dejar vacío]
+        *   Curso Certificado: [Nombre del Curso]
+        *   Insignia Certificado: [Nombre de la Insignia]
+        *   Nivel Certificado: [Nivel]
+        *   Habilidades: [Habilidad1; Habilidad2; Habilidad3]
+        *   Criterios: [Criterio1; Criterio2]
+        *   Colegio: [Nombre del Colegio]
+        *   Fecha Emisión: [AAAA-MM-DD]
+    *   Miembro 2 (si aplica):
+        *   Nombre: [Nombre del Miembro 2]
+        *   Rol: [Rol del Miembro 2]
+        *   Link SBT: [URL del SBT del Miembro 2, o dejar vacío]
+        *   Curso Certificado: [Nombre del Curso]
+        *   Insignia Certificado: [Nombre de la Insignia]
+        *   Nivel Certificado: [Nivel]
+        *   Habilidades: [HabilidadA; HabilidadB]
+        *   Criterios: [CriterioX; CriterioY]
+        *   Colegio: [Nombre del Colegio]
+        *   Fecha Emisión: [AAAA-MM-DD]
+    *   (Añadir más miembros si los hay, con el mismo formato)
+
+2.  **Columna 'technologies':** Necesito una cadena de texto formateada para esta celda. La información de cada tecnología debe tener el formato: `NombreTecnologia;NombreIconoFontAwesomeSinFA;Categoria(Hardware/Software/Tool)`
+    *   Tecnología 1:
+        *   Nombre: [Nombre Tec 1]
+        *   Icono FA: [icono1] (ej: microchip)
+        *   Categoría: [Hardware/Software/Tool]
+    *   Tecnología 2:
+        *   Nombre: [Nombre Tec 2]
+        *   Icono FA: [icono2] (ej: python)
+        *   Categoría: [Hardware/Software/Tool]
+    *   (Añadir más tecnologías si las hay)
+
+3.  **Columna 'additionalResources':** Necesito una cadena de texto formateada para esta celda. La información de cada recurso debe tener el formato: `TituloRecurso;URLRecurso;TipoRecurso(github/link/pdf/doc)`
+    *   Recurso 1:
+        *   Título: [Título Recurso 1]
+        *   URL: [URL Recurso 1]
+        *   Tipo: [github/link/pdf/doc]
+    *   Recurso 2 (si aplica):
+        *   Título: [Título Recurso 2]
+        *   URL: [URL Recurso 2]
+        *   Tipo: [github/link/pdf/doc]
+    *   (Añadir más recursos si los hay)
+
+4.  **Columna 'imageGallery':** Necesito una cadena de texto formateada para esta celda. La información de cada imagen debe tener el formato: `URLImagen;TextoAlternativo;Caption(Opcional)`
+    *   Imagen 1:
+        *   URL: [URL Imagen 1]
+        *   Texto Alternativo: [Alt Text Imagen 1]
+        *   Caption: [Pie de foto Imagen 1 (opcional)]
+    *   Imagen 2 (si aplica):
+        *   URL: [URL Imagen 2]
+        *   Texto Alternativo: [Alt Text Imagen 2]
+        *   Caption: [Pie de foto Imagen 2 (opcional)]
+    *   (Añadir más imágenes si las hay)
+
+**Por favor, dame el texto formateado exacto que debo pegar en cada una de estas cuatro celdas de Google Sheets. Recuerda usar ' | ' entre elementos y ';' entre propiedades dentro de cada elemento. Asegúrate de que no haya espacios innecesarios justo antes o después de los separadores ';' y que SÍ haya un espacio antes y después del separador '|'.**
+```

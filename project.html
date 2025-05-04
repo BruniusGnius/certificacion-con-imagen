@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Proyecto - Gnius Club</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        // Misma configuración de Tailwind que index.html
+        tailwind.config = {
+            darkMode: 'class',
+            theme: { extend: { colors: { 'gnius-dark': '#1a1a1a', 'gnius-dark-secondary': '#2a2a2a', 'gnius-light': '#f0f0f0', 'gnius-gray': '#a0a0a0', 'gnius-yellow': '#ffcc00', 'gnius-cyan': '#00ffff', 'gnius-red': '#ff4d4d', }, fontFamily: { sans: ['Inter', 'sans-serif'] } } }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        /* Estilos específicos de la página de proyecto si son necesarios */
+        body { @apply bg-gnius-dark text-gnius-light font-sans; }
+        .gnius-chip { @apply inline-block bg-gray-600 text-gnius-light text-xs font-medium px-2.5 py-0.5 rounded-full mr-2 mb-1; }
+        .gnius-link { @apply text-gnius-cyan hover:text-gnius-yellow underline; }
+        .aside-section { @apply bg-gnius-dark-secondary p-4 rounded-lg mb-6 shadow-md; }
+        .aside-title { @apply text-lg font-semibold text-gnius-cyan mb-3 border-b border-gray-700 pb-2; }
+        .section-title { @apply text-2xl font-bold mb-4 text-gnius-yellow border-b-2 border-gnius-yellow pb-2; }
+        .icon-list li { @apply flex items-center mb-2; }
+        .icon-list i { @apply text-gnius-cyan mr-3 text-lg w-6 text-center; }
+        /* Clases para colores de chips de tecnología */
+        .tech-chip-Hardware { @apply bg-red-700 text-white; }
+        .tech-chip-Software { @apply bg-blue-700 text-white; }
+        .tech-chip-Tool { @apply bg-green-700 text-white; }
+        .tech-chip-default { @apply bg-gray-600 text-gnius-light; }
+     </style>
+</head>
+
+<body>
+    <header class="bg-gnius-dark-secondary p-4 shadow-md sticky top-0 z-10">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-gnius-yellow">
+                <a href="index.html" class="hover:text-yellow-400"><i class="fas fa-brain mr-2"></i>Gnius Club</a>
+            </h1>
+            <a href="index.html" class="text-gnius-cyan hover:text-gnius-yellow"><i
+                    class="fas fa-arrow-left mr-2"></i>Volver al Listado</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+        <div id="project-details" class="opacity-0 transition-opacity duration-500">
+            <!-- Contenido del proyecto se cargará aquí -->
+            <div class="text-center p-20">
+                <i class="fas fa-spinner fa-spin fa-3x text-gnius-cyan"></i>
+                <p class="mt-4 text-gnius-gray">Cargando detalles del proyecto...</p>
+            </div>
+        </div>
+        <div id="project-not-found" class="text-center p-20 hidden">
+            <i class="fas fa-exclamation-triangle fa-3x text-gnius-red mb-4"></i>
+            <p class="text-gnius-gray text-lg mb-4">Proyecto no encontrado.</p>
+            <a href="index.html" class="gnius-button bg-gnius-red text-white hover:bg-red-700">
+                <i class="fas fa-arrow-left mr-2"></i> Volver al Listado
+            </a>
+        </div>
+    </main>
+
+    <footer class="bg-gnius-dark-secondary mt-12 p-4 text-center text-sm text-gnius-gray">
+        &copy; <span id="current-year"></span> Gnius Club. Todos los derechos reservados.
+    </footer>
+
+    <script type="module" src="js/project.js"></script>
+</body>
+
+</html>
