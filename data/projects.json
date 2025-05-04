@@ -97,12 +97,12 @@
       }
     ],
     "evaluationScores": {
-      "eval_Impacto Potencial": 92,
-      "eval_Creatividad Solucion": 65,
-      "eval_Innovacion Tecnica": 78,
-      "eval_Ejecucion Tecnica": 85,
-      "eval_Colaboracion Equipo": 95,
-      "eval_Sostenibilidad Diseño": 80
+      "eval_Impacto Potencial": 65,
+      "eval_Creatividad Solucion": 95,
+      "eval_Innovacion Tecnica": 70,
+      "eval_Ejecucion Tecnica": 80,
+      "eval_Colaboracion Equipo": 90,
+      "eval_Sostenibilidad Diseño": 75
     }
   },
   {
@@ -185,12 +185,12 @@
       }
     ],
     "evaluationScores": {
-      "eval_Impacto Potencial": 75,
-      "eval_Creatividad Solucion": 95,
-      "eval_Innovacion Tecnica": 88,
-      "eval_Ejecucion Tecnica": 70,
+      "eval_Impacto Potencial": 70,
+      "eval_Creatividad Solucion": 80,
+      "eval_Innovacion Tecnica": 92,
+      "eval_Ejecucion Tecnica": 75,
       "eval_Colaboracion Equipo": 100,
-      "eval_Sostenibilidad Diseño": 62
+      "eval_Sostenibilidad Diseño": 60
     }
   },
   {
@@ -276,12 +276,12 @@
       }
     ],
     "evaluationScores": {
-      "eval_Impacto Potencial": 60,
-      "eval_Creatividad Solucion": 72,
+      "eval_Impacto Potencial": 88,
+      "eval_Creatividad Solucion": 70,
       "eval_Innovacion Tecnica": 75,
-      "eval_Ejecucion Tecnica": 91,
+      "eval_Ejecucion Tecnica": 95,
       "eval_Colaboracion Equipo": 85,
-      "eval_Sostenibilidad Diseño": 55
+      "eval_Sostenibilidad Diseño": 65
     }
   },
   {
@@ -299,7 +299,11 @@
     "problemDescription": "Muchos jóvenes navegan en internet sin ser plenamente conscientes de los riesgos básicos de seguridad. La información disponible a menudo es demasiado técnica, dispersa o poco atractiva para este público, creando una brecha de conocimiento peligrosa.",
     "solutionProposed": "Un sitio web estático desarrollado con HTML, CSS (utilizando Tailwind CSS para un diseño rápido y responsivo) y JavaScript Vanilla para la interactividad. Incluye tres módulos clave: 1) Un generador/evaluador de fortaleza de contraseñas. 2) Un simulador interactivo de correos electrónicos de phishing para identificar señales de alerta comunes. 3) Una guía con consejos prácticos y visuales sobre configuración de privacidad en redes sociales populares.",
     "innovationProcess": "El proceso incluyó investigación de temas de ciberseguridad relevantes para adolescentes, diseño de wireframes y mockups de la interfaz, desarrollo frontend con Tailwind CSS, programación de la lógica interactiva en JS (validación de contraseñas, simulación de phishing), y creación de contenido claro y conciso.",
-    "media": null,
+    "media": {
+      "type": "image",
+      "url": "https://picsum.photos/seed/cyberSecMedia/800/450",
+      "altText": "Captura de pantalla del módulo interactivo que simula un intento de phishing con señales resaltadas"
+    },
     "teamMembers": [
       {
         "name": "David Kim",
@@ -349,25 +353,14 @@
         "type": "github"
       }
     ],
-    "imageGallery": [
-      {
-        "url": "https://picsum.photos/seed/cyberSecGal1/800/450",
-        "altText": "Módulo de evaluación de contraseñas",
-        "caption": "Evaluador de Contraseñas"
-      },
-      {
-        "url": "https://picsum.photos/seed/cyberSecGal2/800/450",
-        "altText": "Guía de privacidad en redes sociales",
-        "caption": "Tips de Privacidad"
-      }
-    ],
+    "imageGallery": [],
     "evaluationScores": {
-      "eval_Impacto Potencial": 85,
+      "eval_Impacto Potencial": 80,
       "eval_Creatividad Solucion": 70,
-      "eval_Innovacion Tecnica": 65,
-      "eval_Ejecucion Tecnica": 78,
-      "eval_Colaboracion Equipo": 90,
-      "eval_Sostenibilidad Diseño": 72
+      "eval_Innovacion Tecnica": 60,
+      "eval_Ejecucion Tecnica": 75,
+      "eval_Colaboracion Equipo": 98,
+      "eval_Sostenibilidad Diseño": 85
     }
   },
   {
@@ -385,11 +378,7 @@
     "problemDescription": "La contaminación del aire por partículas finas (PM2.5) es un riesgo para la salud, pero los equipos de monitoreo profesionales son costosos y no siempre accesibles. Esto limita la conciencia ciudadana sobre la calidad del aire local.",
     "solutionProposed": "Un monitor DIY (Hazlo Tú Mismo) utilizando un microcontrolador ESP32 (seleccionado por su conectividad futura, aunque no usada en esta fase), un sensor de partículas láser Plantower PMS5003, y una pantalla LCD I2C estándar (16x2). El ESP32, programado en MicroPython, lee los datos del sensor a través de comunicación UART y muestra las concentraciones de PM1.0, PM2.5 y PM10 µg/m³ en la pantalla.",
     "innovationProcess": "Se investigaron diferentes sensores de PM2.5 de bajo costo (PMS5003, SDS011), eligiendo el PMS5003 por su interfaz UART simple. Se seleccionó MicroPython por su facilidad de aprendizaje para principiantes. El proceso implicó conectar los componentes, encontrar/adaptar librerías MicroPython para el sensor y la pantalla, y programar la lectura y visualización de datos.",
-    "media": {
-      "type": "image",
-      "url": "https://picsum.photos/seed/aireMedia/800/450",
-      "altText": "Foto del dispositivo monitor de aire ensamblado"
-    },
+    "media": null,
     "teamMembers": [
       {
         "name": "Ana Sofía Paz",
@@ -441,12 +430,12 @@
       }
     ],
     "evaluationScores": {
-      "eval_Impacto Potencial": 88,
-      "eval_Creatividad Solucion": 75,
+      "eval_Impacto Potencial": 75,
+      "eval_Creatividad Solucion": 65,
       "eval_Innovacion Tecnica": 70,
-      "eval_Ejecucion Tecnica": 82,
-      "eval_Colaboracion Equipo": 98,
-      "eval_Sostenibilidad Diseño": 90
+      "eval_Ejecucion Tecnica": 75,
+      "eval_Colaboracion Equipo": 90,
+      "eval_Sostenibilidad Diseño": 95
     }
   }
 ]
