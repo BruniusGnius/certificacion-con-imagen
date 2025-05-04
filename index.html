@@ -1,140 +1,147 @@
 <!DOCTYPE html>
-<html lang="es" class="dark">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portafolio de Proyectos - Gnius Club</title>
-    <!-- Tailwind CSS CDN -->
+    <title>Proyectos Gnius Club</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome CDN -->
+    <!-- Google Font Saira Condensed (para chips de tecnología) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- Custom Styles (si se usa build process, si no, se usan clases directas) -->
+    <!-- Estilos propios -->
     <link rel="stylesheet" href="css/style.css">
-    <script>
-        // Configuración básica de Tailwind para modo oscuro y colores Gnius
-        tailwind.config = {
-            darkMode: 'class', // Habilitar modo oscuro via clase en <html>
-            theme: {
-                extend: {
-                    colors: {
-                        'gnius-dark': '#1a1a1a',
-                        'gnius-dark-secondary': '#2a2a2a',
-                        'gnius-light': '#f0f0f0',
-                        'gnius-gray': '#a0a0a0',
-                        'gnius-yellow': '#ffcc00',
-                        'gnius-cyan': '#00ffff',
-                        'gnius-red': '#ff4d4d',
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'], // Ejemplo de fuente
-                    }
-                }
-            }
-        }
-    </script>
-    <style type="text/tailwindcss">
-        /* Estilos personalizados o componentes si son necesarios */
+    <style>
+        /* Estilos mínimos inline. La mayoría de estilos están en style.css */
         body {
-            @apply bg-gnius-dark text-gnius-light font-sans;
+            background-color: #0F0F0F;
+            color: #F0F0F0;
         }
-        .gnius-card {
-            @apply bg-gnius-dark-secondary border border-gray-700 rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-gnius-cyan/20;
+
+        .card-hover {
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
         }
-        .gnius-chip {
-            @apply inline-block bg-gray-600 text-gnius-light text-xs font-medium px-2.5 py-0.5 rounded-full mr-2 mb-2;
+
+        .card-hover:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 15px var(--gnius-cyan);
         }
-        .gnius-button {
-            @apply bg-gnius-yellow text-gnius-dark font-bold py-2 px-4 rounded hover:bg-yellow-400 transition-colors duration-200;
-        }
-        .gnius-input, .gnius-select {
-             @apply bg-gnius-dark-secondary border border-gray-600 text-gnius-light text-sm rounded-lg focus:ring-gnius-cyan focus:border-gnius-cyan block w-full p-2.5;
-        }
-        .gnius-link {
-             @apply text-gnius-cyan hover:text-gnius-yellow underline;
+
+        .aspect-video {
+            aspect-ratio: 16 / 9;
         }
     </style>
 </head>
 
-<body>
-    <header class="bg-gnius-dark-secondary p-4 shadow-md sticky top-0 z-10">
+<body class="bg-[#0F0F0F] text-gray-200 font-sans">
+
+    <!-- Header -->
+    <header class="py-6 px-4 md:px-8 border-b border-gray-700">
         <div class="container mx-auto flex justify-between items-center">
-            <h1 class="text-2xl font-bold text-gnius-yellow">
-                <i class="fas fa-brain mr-2"></i>Gnius Club Portafolios
-            </h1>
-            <!-- Podría ir un menú de navegación simple aquí -->
+            <a href="index.html">
+                <img src="assets/img/gnius_logo_placeholder.png" alt="Gnius Club Logo" class="h-10">
+            </a>
         </div>
     </header>
 
-    <main class="container mx-auto p-4 md:p-8">
-        <section id="filters" class="mb-8 p-6 bg-gnius-dark-secondary rounded-lg shadow-md">
-            <h2 class="text-xl font-semibold mb-4 text-gnius-cyan">Filtrar Proyectos</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div>
-                    <label for="search-input" class="block mb-2 text-sm font-medium text-gnius-gray">Buscar por Título o
-                        Miembro:</label>
-                    <input type="text" id="search-input" class="gnius-input"
-                        placeholder="Ej: Alarma Solar, Laura Gómez...">
-                </div>
-                <div>
-                    <label for="category-select"
-                        class="block mb-2 text-sm font-medium text-gnius-gray">Categoría:</label>
-                    <select id="category-select" class="gnius-select">
-                        <option value="">Todas</option>
-                        <!-- Opciones se llenarán dinámicamente -->
-                    </select>
-                </div>
-                <div>
-                    <label for="level-select" class="block mb-2 text-sm font-medium text-gnius-gray">Nivel
-                        Estudiante:</label>
-                    <select id="level-select" class="gnius-select">
-                        <option value="">Todos</option>
-                        <!-- Opciones se llenarán dinámicamente -->
-                    </select>
-                </div>
-                <div>
-                    <label for="tech-select" class="block mb-2 text-sm font-medium text-gnius-gray">Tecnología:</label>
-                    <select id="tech-select" class="gnius-select">
-                        <option value="">Todas</option>
-                        <!-- Opciones se llenarán dinámicamente -->
-                    </select>
-                </div>
-            </div>
-            <div class="mt-4 text-right">
-                <button id="clear-filters-btn" class="text-gnius-gray hover:text-gnius-light text-sm underline">
-                    <i class="fas fa-times mr-1"></i>Limpiar Filtros
-                </button>
-            </div>
+    <main class="container mx-auto px-4 md:px-8 py-10">
+        <h1 class="text-3xl md:text-4xl font-bold text-center mb-10" style="color: var(--gnius-cyan);">Explora los
+            Proyectos Gnius</h1>
+
+        <!-- Filtros -->
+        <!-- --- CORRECCIÓN: Alineación izquierda y flex-grow en Desktop --- -->
+        <section id="filters"
+            class="mb-10 p-4 bg-[#1F1F1F] rounded-lg border border-gray-700 flex flex-col sm:flex-row flex-wrap gap-3 items-center lg:justify-start">
+            <!-- Input de búsqueda -->
+            <input type="text" id="search-input" placeholder="Buscar..."
+                class="p-2 rounded bg-gray-700 text-white border border-gray-600 focus:border-cyan-500 focus:ring-cyan-500 focus:outline-none w-full sm:w-auto lg:flex-grow">
+
+            <!-- Selectores -->
+            <select id="category-filter"
+                class="p-2 rounded bg-gray-700 text-white border border-gray-600 focus:border-cyan-500 focus:ring-cyan-500 focus:outline-none w-full sm:w-auto lg:flex-grow">
+                <option value="">Categorías</option>
+            </select>
+
+            <select id="level-filter"
+                class="p-2 rounded bg-gray-700 text-white border border-gray-600 focus:border-cyan-500 focus:ring-cyan-500 focus:outline-none w-full sm:w-auto lg:flex-grow">
+                <option value="">Niveles</option>
+            </select>
+
+            <select id="tech-filter"
+                class="p-2 rounded bg-gray-700 text-white border border-gray-600 focus:border-cyan-500 focus:ring-cyan-500 focus:outline-none w-full sm:w-auto lg:flex-grow">
+                <option value="">Tecnologías</option>
+            </select>
+
+            <!-- Botón Limpiar (sin flex-grow) -->
+            <button id="clear-filters-btn"
+                class="p-2 bg-red-600 hover:bg-red-700 rounded text-white font-semibold transition duration-200 w-full sm:w-auto lg:flex-grow-0 lg:flex-shrink-0">
+                <i class="fa-solid fa-times mr-1"></i> Limpiar
+            </button>
+        </section>
+        <!-- --- FIN CORRECCIÓN --- -->
+
+
+        <!-- Listado de Proyectos -->
+        <section id="project-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Las cards de proyecto se insertarán aquí por JS -->
+            <p id="loading-message" class="text-center col-span-full">Cargando proyectos...</p>
+            <p id="no-results-message" class="text-center col-span-full" style="display: none;">No se encontraron
+                proyectos con los filtros seleccionados.</p>
         </section>
 
-        <section id="project-list-container">
-            <div id="project-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                <!-- Las tarjetas de proyecto se insertarán aquí -->
-                <div class="text-center p-10 col-span-full">
-                    <i class="fas fa-spinner fa-spin fa-3x text-gnius-cyan"></i>
-                    <p class="mt-4 text-gnius-gray">Cargando proyectos...</p>
-                </div>
-            </div>
-            <div id="no-results" class="text-center p-10 col-span-full hidden">
-                <i class="fas fa-search fa-3x text-gnius-red mb-4"></i>
-                <p class="text-gnius-gray text-lg">No se encontraron proyectos que coincidan con los filtros.</p>
-            </div>
-        </section>
-
-        <!-- Paginación (Opcional, implementación básica) -->
-        <nav id="pagination" class="mt-12 flex justify-center items-center space-x-2 hidden">
-            <!-- Botones de paginación se insertarán aquí -->
+        <!-- Paginación -->
+        <nav id="pagination" class="mt-10 flex justify-center items-center gap-2" style="display: none;">
+            <button id="prev-page"
+                class="p-2 bg-gray-700 hover:bg-gray-600 rounded disabled:opacity-50 disabled:cursor-not-allowed"><i
+                    class="fa-solid fa-arrow-left"></i> Anterior</button>
+            <span id="page-info" class="text-gray-400">Página 1 de 1</span>
+            <button id="next-page"
+                class="p-2 bg-gray-700 hover:bg-gray-600 rounded disabled:opacity-50 disabled:cursor-not-allowed">Siguiente
+                <i class="fa-solid fa-arrow-right"></i></button>
         </nav>
 
     </main>
 
-    <footer class="bg-gnius-dark-secondary mt-12 p-4 text-center text-sm text-gnius-gray">
-        &copy; <span id="current-year"></span> Gnius Club. Todos los derechos reservados.
+    <!-- Footer -->
+    <footer class="mt-20 py-6 px-4 md:px-8 border-t border-gray-700 text-center text-gray-500">
+        © <span id="current-year"></span> Gnius Club. Todos los derechos reservados.
     </footer>
 
-    <script type="module" src="js/main.js"></script>
+    <!-- Template para tarjeta de proyecto (será clonado por JS) -->
+    <!-- Se usa un template para facilitar la inserción de los chips de estudiantes -->
+    <template id="project-card-template">
+        <div
+            class="project-card bg-[#1F1F1F] rounded-lg overflow-hidden border border-gray-700 hover:border-glow-cyan card-hover flex flex-col">
+            <div class="aspect-video w-full overflow-hidden">
+                <img data-card-img src="" alt="" class="w-full h-full object-cover">
+            </div>
+            <div class="p-5 flex flex-col flex-grow" data-card-content>
+                <h3 data-card-title class="text-xl font-bold mb-2 truncate" style="color: var(--gnius-yellow);"></h3>
+                <div data-card-metadata class="mb-3 flex flex-wrap gap-1">
+                    <!-- Chips Categoria/Nivel -->
+                </div>
+                <p data-card-desc class="text-gray-400 text-sm mb-4 flex-grow"></p>
+                <!-- --- Placeholder para chips de estudiantes --- -->
+                <div data-card-students class="mb-3 flex flex-wrap gap-1">
+                    <!-- Chips de estudiantes se insertarán aquí -->
+                </div>
+                <!-- --- Fin Placeholder --- -->
+                <div class="mt-auto pt-2 text-right">
+                    <a data-card-link href="#" class="button-detalles-discreto">
+                        Ver detalles <i class="fa-solid fa-arrow-right ml-1 text-xs"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <script src="js/main.js"></script>
 </body>
 
 </html>

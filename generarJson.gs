@@ -1,400 +1,249 @@
-javascript;
 /**
- * @OnlyCurrentDoc // Restringe el script a solo afectar la hoja actual
+ * @OnlyCurrentDoc
+ *
+ * The above comment directs Apps Script to limit the scope of file authorization,
+ * letting users know that the script only accesses the current spreadsheet.
  */
 
-const SHEET_NAME = "Proyectos"; // Nombre esperado de la hoja que contiene los datos
-const HEADER_ROW = 1; // La fila 1 contiene los encabezados
-
 /**
- * Se ejecuta cuando la hoja de cálculo se abre.
- * Agrega un menú personalizado para ejecutar la generación del JSON.
+ * Adds a custom menu to the spreadsheet.
  */
 function onOpen() {
   SpreadsheetApp.getUi()
-    .createMenu("Gnius Club Tools")
-    .addItem("Generar JSON de Proyectos", "showJsonOutput")
-    .addToUi();
+      .createMenu('Gnius Club Tools')
+      .addItem('Generar JSON de Proyectos', 'showJsonDialog')
+      .addToUi();
 }
 
 /**
- * Función principal que lee la hoja, procesa los datos y devuelve el JSON.
- * @returns {string} Una cadena de texto formateada como JSON.
- * @throws {Error} Si la hoja 'Proyectos' no se encuentra o está vacía.
+ * Shows a dialog box with the generated JSON.
  */
-function generateProjectsJsonString() {
-  const ss = SpreadsheetApp.getActiveSpreadsheet();
-  const sheet = ss.getSheetByName(SHEET_NAME);
+function showJsonDialog() {
+  try {
+    const jsonString = generateProjectsJson();
+    // Use HtmlService to create a larger dialog with selectable text area
+    const htmlOutput = HtmlService.createHtmlOutput('<textarea style="width: 95%; height: 300px;" readonly>' + escapeHtml(jsonString) + '</textarea>')
+        .setWidth(600)
+        .setHeight(400);
+    SpreadsheetApp.getUi().showModalDialog(htmlOutput, 'JSON Generado (Copia y Pega)');
+  } catch (e) {
+    Logger.log("Error generating JSON: " + e);
+    SpreadsheetApp.getUi().alert('Error al generar el JSON: ' + e.message + '. Revisa los Logs (Ver > Logs) y el formato de tus datos.');
+  }
+}
 
+/**
+ * Utility function to escape HTML characters for display in HtmlService.
+ */
+function escapeHtml(unsafe) {
+    return unsafe
+         .replace(/&/g, "&")
+         .replace(/</g, "<")
+         .replace(/>/g, ">")
+         .replace(/"/g, """)
+         .replace(/'/g, "'");
+ }
+
+
+/**
+ * Generates the JSON string from the spreadsheet data.
+ * Assumes data is in a sheet named "Proyectos" or the active sheet if "Proyectos" doesn't exist.
+ * Assumes the first row contains headers matching the JSON keys or key paths (e.g., coverUrl_url).
+ */
+function generateProjectsJson() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  let sheet = ss.getSheetByName("Proyectos");
   if (!sheet) {
-    throw new Error(
-      `No se encontró la hoja con el nombre "${SHEET_NAME}". Asegúrate de que la hoja exista y tenga ese nombre exacto.`
-    );
+      sheet = ss.getActiveSheet();
+      Logger.log("Sheet 'Proyectos' not found. Using active sheet: " + sheet.getName());
   }
 
   const dataRange = sheet.getDataRange();
   const values = dataRange.getValues();
 
-  if (values.length <= HEADER_ROW) {
-    throw new Error(
-      `La hoja "${SHEET_NAME}" está vacía o solo contiene encabezados. Añade datos de proyectos para generar el JSON.`
-    );
+  if (values.length < 2) {
+    Logger.log("No data found in the sheet (less than 2 rows).");
+    return "[]"; // Return empty array if no data rows
   }
 
-  const headers = values[HEADER_ROW - 1].map((header) => header.trim());
-  const projectsData = values.slice(HEADER_ROW); // Datos desde la segunda fila
+  const headers = values[0].map(header => header.trim());
+  const projects = [];
 
-  const projectsArray = [];
-
-  // Obtener índices de columnas basado en encabezados (más robusto que posiciones fijas)
+  // Get column indices based on headers
   const headerMap = {};
   headers.forEach((header, index) => {
     headerMap[header] = index;
   });
 
-  // --- Validar que las columnas esenciales existen ---
-  const essentialHeaders = [
-    "projectTitle",
-    "intro_title",
-    "intro_content",
-    "coverUrl_url",
-    "coverUrl_altText",
-    "problemDescription",
-    "solutionProposed",
-    "teamMembers",
-    "technologies",
-    "eval_Impacto Potencial",
-  ]; // Añade otras requeridas aquí
-  const missingHeaders = essentialHeaders.filter((h) => !(h in headerMap));
-  if (missingHeaders.length > 0) {
-    throw new Error(
-      `Faltan las siguientes columnas requeridas en la hoja "${SHEET_NAME}": ${missingHeaders.join(
-        ", "
-      )}`
-    );
-  }
-  // --- Fin Validación ---
+  // Slug generation function
+  const generateSlug = (title) => {
+    if (!title || typeof title !== 'string') return 'proyecto-sin-titulo-' + Date.now();
+    return title
+      .toLowerCase()
+      .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // Remove accents
+      .replace(/[^\w\s-]/g, '') // Remove non-word chars (excluding space and hyphen)
+      .replace(/\s+/g, '-') // Replace spaces with hyphens
+      .replace(/--+/g, '-') // Replace multiple hyphens with single
+      .replace(/^-+|-+$/g, ''); // Trim hyphens from start/end
+  };
 
-  projectsData.forEach((row, rowIndex) => {
-    // Ignorar filas completamente vacías
-    if (row.every((cell) => cell === "")) return;
 
+  for (let i = 1; i < values.length; i++) {
+    const row = values[i];
     const project = {};
-    const projectTitle = getStringValue(row, headerMap, "projectTitle");
 
-    // Saltar fila si el título del proyecto está vacío (dato esencial)
+    // --- Simple Fields ---
+    const projectTitle = row[headerMap['projectTitle']];
     if (!projectTitle) {
-      Logger.log(
-        `Fila ${
-          rowIndex + HEADER_ROW + 1
-        } ignorada: Falta el título del proyecto (projectTitle).`
-      );
-      return; // Saltar esta fila
+        Logger.log("Skipping row " + (i+1) + " due to missing projectTitle.");
+        continue; // Skip row if essential title is missing
+    }
+    project.projectTitle = projectTitle;
+    project.slug = generateSlug(projectTitle); // Generate slug
+
+    if (headerMap['projectCategory'] !== undefined && row[headerMap['projectCategory']]) project.projectCategory = row[headerMap['projectCategory']];
+    if (headerMap['studentLevel'] !== undefined && row[headerMap['studentLevel']]) project.studentLevel = row[headerMap['studentLevel']];
+    if (headerMap['projectDate'] !== undefined && row[headerMap['projectDate']]) {
+        // Attempt to format date correctly, assuming it might be a Date object or string
+        try {
+           const dateValue = row[headerMap['projectDate']];
+           if (dateValue instanceof Date) {
+                project.projectDate = Utilities.formatDate(dateValue, Session.getScriptTimeZone(), "yyyy-MM-dd");
+           } else if (typeof dateValue === 'string' && dateValue.match(/^\d{4}-\d{2}-\d{2}$/)) {
+               project.projectDate = dateValue; // Assume already correct format
+           } else if (dateValue) {
+               // Try parsing common formats if needed, otherwise keep original string or log warning
+               project.projectDate = dateValue.toString(); // Keep as string if unsure
+               Logger.log(`Warning: projectDate in row ${i+1} ('${dateValue}') might not be in YYYY-MM-DD format.`);
+           }
+        } catch (e) {
+            Logger.log(`Warning: Could not format projectDate in row ${i+1}: ${e.message}`);
+            if (row[headerMap['projectDate']]) project.projectDate = row[headerMap['projectDate']].toString(); // Fallback to string
+        }
+    }
+    if (headerMap['intro_title'] !== undefined && row[headerMap['intro_title']]) project.intro_title = row[headerMap['intro_title']];
+    if (headerMap['intro_content'] !== undefined && row[headerMap['intro_content']]) project.intro_content = row[headerMap['intro_content']];
+    if (headerMap['problemDescription'] !== undefined && row[headerMap['problemDescription']]) project.problemDescription = row[headerMap['problemDescription']];
+    if (headerMap['solutionProposed'] !== undefined && row[headerMap['solutionProposed']]) project.solutionProposed = row[headerMap['solutionProposed']];
+    if (headerMap['innovationProcess'] !== undefined && row[headerMap['innovationProcess']]) project.innovationProcess = row[headerMap['innovationProcess']];
+
+
+    // --- Nested Objects (coverUrl, media) ---
+    const coverUrl_url = headerMap['coverUrl_url'] !== undefined ? row[headerMap['coverUrl_url']] : null;
+    const coverUrl_altText = headerMap['coverUrl_altText'] !== undefined ? row[headerMap['coverUrl_altText']] : null;
+    if (coverUrl_url && coverUrl_altText) {
+        project.coverUrl = { url: coverUrl_url, altText: coverUrl_altText };
+    } else if (coverUrl_url) {
+        project.coverUrl = { url: coverUrl_url, altText: 'Cover image' }; // Default alt text
+         Logger.log(`Warning: Missing alt text for coverUrl in row ${i+1}.`);
+    } else {
+         Logger.log(`Error: Missing required coverUrl_url for project in row ${i+1}. Setting placeholder.`);
+         project.coverUrl = { url: "https://placehold.co/600x338/111/FFF/png?text=Missing+Image", altText: "Placeholder image" };
     }
 
-    project.projectTitle = projectTitle;
-    project.slug = generateSlug(projectTitle); // Generar slug
 
-    // Mapeo de campos simples (String, Date)
-    addStringValue(project, row, headerMap, "projectCategory");
-    addStringValue(project, row, headerMap, "studentLevel");
-    addStringValue(project, row, headerMap, "projectDate"); // Mantener como string YYYY-MM-DD
-    addStringValue(project, row, headerMap, "intro_title", true); // Requerido
-    addStringValue(project, row, headerMap, "intro_content", true); // Requerido
-    addStringValue(project, row, headerMap, "problemDescription", true); // Requerido
-    addStringValue(project, row, headerMap, "solutionProposed", true); // Requerido
-    addStringValue(project, row, headerMap, "innovationProcess"); // Opcional, podría tener saltos de línea
+    const media_type = headerMap['media_type'] !== undefined ? row[headerMap['media_type']] : null;
+    const media_url = headerMap['media_url'] !== undefined ? row[headerMap['media_url']] : null;
+    const media_altText = headerMap['media_altText'] !== undefined ? row[headerMap['media_altText']] : null;
+    if (media_type && media_url) {
+      project.media = { type: media_type, url: media_url };
+      if (media_altText) project.media.altText = media_altText;
+    }
 
-    // Campos Objeto (coverUrl, media)
-    project.coverUrl = {
-      url: getStringValue(row, headerMap, "coverUrl_url", true), // Requerido
-      altText: getStringValue(row, headerMap, "coverUrl_altText", true), // Requerido
+    // --- Arrays of Objects (teamMembers, technologies, additionalResources, imageGallery) ---
+    // Function to parse complex cell data: "prop1A;prop2A | prop1B;prop2B"
+    const parseComplexCell = (cellData, props) => {
+      if (!cellData || typeof cellData !== 'string' || cellData.trim() === '') return [];
+      const items = cellData.split(' | ');
+      return items.map(item => {
+        const values = item.split(';');
+        const obj = {};
+        props.forEach((prop, index) => {
+          obj[prop] = values[index] ? values[index].trim() : null; // Assign null if value missing
+        });
+        return obj;
+      }).filter(obj => obj[props[0]]); // Filter out items where the first property is missing/null
     };
 
-    const mediaType = getStringValue(row, headerMap, "media_type");
-    const mediaUrl = getStringValue(row, headerMap, "media_url");
-    if (mediaType && mediaUrl) {
-      // Solo añadir si type y url existen
-      project.media = {
-        type: mediaType,
-        url: mediaUrl,
-        altText:
-          getStringValue(row, headerMap, "media_altText") ||
-          `Media for ${projectTitle}`, // Alt text opcional, default
-      };
+     // Team Members (Added Certificate Fields)
+    if (headerMap['teamMembers'] !== undefined && row[headerMap['teamMembers']]) {
+        const memberProps = [
+            "name", "role", "sbtLink",
+            "certificate_courseName", "certificate_badgeName", "certificate_level",
+            "certificate_skills", "certificate_criteria", "certificate_college", "certificate_issueDate"
+        ];
+        project.teamMembers = parseComplexCell(row[headerMap['teamMembers']], memberProps);
+         // Basic validation check
+         if (project.teamMembers.length === 0 && row[headerMap['teamMembers']].trim() !== '') {
+            Logger.log(`Warning: Could not parse teamMembers for row ${i+1}. Check format: ${row[headerMap['teamMembers']]}`);
+         } else if (project.teamMembers.length === 0) {
+             Logger.log(`Error: Missing required teamMembers for project in row ${i+1}. Adding placeholder.`);
+             project.teamMembers = [{ name: "Participante No Especificado", role: "Estudiante", sbtLink: null, certificate_courseName:"N/A", certificate_badgeName:"N/A", certificate_level:"N/A", certificate_skills:"N/A", certificate_criteria:"N/A", certificate_college:"N/A", certificate_issueDate:"N/A" }];
+         }
+    } else {
+         Logger.log(`Error: Missing required teamMembers for project in row ${i+1}. Adding placeholder.`);
+         project.teamMembers = [{ name: "Participante No Especificado", role: "Estudiante", sbtLink: null, certificate_courseName:"N/A", certificate_badgeName:"N/A", certificate_level:"N/A", certificate_skills:"N/A", certificate_criteria:"N/A", certificate_college:"N/A", certificate_issueDate:"N/A" }];
     }
 
-    // Campos Array de Objetos (teamMembers, technologies, additionalResources, imageGallery)
-    project.teamMembers = parseComplexList(
-      getStringValue(row, headerMap, "teamMembers", true), // Requerido
-      [
-        "name",
-        "role",
-        "sbtLink",
-        "certificate_courseName",
-        "certificate_badgeName",
-        "certificate_level",
-        "certificate_skills",
-        "certificate_criteria",
-        "certificate_college",
-        "certificate_issueDate",
-      ]
-    );
-    // Validar que al menos un miembro tenga datos de certificado
-    if (
-      !project.teamMembers ||
-      project.teamMembers.length === 0 ||
-      !project.teamMembers.some(
-        (m) =>
-          m.certificate_courseName &&
-          m.certificate_badgeName &&
-          m.certificate_level &&
-          m.certificate_skills &&
-          m.certificate_criteria &&
-          m.certificate_college &&
-          m.certificate_issueDate
-      )
-    ) {
-      Logger.log(
-        `Advertencia Fila ${
-          rowIndex + HEADER_ROW + 1
-        } (${projectTitle}): Campo 'teamMembers' está vacío o incompleto (faltan datos de certificado obligatorios).`
-      );
-      // Decidir si saltar la fila o continuar con advertencia. Por ahora, continuar.
+
+    // Technologies
+    if (headerMap['technologies'] !== undefined && row[headerMap['technologies']]) {
+        const techProps = ["name", "icon", "category"];
+        project.technologies = parseComplexCell(row[headerMap['technologies']], techProps);
+         if (project.technologies.length === 0 && row[headerMap['technologies']].trim() !== '') {
+             Logger.log(`Warning: Could not parse technologies for row ${i+1}. Check format: ${row[headerMap['technologies']]}`);
+         } else if (project.technologies.length === 0) {
+             Logger.log(`Error: Missing required technologies for project in row ${i+1}. Adding placeholder.`);
+             project.technologies = [{ name: "Tecnología No Especificada", icon: "question-circle", category: "Tool" }];
+         }
+    } else {
+        Logger.log(`Error: Missing required technologies for project in row ${i+1}. Adding placeholder.`);
+        project.technologies = [{ name: "Tecnología No Especificada", icon: "question-circle", category: "Tool" }];
     }
 
-    project.technologies = parseComplexList(
-      getStringValue(row, headerMap, "technologies", true), // Requerido
-      ["name", "icon", "category"]
-    );
-    if (!project.technologies || project.technologies.length === 0) {
-      Logger.log(
-        `Advertencia Fila ${
-          rowIndex + HEADER_ROW + 1
-        } (${projectTitle}): Campo 'technologies' está vacío.`
-      );
-      // Continuar
-    }
 
-    project.additionalResources = parseComplexList(
-      getStringValue(row, headerMap, "additionalResources"),
-      ["title", "url", "type"]
-    ); // Opcional
-
-    project.imageGallery = parseComplexList(
-      getStringValue(row, headerMap, "imageGallery"),
-      ["url", "altText", "caption"] // Caption es opcional dentro del objeto
-    ); // Opcional
-
-    // Campo Objeto (evaluationScores) - Nombres deben coincidir EXACTAMENTE
-    project.evaluationScores = {};
-    const evalPrefix = "eval_";
-    headers.forEach((header, index) => {
-      if (header.startsWith(evalPrefix)) {
-        const metricName = header
-          .substring(evalPrefix.length)
-          .replace(/_/g, " "); // Reemplazar _ con espacio si se usa como separador
-        const score = getNumericValue(row, headerMap, header);
-        if (score !== null) {
-          // Solo añadir si el valor es numérico válido
-          project.evaluationScores[metricName] = score;
-        } else {
-          Logger.log(
-            `Advertencia Fila ${
-              rowIndex + HEADER_ROW + 1
-            } (${projectTitle}): Valor no numérico o vacío para la métrica '${metricName}'. Se omitirá.`
-          );
+    // Additional Resources (Optional)
+    if (headerMap['additionalResources'] !== undefined && row[headerMap['additionalResources']]) {
+        const resourceProps = ["title", "url", "type"];
+        project.additionalResources = parseComplexCell(row[headerMap['additionalResources']], resourceProps);
+        if (project.additionalResources.length === 0 && row[headerMap['additionalResources']].trim() !== '') {
+             Logger.log(`Warning: Could not parse additionalResources for row ${i+1}. Check format: ${row[headerMap['additionalResources']]}`);
         }
-      }
-    });
-    // Validar que haya al menos una puntuación si el objeto existe
-    if (Object.keys(project.evaluationScores).length === 0) {
-      Logger.log(
-        `Advertencia Fila ${
-          rowIndex + HEADER_ROW + 1
-        } (${projectTitle}): No se encontraron puntuaciones de evaluación válidas.`
-      );
-      // Decidir si eliminar el objeto vacío o dejarlo. Lo dejamos vacío por ahora.
-    }
+    } // No else clause, it's optional
 
-    projectsArray.push(project);
-  });
+    // Image Gallery (Optional)
+    if (headerMap['imageGallery'] !== undefined && row[headerMap['imageGallery']]) {
+        const galleryProps = ["url", "altText", "caption"]; // Caption is optional
+        project.imageGallery = parseComplexCell(row[headerMap['imageGallery']], galleryProps);
+        // Ensure required fields 'url' and 'altText' are present for each item
+        project.imageGallery = project.imageGallery.filter(img => img.url && img.altText);
+        if (project.imageGallery.length === 0 && row[headerMap['imageGallery']].trim() !== '') {
+             Logger.log(`Warning: Could not parse imageGallery for row ${i+1}, or items lack url/altText. Check format: ${row[headerMap['imageGallery']]}`);
+        }
+    } // No else clause, it's optional
 
-  // Convertir el array de objetos a una cadena JSON formateada
-  return JSON.stringify(projectsArray, null, 2); // Indentación de 2 espacios para legibilidad
-}
 
-/**
- * Muestra el JSON generado en un diálogo en la interfaz de Google Sheets.
- */
-function showJsonOutput() {
-  const ui = SpreadsheetApp.getUi();
-  try {
-    const jsonString = generateProjectsJsonString();
+     // --- Evaluation Scores ---
+     project.evaluationScores = {};
+     headers.forEach((header, index) => {
+       if (header.startsWith('eval_')) {
+         const scoreKey = header; // Keep the full key 'eval_Whatever'
+         const scoreValue = parseFloat(row[index]);
+         if (!isNaN(scoreValue) && scoreValue >= 0 && scoreValue <= 100) {
+           project.evaluationScores[scoreKey] = scoreValue;
+         } else if (row[index] !== undefined && row[index] !== '') { // Only warn if cell is not empty but invalid
+            Logger.log(`Warning: Invalid score for ${scoreKey} in row ${i+1}: '${row[index]}'. Score must be a number between 0-100. Omitting score.`);
+         }
+       }
+     });
+     // Check if evaluationScores object is empty, log warning if so
+      if (Object.keys(project.evaluationScores).length === 0) {
+        Logger.log(`Warning: No valid evaluation scores found for project in row ${i+1}. The evaluationScores object will be empty.`);
+     }
 
-    // Usar un diálogo HTML para mostrar texto preformateado y seleccionable
-    const htmlOutput = HtmlService.createHtmlOutput(
-      `<style> pre { white-space: pre-wrap; word-wrap: break-word; background-color: #f4f4f4; border: 1px solid #ccc; padding: 10px; max-height: 400px; overflow-y: auto; } </style>
-         <p>Copia el siguiente JSON y pégalo en el archivo 'data/projects.json' de tu proyecto:</p>
-         <pre>${escapeHtml(jsonString)}</pre>`
-    )
-      .setWidth(600)
-      .setHeight(500);
-    ui.showModalDialog(htmlOutput, "JSON Generado para Proyectos");
-  } catch (error) {
-    Logger.log(
-      "Error al generar JSON: " + error.message + "\nStack: " + error.stack
-    );
-    ui.alert(
-      "Error al Generar JSON",
-      `Ocurrió un error: ${error.message}\n\nConsulta los registros (Ver > Registros) para más detalles. Asegúrate de que la hoja "${SHEET_NAME}" existe, tiene los encabezados correctos y datos válidos.`,
-      ui.ButtonSet.OK
-    );
-  }
-}
 
-// --- Funciones Auxiliares ---
+    projects.push(project);
+  } // End row loop
 
-/**
- * Genera un slug amigable para URL a partir de un texto.
- * @param {string} text El texto a convertir.
- * @returns {string} El slug generado.
- */
-function generateSlug(text) {
-  if (!text) return "";
-  return text
-    .toString()
-    .toLowerCase()
-    .normalize("NFD") // Separar acentos y caracteres base
-    .replace(/[\u0300-\u036f]/g, "") // Eliminar diacríticos (acentos)
-    .replace(/\s+/g, "-") // Reemplazar espacios con -
-    .replace(/[^\w\-]+/g, "") // Eliminar caracteres no alfanuméricos (excepto -)
-    .replace(/\-\-+/g, "-") // Reemplazar múltiples - con uno solo
-    .replace(/^-+/, "") // Quitar - del inicio
-    .replace(/-+$/, ""); // Quitar - del final
-}
-
-/**
- * Obtiene el valor de una celda como string, asegurándose de que no sea nulo/vacío si es requerido.
- * @param {Array} row La fila de datos.
- * @param {object} headerMap Mapa de encabezados a índices.
- * @param {string} headerName Nombre del encabezado de la columna.
- * @param {boolean} [isRequired=false] Si el campo es obligatorio.
- * @returns {string} El valor de la celda como string, o string vacío si es opcional y está vacío.
- * @throws {Error} Si el campo es requerido y está vacío o la columna no existe.
- */
-function getStringValue(row, headerMap, headerName, isRequired = false) {
-  if (!(headerName in headerMap)) {
-    if (isRequired)
-      throw new Error(
-        `La columna requerida "${headerName}" no se encontró en la hoja.`
-      );
-    return ""; // Columna opcional no encontrada
-  }
-  const index = headerMap[headerName];
-  const value =
-    index < row.length && row[index] !== null && row[index] !== undefined
-      ? String(row[index]).trim()
-      : "";
-
-  if (isRequired && value === "") {
-    throw new Error(
-      `El campo requerido "${headerName}" está vacío en una de las filas.`
-    );
-  }
-  return value;
-}
-
-/**
- * Añade un valor string a un objeto si el valor no está vacío.
- * @param {object} obj El objeto al que añadir el valor.
- * @param {Array} row La fila de datos.
- * @param {object} headerMap Mapa de encabezados a índices.
- * @param {string} headerName Nombre del encabezado/clave.
- * @param {boolean} [isRequired=false] Si el campo es obligatorio.
- */
-function addStringValue(obj, row, headerMap, headerName, isRequired = false) {
-  const value = getStringValue(row, headerMap, headerName, isRequired);
-  // Añadir solo si es requerido o si es opcional pero tiene valor
-  if (isRequired || value !== "") {
-    obj[headerName] = value;
-  }
-}
-
-/**
- * Obtiene el valor numérico de una celda.
- * @param {Array} row La fila de datos.
- * @param {object} headerMap Mapa de encabezados a índices.
- * @param {string} headerName Nombre del encabezado.
- * @returns {number|null} El valor numérico o null si no es un número válido o la celda está vacía.
- */
-function getNumericValue(row, headerMap, headerName) {
-  if (!(headerName in headerMap)) return null; // Columna no encontrada
-
-  const index = headerMap[headerName];
-  const value =
-    index < row.length && row[index] !== null && row[index] !== undefined
-      ? row[index]
-      : null;
-
-  if (value === null || value === "" || isNaN(Number(value))) {
-    return null; // No es un número válido o está vacío
-  }
-  return Number(value);
-}
-
-/**
- * Parsea una cadena de texto de una celda que contiene una lista compleja.
- * Formato esperado: "val1A;val2A;val3A | val1B;val2B;val3B | ..."
- * @param {string} cellValue El valor de la celda.
- * @param {Array<string>} propertyNames Los nombres de las propiedades para cada objeto.
- * @returns {Array<object>} Un array de objetos parseados. Devuelve array vacío si cellValue es vacío.
- */
-function parseComplexList(cellValue, propertyNames) {
-  if (!cellValue || cellValue.trim() === "") {
-    return []; // Devuelve array vacío si no hay valor
-  }
-
-  const items = cellValue.split("|"); // Separador de elementos
-  const result = [];
-
-  items.forEach((item) => {
-    const properties = item.split(";"); // Separador de propiedades
-    const obj = {};
-    let hasData = false; // Flag para saber si el item tiene algún dato
-
-    propertyNames.forEach((propName, index) => {
-      // Usar trim() para limpiar espacios alrededor de los valores
-      const value = index < properties.length ? properties[index].trim() : "";
-      if (value !== "") {
-        hasData = true; // Marcamos que este item tiene datos
-      }
-      // Asignar incluso si está vacío, para mantener la estructura,
-      // a menos que sea una propiedad interna opcional como 'caption'
-      // Nota: Ajustar si alguna propiedad interna es opcional y no debe aparecer si está vacía.
-      obj[propName] = value;
-    });
-
-    // Añadir el objeto al resultado solo si tiene algún dato relevante
-    // Esto evita añadir objetos vacíos si hay separadores extra (ej. " | | ")
-    if (hasData) {
-      result.push(obj);
-    }
-  });
-
-  return result;
-}
-
-/**
- * Escapa caracteres HTML para mostrarlos de forma segura en HtmlService.
- * @param {string} str La cadena a escapar.
- * @returns {string} La cadena escapada.
- */
-function escapeHtml(str) {
-  return str
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
+  return JSON.stringify(projects, null, 2); // Pretty print JSON
 }

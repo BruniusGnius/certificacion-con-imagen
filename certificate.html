@@ -1,91 +1,166 @@
 <!DOCTYPE html>
-<html lang="es" class="dark">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Certificado Digital - Gnius Club</title>
-    <!-- Tailwind CSS CDN -->
+    <title>Certificado Gnius Club</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="css/style.css">
-    <script>
-        // Misma configuración de Tailwind que index.html
-        tailwind.config = {
-            darkMode: 'class',
-            theme: { extend: { colors: { 'gnius-dark': '#1a1a1a', 'gnius-dark-secondary': '#2a2a2a', 'gnius-light': '#f0f0f0', 'gnius-gray': '#a0a0a0', 'gnius-yellow': '#ffcc00', 'gnius-cyan': '#00ffff', 'gnius-red': '#ff4d4d', }, fontFamily: { sans: ['Inter', 'sans-serif'] } } }
+    <style>
+        body {
+            background-color: #0F0F0F;
+            color: #F0F0F0;
         }
-    </script>
-    <style type="text/tailwindcss">
-        body { @apply bg-gnius-dark text-gnius-light font-sans flex flex-col min-h-screen; }
-        main { @apply flex-grow; }
-        .certificate-container {
-            @apply max-w-4xl mx-auto bg-gnius-dark-secondary p-8 md:p-12 my-8 md:my-12 border-2 border-gnius-cyan rounded-lg shadow-lg shadow-gnius-cyan/30;
-            /* Simulación de borde interior */
-            position: relative;
-        }
-        /* .certificate-container::before {
-            content: '';
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            right: 10px;
-            bottom: 10px;
-            border: 1px solid #4a4a4a;
-            border-radius: 0.375rem; /* Ajustar a rounded-lg
-            pointer-events: none;
-        } */
-        .certificate-header { @apply text-center mb-6; }
-        .student-name { @apply text-3xl md:text-4xl font-bold text-gnius-yellow my-4; }
-        .badge-name { @apply text-2xl md:text-3xl font-semibold text-gnius-cyan mb-2; }
-        .course-name { @apply text-lg text-gnius-gray mb-4; }
-        .certificate-section { @apply mb-6; }
-        .certificate-label { @apply font-semibold text-gnius-cyan text-sm uppercase tracking-wider mb-2 block; }
-        .certificate-list { @apply list-none p-0 flex flex-wrap gap-2; }
-        .certificate-list li { @apply bg-gray-600 text-gnius-light text-xs font-medium px-3 py-1 rounded-full; }
-        .issuance-info { @apply text-sm text-gnius-gray mt-4; }
-        .gnius-link { @apply text-gnius-cyan hover:text-gnius-yellow font-semibold; }
 
+        .gnius-yellow {
+            color: #FFD700;
+        }
+
+        .gnius-cyan {
+            color: #00FFFF;
+        }
+
+        .gnius-red {
+            color: #FF0000;
+        }
+
+        .certificate-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: #1A1A1A;
+            border: 2px solid #FFD700;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+            position: relative;
+            /* Para posibles adornos */
+        }
+
+        .chip {
+            padding: 0.2rem 0.6rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: inline-block;
+            margin: 0.1rem;
+        }
+
+        .chip-yellow {
+            background-color: #FFD700;
+            color: #111;
+        }
+
+        .chip-cyan {
+            background-color: #00FFFF;
+            color: #111;
+        }
+
+        .chip-red {
+            background-color: #FF0000;
+            color: white;
+        }
+
+        .chip-gray {
+            background-color: #4B5563;
+            color: white;
+        }
+
+        .certificate-header img {
+            max-height: 60px;
+        }
     </style>
 </head>
 
-<body>
+<body class="bg-[#0F0F0F] text-gray-200 font-sans">
 
-    <header class="bg-gnius-dark-secondary p-4 shadow-md">
-        <div class="container mx-auto flex justify-between items-center">
-            <h1 class="text-xl font-bold text-gnius-yellow">
-                <a href="index.html" class="hover:text-yellow-400"><i class="fas fa-brain mr-2"></i>Gnius Club
-                    Certificados</a>
-            </h1>
-            <!-- Podría ir un enlace a la página principal -->
+    <!-- Header Minimalista -->
+    <header class="py-4 px-4 md:px-8">
+        <div class="container mx-auto flex justify-start">
+            <a href="index.html" class="flex items-center gap-2 hover:opacity-80 transition-opacity">
+                <img src="assets/img/gnius_logo_placeholder.png" alt="Gnius Club Logo" class="h-8">
+            </a>
         </div>
     </header>
 
-    <main class="container mx-auto px-4">
-        <div id="certificate-details" class="opacity-0 transition-opacity duration-500">
-            <!-- Contenido del certificado se cargará aquí -->
-            <div class="text-center p-20">
-                <i class="fas fa-spinner fa-spin fa-3x text-gnius-cyan"></i>
-                <p class="mt-4 text-gnius-gray">Cargando certificado...</p>
+    <main id="certificate-details" class="container mx-auto px-4 md:px-8 py-5">
+        <p id="loading-message" class="text-center text-xl">Cargando certificado...</p>
+        <p id="error-message" class="text-center text-xl text-red-500" style="display: none;">No se pudo encontrar el
+            certificado o el proyecto asociado.</p>
+
+        <div id="certificate-content" class="certificate-container" style="display: none;">
+
+            <div
+                class="certificate-header flex flex-col sm:flex-row justify-between items-center mb-6 border-b border-gray-600 pb-4">
+                <img src="assets/img/gnius_logo_placeholder.png" alt="Gnius Club Logo">
+                <div class="text-center sm:text-right mt-2 sm:mt-0">
+                    <p class="text-sm text-gray-400">Certificado Digital de Proyecto</p>
+                    <p id="college-name" class="text-sm text-gray-400"></p>
+                </div>
             </div>
-        </div>
-        <div id="certificate-not-found" class="text-center p-20 hidden">
-            <i class="fas fa-exclamation-triangle fa-3x text-gnius-red mb-4"></i>
-            <p class="text-gnius-gray text-lg mb-4">Certificado no encontrado o datos inválidos.</p>
-            <a href="index.html" class="gnius-button bg-gnius-red text-white hover:bg-red-700">
-                <i class="fas fa-arrow-left mr-2"></i> Volver al Listado
-            </a>
+
+            <div class="text-center mb-8">
+                <p class="text-lg text-gray-400 mb-1">Certificado otorgado a:</p>
+                <h1 id="student-name" class="text-3xl md:text-4xl font-bold gnius-yellow mb-3"></h1>
+                <p class="text-lg text-gray-400">por completar exitosamente el curso/programa:</p>
+                <h2 id="course-name" class="text-2xl md:text-3xl font-semibold gnius-cyan mt-1 mb-4"></h2>
+                <p class="text-md text-gray-400">Obteniendo la insignia:</p>
+                <p id="badge-name" class="text-xl font-bold chip chip-yellow mt-1"></p>
+                <p class="text-md text-gray-400 mt-2">Nivel:</p>
+                <p id="level-name" class="text-xl font-bold chip chip-cyan mt-1"></p>
+            </div>
+
+            <div class="mb-6">
+                <h3 class="text-xl font-semibold mb-3 gnius-red border-b border-red-500 pb-1">Descripción</h3>
+                <p id="certificate-description" class="text-gray-300 text-justify"></p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div>
+                    <h3 class="text-xl font-semibold mb-3 gnius-cyan border-b border-cyan-500 pb-1">Habilidades
+                        Demostradas</h3>
+                    <div id="skills-list" class="flex flex-wrap gap-2">
+                        <!-- Chips de habilidades -->
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-3 gnius-yellow border-b border-yellow-500 pb-1">Criterios de
+                        Evaluación</h3>
+                    <div id="criteria-list" class="flex flex-wrap gap-2">
+                        <!-- Chips de criterios -->
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="mb-6 text-center">
+                <h3 class="text-xl font-semibold mb-3 gnius-red border-b border-red-500 pb-1 inline-block">Evidencia del
+                    Proyecto</h3>
+                <p class="mt-2">
+                    <a id="project-link" href="#"
+                        class="inline-block bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded transition duration-200 border border-cyan-400 shadow-md hover:shadow-lg">
+                        <i class="fa-solid fa-rocket mr-2"></i>Ver Proyecto de Evidencia
+                    </a>
+                </p>
+            </div>
+
+            <div class="mt-8 pt-4 border-t border-gray-600 text-center text-sm text-gray-400">
+                <p>Emitido por Gnius Club y <span id="issuer-college"></span></p>
+                <p>Fecha de Emisión: <span id="issue-date"></span></p>
+            </div>
+
         </div>
     </main>
 
-    <footer class="bg-gnius-dark-secondary p-4 text-center text-sm text-gnius-gray">
-        &copy; <span id="current-year"></span> Gnius Club. Validación de Certificados.
+    <!-- Footer -->
+    <footer class="mt-12 py-6 px-4 md:px-8 border-t border-gray-700 text-center text-gray-500 text-sm">
+        © <span id="current-year"></span> Gnius Club. Verificabilidad pendiente de implementación con SBTs.
     </footer>
 
-    <script type="module" src="js/certificate.js"></script>
+    <script src="js/certificate.js"></script>
 </body>
 
 </html>

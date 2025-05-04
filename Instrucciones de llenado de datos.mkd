@@ -1,86 +1,65 @@
-## 11. Instrucciones para Llenar Google Sheets y Prompt para IA Asistente
+**Instrucciones para Llenar y Mantener la Hoja de Google Sheets de Proyectos Gnius Club**
 
-### Instrucciones para el Usuario Final (Gnius Club)
+Esta hoja de cálculo es la **única fuente de datos** para el sitio web de portafolios y certificados de Gnius Club. Es crucial mantener la estructura y el formato correctos para que la automatización funcione.
 
-**¡Bienvenido/a a la gestión de portafolios de Gnius Club!** Esta guía te ayudará a mantener actualizada la información de los proyectos estudiantiles y sus certificados asociados usando una Hoja de Cálculo de Google.
+**Estructura General:**
 
-**Flujo General:**
+- **Primera Fila:** Contiene los **encabezados de columna**. ¡No la modifiques! Los nombres deben coincidir exactamente con los definidos (ver lista abajo).
+- **Filas Siguientes:** Cada fila representa **un proyecto individual**.
 
-1.  **Abre la Hoja de Cálculo:** Busca la hoja llamada "**Proyectos**" en tu Google Drive compartido.
-2.  **Edita/Añade Información:** Modifica las filas existentes o añade nuevas filas para nuevos proyectos, siguiendo las instrucciones de formato de cada columna.
-3.  **Genera el JSON:** Una vez termines de editar, ve al menú `Gnius Club Tools` > `Generar JSON de Proyectos`.
-4.  **Copia el JSON:** Se abrirá una ventana con el código JSON generado. Selecciónalo todo (`Ctrl+A` o `Cmd+A`) y cópialo (`Ctrl+C` o `Cmd+C`).
-5.  **Actualiza en GitHub:**
-    - Ve al repositorio del proyecto en GitHub.
-    - Navega hasta el archivo `data/projects.json`.
-    - Haz clic en el icono de lápiz ("Edit this file").
-    - Selecciona todo el contenido actual y bórralo.
-    - Pega el JSON que copiaste de Google Sheets (`Ctrl+V` o `Cmd+V`).
-    - Escribe un mensaje corto describiendo el cambio (ej. "Actualización de proyectos [Fecha]").
-    - Haz clic en "Commit changes".
-6.  **¡Listo!** GitHub Pages se actualizará automáticamente en unos minutos y los cambios serán visibles en el sitio web.
+**Columnas y Formato:**
 
-**Descripción y Formato de las Columnas:**
+1.  **`projectTitle` (Requerido):** Título principal del proyecto. Texto simple. (Ej: `Alarma Solar para Plantas Sedientas`)
+2.  **`projectCategory` (Opcional):** Categoría principal. Texto simple. (Ej: `IoT`, `Robótica`, `Desarrollo Web`)
+3.  **`studentLevel` (Opcional):** Nivel educativo. Texto simple. (Ej: `Primaria`, `Secundaria`, `Preparatoria`)
+4.  **`projectDate` (Opcional):** Fecha de finalización o presentación. **Formato estricto: `YYYY-MM-DD`**. (Ej: `2024-10-15`)
+5.  **`intro_title` (Requerido):** Título corto o eslogan para la introducción. Texto simple. (Ej: `¡No más plantas marchitas!`)
+6.  **`intro_content` (Requerido):** Breve resumen ejecutivo del proyecto (1-2 frases). Texto simple.
+7.  **`coverUrl_url` (Requerido):** URL completa de la imagen de portada principal. Debe ser una URL pública accesible. (Ej: `https://placehold.co/.../cover.png`)
+8.  **`coverUrl_altText` (Requerido):** Texto descriptivo corto para la imagen de portada (accesibilidad). Texto simple. (Ej: `Prototipo de alarma de riego solar`)
+9.  **`problemDescription` (Requerido):** Descripción del problema que el proyecto busca resolver. Texto (puede ser largo).
+10. **`solutionProposed` (Requerido):** Descripción de la solución que el proyecto implementa. Texto (puede ser largo).
+11. **`innovationProcess` (Opcional):** Descripción del proceso seguido (investigación, diseño, prototipado, etc.). **Puede contener HTML simple** (párrafos `<p>`, listas `<ul><ol><li>`, negritas `<strong>`) para formatear. Si usas HTML, asegúrate de que sea válido. (Ej: `<div><p>Paso 1...</p><ol><li>Subpaso...</li></ol></div>`)
+12. **`media_type` (Opcional):** Tipo de medio principal. Escribe `video` o `image`. Si se deja vacío o es inválido, no se mostrará la sección de media.
+13. **`media_url` (Opcional):** URL del medio principal. Si `media_type` es `video`, debe ser la **URL de Embed de YouTube** (ej: `https://www.youtube.com/embed/VIDEO_ID`). Si es `image`, la URL de la imagen.
+14. **`media_altText` (Opcional):** Texto alternativo si `media_type` es `image`.
+15. **`teamMembers` (Requerido - Formato Especial):** Lista de miembros del equipo y sus datos de certificado.
+    - **Separador de Miembros:** Usa `|` (espacio, barra vertical, espacio) entre cada miembro.
+    - **Separador de Propiedades:** Usa `;` (punto y coma) entre las propiedades de CADA miembro.
+    - **Orden de Propiedades Estricto:** `Nombre;Rol;LinkSBT(o vacío);NombreCursoCertificado;NombreInsigniaCertificado;NivelCertificado;HabilidadesSeparadasPorPuntoyComa;CriteriosSeparadosPorPuntoyComa;ColegioCertificado;FechaEmisionCertificado(YYYY-MM-DD)`
+    - **Ejemplo (1 miembro):** `Elena Ríos;Hardware Lead & Programmer;https://credentials.ejemplo.com/sbt/elena-rios-123;Introducción a IoT con Arduino;IoT MAKER;INTERMEDIO;Arduino;Sensores;Energía Solar;Programación C++;Soldadura;Funcionalidad;Diseño Circuito;Código Eficiente;Presentación;Colegio Tesla;2024-10-20`
+    - **Ejemplo (2 miembros):** `Elena Ríos;...;2024-10-20 | Carlos Vega;Diseñador 3D & Ensamblador;;Introducción a IoT con Arduino;IoT MAKER;INTERMEDIO;Diseño 3D;Impresión 3D;Ensamblaje Electrónico;Resolución Problemas;Diseño Carcasa;Calidad Ensamblaje;Colaboración;Presentación;Colegio Tesla;2024-10-20` _(Nota el doble punto y coma `;;` para el LinkSBT vacío de Carlos)_
+16. **`technologies` (Requerido - Formato Especial):** Lista de tecnologías clave usadas.
+    - **Separador de Tecnologías:** Usa `|` (espacio, barra vertical, espacio).
+    - **Separador de Propiedades:** Usa `;` (punto y coma).
+    - **Orden de Propiedades Estricto:** `NombreTecnologia;NombreIconoFontAwesome(sin fa-);Categoria(Hardware/Software/Tool)`
+    - **Iconos:** Busca el nombre del icono en [Font Awesome](https://fontawesome.com/search?m=free&s=solid,brands). Usa solo el nombre (ej: `microchip`, `code`, `python`, `github`).
+    - **Ejemplo:** `Arduino Nano;microchip;Hardware | Sensor Humedad Capacitivo;water;Hardware | Arduino IDE (C++);code;Software`
+17. **`additionalResources` (Opcional - Formato Especial):** Lista de enlaces adicionales (GitHub, demo, PDF).
+    - **Separador de Recursos:** Usa `|`.
+    - **Separador de Propiedades:** Usa `;`.
+    - **Orden de Propiedades Estricto:** `TituloRecurso;URLRecurso;TipoRecurso(github/link/pdf/doc/website/etc)`
+    - **Ejemplo:** `Código Fuente (GitHub);https://github.com/...;github | Demo Online;#;website`
+18. **`imageGallery` (Opcional - Formato Especial):** Lista de imágenes para la galería.
+    - **Separador de Imágenes:** Usa `|`.
+    - **Separador de Propiedades:** Usa `;`.
+    - **Orden de Propiedades Estricto:** `URLImagen;TextoAlternativo;Caption(Opcional)`
+    - **Ejemplo:** `https://.../img1.jpg;Prototipo V1;Prototipo inicial | https://.../img2.jpg;Detalle Sensor;Conexión del sensor` _(Si no hay caption, deja el espacio después del último punto y coma o termina ahí)_
+19. **`eval_*` (Requerido):** Columnas para las puntuaciones de evaluación. Debe haber una columna por cada métrica definida (ej: `eval_Impacto Potencial`, `eval_Creatividad Solucion`, etc.).
+    - **Valor:** Introduce un número entero o decimal entre **0 y 100**. Si dejas la celda vacía o pones texto, esa métrica no aparecerá en el gráfico.
 
-- **`projectTitle` (Texto, Requerido):** Título principal del proyecto. Debe ser único y descriptivo.
-- **`projectCategory` (Texto, Opcional):** Categoría general (ej. "IoT", "Robótica", "IA", "Desarrollo Web").
-- **`studentLevel` (Texto, Opcional):** Nivel educativo de los estudiantes (ej. "Primaria", "Secundaria", "Preparatoria").
-- **`projectDate` (Fecha, Opcional):** Fecha de finalización o presentación del proyecto. Usa el formato **AAAA-MM-DD** (ej. `2024-11-15`).
-- **`intro_title` (Texto, Requerido):** Frase corta y llamativa que resume el proyecto (subtítulo).
-- **`intro_content` (Texto Largo, Requerido):** Párrafo breve (2-3 frases) que describe el proyecto y su propósito.
-- **`coverUrl_url` (URL, Requerido):** Enlace (URL completa `https://...`) a la imagen principal de portada del proyecto. Usa imágenes horizontales (aspecto 16:9 o similar). Puedes usar servicios como `picsum.photos` para pruebas.
-- **`coverUrl_altText` (Texto, Requerido):** Texto descriptivo corto para la imagen de portada (accesibilidad).
-- **`problemDescription` (Texto Largo, Requerido):** Describe el problema que el proyecto busca resolver.
-- **`solutionProposed` (Texto Largo, Requerido):** Describe la solución que el proyecto implementa.
-- **`innovationProcess` (Texto Largo, Opcional):** Describe los pasos o fases del desarrollo del proyecto. Puedes usar saltos de línea (presionando `Alt+Enter` o `Option+Enter` dentro de la celda en Sheets) para separar párrafos o pasos. El formato básico como `**Texto en negrita**` o `*Texto en cursiva*` _no_ funcionará aquí directamente, solo texto plano y saltos de línea.
-- **`media_type` (Texto, Opcional):** Tipo de evidencia principal. Escribe `image` o `video`. Déjalo vacío si no hay.
-- **`media_url` (URL, Opcional):** Enlace (URL) a la imagen o video principal. Si es un video de YouTube, pega el enlace completo de la página del video (ej. `https://www.youtube.com/watch?v=videoId`). Si es una imagen, la URL directa a la imagen. Necesario si `media_type` tiene valor.
-- **`media_altText` (Texto, Opcional):** Texto descriptivo para la imagen/video principal.
-- **`teamMembers` (Formato Especial, Requerido):** Lista de miembros del equipo y datos de sus certificados. **¡Formato MUY importante!**
-  - Separa cada miembro con `|` (espacio, barra vertical, espacio).
-  - Dentro de cada miembro, separa sus datos con `;` (punto y coma) en este orden **exacto**:
-    1.  Nombre Completo
-    2.  Rol en el proyecto (ej. "Hardware Lead")
-    3.  URL del SBT (si existe, si no, dejar vacío pero mantener el `;`)
-    4.  Nombre del Curso/Taller del certificado
-    5.  Nombre de la Insignia obtenida
-    6.  Nivel de la insignia (ej. "EXPLORER", "MAKER")
-    7.  Habilidades (separadas por `;`, ej. `Python;MQTT;APIs`)
-    8.  Criterios de evaluación (separados por `;`, ej. `Lógica;Colaboración`)
-    9.  Nombre del Colegio/Institución del certificado
-    10. Fecha de emisión del certificado (formato `AAAA-MM-DD`)
-  - **Ejemplo para UN miembro:** `Ana García;Hardware Lead;https://credentials.ejemplo.com/sbt1;Curso Robótica Avanzada;EXPERT ROBOTEER;HACKER;Diseño 3D;Creatividad;Ejecución;Colegio Ejemplo A;2024-05-15`
-  - **Ejemplo para DOS miembros (en la misma celda):** `Ana García;Hardware Lead;...;2024-05-15 | Luis Martínez;Software Developer;...;2024-05-15`
-  - **Importante:** Si algún campo como el SBT Link no aplica, deja el espacio entre los punto y coma vacío: `Nombre;Rol;;Curso;...`
-  - **Si editas en Sheets:** No necesitas comillas dobles alrededor de toda la celda, pero los separadores `|` y `;` son cruciales.
-- **`technologies` (Formato Especial, Requerido):** Lista de tecnologías usadas.
-  - Separa cada tecnología con `|`.
-  - Dentro de cada tecnología, separa sus datos con `;` en este orden:
-    1.  Nombre de la Tecnología (ej. "Arduino Nano")
-    2.  Nombre del icono de Font Awesome v6 (SIN `fa-`, ej. `microchip`, `python`, `lightbulb`). Busca iconos en [fontawesome.com/icons](https://fontawesome.com/icons?d=gallery&m=free).
-    3.  Categoría: `Hardware`, `Software` o `Tool`.
-  - **Ejemplo:** `Arduino Nano;microchip;Hardware | Python;python;Software | Impresora 3D;cube;Tool`
-- **`additionalResources` (Formato Especial, Opcional):** Lista de enlaces adicionales (repositorios, documentación, etc.).
-  - Separa cada recurso con `|`.
-  - Dentro de cada recurso, separa sus datos con `;` en este orden:
-    1.  Título del enlace (ej. "Código Fuente")
-    2.  URL completa del enlace
-    3.  Tipo (palabra clave): `github`, `pdf`, `doc`, `link` (para otros).
-  - **Ejemplo:** `Código Fuente;https://github.com/...;github | Datasheet Sensor;https://...pdf;pdf`
-- **`imageGallery` (Formato Especial, Opcional):** Lista de imágenes para la galería.
-  - Separa cada imagen con `|`.
-  - Dentro de cada imagen, separa sus datos con `;` en este orden:
-    1.  URL completa de la imagen
-    2.  Texto alternativo descriptivo
-    3.  (Opcional) Pie de foto corto (si no hay, deja vacío después del `;`)
-  - **Ejemplo:** `https://.../img1.jpg;Prototipo V1;Versión inicial | https://.../img2.jpg;Detalle Sensor;`
-- **`eval_NOMBRE METRICA` (Numérico, Requerido):** Columnas para las puntuaciones de evaluación.
-  - El nombre de la columna DEBE empezar con `eval_` seguido del nombre exacto de la métrica (ej. `eval_Impacto Potencial`, `eval_Creatividad Solucion`).
-  - Introduce un número entre 0 y 100. Si no hay puntuación para una métrica, deja la celda vacía (se omitirá).
+**¡Importante sobre Comas, Saltos de Línea y Separadores!**
 
-**¡Importante!**
+- Si editas directamente en Google Sheets, generalmente no necesitas preocuparte por las comillas dobles (`"`).
+- **Sin embargo**, si el contenido de UNA celda (como `innovationProcess` o `problemDescription`) contiene una **coma (`,`)**, un **salto de línea**, o los propios separadores (`|` o `;`), al exportar/importar como CSV, esa celda **DEBE** estar completamente encapsulada en comillas dobles (`"`).
+- Para las columnas con formato especial (`teamMembers`, `technologies`, etc.), **siempre usa `|` y `;` como se indica**, independientemente de si estás en Sheets o editando un CSV. El script de Google Apps Script espera estos separadores.
 
-- **Consistencia:** Usa los mismos nombres para categorías, niveles, tecnologías, etc., para que los filtros funcionen bien.
-- **Separadores:** Presta MUCHA atención a usar `|` (con espacios) entre elementos y `;` (sin espacios) entre propiedades dentro de los campos de formato especial.
-- **Requerido vs. Opcional:** Asegúrate de llenar todos los campos marcados como (Requerido). Los opcionales pueden dejarse vacíos.
-- **Guardar:** Google Sheets guarda automáticamente, pero asegúrate de que los cambios se hayan sincronizado antes de generar el JSON.
+**Actualizar el Sitio Web:**
+
+1.  Haz tus cambios en la hoja de Google Sheets.
+2.  Ve al menú `Gnius Club Tools` > `Generar JSON de Proyectos`.
+3.  Aparecerá una ventana con el código JSON. Selecciónalo todo (`Ctrl+A` o `Cmd+A`) y cópialo (`Ctrl+C` o `Cmd+C`).
+4.  Abre el archivo `data/projects.json` en tu editor de código o directamente en GitHub.
+5.  Reemplaza TODO el contenido del archivo `projects.json` con el JSON que copiaste.
+6.  Guarda los cambios y súbelos (commit & push) a GitHub.
+7.  GitHub Pages se actualizará automáticamente en unos minutos.
