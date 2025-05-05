@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <base target="_top">
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 15px;
+            background-color: #f8f9fa;
+        }
+
+        #jsonOutput {
+            width: 95%;
+            height: 400px;
+            white-space: pre;
+            overflow: auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: #fff;
+            font-family: monospace;
+            font-size: 12px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        #copyButton {
+            padding: 8px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        #copyButton:hover {
+            background-color: #0056b3;
+        }
+
+        #copyButton:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+
+        #status {
+            margin-top: 15px;
+            font-style: italic;
+            color: #555;
+        }
+
+        .error {
+            color: red;
+            font-weight: bold;
+            white-space: pre-wrap;
+        }
+
+        .warning {
+            color: orange;
+            white-space: pre-wrap;
+            margin-bottom: 10px;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin-top: 5px;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h4>Generar JSON de Proyectos</h4>
+    <p>Haz clic en el botón para generar el JSON a partir de la hoja activa.</p>
+    <button id="generateButton" onclick="requestJson()">Generar JSON</button>
+
+    <div id="resultArea" style="display: none;">
+        <h5>Resultado:</h5>
+        <div id="validationMessages"></div>
+        <textarea id="jsonOutput" readonly></textarea>
+        <button id="copyButton" onclick="copyJson()" disabled>Copiar al Portapapeles</button>
+        <div id="copyStatus"></div>
+    </div>
+
+    <div id="status">Listo.</div>
+
+    <script>
+        function requestJson() {
+            document.getElementById('status').textContent = 'Generando...';
+            document.getElementById('generateButton').disabled = true;
+            document.getElementById('resultArea').style.display = 'none';
+            document.getElementById('validationMessages').innerHTML = ''; // Limpiar mensajes previos
+            document.getElementById('jsonOutput').value = ''; // Limpiar JSON previo
+            document.getElementById('copyButton').disabled = true;
+            document.getElementById('copyStatus').textContent = '';
+
+
+            google.script.run
+                .withSuccessHandler(displayResult)
+                .withFailureHandler(displayError)
+                .generateJson();
+        }
+
+        function displayResult(resultJsonString) {
+            document.getElementById('generateButton').disabled = false;
+            document.getElementById('status').textContent = '¡Generación completada!';
+            document.getElementById('resultArea').style.display = 'block';
+
+            let resultData;
+            try {
+                resultData = JSON.parse(resultJsonString);
+            } catch (e) {
+                displayError({ message: "Error al parsear la respuesta del script: " + e.message, response: resultJsonString });
+                return;
+            }
+
+            // Manejar errores o JSON válido
+            if (resultData.error) {
+                displayError({ message: resultData.error });
+                document.getElementById('copyButton').disabled = true;
+            } else {
+                const messagesDiv = document.getElementById('validationMessages');
+                messagesDiv.innerHTML = ''; // Clear previous messages
+
+                if (resultData.validationMessages && resultData.validationMessages.length > 0) {
+                    messagesDiv.innerHTML = '<strong>Advertencias/Errores Leves:</strong>';
+                    const list = document.createElement('ul');
+                    resultData.validationMessages.forEach(msg => {
+                        const item = document.createElement('li');
+                        item.textContent = msg;
+                        // Podrías añadir clase 'error' o 'warning' basado en el texto del msg
+                        if (msg.toLowerCase().includes('error') || msg.toLowerCase().includes('falta') || msg.toLowerCase().includes('inválido') || msg.toLowerCase().includes('omitirá')) {
+                            item.className = 'error';
+                        } else {
+                            item.className = 'warning';
+                        }
+                        list.appendChild(item);
+                    });
+                    messagesDiv.appendChild(list);
+                    messagesDiv.style.marginBottom = '15px'; // Espacio extra si hay mensajes
+                }
+
+                // Mostrar JSON de proyectos (si existe)
+                if (resultData.projects) {
+                    const prettyJson = JSON.stringify(resultData.projects, null, 2);
+                    document.getElementById('jsonOutput').value = prettyJson;
+                    document.getElementById('copyButton').disabled = false;
+                } else {
+                    document.getElementById('jsonOutput').value = 'No se generaron proyectos.';
+                    document.getElementById('copyButton').disabled = true;
+                }
+            }
+        }
+
+        function displayError(error) {
+            document.getElementById('generateButton').disabled = false;
+            document.getElementById('status').innerHTML = '<span class="error">Error durante la generación.</span>';
+            document.getElementById('resultArea').style.display = 'block'; // Mostrar área para ver el error
+            const outputArea = document.getElementById('jsonOutput');
+            outputArea.value = 'Error: ' + error.message;
+            if (error.response) { // Si hubo respuesta pero no se parseó
+                outputArea.value += "\n\nRespuesta recibida:\n" + error.response;
+            }
+            // Mostrar error también en la zona de mensajes de validación
+            document.getElementById('validationMessages').innerHTML = `<div class="error"><strong>Error:</strong> ${error.message}</div>`;
+            document.getElementById('copyButton').disabled = true;
+            console.error('Error from Apps Script:', error);
+        }
+
+        function copyJson() {
+            const jsonText = document.getElementById('jsonOutput');
+            jsonText.select();
+            document.execCommand('copy');
+            document.getElementById('copyStatus').textContent = '¡Copiado!';
+            // Opcional: quitar mensaje después de unos segundos
+            setTimeout(() => { document.getElementById('copyStatus').textContent = ''; }, 2000);
+        }
+    </script>
+</body>
+
+</html>

@@ -1,524 +1,642 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const params = new URLSearchParams(window.location.search);
-  const projectSlug = params.get("slug");
+// Este script es crucial y hará lo siguiente:
+// Obtendrá el slug del proyecto desde la URL (ej. project.html?slug=robot-rea).
+// Cargará los datos de data/projects.json.
+// Encontrará el proyecto específico que coincida con el slug.
+// Mostrará un error si el slug falta o el proyecto no se encuentra.
+// Rellenará dinámicamente todos los campos de la página project.html con los datos del proyecto encontrado (títulos, descripciones, imágenes, videos, listas, etc.).
+// Implementará la lógica condicional para mostrar media o coverUrl en el Hero y la evidencia secundaria.
+// Renderizará el gráfico radar de Chart.js con las puntuaciones de evaluación, aplicando los estilos y colores dinámicos solicitados.
+// Creará la galería de imágenes y manejará la funcionalidad del modal para ampliar las imágenes.
+// Ocultará las secciones opcionales si no tienen contenido (proceso, galería, recursos).
+// Actualizará el año del copyright.
 
-  // Elementos del DOM
+// Explicación y Puntos Clave:
+// Obtener Slug: Usa URLSearchParams para leer el slug de la query string.
+// Encontrar Proyecto: Carga projects.json y usa Array.find() para localizar el proyecto correcto.
+// Renderizado Dinámico: Selecciona elementos por ID y actualiza su textContent o innerHTML. Para listas (equipo, techs, recursos, galería), limpia el contenido existente y crea nuevos elementos (<li>, <a>, <div>, etc.) iterando sobre los datos.
+// Media Hero/Secundaria: Implementa la lógica para mostrar media o coverUrl según disponibilidad y lo que se haya usado en el Hero.
+// Chart.js:
+// Prepara labels y dataPoints. Limpia los labels para mejor legibilidad.
+// Calcula el averageScore.
+// Define una función (implícita en el cálculo de hue) para mapear el promedio a un color HSL entre amarillo y verde.
+// Configura extensivamente las opciones del gráfico: tipo radar, escalas (máximo 100, rejilla circular, estilo de etiquetas/pointLabels), tensión de línea (curvas), y plugins (leyenda oculta, tooltips personalizados).
+// Destruye instancias anteriores del gráfico si existen antes de crear una nueva.
+// Modal: Funciones openModal y closeModal manejan la visibilidad, transición de opacidad y contenido del modal. Se añade cierre al hacer clic fuera y con la tecla Escape.
+// Enlaces Certificado: Construye la URL correcta para cada miembro del equipo, incluyendo el slug del proyecto y el index del miembro.
+// Iconos: Usa una función getIconForResourceType para mapear tipos de recursos a clases de Font Awesome. Para tecnologías, asume que el icono ya viene con el prefijo correcto del Apps Script.
+// Ocultar Secciones: Usa element.style.display = 'none' o 'block' para ocultar/mostrar secciones opcionales según si tienen datos.
+// Seguridad: Usa textContent por defecto para insertar texto y innerHTML solo cuando se espera contenido HTML (como en innovationProcess). Esto ayuda a prevenir XSS.
+// Con este script, la página de detalles debería cobrar vida al recibir un slug válido en la URL.
+
+// js/project.js
+
+document.addEventListener("DOMContentLoaded", () => {
+  // --- DOM Elements ---
   const loadingMessage = document.getElementById("loading-message");
-  const errorMessage = document.getElementById("error-message");
-  const projectDetailsContainer = document.getElementById("project-details"); // Asegúrate que este ID exista si lo usas
-  const heroSection = document.getElementById("hero-section");
-  const imageGalleryContainer = document.getElementById("image-gallery");
-  const modal = document.getElementById("imageModal");
+  const errorMessageContainer = document.getElementById("error-message");
+  const projectDetailsContainer = document.getElementById("project-details");
+  const projectTitleEl = document.getElementById("project-title");
+  const projectMetadataEl = document.getElementById("project-metadata");
+  const introTitleEl = document.getElementById("intro-title");
+  const introContentEl = document.getElementById("intro-content");
+  const heroMediaContainer = document.getElementById("hero-media");
+  const secondaryEvidenceSection = document.getElementById(
+    "secondary-evidence-section"
+  );
+  const secondaryEvidenceMediaContainer = document.getElementById(
+    "secondary-evidence-media"
+  );
+  const evaluationChartSection = document.getElementById(
+    "evaluation-chart-section"
+  );
+  const radarChartCanvas = document.getElementById("radarChart");
+  const problemDescEl = document.getElementById("problem-description");
+  const solutionPropEl = document.getElementById("solution-proposed");
+  const innovationProcessSection = document.getElementById(
+    "innovation-process-section"
+  );
+  const innovationProcessContentEl = document.getElementById(
+    "innovation-process-content"
+  );
+  const gallerySection = document.getElementById("gallery-section");
+  const galleryGridEl = document.getElementById("gallery-grid");
+  const teamListEl = document.getElementById("team-list");
+  const techListEl = document.getElementById("tech-list");
+  const resourcesSection = document.getElementById("resources-section");
+  const resourcesListEl = document.getElementById("resources-list");
+  const currentYearFooterSpan = document.getElementById("current-year-footer");
+  const backToProjectLink = document.getElementById("back-to-project-link"); // Link in header
+  const viewProjectButton = document.getElementById("view-project-button"); // Button in certificate page context (might be null here)
+
+  // Modal Elements
+  const imageModal = document.getElementById("imageModal");
   const modalImage = document.getElementById("modalImage");
   const modalCaption = document.getElementById("modalCaption");
   const modalCloseBtn = document.getElementById("modalCloseBtn");
-  const radarChartCanvas = document.getElementById("radarChart");
 
-  if (!projectSlug) {
-    showError("No se especificó un proyecto.");
-    return;
+  let chartInstance = null; // To store the chart instance
+
+  // --- Helper Functions ---
+  function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
   }
 
-  // --- Fetch Data and Find Project ---
-  async function loadProjectDetails() {
+  function showLoading(isLoading) {
+    if (loadingMessage)
+      loadingMessage.style.display = isLoading ? "block" : "none";
+    if (projectDetailsContainer)
+      projectDetailsContainer.style.display = isLoading ? "none" : "block"; // Toggle main content visibility
+    if (errorMessageContainer) errorMessageContainer.style.display = "none"; // Hide error when loading starts
+  }
+
+  function showError(message) {
+    showLoading(false); // Hide loading message
+    if (errorMessageContainer) {
+      errorMessageContainer.textContent = message;
+      errorMessageContainer.style.display = "block";
+    }
+    if (projectDetailsContainer) projectDetailsContainer.style.display = "none"; // Hide content area
+    console.error(message);
+  }
+
+  function updateCopyrightYear() {
+    if (currentYearFooterSpan) {
+      currentYearFooterSpan.textContent = new Date().getFullYear();
+    }
+  }
+
+  function createChip(text, colorClass) {
+    const chip = document.createElement("span");
+    // Base classes + dynamic color class
+    chip.className = `chip ${colorClass} text-xs`;
+    chip.textContent = text;
+    return chip;
+  }
+
+  function getIconForResourceType(type) {
+    const lowerType = type.toLowerCase();
+    switch (lowerType) {
+      case "github":
+        return "fa-brands fa-github";
+      case "pdf":
+        return "fa-solid fa-file-pdf";
+      case "doc":
+      case "docx":
+        return "fa-solid fa-file-word";
+      case "website":
+        return "fa-solid fa-globe";
+      case "video":
+        return "fa-brands fa-youtube"; // Assuming video links are youtube
+      case "figma":
+        return "fa-brands fa-figma";
+      case "code":
+        return "fa-solid fa-code";
+      case "paper":
+        return "fa-solid fa-newspaper";
+      case "link": // Fallback for generic links
+      default:
+        return "fa-solid fa-link";
+    }
+  }
+
+  // --- Main Initialization ---
+  async function init() {
+    updateCopyrightYear();
+    const projectSlug = getQueryParam("slug");
+
+    if (!projectSlug) {
+      showError(
+        "No se especificó ningún proyecto (falta el 'slug' en la URL)."
+      );
+      return;
+    }
+
+    // Adjust back link if needed (though it defaults to index)
+    if (backToProjectLink) {
+      // Could adjust if coming from a specific filter state, but index.html is safe
+    }
+
     try {
-      const response = await fetch(`data/projects.json?t=${Date.now()}`);
+      showLoading(true);
+      const response = await fetch("data/projects.json");
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const projects = await response.json();
+
+      if (!Array.isArray(projects)) {
+        throw new Error("El archivo JSON no contiene un array válido.");
+      }
+
       const project = projects.find((p) => p.slug === projectSlug);
 
-      if (project) {
-        renderProject(project); // Renderizar todo el contenido
-        setupModalEventListeners(); // Configurar listeners DESPUÉS de renderizar
-        loadingMessage.style.display = "none";
-        if (heroSection) heroSection.style.display = "grid"; // Mostrar Hero si existe
-      } else {
-        showError(`Proyecto con slug "${projectSlug}" no encontrado.`);
+      if (!project) {
+        showError(`Proyecto con slug '${projectSlug}' no encontrado.`);
+        return;
       }
+
+      displayProjectDetails(project);
+      setupModal(); // Setup modal listeners after content is potentially loaded
     } catch (error) {
-      console.error("Error loading project details:", error);
-      // Mostrar error y ocultar todo el contenido potencialmente visible
-      showError("Error al cargar los detalles del proyecto.");
+      console.error("Error al cargar o mostrar el proyecto:", error);
+      showError(`No se pudo cargar el proyecto. ${error.message}.`);
+    } finally {
+      showLoading(false);
     }
   }
 
-  function showError(message) {
-    loadingMessage.style.display = "none";
-    errorMessage.textContent = message;
-    errorMessage.style.display = "block";
-    // Ocultar todas las secciones principales al haber un error
-    const sectionsToHide = [
-      "hero-section",
-      "main-evidence-chart",
-      "problem-solution-section",
-      "innovation-process-section",
-      "gallery-section",
-    ];
-    sectionsToHide.forEach((id) => {
-      const section = document.getElementById(id);
-      if (section) section.style.display = "none";
-    });
-    // Ocultar también el aside completo
-    const aside = document.querySelector("aside");
-    if (aside) aside.style.display = "none";
-  }
+  // --- Display Project Details ---
+  function displayProjectDetails(project) {
+    document.title = `${project.projectTitle} - Gnius Club`; // Update page title
 
-  // --- Render Project Content ---
-  function renderProject(project) {
-    document.title = `${project.projectTitle} - Gnius Club`;
+    if (projectTitleEl) projectTitleEl.textContent = project.projectTitle;
+    if (introTitleEl) introTitleEl.textContent = project.intro_title;
+    if (introContentEl) introContentEl.textContent = project.intro_content; // Use textContent for safety unless HTML is intended
+    if (problemDescEl) problemDescEl.innerHTML = project.problemDescription; // Use innerHTML if HTML content is possible/intended
+    if (solutionPropEl) solutionPropEl.innerHTML = project.solutionProposed; // Use innerHTML if HTML content is possible/intended
 
-    // --- Hero Section ---
-    const hero_projectTitle = document.getElementById("project-title");
-    const hero_metadataContainer = document.getElementById("project-metadata");
-    const hero_introTitle = document.getElementById("intro-title");
-    const hero_introContent = document.getElementById("intro-content");
-    const hero_coverImage = document.getElementById("cover-image");
-
-    if (hero_projectTitle) {
-      hero_projectTitle.textContent = project.projectTitle;
-      hero_projectTitle.style.color = "var(--gnius-cyan)";
-    }
-    if (hero_metadataContainer) {
-      hero_metadataContainer.innerHTML = "";
-      if (project.projectCategory)
-        hero_metadataContainer.innerHTML += `<span class="chip chip-cyan">${project.projectCategory}</span>`;
-      if (project.studentLevel)
-        hero_metadataContainer.innerHTML += `<span class="chip chip-red">${project.studentLevel}</span>`;
-      if (project.projectDate)
-        hero_metadataContainer.innerHTML += `<span class="chip chip-gray"><i class="fa-regular fa-calendar-alt mr-1"></i> ${project.projectDate}</span>`;
-    }
-    if (hero_introTitle) {
-      hero_introTitle.textContent = project.intro_title;
-      hero_introTitle.style.color = "var(--gnius-yellow)";
-    }
-    if (hero_introContent)
-      hero_introContent.textContent = project.intro_content;
-    if (hero_coverImage) {
-      hero_coverImage.src = project.coverUrl.url;
-      hero_coverImage.alt = project.coverUrl.altText;
-    }
-
-    // --- Media Section ---
-    const mediaSection = document.getElementById("media-section");
-    let mediaRendered = false; // Declarar ANTES del bloque if
-    if (mediaSection) {
-      mediaSection.innerHTML = ""; // Limpiar
-      if (project.media && project.media.type && project.media.url) {
-        let titleText = "Evidencia Principal";
-        if (project.media.type === "video") titleText += " (Video)";
-        if (project.media.type === "image") titleText += " (Imagen)";
-        mediaSection.innerHTML += `<h3 class="text-xl font-semibold mb-4 w-full text-center" style="color: var(--gnius-cyan);">${titleText}</h3>`;
-
-        if (
-          project.media.type === "video" &&
-          project.media.url.includes("youtube.com/embed")
-        ) {
-          mediaSection.innerHTML += `<div class="youtube-embed w-full mt-2"><iframe src="${project.media.url}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>`;
-          mediaRendered = true; // Asignar dentro del if
-        } else if (project.media.type === "image") {
-          mediaSection.innerHTML += `<img src="${project.media.url}" alt="${
-            project.media.altText || "Evidencia principal del proyecto"
-          }" class="w-full h-auto object-contain rounded-lg border border-gray-600 mt-2 max-h-[400px]">`;
-          mediaRendered = true; // Asignar dentro del if
-        }
+    // Populate Metadata
+    if (projectMetadataEl) {
+      projectMetadataEl.innerHTML = ""; // Clear placeholders
+      if (project.projectCategory) {
+        projectMetadataEl.appendChild(
+          createChip(project.projectCategory, "chip-cyan")
+        );
       }
-      mediaSection.style.display = mediaRendered ? "flex" : "none"; // Usar después del bloque if
+      if (project.studentLevel) {
+        projectMetadataEl.appendChild(
+          createChip(project.studentLevel, "chip-red")
+        );
+      }
     }
 
-    // --- Chart Section ---
-    const chartSection = document.getElementById("chart-section");
-    let chartRendered = false; // Declarar para saber si se renderizó
-    if (chartSection) {
-      const chartTitle = chartSection.querySelector("h3");
-      if (chartTitle) chartTitle.style.color = "var(--gnius-yellow)";
+    // Determine Media to Display
+    let heroMediaUsed = null; // Track what was used in hero ('media', 'cover', null)
+    heroMediaContainer.innerHTML = ""; // Clear loading text
 
-      if (
-        project.evaluationScores &&
-        Object.keys(project.evaluationScores).length > 0
-      ) {
-        renderRadarChart(project.evaluationScores);
-        chartSection.style.display = "flex";
-        chartRendered = true; // Marcar como renderizado
+    // Priority: Project Media (video/image)
+    if (project.media && project.media.url) {
+      heroMediaUsed = "media";
+      if (project.media.type === "video") {
+        const iframe = document.createElement("iframe");
+        iframe.src = project.media.url;
+        iframe.className = "w-full h-full absolute top-0 left-0 border-0"; // Tailwind/CSS handles aspect ratio
+        iframe.allow =
+          "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+        iframe.allowFullscreen = true;
+        iframe.title = `Video del proyecto ${project.projectTitle}`;
+        heroMediaContainer.appendChild(iframe);
+        heroMediaContainer.classList.add("relative"); // Needed for absolute iframe positioning
+        heroMediaContainer.style.paddingBottom = "56.25%"; // Force 16:9 aspect ratio for video
+      } else if (project.media.type === "image") {
+        const img = document.createElement("img");
+        img.src = project.media.url;
+        img.alt =
+          project.media.altText ||
+          `Media principal del proyecto ${project.projectTitle}`;
+        img.className = "w-full h-full object-contain"; // Use contain to see the whole image
+        heroMediaContainer.appendChild(img);
       } else {
-        chartSection.style.display = "none";
+        heroMediaUsed = null; // Invalid type
       }
+      // Fallback: Cover URL
+    } else if (project.coverUrl && project.coverUrl.url) {
+      heroMediaUsed = "cover";
+      const img = document.createElement("img");
+      img.src = project.coverUrl.url;
+      img.alt =
+        project.coverUrl.altText ||
+        `Portada del proyecto ${project.projectTitle}`;
+      img.className = "w-full h-full object-contain"; // Use contain for consistency? Or cover? Let's use contain.
+      heroMediaContainer.appendChild(img);
+    } else {
+      // No media or cover available for hero
+      heroMediaContainer.innerHTML =
+        '<p class="text-gnius-gray-light italic p-4">No hay imagen o video principal disponible.</p>';
     }
 
-    // --- Main Evidence Container Visibility ---
-    // Mover esta lógica DESPUÉS de determinar mediaRendered y chartRendered
-    const mainEvidenceChartContainer = document.getElementById(
-      "main-evidence-chart"
-    );
-    if (mainEvidenceChartContainer) {
-      mainEvidenceChartContainer.style.display =
-        mediaRendered || chartRendered ? "grid" : "none";
+    // Render Secondary Evidence
+    secondaryEvidenceMediaContainer.innerHTML = "";
+    let secondaryMediaRendered = false;
+    if (heroMediaUsed === "media" && project.coverUrl && project.coverUrl.url) {
+      // If media was used in hero, show cover here
+      const img = document.createElement("img");
+      img.src = project.coverUrl.url;
+      img.alt =
+        project.coverUrl.altText ||
+        `Portada del proyecto ${project.projectTitle}`;
+      img.className = "w-full h-full object-contain";
+      secondaryEvidenceMediaContainer.appendChild(img);
+      secondaryMediaRendered = true;
+    } else if (
+      heroMediaUsed === "cover" &&
+      project.imageGallery &&
+      project.imageGallery.length > 0 &&
+      project.imageGallery[0].url
+    ) {
+      // If cover was used in hero, show first gallery image here
+      const img = document.createElement("img");
+      img.src = project.imageGallery[0].url;
+      img.alt =
+        project.imageGallery[0].altText ||
+        `Evidencia adicional del proyecto ${project.projectTitle}`;
+      img.className = "w-full h-full object-contain";
+      secondaryEvidenceMediaContainer.appendChild(img);
+      secondaryMediaRendered = true;
+    }
+    // Show/Hide the section
+    if (secondaryEvidenceSection) {
+      secondaryEvidenceSection.style.display = secondaryMediaRendered
+        ? "block"
+        : "none";
     }
 
-    // --- Problem / Solution ---
-    const problemSection = document.getElementById("problem-solution-section"); // Asumiendo que este ID existe
-    if (problemSection) {
-      const problemTitle = problemSection.querySelector("div:first-of-type h3");
-      const solutionTitle = problemSection.querySelector("div:last-of-type h3");
-      const problemDesc = document.getElementById("problem-description");
-      const solutionProp = document.getElementById("solution-proposed");
-
-      if (problemTitle) problemTitle.style.color = "var(--gnius-red)";
-      if (solutionTitle) solutionTitle.style.color = "var(--gnius-cyan)";
-      if (problemDesc) problemDesc.textContent = project.problemDescription;
-      if (solutionProp) solutionProp.textContent = project.solutionProposed;
-      problemSection.style.display = "grid"; // Mostrar si existe
-    }
-
-    // --- Innovation Process ---
-    const innovationSection = document.getElementById(
-      "innovation-process-section"
-    );
-    if (innovationSection) {
-      const innovationTitle = innovationSection.querySelector("h3");
-      const innovationContent = document.getElementById(
-        "innovation-process-content"
-      );
-      if (innovationTitle) innovationTitle.style.color = "var(--gnius-yellow)";
-
+    // Render Innovation Process
+    if (innovationProcessSection && innovationProcessContentEl) {
       if (
         project.innovationProcess &&
-        project.innovationProcess.trim() !== "" &&
-        innovationContent
+        project.innovationProcess.trim() !== ""
       ) {
-        innovationContent.innerHTML = project.innovationProcess;
-        innovationSection.style.display = "block";
+        innovationProcessContentEl.innerHTML = project.innovationProcess; // Assumes safe HTML
+        innovationProcessSection.style.display = "block";
       } else {
-        innovationSection.style.display = "none";
+        innovationProcessSection.style.display = "none";
       }
     }
 
-    // --- Image Gallery ---
-    const gallerySection = document.getElementById("gallery-section");
-    const imageGalleryOuterContainer = document.getElementById(
-      "image-gallery-container"
-    ); // Contenedor con padding/borde
-    // imageGalleryContainer es el div con id="image-gallery" donde van las imágenes
-    if (gallerySection && imageGalleryContainer && imageGalleryOuterContainer) {
-      const galleryTitle = gallerySection.querySelector("h3");
-      if (galleryTitle) galleryTitle.style.color = "var(--gnius-yellow)";
-      imageGalleryContainer.innerHTML = ""; // Limpiar grid interno
+    // Render Team List
+    if (teamListEl && project.teamMembers && project.teamMembers.length > 0) {
+      teamListEl.innerHTML = ""; // Clear placeholders
+      project.teamMembers.forEach((member, index) => {
+        const li = document.createElement("li");
+        li.className =
+          "team-member-item flex justify-between items-center bg-gnius-dark-2 p-3 rounded";
 
-      if (project.imageGallery && project.imageGallery.length > 0) {
-        project.imageGallery.forEach((img) => {
-          const figure = document.createElement("figure");
-          figure.className = "gallery-item";
-          figure.setAttribute("data-modal-src", img.url);
-          figure.setAttribute("data-modal-alt", img.altText);
-          figure.setAttribute("data-modal-caption", img.caption || "");
-          figure.innerHTML = `<img src="${img.url}" alt="${img.altText}">${
-            img.caption ? `<figcaption>${img.caption}</figcaption>` : ""
-          }`;
-          figure.addEventListener("click", handleImageClick);
-          imageGalleryContainer.appendChild(figure);
-        });
-        gallerySection.style.display = "block"; // Mostrar título
-        imageGalleryOuterContainer.style.display = "block"; // Mostrar contenedor con padding
-      } else {
-        gallerySection.style.display = "none";
-        imageGalleryOuterContainer.style.display = "none";
-      }
+        const infoDiv = document.createElement("div");
+        infoDiv.className = "member-info";
+        infoDiv.innerHTML = `
+                   <span class="block font-semibold text-gnius-light">${member.name}</span>
+                   <span class="block text-sm text-gnius-light/70">${member.role}</span>
+               `;
+
+        const link = document.createElement("a");
+        // Construct certificate URL: certificate.html?slug=PROJECT_SLUG&memberIndex=INDEX
+        link.href = `certificate.html?slug=${project.slug}&memberIndex=${index}`;
+        link.className =
+          "certificate-link flex items-center text-gnius-yellow hover:text-yellow-300 text-sm transition duration-150 ease-in-out";
+        link.innerHTML = `<i class="fa-solid fa-award mr-2"></i> Ver Certificado`;
+
+        li.appendChild(infoDiv);
+        li.appendChild(link);
+        teamListEl.appendChild(li);
+      });
+    } else if (teamListEl) {
+      teamListEl.innerHTML =
+        '<p class="text-gnius-light/70 italic">No hay información del equipo disponible.</p>';
     }
 
-    // --- ASIDE CONTENT ---
-    // Team
-    const teamSection = document.getElementById("team-section");
-    if (teamSection) {
-      const teamTitle = teamSection.querySelector("h3");
-      const teamList = document.getElementById("team-list");
-      if (teamTitle) teamTitle.style.color = "var(--gnius-cyan)";
-      if (teamList) {
-        teamList.innerHTML = "";
-        project.teamMembers.forEach((member, index) => {
-          const li = document.createElement("li");
-          li.className =
-            "team-member-item flex items-center justify-between gap-3";
-          const memberInfoDiv = document.createElement("div");
-          memberInfoDiv.className = "member-info flex-grow";
-          memberInfoDiv.innerHTML = `<span class="member-name block font-semibold text-white">${
-            member.name
-          }</span><span class="member-role block text-sm text-gray-400">${
-            member.role
-          }</span>${
-            member.sbtLink
-              ? `<a href="${member.sbtLink}" target="_blank" rel="noopener noreferrer" class="text-cyan-400 hover:text-cyan-300 ml-1 text-xs" title="Ver SBT"><i class="fa-solid fa-shield-halved"></i> SBT</a>`
-              : ""
-          }`;
-          const certificateLink = document.createElement("a");
-          certificateLink.href = `certificate.html?slug=${project.slug}&member=${index}`;
-          certificateLink.className =
-            "certificate-link flex-shrink-0 flex flex-col items-center justify-center text-yellow-400 hover:text-yellow-300 text-xs whitespace-nowrap pl-2 text-center";
-          certificateLink.innerHTML = `<i class="fa-solid fa-award text-lg mb-1"></i><span>Ver Certif.</span>`;
-          li.appendChild(memberInfoDiv);
-          li.appendChild(certificateLink);
-          teamList.appendChild(li);
-        });
-      }
-      teamSection.style.display = "block"; // Mostrar sección de equipo
+    // Render Technologies List
+    if (techListEl && project.technologies && project.technologies.length > 0) {
+      techListEl.innerHTML = ""; // Clear placeholders
+      project.technologies.forEach((tech) => {
+        const container = document.createElement("div");
+        container.className = "tech-chip-container"; // Base styles from CSS
+
+        const iconSpan = document.createElement("span");
+        const iconClass = tech.icon; // Icon class already includes fa-solid/fa-brands from Apps Script
+        const categoryLower = tech.category.toLowerCase();
+        iconSpan.className = `tech-icon mr-2 tech-cat-${categoryLower}`; // Color class based on category
+        iconSpan.innerHTML = `<i class="${iconClass}"></i>`;
+
+        const nameSpan = document.createElement("span");
+        nameSpan.className = "tech-name text-gnius-light mr-2";
+        nameSpan.textContent = tech.name;
+
+        const categoryChip = document.createElement("span");
+        categoryChip.className = `tech-inner-chip text-xs font-bold px-1.5 py-0.5 rounded-md tech-inner-chip-${categoryLower}`; // BG/Color class based on category
+        categoryChip.textContent = tech.category;
+
+        container.appendChild(iconSpan);
+        container.appendChild(nameSpan);
+        container.appendChild(categoryChip);
+        techListEl.appendChild(container);
+      });
+    } else if (techListEl) {
+      techListEl.innerHTML =
+        '<p class="text-gnius-light/70 italic">No hay tecnologías especificadas.</p>';
     }
 
-    // Tecnologías
-    const techSection = document.getElementById("tech-section");
-    if (techSection) {
-      const techTitle = techSection.querySelector("h3");
-      const techListContainer = document.getElementById("tech-list");
-      if (techTitle) techTitle.style.color = "var(--gnius-yellow)";
-      if (techListContainer) {
-        techListContainer.innerHTML = "";
-        project.technologies.forEach((tech) => {
-          const outerChip = document.createElement("div");
-          outerChip.className = "tech-chip-container";
-          let iconColorClass = "tech-icon-Tool",
-            innerChipClass = "tech-inner-chip-Tool";
-          if (tech.category === "Hardware") {
-            iconColorClass = "tech-icon-Hardware";
-            innerChipClass = "tech-inner-chip-Hardware";
-          } else if (tech.category === "Software") {
-            iconColorClass = "tech-icon-Software";
-            innerChipClass = "tech-inner-chip-Software";
-          }
-          const iconPrefix = tech.icon?.startsWith("fa-brands")
-            ? "fa-brands"
-            : "fa-solid";
-          const iconName = tech.icon
-            ? tech.icon.replace(/fa-(brands|solid)\s*/, "")
-            : "cog";
-          outerChip.innerHTML = `<span class="tech-icon ${iconColorClass}"><i class="${iconPrefix} fa-${iconName}"></i></span><span class="tech-name">${tech.name}</span><span class="tech-inner-chip ${innerChipClass}">${tech.category}</span>`;
-          techListContainer.appendChild(outerChip);
-        });
-      }
-      techSection.style.display = "block"; // Mostrar sección
+    // Render Additional Resources
+    if (
+      resourcesSection &&
+      resourcesListEl &&
+      project.additionalResources &&
+      project.additionalResources.length > 0
+    ) {
+      resourcesListEl.innerHTML = ""; // Clear placeholders
+      project.additionalResources.forEach((resource) => {
+        const li = document.createElement("li");
+        li.className = "resource-item";
+        const link = document.createElement("a");
+        link.href = resource.url;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.className =
+          "text-gnius-light hover:text-gnius-cyan transition duration-150 ease-in-out inline-flex items-center text-sm";
+        const icon = document.createElement("i");
+        icon.className = `${getIconForResourceType(
+          resource.type
+        )} mr-2 text-gnius-gray-light w-4 text-center`; // Icon based on type
+        link.appendChild(icon);
+        link.appendChild(document.createTextNode(resource.title));
+        li.appendChild(link);
+        resourcesListEl.appendChild(li);
+      });
+      resourcesSection.style.display = "block";
+    } else if (resourcesSection) {
+      resourcesSection.style.display = "none";
     }
 
-    // Recursos Adicionales
-    const resourcesSection = document.getElementById("resources-section");
-    if (resourcesSection) {
-      const resourcesTitle = resourcesSection.querySelector("h3");
-      const resourcesList = document.getElementById("resources-list");
-      if (resourcesTitle) resourcesTitle.style.color = "var(--gnius-red)";
+    // Render Image Gallery
+    if (
+      gallerySection &&
+      galleryGridEl &&
+      project.imageGallery &&
+      project.imageGallery.length > 0
+    ) {
+      galleryGridEl.innerHTML = ""; // Clear placeholders
+      project.imageGallery.forEach((image, index) => {
+        const itemDiv = document.createElement("div");
+        itemDiv.className = "gallery-item"; // Styles from CSS
 
-      if (
-        project.additionalResources &&
-        project.additionalResources.length > 0 &&
-        resourcesList
-      ) {
-        resourcesList.innerHTML = ""; // Limpiar lista
-        project.additionalResources.forEach((resource) => {
-          let iconClass = "fa-link";
-          switch (resource.type.toLowerCase()) {
-            case "github":
-              iconClass = "fa-brands fa-github";
-              break;
-            case "pdf":
-              iconClass = "fa-file-pdf";
-              break;
-            case "doc":
-            case "docx":
-              iconClass = "fa-file-word";
-              break;
-            case "website":
-              iconClass = "fa-globe";
-              break;
-          }
-          const li = document.createElement("li");
-          li.className = "text-sm";
-          li.innerHTML = `<a href="${resource.url}" target="_blank" rel="noopener noreferrer" class="text-red-400 hover:text-red-300 hover:underline flex items-center"><i class="fa-solid ${iconClass} w-4 mr-2"></i>${resource.title} <i class="fa-solid fa-external-link-alt text-xs ml-1 opacity-70"></i></a>`;
-          resourcesList.appendChild(li);
-        });
-        resourcesSection.style.display = "block"; // Mostrar sección
-      } else {
-        resourcesSection.style.display = "none"; // Ocultar si no hay recursos o lista no existe
-      }
+        const img = document.createElement("img");
+        img.src = image.url;
+        img.alt = image.altText || `Imagen ${index + 1} de la galería`;
+        img.loading = "lazy"; // Lazy load gallery images
+
+        itemDiv.appendChild(img);
+        itemDiv.addEventListener("click", () =>
+          openModal(image.url, image.altText, image.caption)
+        );
+        galleryGridEl.appendChild(itemDiv);
+      });
+      gallerySection.style.display = "block";
+    } else if (gallerySection) {
+      gallerySection.style.display = "none";
     }
-  } // Fin renderProject
 
-  // --- Helper para convertir HEX a RGBA ---
-  function hexToRgba(hex, alpha = 1) {
-    /* (sin cambios) */
-    hex = hex.replace("#", "");
-    const bigint = parseInt(hex, 16);
-    const r = (bigint >> 16) & 255;
-    const g = (bigint >> 8) & 255;
-    const b = bigint & 255;
-    alpha = Math.min(1, Math.max(0, alpha));
-    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+    // Render Evaluation Chart
+    if (
+      evaluationChartSection &&
+      radarChartCanvas &&
+      project.evaluationScores &&
+      Object.keys(project.evaluationScores).length > 0
+    ) {
+      renderRadarChart(project.evaluationScores);
+      evaluationChartSection.style.display = "block";
+    } else if (evaluationChartSection) {
+      evaluationChartSection.style.display = "none";
+    }
+
+    // Show the main content container now that it's populated
+    projectDetailsContainer.style.display = "block";
   }
 
-  // --- Función para renderizar Gráfico RADAR con color dinámico y vibrante ---
+  // --- Radar Chart Rendering ---
   function renderRadarChart(scores) {
-    if (!radarChartCanvas) {
-      return;
-    } // Salir si no hay canvas
-    const existingChart = Chart.getChart(radarChartCanvas);
-    if (existingChart) {
-      existingChart.destroy();
-    }
-
+    if (!radarChartCanvas) return;
     const ctx = radarChartCanvas.getContext("2d");
-    const labels = Object.keys(scores).map((label) =>
-      label
-        .replace("eval_", "")
+
+    // Prepare data
+    const labels = Object.keys(scores).map((label) => {
+      // Clean up label: remove 'eval_' prefix and split long words if needed
+      let cleanLabel = label
+        .replace(/^eval_/, "")
         .replace(/([A-Z])/g, " $1")
-        .trim()
-    );
-    const data = Object.values(scores);
-    const scoreKeys = Object.keys(scores);
-
-    // Encontrar máxima puntuación y su clave
-    let maxScore = -1;
-    let maxKey = null;
-    scoreKeys.forEach((key) => {
-      if (scores[key] > maxScore) {
-        maxScore = scores[key];
-        maxKey = key;
+        .trim(); // Add space before caps
+      // Simple word split for longer labels (adjust max length as needed)
+      const maxLength = 15; // Max chars per line approx
+      if (cleanLabel.length > maxLength && cleanLabel.includes(" ")) {
+        // Split into roughly two lines
+        const words = cleanLabel.split(" ");
+        let line1 = "";
+        let line2 = "";
+        let currentLength = 0;
+        words.forEach((word) => {
+          if ((line1 + word).length <= maxLength || line1 === "") {
+            line1 += (line1 ? " " : "") + word;
+          } else {
+            line2 += (line2 ? " " : "") + word;
+          }
+        });
+        return [line1, line2.trim()]; // Return array for multi-line
       }
+      return cleanLabel; // Return single line label
     });
+    const dataPoints = Object.values(scores);
 
-    const vibrantPalette = [
-      /* (sin cambios en la paleta) */ "#FFD700",
-      "#00FFFF",
-      "#FF00FF",
-      "#FF0000",
-      "#FFA500",
-      "#32CD32",
-      "#007BFF",
-      "#9400D3",
-    ];
+    // Calculate average for dynamic color
+    const averageScore =
+      dataPoints.reduce((sum, score) => sum + score, 0) / dataPoints.length;
 
-    // Selección dinámica de color
-    let chartBackgroundColor = hexToRgba(
-      vibrantPalette[1 % vibrantPalette.length],
-      0.5
-    );
-    let chartBorderColor = hexToRgba(
-      vibrantPalette[1 % vibrantPalette.length],
-      1
-    );
-    if (maxKey) {
-      const maxKeyIndex = scoreKeys.indexOf(maxKey);
-      if (maxKeyIndex !== -1) {
-        const colorIndex = maxKeyIndex % vibrantPalette.length;
-        const selectedHex = vibrantPalette[colorIndex];
-        chartBackgroundColor = hexToRgba(selectedHex, 0.5);
-        chartBorderColor = hexToRgba(selectedHex, 1);
-      }
+    // Define color scale (Yellow for low avg, Green for high avg)
+    // Using HSL: Hue (60=Yellow, 120=Green), Saturation 100%, Lightness 50%
+    const hue = 60 + (averageScore / 100) * 60; // Map 0-100 -> 60-120 Hue
+    const dynamicColor = `hsla(${hue}, 100%, 50%, 1)`; // Full opacity for border
+    const dynamicFillColor = `hsla(${hue}, 100%, 50%, 0.4)`; // 40% opacity for fill
+
+    // Destroy previous chart instance if it exists
+    if (chartInstance) {
+      chartInstance.destroy();
     }
 
-    const gniusColors = {
-      gridColor: "rgba(255, 255, 255, 0.2)",
-      ticksColor: "#A0A0A0",
-      pointLabelColor: "#E0E0E0",
-    };
-
-    // Creación del gráfico (sin cambios en la configuración interna)
-    new Chart(ctx, {
+    // Create chart
+    chartInstance = new Chart(ctx, {
       type: "radar",
       data: {
         labels: labels,
         datasets: [
           {
             label: "Puntuaciones",
-            data: data,
-            backgroundColor: chartBackgroundColor,
-            borderColor: chartBorderColor,
-            pointBackgroundColor: chartBorderColor,
+            data: dataPoints,
+            fill: true,
+            backgroundColor: dynamicFillColor,
+            borderColor: dynamicColor,
             borderWidth: 2,
-            pointBorderColor: "#fff",
-            pointHoverBackgroundColor: "#fff",
-            pointHoverBorderColor: chartBorderColor,
-            tension: 0.3,
+            pointBackgroundColor: dynamicColor, // Color of the points
+            pointBorderColor: "#fff", // White border for points
+            pointHoverBackgroundColor: "#fff", // White on hover
+            pointHoverBorderColor: dynamicColor, // Border color on hover
           },
         ],
       },
       options: {
         responsive: true,
-        maintainAspectRatio: false,
+        maintainAspectRatio: true, // Keep aspect ratio defined in HTML/CSS
         scales: {
           r: {
-            min: 0,
-            max: 100,
+            // Radial axis (the scores)
             beginAtZero: true,
-            angleLines: { color: gniusColors.gridColor },
-            grid: { color: gniusColors.gridColor, circular: true },
+            max: 100, // Assuming scores are 0-100
+            angleLines: {
+              // Lines from center to edge
+              color: "rgba(240, 240, 240, 0.2)", // Faint lines
+            },
+            grid: {
+              // Circular grid lines
+              color: "rgba(240, 240, 240, 0.2)", // Faint grid
+              circular: true, // Make grid circular
+            },
             pointLabels: {
-              color: gniusColors.pointLabelColor,
-              font: { size: 11 },
+              // Labels around the edge (eval metrics)
+              color: "#F0F0F0", // gnius-light
+              font: {
+                family: "'Saira Condensed', sans-serif", // Use condensed font
+                size: 11, // Adjust size as needed
+                weight: "bold",
+              },
+              padding: 15, // Add padding between label and chart edge
             },
             ticks: {
-              color: gniusColors.ticksColor,
-              backdropColor: "rgba(0, 0, 0, 0.3)",
-              stepSize: 20,
+              // Labels on the radial axis (0, 20, 40...)
+              display: false, // Hide the 0-100 labels on spokes for cleaner look
+              // color: 'rgba(240, 240, 240, 0.7)',
+              // backdropColor: 'rgba(15, 15, 15, 0.8)', // Dark semi-transparent bg for ticks
+              // stepSize: 20 // Show ticks every 20 points
             },
+          },
+        },
+        elements: {
+          line: {
+            tension: 0.3, // Make lines slightly curved (bezier)
           },
         },
         plugins: {
-          legend: { display: false },
+          legend: {
+            display: false, // Hide the default legend (only one dataset)
+          },
           tooltip: {
-            backgroundColor: "rgba(0, 0, 0, 0.8)",
-            titleColor: "#FFFFFF",
-            bodyColor: "#FFFFFF",
+            backgroundColor: "rgba(15, 15, 15, 0.85)", // Darker tooltip bg
+            titleColor: "#FFD700", // Yellow title
+            bodyColor: "#F0F0F0", // Light body text
+            borderColor: "#00FFFF", // Cyan border
+            borderWidth: 1,
             callbacks: {
-              label: (context) => `${context.label}: ${context.raw}%`,
+              label: function (context) {
+                let label = context.dataset.label || "";
+                if (label) {
+                  label += ": ";
+                }
+                if (context.parsed.r !== null) {
+                  label += context.parsed.r; // Show score
+                }
+                return label;
+              },
             },
           },
         },
-        elements: { line: {}, point: { radius: 3, hoverRadius: 5 } },
       },
     });
   }
 
-  // --- LÓGICA DEL MODAL DE LA GALERÍA ---
-  function handleImageClick(event) {
-    /* (sin cambios) */
-    const figure = event.currentTarget;
-    modalImage.src = figure.getAttribute("data-modal-src");
-    modalImage.alt = figure.getAttribute("data-modal-alt");
-    modalCaption.textContent = figure.getAttribute("data-modal-caption");
-    openModal();
-  }
-  function openModal() {
-    if (modal) {
-      modal.classList.add("active");
-      document.body.style.overflow = "hidden";
-    }
-  }
-  function closeModal() {
-    if (modal) {
-      modal.classList.remove("active");
-      document.body.style.overflow = "";
-    }
-  }
-  function setupModalEventListeners() {
-    /* (sin cambios) */
+  // --- Modal Functionality ---
+  function setupModal() {
     if (modalCloseBtn) {
       modalCloseBtn.addEventListener("click", closeModal);
     }
-    if (modal) {
-      modal.addEventListener("click", (event) => {
-        if (event.target === modal) {
-          closeModal();
-        }
-      });
+    // Close modal if clicked outside the content area
+    if (imageModal) {
+      imageModal.addEventListener("click", closeModalOutside);
     }
+    // Close modal with Escape key
     document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape" && modal?.classList.contains("active")) {
+      if (
+        event.key === "Escape" &&
+        imageModal &&
+        !imageModal.classList.contains("hidden")
+      ) {
         closeModal();
       }
     });
   }
 
-  // --- Initial Load ---
-  loadProjectDetails();
+  function openModal(imageUrl, altText, captionText) {
+    if (!imageModal || !modalImage) return;
 
-  // --- Footer Year ---
-  const currentYearSpan = document.getElementById("current-year");
-  if (currentYearSpan) {
-    currentYearSpan.textContent = new Date().getFullYear();
+    modalImage.src = imageUrl;
+    modalImage.alt = altText || "Imagen ampliada";
+    if (modalCaption) {
+      modalCaption.textContent = captionText || "";
+    }
+
+    imageModal.classList.remove("hidden");
+    // Timeout needed to allow display:flex to apply before starting opacity transition
+    setTimeout(() => {
+      imageModal.classList.remove("opacity-0");
+    }, 10); // Small delay
+    document.body.style.overflow = "hidden"; // Prevent background scrolling
   }
-}); // Fin DOMContentLoaded
+
+  function closeModal() {
+    if (!imageModal) return;
+    imageModal.classList.add("opacity-0");
+    // Wait for transition to finish before hiding
+    setTimeout(() => {
+      imageModal.classList.add("hidden");
+      document.body.style.overflow = ""; // Restore background scrolling
+      // Clear image src to stop loading if modal is closed quickly
+      if (modalImage) modalImage.src = "";
+    }, 300); // Must match transition duration in CSS/Tailwind
+  }
+
+  function closeModalOutside(event) {
+    // Check if the click target is the modal background itself, not its children
+    if (event.target === imageModal) {
+      closeModal();
+    }
+  }
+
+  // --- Start ---
+  init();
+});
