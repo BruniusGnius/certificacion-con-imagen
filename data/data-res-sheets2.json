@@ -11,7 +11,7 @@
     "slug": "sistema-inteligente-de-monitoreo-de-calidad-del-aire-urbano",
     "projectDate": "2025-02-15",
     "coverUrl": {
-      "url": "https://picsum.photos/seed/aire-iot-cover/640/360",
+      "url": "assets/img/aire-limpio-sensores-urbanos-iot/cover.jpg",
       "altText": "Sensor de calidad de aire con placa ESP32 mostrando lecturas en una pequeña pantalla OLED."
     },
     "media": {
@@ -125,6 +125,23 @@
         "type": "github"
       }
     ],
+    "imageGallery": [
+      {
+        "url": "assets/img/aire-limpio-sensores-urbanos-iot/gallery-01.jpg",
+        "altText": "Nodo sensor ensamblado dentro de su carcasa impresa en 3D.",
+        "caption": "Nodo Sensor Físico"
+      },
+      {
+        "url": "assets/img/aire-limpio-sensores-urbanos-iot/gallery-02.jpg",
+        "altText": "Dashboard en ThingsBoard mostrando gráficos de PM2.5 y CO.",
+        "caption": "Dashboard en la Nube"
+      },
+      {
+        "url": "assets/img/aire-limpio-sensores-urbanos-iot/gallery-03.jpg",
+        "altText": "Mapa web interactivo con puntos indicando la ubicación y estado de los sensores.",
+        "caption": "Visualización Geográfica"
+      }
+    ],
     "evaluationScores": {
       "eval_Impacto Potencial": 100,
       "eval_Creatividad Solucion": 100,
@@ -146,7 +163,7 @@
     "slug": "videojuego-educativo-aventura-matematica-en-godot-engine",
     "projectDate": "2024-11-25",
     "coverUrl": {
-      "url": "https://picsum.photos/seed/godot-math-cover/640/360",
+      "url": "assets/img/aventura-matematica-godot/cover.jpg",
       "altText": "Personaje de videojuego 2D saltando sobre plataformas en un escenario colorido."
     },
     "media": {
@@ -269,6 +286,23 @@
         "type": "link"
       }
     ],
+    "imageGallery": [
+      {
+        "url": "assets/img/aventura-matematica-godot/gallery-01.png",
+        "altText": "Sprite sheet del personaje principal con sus animaciones.",
+        "caption": "Animación Personaje"
+      },
+      {
+        "url": "assets/img/aventura-matematica-godot/gallery-02.png",
+        "altText": "Editor de niveles de Godot mostrando el diseño de una pantalla.",
+        "caption": "Diseño de Nivel"
+      },
+      {
+        "url": "assets/img/aventura-matematica-godot/gallery-03.png",
+        "altText": "Código GDScript para validar la respuesta matemática del jugador.",
+        "caption": "Lógica Matemática"
+      }
+    ],
     "evaluationScores": {
       "eval_Impacto Potencial": 95,
       "eval_Creatividad Solucion": 95,
@@ -290,7 +324,7 @@
     "slug": "aplicacion-web-recetario-comunitario-con-flaskzpython",
     "projectDate": "2024-10-10",
     "coverUrl": {
-      "url": "https://picsum.photos/seed/flask-recipe-cover/640/360",
+      "url": "assets/img/recetario-comunitario-flask/cover.jpg",
       "altText": "Captura de pantalla de la página principal mostrando tarjetas con fotos y nombres de recetas."
     },
     "media": {
@@ -418,6 +452,23 @@
         "type": "link"
       }
     ],
+    "imageGallery": [
+      {
+        "url": "assets/img/recetario-comunitario-flask/gallery-01.png",
+        "altText": "Código Python mostrando una ruta de Flask para mostrar una receta.",
+        "caption": "Código Backend"
+      },
+      {
+        "url": "assets/img/recetario-comunitario-flask/gallery-02.png",
+        "altText": "Plantilla HTML con Jinja2 para mostrar la lista de recetas.",
+        "caption": "Plantilla Frontend"
+      },
+      {
+        "url": "assets/img/recetario-comunitario-flask/gallery-03.png",
+        "altText": "Formulario web para añadir una nueva receta.",
+        "caption": "Formulario Añadir Receta"
+      }
+    ],
     "evaluationScores": {
       "eval_Impacto Potencial": 85,
       "eval_Creatividad Solucion": 85,
@@ -439,7 +490,7 @@
     "slug": "sistema-de-recomendacion-musical-simple",
     "projectDate": "2025-04-30",
     "coverUrl": {
-      "url": "https://picsum.photos/seed/music-rec-cover/640/360",
+      "url": "assets/img/recomendador-musical-simple/cover.jpg",
       "altText": "Visualización abstracta de conexiones entre artistas musicales."
     },
     "media": {
@@ -548,6 +599,18 @@
         "type": "github"
       }
     ],
+    "imageGallery": [
+      {
+        "url": "assets/img/recomendador-musical-simple/gallery-01.png",
+        "altText": "Matriz usuario-item (simplificada) mostrando qué canciones escuchó cada usuario.",
+        "caption": "Matriz de Datos"
+      },
+      {
+        "url": "assets/img/recomendador-musical-simple/gallery-02.png",
+        "altText": "Visualización de géneros musicales predominantes en el dataset.",
+        "caption": "Análisis de Géneros"
+      }
+    ],
     "evaluationScores": {
       "eval_Impacto Potencial": 70,
       "eval_Creatividad Solucion": 70,
@@ -569,7 +632,7 @@
     "slug": "brazo-robotico-controlado-por-gestos-leap-motionzarduino",
     "projectDate": "2025-07-15",
     "coverUrl": {
-      "url": "https://picsum.photos/seed/leap-arm-cover/640/360",
+      "url": "assets/img/brazo-robotico-gestos/cover.jpg",
       "altText": "Mano interactuando con sensor Leap Motion mientras un brazo robótico replica el movimiento."
     },
     "media": {
@@ -692,6 +755,23 @@
         "type": "github"
       }
     ],
+    "imageGallery": [
+      {
+        "url": "assets/img/brazo-robotico-gestos/gallery-01.jpg",
+        "altText": "Visualización 3D de la mano capturada por Leap Motion.",
+        "caption": "Captura de Gestos"
+      },
+      {
+        "url": "assets/img/brazo-robotico-gestos/gallery-02.jpg",
+        "altText": "Brazo robótico ensamblado con sus servomotores visibles.",
+        "caption": "Hardware Ensamblado"
+      },
+      {
+        "url": "assets/img/brazo-robotico-gestos/gallery-03.jpg",
+        "altText": "Código mostrando el mapeo de coordenadas de la mano a ángulos de servo.",
+        "caption": "Mapeo Gesto-Servo"
+      }
+    ],
     "evaluationScores": {
       "eval_Impacto Potencial": 92,
       "eval_Creatividad Solucion": 85,
@@ -713,7 +793,7 @@
     "slug": "generador-de-poesia-asistido-por-ia-gptzmarkov",
     "projectDate": "2025-03-20",
     "coverUrl": {
-      "url": "https://picsum.photos/seed/ai-poetry-cover/640/360",
+      "url": "assets/img/poesia-ia-gpt-markov/cover.jpg",
       "altText": "Texto de un poema corto generado por computadora sobre un fondo abstracto."
     },
     "media": {
@@ -836,6 +916,23 @@
         "type": "link"
       }
     ],
+    "imageGallery": [
+      {
+        "url": "assets/img/poesia-ia-gpt-markov/gallery-01.jpg",
+        "altText": "Ejemplo de texto generado usando Cadenas de Markov.",
+        "caption": "Generación Markov"
+      },
+      {
+        "url": "assets/img/poesia-ia-gpt-markov/gallery-02.jpg",
+        "altText": "Prompt utilizado para generar poesía con la API de GPT.",
+        "caption": "Diseño de Prompt"
+      },
+      {
+        "url": "assets/img/poesia-ia-gpt-markov/gallery-03.jpg",
+        "altText": "Corpus de poemas utilizado para entrenar el modelo Markov.",
+        "caption": "Corpus Poético"
+      }
+    ],
     "evaluationScores": {
       "eval_Impacto Potencial": 75,
       "eval_Creatividad Solucion": 96,
@@ -857,7 +954,7 @@
     "slug": "realidad-aumentada-simple-modelo-3d-sobre-marcador-arjs",
     "projectDate": "2024-12-01",
     "coverUrl": {
-      "url": "https://picsum.photos/seed/ar-marker-cover/640/360",
+      "url": "assets/img/ar-marcador-simple/cover.jpg",
       "altText": "Smartphone mostrando un modelo 3D de un átomo flotando sobre un marcador físico impreso."
     },
     "media": {
@@ -980,6 +1077,23 @@
         "type": "link"
       }
     ],
+    "imageGallery": [
+      {
+        "url": "assets/img/ar-marcador-simple/gallery-01.jpg",
+        "altText": "Marcador personalizado diseñado para ser detectado por AR.js.",
+        "caption": "Marcador AR"
+      },
+      {
+        "url": "assets/img/ar-marcador-simple/gallery-02.jpg",
+        "altText": "Modelo 3D de un dinosaurio simple en formato glTF.",
+        "caption": "Modelo 3D"
+      },
+      {
+        "url": "assets/img/ar-marcador-simple/gallery-03.png",
+        "altText": "Código HTML/A-Frame de la escena AR básica.",
+        "caption": "Código Escena AR"
+      }
+    ],
     "evaluationScores": {
       "eval_Impacto Potencial": 80,
       "eval_Creatividad Solucion": 88,
@@ -1001,7 +1115,7 @@
     "slug": "analizador-simple-de-sentimiento-en-texto-pythonznltk",
     "projectDate": "2025-01-10",
     "coverUrl": {
-      "url": "https://picsum.photos/seed/sentiment-nltk-cover/640/360",
+      "url": "assets/img/analizador-sentimiento-nltk/cover.jpg",
       "altText": "Texto de ejemplo con etiquetas 'Positivo', 'Negativo', 'Neutro' indicando el sentimiento detectado."
     },
     "media": {
@@ -1110,6 +1224,18 @@
         "type": "website"
       }
     ],
+    "imageGallery": [
+      {
+        "url": "assets/img/analizador-sentimiento-nltk/gallery-01.png",
+        "altText": "Código Python mostrando cómo usar VADER para obtener score de sentimiento.",
+        "caption": "Código Análisis"
+      },
+      {
+        "url": "assets/img/analizador-sentimiento-nltk/gallery-02.png",
+        "altText": "Ejemplos de textos clasificados como positivos, negativos y neutros por la herramienta.",
+        "caption": "Resultados de Clasificación"
+      }
+    ],
     "evaluationScores": {
       "eval_Impacto Potencial": 82,
       "eval_Creatividad Solucion": 75,
@@ -1131,7 +1257,7 @@
     "slug": "purificador-de-agua-casero-con-filtros-naturales",
     "projectDate": "2024-09-20",
     "coverUrl": {
-      "url": "https://picsum.photos/seed/water-filter-diy-cover/640/360",
+      "url": "assets/img/purificador-agua-casero/cover.jpg",
       "altText": "Botella de plástico cortada con capas visibles de grava, arena, carbón y algodón, con agua filtrada goteando abajo."
     },
     "media": {
@@ -1249,6 +1375,23 @@
         "type": "link"
       }
     ],
+    "imageGallery": [
+      {
+        "url": "assets/img/purificador-agua-casero/gallery-01.jpg",
+        "altText": "Capas de arena, grava y carbón cuidadosamente colocadas en la botella cortada.",
+        "caption": "Construcción del Filtro"
+      },
+      {
+        "url": "assets/img/purificador-agua-casero/gallery-02.jpg",
+        "altText": "Comparación visual del agua turbia antes y el agua filtrada después.",
+        "caption": "Resultados de Filtración"
+      },
+      {
+        "url": "assets/img/purificador-agua-casero/gallery-03.jpg",
+        "altText": "Proceso de preparación del carbón activado casero (carbonización).",
+        "caption": "Carbón Activado DIY"
+      }
+    ],
     "evaluationScores": {
       "eval_Impacto Potencial": 75,
       "eval_Creatividad Solucion": 85,
@@ -1270,7 +1413,7 @@
     "slug": "estudio-de-biodiversidad-local-con-trampas-fotograficas-caseras",
     "projectDate": "2024-11-05",
     "coverUrl": {
-      "url": "https://picsum.photos/seed/camera-trap-cover/640/360",
+      "url": "assets/img/trampa-fotografica-casera/cover.jpg",
       "altText": "Foto nocturna de un tlacuache capturado por una cámara trampa casera."
     },
     "media": {
@@ -1374,6 +1517,23 @@
         "type": "website"
       }
     ],
+    "imageGallery": [
+      {
+        "url": "assets/img/trampa-fotografica-casera/gallery-01.jpg",
+        "altText": "Circuito ensamblado con Raspberry Pi, cámara y sensor PIR.",
+        "caption": "Hardware Ensamblado"
+      },
+      {
+        "url": "assets/img/trampa-fotografica-casera/gallery-02.jpg",
+        "altText": "Código Python para detectar movimiento y tomar foto.",
+        "caption": "Script de Captura"
+      },
+      {
+        "url": "assets/img/trampa-fotografica-casera/gallery-03.jpg",
+        "altText": "Tabla clasificando las especies identificadas en las fotos capturadas.",
+        "caption": "Resultados Estudio"
+      }
+    ],
     "evaluationScores": {
       "eval_Impacto Potencial": 90,
       "eval_Creatividad Solucion": 80,
@@ -1395,7 +1555,7 @@
     "slug": "creacion-de-musica-electronica-con-secuenciador-web-tonejs",
     "projectDate": "2024-08-18",
     "coverUrl": {
-      "url": "https://picsum.photos/seed/tonejs-seq-cover/640/360",
+      "url": "assets/img/secuenciador-web-tonejs/cover.jpg",
       "altText": "Interfaz de secuenciador web con una cuadrícula para activar notas y controles de tempo."
     },
     "media": {
@@ -1504,6 +1664,23 @@
         "type": "link"
       }
     ],
+    "imageGallery": [
+      {
+        "url": "assets/img/secuenciador-web-tonejs/gallery-01.png",
+        "altText": "Código JavaScript mostrando la configuración de un sampler de batería con Tone.js.",
+        "caption": "Configuración Sampler"
+      },
+      {
+        "url": "assets/img/secuenciador-web-tonejs/gallery-02.png",
+        "altText": "Interfaz del secuenciador con un patrón de batería programado.",
+        "caption": "Interfaz de Usuario"
+      },
+      {
+        "url": "assets/img/secuenciador-web-tonejs/gallery-03.png",
+        "altText": "Lógica de JavaScript para leer la cuadrícula y programar el loop de Tone.Transport.",
+        "caption": "Lógica del Secuenciador"
+      }
+    ],
     "evaluationScores": {
       "eval_Impacto Potencial": 70,
       "eval_Creatividad Solucion": 92,
@@ -1525,7 +1702,7 @@
     "slug": "huerto-vertical-automatizado-con-micro-bit",
     "projectDate": "2025-04-12",
     "coverUrl": {
-      "url": "https://picsum.photos/seed/vertical-garden-cover/640/360",
+      "url": "assets/img/huerto-vertical-microbit/cover.jpg",
       "altText": "Estructura de huerto vertical con plantas, tubos de riego y sensores conectados a un Micro:bit."
     },
     "media": {
@@ -1648,6 +1825,23 @@
         "type": "link"
       }
     ],
+    "imageGallery": [
+      {
+        "url": "assets/img/huerto-vertical-microbit/gallery-01.jpg",
+        "altText": "Estructura del huerto vertical construida antes de instalar plantas y sistema.",
+        "caption": "Estructura Base"
+      },
+      {
+        "url": "assets/img/huerto-vertical-microbit/gallery-02.png",
+        "altText": "Código en MakeCode mostrando la lógica condicional para el riego.",
+        "caption": "Código de Automatización"
+      },
+      {
+        "url": "assets/img/huerto-vertical-microbit/gallery-03.jpg",
+        "altText": "Plantas creciendo en el huerto vertical con el sistema funcionando.",
+        "caption": "Huerto en Operación"
+      }
+    ],
     "evaluationScores": {
       "eval_Impacto Potencial": 88,
       "eval_Creatividad Solucion": 82,
@@ -1669,7 +1863,7 @@
     "slug": "mapa-interactivo-de-puntos-de-interes-historico-local",
     "projectDate": "2024-05-19",
     "coverUrl": {
-      "url": "https://picsum.photos/seed/historic-map-cover/640/360",
+      "url": "assets/img/mapa-historico-leaflet/cover.jpg",
       "altText": "Mapa web mostrando una ciudad con varios marcadores de puntos de interés."
     },
     "media": {
@@ -1776,6 +1970,23 @@
         "title": "Demo Mapa Histórico",
         "url": "https://historic-map-example.glitch.me/",
         "type": "link"
+      }
+    ],
+    "imageGallery": [
+      {
+        "url": "assets/img/mapa-historico-leaflet/gallery-01.png",
+        "altText": "Código JavaScript mostrando cómo añadir un marcador con popup en Leaflet.",
+        "caption": "Código Marcador"
+      },
+      {
+        "url": "assets/img/mapa-historico-leaflet/gallery-02.jpg",
+        "altText": "Popup desplegado en el mapa mostrando información e imagen de un edificio histórico.",
+        "caption": "Popup Informativo"
+      },
+      {
+        "url": "assets/img/mapa-historico-leaflet/gallery-03.jpg",
+        "altText": "Recopilación de datos históricos y coordenadas en una tabla.",
+        "caption": "Datos de Puntos de Interés"
       }
     ],
     "evaluationScores": {
