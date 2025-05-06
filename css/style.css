@@ -1,220 +1,289 @@
-/* css/style.css */
+/* css/style.css - v5 Corregido (Link Underline) */
 
 /* 1. Import Google Fonts */
 @import url("https://fonts.googleapis.com/css2?family=Saira:wght@400;700&family=Saira+Condensed:wght@400;700&family=Saira+Semi+Condensed:wght@400;600;700&display=swap");
 
-/* 2. Tailwind Directives (Importante para que funcione @layer) */
-/* Si NO usas un build process de Tailwind, estas líneas son MÁS informativas */
-/* y dependes del CDN cargado en el HTML. */
-/* Si tuvieras un build process, aquí irían: */
-/* @tailwind base; */
-/* @tailwind components; */
-/* @tailwind utilities; */
+/* 2. Definición de Variables de Color Gnius */
+:root {
+  --gnius-dark-1: #0f0f0f;
+  --gnius-dark-2: #1f1f1f;
+  --gnius-light: #f0f0f0;
+  --gnius-yellow: #ffd700;
+  --gnius-cyan: #00ffff;
+  --gnius-red: #ff0000;
+  --gnius-gray-light: #555555;
+  --gnius-gray-dark: #333333;
+  --gnius-border: var(--gnius-gray-light);
+  --color-text-base: var(--gnius-light);
+  --color-bg-base: var(--gnius-dark-1);
+}
 
 /* 3. Custom Base Styles */
-@layer base {
-  body {
-    @apply bg-gnius-dark-1 text-gnius-light font-sans antialiased;
-    /* font-sans está mapeado a 'Saira Semi Condensed' en la config del HTML */
-  }
+body {
+  background-color: var(--color-bg-base);
+  color: var(--color-text-base);
+  font-family: "Saira Semi Condensed", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* font-size: 1.125rem; */ /* Descomentar si se quiere 18px base globalmente */
+}
 
-  /* Estilos base para los elementos generados por @tailwindcss/typography */
-  .prose {
-    /* Asegurar que los links dentro de prose usen colores Gnius */
-    --tw-prose-links: theme("colors.gnius-cyan");
-    --tw-prose-invert-links: theme("colors.gnius-cyan");
-  }
-  .prose a:hover {
-    --tw-prose-links: theme("colors.gnius-yellow");
-    --tw-prose-invert-links: theme("colors.gnius-yellow");
-    @apply text-gnius-yellow; /* Aplicar hover explícito */
-  }
-  .prose strong,
-  .prose b {
-    /* Asegurar que negritas usen el color de texto principal */
-    --tw-prose-bold: theme("colors.gnius-light");
-    --tw-prose-invert-bold: theme("colors.gnius-light");
-    @apply text-gnius-light;
-  }
-  .prose code {
-    /* Estilo para código inline si se usa */
-    @apply bg-gnius-gray-dark text-gnius-yellow px-1 py-0.5 rounded text-sm;
-  }
+/* Estilos base para enlaces DENTRO de contenido de texto y en la lista de recursos */
+/* Excluir botones, chips, enlaces específicos de UI (como certificate-link) */
+/* --- CORRECCIÓN: Selector ajustado --- */
+p a:not([class*="button"]):not([class*="btn"]):not([class*="chip"]),
+.prose a,
+ul#resources-list li a {
+  /* <-- Añadido selector para enlaces en la lista de recursos */
+  color: var(--gnius-cyan);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px; /* Ligero ajuste */
+  transition: color 0.15s ease-in-out;
+}
+p a:not([class*="button"]):not([class*="btn"]):not([class*="chip"]):hover,
+.prose a:hover,
+ul#resources-list li a:hover {
+  /* <-- Añadido selector hover */
+  color: var(--gnius-yellow);
+}
+/* --- FIN CORRECCIÓN --- */
 
-  /* Forzar fuente Saira Condensed en los elementos del gráfico Radar */
-  .chartjs-legend *, /* Leyenda si se usa */
-     .chartjs-tooltip *, /* Tooltips */
-     canvas#radarChart /* Puede que no funcione directamente, pero es un intento */ {
-    font-family: theme(
-      "fontFamily.condensed"
-    ) !important; /* Forzar con !important si es necesario */
-  }
-  /* Ajustes específicos para etiquetas de Chart.js si el anterior no funciona */
-  /* Se requiere inspeccionar el DOM generado por Chart.js */
+/* Estilos base para elementos @tailwindcss/typography */
+.prose {
+  color: var(--gnius-light);
+}
+.prose strong,
+.prose b {
+  color: inherit;
+}
+.prose code {
+  background-color: var(--gnius-gray-dark);
+  color: var(--gnius-yellow);
+  padding: 0.1em 0.4em;
+  border-radius: 0.25rem;
+  font-size: 0.9em;
+  font-family: "Saira Condensed", monospace;
+}
+
+/* Forzar fuente Saira Condensed en elementos del gráfico Radar */
+.chartjs-tooltip,
+.chartjs-tooltip *,
+.chartjs-point-label {
+  font-family: "Saira Condensed", sans-serif !important;
 }
 
 /* 4. Custom Component Styles */
-@layer components {
-  /* Chips Base */
-  .chip {
-    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold leading-tight;
-  }
 
-  /* Chips de Color Sólido */
-  .chip-cyan {
-    @apply bg-gnius-cyan text-gnius-dark-1;
-  }
-  .chip-yellow {
-    @apply bg-gnius-yellow text-gnius-dark-1;
-  }
-  .chip-red {
-    @apply bg-gnius-red text-gnius-light; /* Texto claro para mejor contraste con rojo */
-  }
-  .chip-gray {
-    @apply bg-gnius-gray-dark text-gnius-light/80;
-  }
-
-  /* Chips de Contorno (para certificado) */
-  .chip-cyan-outline {
-    @apply chip border border-gnius-cyan text-gnius-cyan bg-transparent;
-  }
-  .chip-yellow-outline {
-    @apply chip border border-gnius-yellow text-gnius-yellow bg-transparent;
-  }
-
-  /* Botón/Enlace "Ver Detalles" en Card Index */
-  .button-detalles-discreto {
-    @apply text-sm font-semibold transition duration-150 ease-in-out;
-    /* Colores aplicados directamente con clases de Tailwind en HTML (text-gnius-cyan hover:text-gnius-yellow) */
-  }
-
-  /* Contenedor Chip Tecnología (Aside) */
-  .tech-chip-container {
-    @apply font-condensed bg-gnius-gray-dark px-3 py-1 rounded-full flex items-center text-sm;
-  }
-  /* Icono dentro del Chip de Tecnología */
-  .tech-icon {
-    /* El color se aplicará con JS basado en categoría */
-    @apply mr-2;
-  }
-  /* Nombre dentro del Chip de Tecnología */
-  .tech-name {
-    @apply text-gnius-light mr-2;
-  }
-  /* Chip Anidado (Categoría) dentro del Chip de Tecnología */
-  .tech-inner-chip {
-    @apply text-xs font-bold px-1.5 py-0.5 rounded-md;
-    /* Color y BG se aplicarán con JS */
-  }
-  /* Clases específicas para colores de categorías de tecnología */
-  .tech-cat-hardware {
-    @apply text-gnius-cyan;
-  }
-  .tech-cat-software {
-    @apply text-gnius-yellow;
-  }
-  .tech-cat-tool {
-    @apply text-gnius-red;
-  }
-  .tech-inner-chip-hardware {
-    @apply bg-gnius-cyan text-gnius-dark-1;
-  }
-  .tech-inner-chip-software {
-    @apply bg-gnius-yellow text-gnius-dark-1;
-  }
-  .tech-inner-chip-tool {
-    @apply bg-gnius-red text-gnius-light;
-  }
-
-  /* Secciones del Aside */
-  .aside-section {
-    /* Estilos base si se necesitan, más allá del borde aplicado en HTML */
-  }
-  .aside-title {
-    @apply text-xl font-semibold mb-4;
-    /* El color se aplica directamente en el HTML */
-  }
-
-  /* Títulos de Sección Principal (project.html) */
-  .section-title {
-    @apply text-2xl font-bold mb-4;
-    /* El color se aplica directamente en el HTML */
-  }
-
-  /* Efectos Glow (usando box-shadow) */
-  .border-glow-cyan {
-    box-shadow: 0 0 15px 3px theme("colors.gnius-cyan / 50%"); /* Opacidad 50% */
-  }
-  .border-glow-yellow {
-    box-shadow: 0 0 15px 3px theme("colors.gnius-yellow / 50%");
-  }
-  .border-glow-red {
-    box-shadow: 0 0 15px 3px theme("colors.gnius-red / 50%");
-  }
-  /* Efecto Glow sutil para hover de card (opcional) */
-  .hover\:shadow-cyan-glow:hover {
-    box-shadow: 0 0 20px 5px theme("colors.gnius-cyan / 30%");
-  }
-
-  /* Estilos para la Galería */
-  .gallery-item {
-    @apply bg-gnius-dark-2 rounded-lg overflow-hidden cursor-pointer transition duration-150 ease-in-out border-2 border-transparent hover:border-gnius-cyan;
-  }
-  .gallery-item img {
-    @apply w-full h-full object-cover aspect-video; /* Forzar aspecto */
-  }
-
-  /* Estilos para el Modal */
-  /* Base del Modal (asegurar que esté centrado y sobre todo) */
-  #imageModal {
-    /* Clases de Tailwind ya manejan la mayor parte (fixed, inset-0, flex, items-center, justify-center, z-50) */
-    /* Añadir transición para fade-in/out */
-    @apply transition-opacity duration-300 ease-in-out;
-  }
-  /* Contenido del Modal */
-  .modal-content {
-    /* Tailwind maneja bg, rounded, shadow, relative, max-w, max-h, flex, flex-col */
-    /* Podemos añadir un borde si no está ya en la clase wide */
-    /* @apply border-2 border-gnius-cyan; */ /* Ya está en modal-content-wide */
-  }
-  .modal-content-wide {
-    @apply max-w-[75vw] max-h-[85vh] border-2 border-gnius-cyan;
-    /* Aspecto cercano a 16:10 puede controlarse con max-w/max-h y el contenido */
-  }
-  /* Botón de cierre */
-  #modalCloseBtn {
-    /* Tailwind maneja absolute, bg, text, rounded, h, w, flex, items-center, justify-center, z-10, hover */
-    /* Posicionamiento fuera del modal-content */
-    @apply -top-4 -right-4;
-    line-height: 1; /* Ajuste fino para centrar el '×' */
-  }
-  /* Imagen dentro del modal */
-  #modalImage {
-    /* Tailwind maneja w-full, h-auto, max-h-[70vh], object-contain */
-  }
-  /* Caption dentro del modal */
-  #modalCaption {
-    /* Tailwind maneja p-3, text-center, text-sm, text-gnius-light/80, overflow-y-auto */
-    /* Asegurar que el scrollbar (si aparece) tenga un estilo decente (depende del navegador) */
-    scrollbar-width: thin; /* Firefox */
-    scrollbar-color: theme("colors.gnius-cyan") theme("colors.gnius-gray-dark"); /* Firefox */
-  }
-  /* Estilos para scrollbar en navegadores WebKit (Chrome, Safari, Edge) */
-  #modalCaption::-webkit-scrollbar {
-    width: 8px;
-  }
-  #modalCaption::-webkit-scrollbar-track {
-    background: theme("colors.gnius-gray-dark");
-    border-radius: 4px;
-  }
-  #modalCaption::-webkit-scrollbar-thumb {
-    background-color: theme("colors.gnius-cyan");
-    border-radius: 4px;
-    border: 2px solid theme("colors.gnius-gray-dark"); /* Espacio alrededor del thumb */
-  }
+/* --- CHIP BASE --- */
+.chip {
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.25;
+  text-align: center;
+  white-space: nowrap;
+  margin: 0.1rem;
+}
+.chip-yellow {
+  background-color: var(--gnius-yellow);
+  color: #111111;
+}
+.chip-cyan {
+  background-color: var(--gnius-cyan);
+  color: #111111;
+}
+.chip-red {
+  background-color: var(--gnius-red);
+  color: var(--gnius-light);
+}
+.chip-gray {
+  background-color: var(--gnius-border);
+  color: var(--gnius-light);
+}
+.chip-cyan-outline {
+  border: 1px solid var(--gnius-cyan);
+  color: var(--gnius-cyan);
+  background-color: transparent;
+  padding: calc(0.25rem - 1px) calc(0.75rem - 1px);
+}
+.chip-yellow-outline {
+  border: 1px solid var(--gnius-yellow);
+  color: var(--gnius-yellow);
+  background-color: transparent;
+  padding: calc(0.25rem - 1px) calc(0.75rem - 1px);
 }
 
-/* 5. Custom Utilities (Si fueran necesarios) */
-/* @layer utilities { */
-/* .mi-clase-utilidad { ... } */
-/* } */
+/* Chip estudiante individual */
+.student-chip {
+  /* Clases base chip + color + margen aplicados en JS/HTML */
+}
+.student-chip i {
+  margin-right: 0.25rem;
+}
+
+/* --- CHIP TECNOLOGÍA --- */
+.tech-chip-container {
+  display: inline-flex;
+  align-items: center;
+  background-color: var(--gnius-gray-dark);
+  border-radius: 9999px;
+  padding: 0.2rem 0.3rem 0.2rem 0.6rem;
+  margin: 0.1rem 0.2rem;
+  border: 1px solid var(--gnius-border);
+  font-family: "Saira Condensed", sans-serif;
+  font-size: 0.85rem;
+  line-height: 1.1;
+  color: var(--gnius-light);
+}
+.tech-chip-container .tech-icon {
+  margin-right: 0.5rem;
+  width: 1em;
+  text-align: center;
+  line-height: 1;
+}
+.tech-chip-container .tech-name {
+  font-weight: 400;
+  white-space: nowrap;
+  margin-right: 0.5rem;
+}
+.tech-icon-Hardware {
+  color: var(--gnius-cyan);
+}
+.tech-icon-Software {
+  color: var(--gnius-yellow);
+}
+.tech-icon-Tool {
+  color: var(--gnius-red);
+}
+.tech-inner-chip {
+  padding: 0.05rem 0.4rem;
+  border-radius: 9999px;
+  font-size: 0.6rem;
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.tech-inner-chip-Hardware {
+  background-color: var(--gnius-cyan);
+  color: #111;
+}
+.tech-inner-chip-Software {
+  background-color: var(--gnius-yellow);
+  color: #111;
+}
+.tech-inner-chip-Tool {
+  background-color: var(--gnius-red);
+  color: var(--gnius-light);
+}
+
+/* --- Secciones Aside (project.html) --- */
+.aside-section {
+  padding: 1.5rem;
+  background-color: var(--gnius-dark-2);
+  border-radius: 0.5rem;
+  margin-bottom: 2rem;
+}
+.aside-title {
+  /* Estilos definidos con clases Tailwind en HTML */
+}
+
+/* --- Títulos de Sección Principal (project.html) --- */
+.section-title {
+  /* Estilos definidos con clases Tailwind en HTML */
+}
+
+/* --- Galería y Modal --- */
+.gallery-item {
+  aspect-ratio: 16 / 9;
+  transition: transform 0.2s ease-in-out;
+}
+.gallery-item:hover {
+  transform: scale(1.03);
+}
+.gallery-item img {
+  /* Clases Tailwind base en HTML */
+}
+#imageModal {
+  /* Base y transición aplicados con Tailwind en HTML */
+}
+.modal-content {
+  /* Estructura base con Tailwind */
+}
+.modal-content-wide {
+  /* Tamaño y borde con Tailwind */
+}
+#modalCloseBtn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 20;
+  line-height: 1;
+}
+#modalImage {
+  display: block; /* Clases Tailwind en HTML */
+}
+#modalCaption {
+  scrollbar-width: thin;
+  scrollbar-color: var(--gnius-cyan) var(--gnius-gray-dark); /* Clases Tailwind en HTML */
+}
+#modalCaption::-webkit-scrollbar {
+  width: 8px;
+}
+#modalCaption::-webkit-scrollbar-track {
+  background: var(--gnius-gray-dark);
+  border-radius: 4px;
+}
+#modalCaption::-webkit-scrollbar-thumb {
+  background-color: var(--gnius-cyan);
+  border-radius: 4px;
+  border: 2px solid var(--gnius-gray-dark);
+}
+
+/* --- Estilos para Botones (Clases .btn ya definidas en HTML/JS) --- */
+.btn {
+  @apply inline-flex items-center justify-center px-5 py-2 border border-transparent text-base font-medium rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gnius-dark-1 transition ease-in-out duration-150;
+}
+.btn-primary {
+  @apply bg-gnius-cyan text-gnius-dark-1 hover:bg-cyan-300 focus:ring-gnius-cyan;
+}
+.btn-secondary {
+  @apply bg-gnius-yellow text-gnius-dark-1 hover:bg-yellow-300 focus:ring-gnius-yellow;
+}
+.btn-danger {
+  @apply bg-gnius-red text-gnius-light hover:bg-red-700 focus:ring-gnius-red;
+}
+.btn-neutral {
+  @apply bg-gnius-gray-dark text-gnius-light hover:bg-gnius-gray-light focus:ring-gnius-gray-light;
+}
+.btn:disabled {
+  @apply opacity-50 cursor-not-allowed;
+}
+
+/* Enlace discreto "Ver Detalles" card */
+.link-action {
+  @apply text-sm font-semibold transition duration-150 ease-in-out; /* Color en HTML */
+}
+
+/* Enlace específico "Ver Certificado" - ASEGURAR COLOR AMARILLO */
+.certificate-link {
+  /* Clases aplicadas en JS/HTML: flex items-center text-sm font-semibold transition */
+  color: var(
+    --gnius-yellow
+  ); /* Define color amarillo base para texto e icono */
+}
+.certificate-link:hover {
+  color: color-mix(
+    in srgb,
+    var(--gnius-yellow) 80%,
+    white
+  ); /* Aclarar un poco en hover */
+}
+.certificate-link i {
+  margin-right: 0.3rem;
+}

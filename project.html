@@ -26,14 +26,14 @@
 
 <body class="bg-gnius-dark-1 text-gnius-light font-sans">
 
-    <div class="container mx-auto px-4 py-8">
-
-        <!-- Header -->
+    <!-- Contenedor Principal con tamaño de texto base aumentado -->
+    <div class="container mx-auto px-4 py-8 text-lg"> <!-- <-- text-lg añadido --> <!-- Header -->
         <header class="mb-8 flex justify-between items-center">
             <a href="index.html">
                 <img src="assets/img/gnius_logo_placeholder.png" alt="Gnius Club Logo" class="h-12 w-auto">
             </a>
-            <a href="index.html" class="text-gnius-cyan hover:text-gnius-yellow transition duration-150 ease-in-out">
+            <!-- Estilo de enlace base aplicado por CSS -->
+            <a href="index.html" class="text-gnius-cyan hover:text-gnius-yellow">
                 <i class="fa-solid fa-arrow-left-long mr-2"></i>Volver al Listado
             </a>
         </header>
@@ -47,20 +47,26 @@
         <main id="project-details" class="hidden">
 
             <!-- Hero Section -->
-            <section class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 mb-12 items-center">
+            <section class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 mb-12 md:mb-16 items-center">
+                <!-- Columna Izquierda: Texto -->
                 <div class="order-2 md:order-1">
-                    <h1 id="project-title" class="text-4xl lg:text-5xl font-bold text-gnius-cyan mb-3">[Título Proyecto]
-                    </h1>
+                    <h1 id="project-title" class="text-4xl lg:text-5xl font-bold text-gnius-cyan mb-3">[Título
+                        Proyecto]</h1>
                     <div id="project-metadata" class="flex flex-wrap gap-2 mb-6">
-                        <!-- Chips Categoria/Nivel -->
+                        <!-- Chips Categoria/Nivel - JS los añade -->
                     </div>
-                    <h2 id="intro-title" class="text-2xl font-semibold text-gnius-yellow mb-2">[Intro Título]</h2>
-                    <p id="intro-content" class="text-gnius-light/90 prose max-w-none">[Intro Contenido]</p>
+                    <h2 id="intro-title" class="text-2xl lg:text-3xl font-semibold text-gnius-yellow mb-3">[Intro
+                        Título]</h2> <!-- Aumentado tamaño -->
+                    <!-- Descripcion con text-lg heredado -->
+                    <div id="intro-content" class="prose prose-invert max-w-none text-gnius-light/90">[Intro
+                        Contenido]</div>
                 </div>
+                <!-- Columna Derecha: Media -->
                 <div id="hero-media"
-                    class="order-1 md:order-2 aspect-video bg-gnius-dark-2 rounded-lg overflow-hidden flex items-center justify-center">
+                    class="order-1 md:order-2 aspect-video bg-gnius-dark-2 rounded-lg overflow-hidden flex items-center justify-center min-h-[200px]">
+                    <!-- min-h para evitar colapso -->
                     <!-- Contenido dinámico: Video Embed o Imagen (object-contain) -->
-                    <span class="text-gnius-gray-light italic">Cargando media...</span>
+                    <span class="text-gnius-gray-light italic text-base">Cargando media...</span> <!-- text-base -->
                 </div>
             </section>
 
@@ -68,21 +74,22 @@
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
 
                 <!-- Columna Principal (Contenido) -->
-                <div class="lg:col-span-2">
+                <div class="lg:col-span-2 space-y-12 md:space-y-16"> <!-- Espacio entre secciones -->
 
                     <!-- Evidencia Adicional / Gráfico -->
-                    <section class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12 items-start">
+                    <section class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
                         <div id="secondary-evidence-section" style="display: none;">
-                            <h2 class="section-title text-gnius-red mb-4">Evidencia Adicional</h2>
+                            <!-- Título de Sección Principal -->
+                            <h2 class="text-2xl md:text-3xl font-bold text-gnius-red mb-4">Evidencia Adicional</h2>
                             <div id="secondary-evidence-media"
-                                class="aspect-video bg-gnius-dark-2 rounded-lg overflow-hidden flex items-center justify-center">
-                                <span class="text-gnius-gray-light italic">Cargando evidencia...</span>
-                                <!-- Imagen (object-contain) -->
+                                class="aspect-video bg-gnius-dark-2 rounded-lg overflow-hidden flex items-center justify-center min-h-[150px]">
+                                <span class="text-gnius-gray-light italic text-base">Cargando evidencia...</span>
                             </div>
                         </div>
                         <div id="evaluation-chart-section" style="display: none;">
-                            <h2 class="section-title text-gnius-yellow mb-4 font-condensed font-bold">Puntuaciones de
-                                Evaluación</h2>
+                            <!-- Título de Sección Principal -->
+                            <h2 class="text-2xl md:text-3xl font-bold text-gnius-yellow mb-4 font-condensed">
+                                Puntuaciones de Evaluación</h2>
                             <div class="bg-gnius-dark-2 p-4 rounded-lg aspect-square flex items-center justify-center">
                                 <canvas id="radarChart"></canvas>
                             </div>
@@ -90,89 +97,76 @@
                     </section>
 
                     <!-- Problema / Solución -->
-                    <section class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12 items-start">
+                    <section class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
                         <div>
-                            <h2 class="section-title text-gnius-red mb-4">Problema Identificado</h2>
+                            <!-- Título de Sección Principal -->
+                            <h2 class="text-2xl md:text-3xl font-bold text-gnius-red mb-4">Problema Identificado
+                            </h2>
                             <div id="problem-description" class="prose prose-invert max-w-none text-gnius-light/90">
-                                [Problema]</div>
+                                <!-- Texto con text-lg heredado -->
+                            </div>
                         </div>
                         <div>
-                            <h2 class="section-title text-gnius-cyan mb-4">Solución Propuesta</h2>
+                            <!-- Título de Sección Principal -->
+                            <h2 class="text-2xl md:text-3xl font-bold text-gnius-cyan mb-4">Solución Propuesta</h2>
                             <div id="solution-proposed" class="prose prose-invert max-w-none text-gnius-light/90">
-                                [Solución]</div>
+                                <!-- Texto con text-lg heredado -->
+                            </div>
                         </div>
                     </section>
 
                     <!-- Proceso de Innovación -->
-                    <section id="innovation-process-section" class="mb-12" style="display: none;">
-                        <h2 class="section-title text-gnius-yellow mb-4">Proceso de Innovación</h2>
+                    <section id="innovation-process-section" style="display: none;">
+                        <!-- Título de Sección Principal -->
+                        <h2 class="text-2xl md:text-3xl font-bold text-gnius-yellow mb-4">Proceso de Innovación</h2>
                         <div id="innovation-process-content"
                             class="prose prose-invert max-w-none text-gnius-light/90 bg-gnius-dark-2 p-4 rounded-lg">
-                            [Proceso HTML]</div>
+                            <!-- Texto con text-lg heredado -->
+                        </div>
                     </section>
 
                     <!-- Galería de Evidencias -->
-                    <section id="gallery-section" class="mb-12" style="display: none;">
-                        <h2 class="section-title text-gnius-yellow mb-4">Galería de Evidencias</h2>
-                        <div id="gallery-grid" class="gallery-grid grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <!-- Imágenes de la galería se insertarán aquí -->
-                            <!-- Cada item debe ser clickeable para abrir modal -->
+                    <section id="gallery-section" style="display: none;">
+                        <!-- Título de Sección Principal -->
+                        <h2 class="text-2xl md:text-3xl font-bold text-gnius-yellow mb-4">Galería de Evidencias</h2>
+                        <div id="gallery-grid" class="gallery-grid grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <!-- Imágenes de la galería - JS los añade -->
                         </div>
                     </section>
 
                 </div>
 
                 <!-- Columna Lateral (Aside) -->
-                <aside class="lg:col-span-1 space-y-10">
+                <aside class="lg:col-span-1 space-y-8"> <!-- Reducir space-y si .aside-section tiene mb -->
 
                     <!-- Equipo -->
-                    <section id="team-section" class="aside-section border-l-4 border-gnius-cyan pl-4 border-glow-cyan">
-                        <h2 class="aside-title text-gnius-cyan mb-4">Equipo del Proyecto</h2>
+                    <section id="team-section" class="aside-section"> <!-- Padding y BG definidos en CSS -->
+                        <!-- Título de Aside -->
+                        <h2 class="text-xl md:text-2xl font-bold text-gnius-cyan mb-4">Equipo del Proyecto</h2> <!--
+                            Aumentado font-bold -->
                         <ul id="team-list" class="space-y-4">
-                            <!-- Items de miembros se insertarán aquí -->
-                            <!-- Ejemplo LI:
-                            <li class="team-member-item flex justify-between items-center bg-gnius-dark-2 p-3 rounded">
-                                <div class="member-info">
-                                    <span class="block font-semibold text-gnius-light">[Nombre]</span>
-                                    <span class="block text-sm text-gnius-light/70">[Rol]</span>
-                                </div>
-                                <a href="#" class="certificate-link flex items-center text-gnius-yellow hover:text-yellow-300 text-sm">
-                                    <i class="fa-solid fa-award mr-2"></i> Ver Certificado
-                                </a>
-                            </li>
-                             -->
+                            <!-- Items de miembros - JS los añade -->
                         </ul>
                     </section>
 
                     <!-- Tecnologías -->
-                    <section id="technologies-section"
-                        class="aside-section border-l-4 border-gnius-yellow pl-4 border-glow-yellow">
-                        <h2 class="aside-title text-gnius-yellow mb-4">Tecnologías Utilizadas</h2>
-                        <div id="tech-list" class="flex flex-wrap gap-3">
-                            <!-- Chips de tecnología se insertarán aquí -->
-                            <!-- Ejemplo Chip:
-                             <div class="tech-chip-container font-condensed bg-gnius-gray-dark px-3 py-1 rounded-full flex items-center text-sm">
-                                 <span class="tech-icon text-gnius-cyan mr-2"><i class="fa-brands fa-react"></i></span>
-                                 <span class="tech-name text-gnius-light mr-2">React</span>
-                                 <span class="tech-inner-chip text-xs font-bold bg-gnius-cyan text-gnius-dark-1 px-1.5 py-0.5 rounded-md">Software</span>
-                             </div>
-                              -->
+                    <section id="technologies-section" class="aside-section">
+                        <!-- Título de Aside -->
+                        <h2 class="text-xl md:text-2xl font-bold text-gnius-yellow mb-4">Tecnologías Utilizadas</h2>
+                        <!-- Aumentado font-bold -->
+                        <div id="tech-list" class="flex flex-wrap gap-x-3 gap-y-2"> <!-- Ajustar gap si es necesario
+                                -->
+                            <!-- Chips de tecnología - JS los añade -->
                         </div>
                     </section>
 
                     <!-- Recursos Adicionales -->
-                    <section id="resources-section"
-                        class="aside-section border-l-4 border-gnius-red pl-4 border-glow-red" style="display: none;">
-                        <h2 class="aside-title text-gnius-red mb-4">Recursos Adicionales</h2>
-                        <ul id="resources-list" class="space-y-2">
-                            <!-- Enlaces de recursos se insertarán aquí -->
-                            <!-- Ejemplo LI:
-                             <li class="resource-item">
-                                 <a href="#" target="_blank" rel="noopener noreferrer" class="text-gnius-light hover:text-gnius-cyan transition duration-150 ease-in-out">
-                                     <i class="fa-solid fa-link mr-2 text-gnius-gray-light"></i> [Título Recurso]
-                                 </a>
-                             </li>
-                             -->
+                    <section id="resources-section" class="aside-section" style="display: none;">
+                        <!-- Título de Aside -->
+                        <h2 class="text-xl md:text-2xl font-bold text-gnius-red mb-4">Recursos Adicionales</h2> <!--
+                            Aumentado font-bold -->
+                        <ul id="resources-list" class="space-y-3"> <!-- Aumentar espacio si se ve apretado -->
+                            <!-- Enlaces de recursos - JS los añade -->
                         </ul>
                     </section>
 
@@ -183,26 +177,32 @@
         </main>
 
         <!-- Modal para Imágenes -->
+        <!-- Quitado onclick de aquí, se añade con JS -->
         <div id="imageModal"
-            class="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50 hidden transition-opacity duration-300 ease-in-out opacity-0"
-            onclick="closeModalOutside(event)">
+            class="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50 hidden transition-opacity duration-300 ease-in-out opacity-0">
             <div
                 class="modal-content modal-content-wide bg-gnius-dark-2 rounded-lg shadow-lg overflow-hidden border-2 border-gnius-cyan relative max-w-[75vw] max-h-[85vh] flex flex-col">
+                <!-- Botón con posición ajustada en CSS -->
                 <button id="modalCloseBtn"
-                    class="absolute -top-4 -right-4 bg-gnius-red text-white rounded-full h-8 w-8 flex items-center justify-center text-xl font-bold z-10 hover:bg-red-700"
+                    class="bg-gnius-red text-white rounded-full h-8 w-8 flex items-center justify-center text-xl font-bold hover:bg-red-700"
                     aria-label="Cerrar modal">×</button>
-                <div class="flex-shrink-0 p-1 bg-gnius-dark-1">
+                <!-- Contenedor imagen -->
+                <div class="flex-shrink-0 p-1 bg-gnius-dark-1 overflow-hidden"> <!-- Añadido overflow-hidden por si
+                        acaso -->
                     <img id="modalImage" src="" alt="Imagen ampliada de la galería"
-                        class="w-full h-auto max-h-[70vh] object-contain">
+                        class="block w-full h-auto max-h-[calc(85vh-4rem)] object-contain"> <!-- max-h ajustado para
+                        dejar espacio a caption -->
                 </div>
-                <div id="modalCaption" class="flex-grow p-3 text-center text-sm text-gnius-light/80 overflow-y-auto">
-                </div>
+                <!-- Caption -->
+                <div id="modalCaption"
+                    class="flex-shrink-0 p-3 text-center text-sm text-gnius-light/80 overflow-y-auto max-h-[calc(85vh-70vh-1rem)]">
+                </div> <!-- text-sm, max-h para caption -->
             </div>
         </div>
 
 
         <!-- Footer -->
-        <footer class="mt-16 text-center text-sm text-gnius-light/60">
+        <footer class="mt-16 text-center text-sm text-gnius-light/60"> <!-- text-sm -->
             <p>© <span id="current-year-footer"></span> Gnius Club. Todos los derechos reservados.</p>
         </footer>
 
