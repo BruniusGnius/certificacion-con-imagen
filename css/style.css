@@ -1,13 +1,13 @@
-/* css/style.css - v5 Corregido (Link Underline) */
+/* css/style.css - v6 Corregido (Pesos de Fuente) */
 
 /* 1. Import Google Fonts */
-@import url("https://fonts.googleapis.com/css2?family=Saira:wght@400;700&family=Saira+Condensed:wght@400;700&family=Saira+Semi+Condensed:wght@400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Saira:wght@400;500;600;700;800;900&family=Saira+Condensed:wght@400;500;600;700;800;900&family=Saira+Semi+Condensed:wght@400;500;600;700;800;900&display=swap"); /* Añadidos pesos 500 y 800 */
 
 /* 2. Definición de Variables de Color Gnius */
 :root {
   --gnius-dark-1: #0f0f0f;
   --gnius-dark-2: #1f1f1f;
-  --gnius-light: #f0f0f0;
+  --gnius-light: #ffffff;
   --gnius-yellow: #ffd700;
   --gnius-cyan: #00ffff;
   --gnius-red: #ff0000;
@@ -25,37 +25,43 @@ body {
   font-family: "Saira Semi Condensed", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* font-size: 1.125rem; */ /* Descomentar si se quiere 18px base globalmente */
+  /* --- CORRECCIÓN: Peso base medium (500) --- */
+  font-weight: 600;
+}
+
+/* --- CORRECCIÓN: Estilo base para strong/b (extrabold 800) --- */
+strong,
+b {
+  font-weight: 00;
 }
 
 /* Estilos base para enlaces DENTRO de contenido de texto y en la lista de recursos */
-/* Excluir botones, chips, enlaces específicos de UI (como certificate-link) */
-/* --- CORRECCIÓN: Selector ajustado --- */
 p a:not([class*="button"]):not([class*="btn"]):not([class*="chip"]),
 .prose a,
 ul#resources-list li a {
-  /* <-- Añadido selector para enlaces en la lista de recursos */
   color: var(--gnius-cyan);
   text-decoration: underline;
   text-decoration-thickness: 1px;
-  text-underline-offset: 3px; /* Ligero ajuste */
+  text-underline-offset: 3px;
   transition: color 0.15s ease-in-out;
+  /* Los enlaces heredarán el peso 500 del body a menos que se especifique diferente */
 }
 p a:not([class*="button"]):not([class*="btn"]):not([class*="chip"]):hover,
 .prose a:hover,
 ul#resources-list li a:hover {
-  /* <-- Añadido selector hover */
   color: var(--gnius-yellow);
 }
-/* --- FIN CORRECCIÓN --- */
 
 /* Estilos base para elementos @tailwindcss/typography */
 .prose {
   color: var(--gnius-light);
+  /* Hereda font-weight: 500 del body */
 }
 .prose strong,
 .prose b {
-  color: inherit;
+  /* --- CORRECCIÓN: Aplicar extrabold (800) --- */
+  font-weight: 800;
+  color: inherit; /* Mantener color */
 }
 .prose code {
   background-color: var(--gnius-gray-dark);
@@ -64,6 +70,7 @@ ul#resources-list li a:hover {
   border-radius: 0.25rem;
   font-size: 0.9em;
   font-family: "Saira Condensed", monospace;
+  /* Heredará peso 500, que suele estar bien para código */
 }
 
 /* Forzar fuente Saira Condensed en elementos del gráfico Radar */
@@ -75,12 +82,18 @@ ul#resources-list li a:hover {
 
 /* 4. Custom Component Styles */
 
+/* --- CORRECCIÓN: Redefinir .font-bold para que sea extrabold (800) --- */
+.font-bold {
+  font-weight: 800 !important; /* Usar !important para asegurar override */
+}
+/* .font-semibold (600) y otros pesos no se modifican por defecto */
+
 /* --- CHIP BASE --- */
 .chip {
   padding: 0.25rem 0.75rem;
   border-radius: 9999px;
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 600; /* Semibold para chips */
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -139,6 +152,7 @@ ul#resources-list li a:hover {
   font-size: 0.85rem;
   line-height: 1.1;
   color: var(--gnius-light);
+  font-weight: 400; /* Resetear a normal/400 para Saira Condensed */
 }
 .tech-chip-container .tech-icon {
   margin-right: 0.5rem;
@@ -147,7 +161,7 @@ ul#resources-list li a:hover {
   line-height: 1;
 }
 .tech-chip-container .tech-name {
-  font-weight: 400;
+  font-weight: 400; /* Asegurar peso normal */
   white-space: nowrap;
   margin-right: 0.5rem;
 }
@@ -164,7 +178,7 @@ ul#resources-list li a:hover {
   padding: 0.05rem 0.4rem;
   border-radius: 9999px;
   font-size: 0.6rem;
-  font-weight: 700;
+  font-weight: 700; /* Bold para categoría */
   line-height: 1;
   text-transform: uppercase;
   white-space: nowrap;
@@ -265,24 +279,19 @@ ul#resources-list li a:hover {
   @apply opacity-50 cursor-not-allowed;
 }
 
-/* Enlace discreto "Ver Detalles" card */
+/* Enlace discreto "Ver Detalles" card, "Descargar", "Ver Proyecto" */
 .link-action {
-  @apply text-sm font-semibold transition duration-150 ease-in-out; /* Color en HTML */
+  @apply text-sm font-semibold transition duration-150 ease-in-out; /* Semibold (600) */
+  /* Color y underline aplicados en HTML */
 }
 
-/* Enlace específico "Ver Certificado" - ASEGURAR COLOR AMARILLO */
+/* Enlace específico "Ver Certificado" */
 .certificate-link {
-  /* Clases aplicadas en JS/HTML: flex items-center text-sm font-semibold transition */
-  color: var(
-    --gnius-yellow
-  ); /* Define color amarillo base para texto e icono */
+  @apply flex items-center text-sm font-semibold transition duration-150 ease-in-out; /* Semibold (600) */
+  color: var(--gnius-yellow);
 }
 .certificate-link:hover {
-  color: color-mix(
-    in srgb,
-    var(--gnius-yellow) 80%,
-    white
-  ); /* Aclarar un poco en hover */
+  color: color-mix(in srgb, var(--gnius-yellow) 80%, white);
 }
 .certificate-link i {
   margin-right: 0.3rem;
