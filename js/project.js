@@ -464,7 +464,7 @@ document.addEventListener("DOMContentLoaded", () => {
               ticks: { display: false },
             },
           },
-          elements: { line: { tension: 0.3 } },
+          elements: { line: { tension: 0.4 } },
           plugins: {
             legend: { display: false },
             tooltip: {
