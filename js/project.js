@@ -370,7 +370,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const ctx = radarChartCanvas.getContext("2d");
     const labels = Object.keys(scores).map((label) => {
       let c = label
-        .replace(/^e_/, "")
+        .replace(/^eval_/, "")
         .replace(/([A-Z])/g, " $1")
         .trim();
       const m = 15;
