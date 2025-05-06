@@ -1,0 +1,268 @@
+# Prompt: Generador de Portafolios y Certificados Web Estáticos para Gnius Club (v2 - Completo)
+
+## 🧔 Rol Asignado
+
+Eres un **Experto Desarrollador Full-Stack** con especialización en la creación de sitios web estáticos, automatización de flujos de trabajo (Google Sheets a JSON) y diseño frontend responsivo utilizando tecnologías modernas como Tailwind CSS y JavaScript Vanilla. Tienes experiencia en la interpretación de requisitos complejos, la generación de código limpio, modular y fácil de mantener, con un buen ojo para la estética futurista y cyberpunk, prestando atención meticulosa a los detalles de layout y UX solicitados.
+
+## 🎯 Objetivo Principal
+
+Tu tarea es generar el código fuente completo (HTML, CSS con Tailwind, JavaScript Vanilla), la estructura de datos inicial (Tabla para Google Sheets en formato CSV y **archivo JSON con ejemplos realistas y variados**), el script de automatización (Google Apps Script) y las instrucciones necesarias para crear un sitio web estático alojado en GitHub Pages. Este sitio mostrará portafolios de proyectos estudiantiles y certificados digitales asociados, cargando dinámicamente la información desde un único archivo JSON generado a partir de una hoja de cálculo de Google Sheets.
+
+## 🧩 Contexto
+
+Somos **Gnius Club**, una institución educativa que certifica proyectos de innovación, tecnología o impacto social desarrollados por estudiantes (primaria a preparatoria) mediante Soulbound Tokens (SBTs). Cada proyecto necesita un portafolio web individual y responsivo, vinculado a los certificados digitales de los estudiantes participantes. El certificado, a su vez, debe enlazar de vuelta al portafolio del proyecto como evidencia.
+
+## 🔑 Principios Clave del Proyecto
+
+- **Simplicidad:** La solución debe ser lo más sencilla posible de entender, usar y mantener.
+- **Fuente Única de Datos:** Toda la información de proyectos y certificados asociados se gestionará desde UNA única hoja de cálculo y se consolidará en UN único archivo `projects.json`.
+- **Automatización:** El proceso de actualización del sitio (Sheets -> JSON -> Web) debe ser mayormente automatizado.
+- **Mantenibilidad:** Usuarios sin conocimientos técnicos (posiblemente asistidos por una IA como ChatGPT) deben poder actualizar el contenido editando la hoja de Google Sheets.
+- **Compatibilidad:** La solución debe ser desplegable exclusivamente en GitHub Pages.
+- **Tecnología Definida:** Usar solo HTML, CSS (Tailwind), JavaScript Vanilla, **Chart.js v4+** (para gráficos) y **Font Awesome v6 Free** (para iconos), ambos vía CDN. Evitar frameworks JS complejos (React, Vue, Angular) y librerías JS adicionales no especificadas. **Incluir fuente 'Saira Condensed' de Google Fonts.**
+
+## 📤 Entregables Esperados
+
+1.  **Código HTML:** Archivos `index.html`, `project.html`, `certificate.html`. Incluir `<template>` en `index.html` para la tarjeta de proyecto.
+2.  **Código CSS:** Archivo `css/style.css` (utilizando clases de Tailwind CSS y definiciones CSS estándar donde sea necesario para estilos complejos).
+3.  **Código JavaScript:** Archivos `js/main.js`, `js/project.js`, `js/certificate.js` (código Vanilla JS, ES6+, modular, comentado y robusto ante datos faltantes).
+4.  **Archivo de Datos JSON:** `data/projects.json` poblado con 5 proyectos de ejemplo:
+    - por el momento Usar URLs de `picsum.photos/seed/nombre-unico/ancho/alto` para imágenes placeholder, con proporción **16:9 para `coverUrl`** (ej. 640x360) y **tamaños más grandes para `imageGallery`** (ej. 800x450). Pero contemplar que este dato se llenara en google sheets y las imagenes se almacenaran en una carpeta con el titulo del proyecto anidada dentro de img
+    - Incluir URLs de **videos reales del canal de Gnius Club** en el campo `media` para al menos 2 proyectos.
+    - Generar `evaluationScores` con **valores más aleatorios y contrastantes** (manteniendo 0-100) para probar el gráfico dinámico.
+    - Completar todos los campos requeridos, incluyendo `certificate_*` para cada miembro.
+5.  **Estructura para Google Sheets (Formato CSV):** Bloque de texto CSV con encabezado exacto y una fila de ejemplo, usando coma (`,`) como delimitador y comillas dobles (`"`) para encapsular campos complejos o con caracteres especiales.
+6.  **Código Google Apps Script:** Script `generarJson.gs` para leer Sheets y generar `projects.json` según la estructura definida, manejando correctamente los campos complejos (`|`, `;`) y generando slugs automáticamente.
+7.  **Instrucciones y Prompt IA:** Instrucciones claras y detalladas (en español) para llenar y mantener la hoja de Google Sheets, explicando el formato de campos complejos. Incluir un prompt de ejemplo para IA asistente (como ChatGPT) para ayudar a formatear datos.
+
+## 📊 Estructura de Datos (Google Sheets & JSON)
+
+La información se gestionará en una única hoja de Google Sheets. Un Google Apps Script la convertirá en el archivo `data/projects.json`.
+
+### 1. Google Sheets: Estructura de la Hoja (Representada en CSV)
+
+- La primera fila del CSV será el encabezado. Cada fila subsiguiente representa un proyecto.
+- **Encabezados de Columna:** `projectTitle`, `projectCategory`, `studentLevel`, `projectDate`, `intro_title`, `intro_content`, `coverUrl_url`, `coverUrl_altText`, `problemDescription`, `solutionProposed`, `innovationProcess`, `media_type`, `media_url`, `media_altText`, `teamMembers`, `technologies`, `additionalResources`, `imageGallery`, `eval_Impacto Potencial`, `eval_Creatividad Solucion`, `eval_Innovacion Tecnica`, `eval_Ejecucion Tecnica`, `eval_Colaboracion Equipo`, `eval_Sostenibilidad Diseño` _(Ajustar los nombres de las columnas `eval_` si las métricas exactas varían)_.
+- **Formato para Campos Complejos dentro de una celda CSV (encapsulados en comillas dobles si contienen comas, saltos de línea, `|` o `;`):**
+  - **Listas de Objetos (teamMembers, technologies, additionalResources, imageGallery):** Usar un separador de elementos ( `|` ) y un separador de propiedades dentro del elemento ( `;` ). Formato dentro de la celda: `"prop1A;prop2A;prop3A | prop1B;prop2B;prop3B | ..."`
+  - **Orden `teamMembers`:** `Nombre;Rol;LinkSBT(o vacío);NombreCursoCertificado;NombreInsigniaCertificado;NivelCertificado;HabilidadesSeparadasPorPuntoyComa;CriteriosSeparadosPorPuntoyComa;ColegioCertificado;FechaEmisionCertificado(YYYY-MM-DD)`
+  - **Orden `technologies`:** `NombreTecnologia;NombreIconoFontAwesome(sin fa- o fa-brands);Categoria(Hardware/Software/Tool)`
+  - **Orden `additionalResources`:** `TituloRecurso;URLRecurso;TipoRecurso(github/link/pdf/doc/website/etc)`
+  - **Orden `imageGallery`:** `URLImagen;TextoAlternativo;Caption(Opcional)`
+- **Slug:** No es una columna en Sheets. Se generará automáticamente por el Apps Script a partir de `projectTitle`.
+
+### 2. JSON: Estructura del Archivo `projects.json`
+
+```json
+[
+  {
+    "projectTitle": "string (Requerido)",
+    "slug": "string (Generado Automáticamente)",
+    "projectCategory": "string (Opcional)",
+    "studentLevel": "string (Opcional)",
+    "projectDate": "string (Formato YYYY-MM-DD, Opcional)",
+    "intro_title": "string (Requerido)",
+    "intro_content": "string (Requerido)",
+    "coverUrl": {
+      // Requerido
+      "url": "string (Requerido)",
+      "altText": "string (Requerido)"
+    },
+    "problemDescription": "string (Requerido)",
+    "solutionProposed": "string (Requerido)",
+    "innovationProcess": "string/html (Opcional)",
+    "media": {
+      // Opcional, determinará contenido en Hero y Evidencia Adicional
+      "type": "string ('video' o 'image')",
+      "url": "string (URL YouTube Embed o de imagen)",
+      "altText": "string (Requerido si type='image')"
+    },
+    "teamMembers": [
+      // Requerido (al menos uno)
+      {
+        "name": "string (Requerido)",
+        "role": "string (Requerido)",
+        "sbtLink": "string (URL, Opcional)",
+        "certificate_courseName": "string (Requerido para certificado)",
+        "certificate_badgeName": "string (Requerido para certificado)",
+        "certificate_level": "string (Requerido para certificado)",
+        "certificate_skills": "string (Lista separada por ';')",
+        "certificate_criteria": "string (Lista separada por ';')",
+        "certificate_college": "string (Requerido para certificado)",
+        "certificate_issueDate": "string (Formato YYYY-MM-DD)"
+      }
+      // ... más miembros
+    ],
+    "technologies": [
+      // Requerido
+      {
+        "name": "string (Requerido)",
+        "icon": "string (Nombre icono Font Awesome, ej: 'microchip', 'fa-brands fa-python')",
+        "category": "string (Requerido - Hardware/Software/Tool)"
+      }
+      // ... más tecnologías
+    ],
+    "additionalResources": [
+      // Opcional
+      {
+        "title": "string (Requerido si el array existe)",
+        "url": "string (URL, Requerido si el array existe)",
+        "type": "string (ej. github, link, pdf, doc, Requerido si el array existe)"
+      }
+      // ... más recursos
+    ],
+    "imageGallery": [
+      // Opcional
+      {
+        "url": "string (Requerido si el array existe)",
+        "altText": "string (Requerido si el array existe)",
+        "caption": "string (Opcional)"
+      }
+      // ... más imágenes
+    ],
+    "evaluationScores": {
+      // Requerido (objeto con pares clave-valor, ej. "eval_Impacto Potencial": 85)
+      // ... métricas ... : number (0-100)
+    }
+  }
+  // ... más proyectos
+]
+```
+
+### 3. Texto Base del Certificado
+
+```
+"Este certificado es expedido por parte de Gnius Club y [certificate_college]. La persona que obtuvo esta insignia presentó de manera exitosa el proyecto que realizó durante el curso [certificate_courseName], demostrando que es capaz de: Identificar un problema real relacionado con el uso de la tecnología y la información y construir una solución pertinente y significativa para resolverlo. También demuestra que puede aplicar las herramientas aprendidas para desarrollar proyectos de [certificate_badgeName] a nivel [certificate_level]."
+```
+
+## 🏗️ Estructura y Contenido del Sitio Web
+
+### 1. Estructura de Archivos y Carpetas
+
+```
+.
+├── index.html
+├── project.html
+├── certificate.html
+├── css/
+│   └── style.css
+├── js/
+│   ├── main.js
+│   ├── project.js
+│   └── certificate.js
+├── data/
+│   └── projects.json
+└── assets/
+    └── img/
+        └── gnius_logo_placeholder.png # (Añadir logo real aquí)
+```
+
+### 2. Contenido `index.html` (Página Principal)
+
+- **Header:** Logo Gnius Club.
+- **Zona de Filtros/Búsqueda:** Contenedor flex (`#filters`) con comportamiento responsivo detallado:
+  - Móvil: Apilados, ancho completo.
+  - Tablet (`sm:`): En línea, inputs/selects crecen.
+  - Desktop (`lg:`): Alineados izquierda (`lg:justify-start`), inputs/selects crecen (`lg:flex-grow`), botón no crece.
+  - Elementos: Input texto (búsqueda título/estudiante), Select Categoría, Select Nivel, Select Tecnología, Botón Limpiar (rojo).
+- **Listado de Proyectos:** Grid (`#project-list`). Usar `<template id="project-card-template">` para generar cards.
+  - **Card:**
+    - Contenedor imagen (`div.aspect-video`) forzando **16:9**, imagen (`img[data-card-img]`) con `object-cover`. URL de `coverUrl.url`.
+    - Contenido (`div[data-card-content]`):
+      - Título (`h3[data-card-title]`, truncado).
+      - Metadata (`div[data-card-metadata]`): Chips (clase `.chip`) para Categoría (Cyan) y Nivel (Rojo).
+      - Descripción (`p[data-card-desc]`, aprox. 160 chars).
+      - Estudiantes (`div[data-card-students]`): Chips discretos (`.chip.chip-gray`, pequeños) con icono usuario + nombre (`teamMembers.name`).
+      - Botón (`div.text-right > a[data-card-link]`): Estilo discreto (`.button-detalles-discreto`), alineado derecha.
+- **Paginación:** Controles Anterior/Siguiente, info `Página X de Y`.
+- **Footer:** Copyright Gnius Club, año dinámico.
+
+### 3. Contenido `project.html` (Detalle de Proyecto)
+
+- **Header:** Logo a la izquierda, enlace "Volver" a la derecha (`justify-between`).
+- **Sección Hero (2 columnas):**
+  - _Izquierda:_ Título (Cyan), Metadata (Chips), Intro Título (Amarillo), Intro Contenido.
+  - _Derecha:_ **Contenido Dinámico Principal:** Renderizar `media` si existe (video 16:9 o imagen `object-contain`); si no, renderizar `coverUrl`. Ocultar si ninguno es válido.
+- **Sección Principal (2 columnas, `items-start`):**
+  - _Izquierda (Evidencia Adicional):_ Título "Evidencia Adicional" (Cyan).
+    - **Contenido Dinámico Secundario:** Si `media` se usó en Hero, mostrar `coverUrl`. Si `coverUrl` se usó en Hero, mostrar `imageGallery`. Ocultar sección si no aplica. Alineación superior.
+  - _Derecha (Gráfico):_ Título "Puntuaciones de Evaluación" (Amarillo).
+    - Canvas `#radarChart`.
+    - Renderizado con `Chart.js`, **tipo Radar**.
+    - Configuración específica: rejilla circular, líneas curvas (`tension: 0.3`), color dinámico vibrante (relleno 50%, borde 100%) basado en índice de métrica máxima. Alineación superior.
+- **Sección Problema/Solución (2 columnas):** Título Problema (Rojo), Título Solución (Cyan). Contenidos. Alineación superior.
+- **Sección Proceso de Innovación:** Título (Amarillo). Contenido HTML. Ocultar si vacío. Alineación superior.
+- **Sección Galería de Evidencias:** Título (Amarillo). Grid (`.gallery-grid`) responsivo (1 col -> 2 col), `gap-8`. Items (`.gallery-item`) clickeables para modal. Ocultar si vacío.
+  - **Modal (`#imageModal`):** Overlay oscuro. Contenido (`.modal-content.modal-content-wide`) ancho ~75% viewport, borde Cyan. Imagen (`#modalImage`) `object-contain`. Caption (`#modalCaption`). Botón cierre (`#modalCloseBtn`) circular, rojo, posicionado **fuera** del borde superior derecho.
+- **Aside (Barra Lateral):**
+  - **Equipo:** Título (Cyan), Borde Glow Cyan. Lista (`ul#team-list`).
+    - Item (`li.team-member-item`): Layout Flex (`justify-between items-center`). Izquierda (`div.member-info`): Nombre (línea 1), Rol (línea 2). Derecha (`a.certificate-link`): Enlace centrado verticalmente con icono premio + texto.
+  - **Tecnologías:** Título (Amarillo), Borde Glow Amarillo. Contenedor (`div#tech-list`, `flex-wrap`).
+    - Chip (`div.tech-chip-container`): Fuente **'Saira Condensed'**. Fondo gris oscuro. Icono (`span.tech-icon`, color HW/SW/Tool) + Nombre (`span.tech-name`, blanco) + Chip Anidado (`span.tech-inner-chip`, pequeño, bold, color/fondo HW/SW/Tool).
+  - **Recursos:** Título (Rojo), Borde Glow Rojo. Lista (`ul#resources-list`) enlaces con icono. Ocultar si vacío.
+- **Footer:** Copyright.
+
+### 4. Contenido `certificate.html` (Página de Certificado)
+
+- Recibe `slug` y `memberIndex`.
+- Muestra datos del `teamMember` correspondiente (`certificate_*`, `name`).
+- Diseño limpio tipo certificado: Título curso, Nombre alumno, Insignia (chip amarillo), Nivel (chip cyan), Habilidades (chips cyan), Criterios (chips amarillos).
+- Párrafo descriptivo usando el texto base y reemplazando variables.
+- Enlace "Ver Proyecto de Evidencia" a `project.html?slug=[projectSlug]`.
+- Texto Emisión: "Emitido por Gnius Club y [college] el [date]".
+- Usar paleta Gnius (fondo oscuro, acentos vivos).
+- Footer Simple.
+
+## 🎨 Diseño Visual y Experiencia de Usuario (UX)
+
+- **Inspiración:** gnius.club, futurista/cyberpunk-light.
+- **Paleta:** Fondos `#0F0F0F` / `#1F1F1F`, Texto `#F0F0F0`, Acentos: Amarillo `#FFD700`, Cian `#00FFFF`, Rojo `#FF0000`. Aplicar consistentemente.
+- **Estilo:** Tecnológico, limpio. Bordes glow sutiles (`border-glow-*`) en secciones clave (aside).
+- **Chips:** `.chip` (principal, colores vivos), `.chip-gray` (discreto), `.tech-chip-container` (Saira Condensed, anidado).
+- **Responsividad:** Mobile-First estricto, layout fluido.
+- **Accesibilidad:** Contraste, semántica.
+- **Animaciones:** Sutiles (hover cards `scale-103`, modal `fade-in`).
+- **Componentes:** Reusables (cards, chips, botones, modal).
+- **Iconos:** Font Awesome 6 Free CDN (incluir prefijos `fa-brands` si es necesario).
+- **Gráfica:** Chart.js Radar, responsiva, dinámica, estética Gnius/vibrante.adar circular, con curvas beizer, que los colores varien conforme al valor mas alto de la evaluación y que el relleno tenga una opacidad aproximada como del 40%.
+- **Regla Visibilidad Estricta:** Ocultar secciones opcionales vacías (`display: none`) incluyendo títulos y contenedores.
+
+## 🔧 Requisitos Técnicos Específicos
+
+- **JavaScript Vanilla:** ES6+, moderno, modular (`main.js`, `project.js`, `certificate.js`), `fetch`, manejo errores (`try/catch`, `showError`), manipulación DOM robusta (verificar existencia de elementos antes de usarlos).
+- **Tailwind CSS:** Vía CDN.
+- **Chart.js:** Vía CDN v4+, tipo Radar, configuración detallada.
+- **Font Awesome:** Vía CDN v6 Free.
+- **Google Apps Script (`generarJson.gs`):** Leer hoja activa/específica, mapear headers, parsear celdas complejas (`|`, `;`), generar slug, construir JSON válido, devolver como string en diálogo/sidebar con menú personalizado. Manejar fechas correctamente (formato YYYY-MM-DD).
+- **Fuente:** Incluir 'Saira Condensed' desde Google Fonts.
+
+## 🔁 Flujo de Automatización Propuesto
+
+1.  **Edición:** Usuario/IA edita Google Sheet (formato CSV/directo).
+2.  **Generación JSON:** Usuario ejecuta Apps Script desde menú "Gnius Club Tools > Generar JSON".
+3.  **Copia:** Usuario copia el JSON del diálogo/sidebar.
+4.  **Actualización:** Usuario reemplaza contenido de `data/projects.json` en repo local/GitHub.
+5.  **Commit & Push:** Sube cambios a GitHub.
+6.  **Despliegue:** GitHub Pages se actualiza.
+
+## ✍️ Instrucciones para Llenar Google Sheets y Prompt para IA Asistente
+
+- **Instrucciones:** Explicar claramente cada columna del CSV. Detallar minuciosamente el formato `|` y `;` para `teamMembers`, `technologies`, `additionalResources`, `imageGallery`, enfatizando el orden exacto de propiedades y el uso de comillas dobles (`"`) en CSV si el contenido tiene comas, saltos de línea o los separadores.
+- **Prompt IA:** Proporcionar un prompt de ejemplo claro y estructurado para que un usuario pueda darlo a una IA (como ChatGPT) junto con la información de un proyecto, y la IA devuelva el texto formateado exacto para pegar en las celdas complejas de Google Sheets (`teamMembers`, `technologies`, `additionalResources`, `imageGallery`).
+
+## 🧪 Datos de Ejemplo (`data/projects.json`)
+
+- Generar 5 proyectos diversos.
+- Usar `picsum.photos/seed/nombre/ancho/alto` para imágenes:
+  - `coverUrl`: Proporción 16:9 (ej. 640/360).
+  - `imageGallery`: Tamaño mayor (ej. 800/450).
+  - `media` (si es `type: 'image'`): Tamaño adecuado (ej. 800/450).
+- Incluir `media` con `type: 'video'` y URLs reales de Gnius Club para al menos 2 proyectos.
+- `evaluationScores`: Valores entre 0-100, variados y con diferentes métricas como la más alta entre los proyectos.
+- Completar todos los campos requeridos de forma coherente.
+
+## 🚀 Ejecución
+
+Genera todos los entregables especificados (`HTML`, `CSS`, `JS`, `JSON`, `Estructura CSV Sheets`, `Apps Script`, `Instrucciones + Prompt IA`) basándote en este **prompt final**. Asegúrate de que el código sea funcional, siga **todas** las directrices de diseño y layout actualizadas, y cumpla con **todos** los requisitos técnicos y de contenido revisados. Implementa la lógica de contenido condicional (Hero/Evidencia Adicional) y el gráfico radar dinámico con colores vibrantes.
+
+---
