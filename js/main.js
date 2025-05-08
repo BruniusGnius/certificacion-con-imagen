@@ -1,27 +1,25 @@
-// js/main.js - v4.11 (Ajustes Finales Index v5)
+// js/main.js - v4.19 (Verificado - Sin cambios funcionales)
 
 // --- DOM Elements ---
-const projectList = document.getElementById("project-list");
-const searchInput = document.getElementById("search-input");
-const categorySelect = document.getElementById("category-select");
-const schoolingSelect = document.getElementById("schooling-select");
-const techSelect = document.getElementById("tech-select");
-const sdgSelect = document.getElementById("sdg-select");
-const clearFiltersBtn = document.getElementById("clear-filters-btn");
-const loadingMessage = document.getElementById("loading-message");
-const noResultsMessage = document.getElementById("no-results-message");
-const paginationControls = document.getElementById("pagination-controls");
-const prevPageBtn = document.getElementById("prev-page-btn");
-const nextPageBtn = document.getElementById("next-page-btn");
-const pageInfo = document.getElementById("page-info");
-const projectCardTemplate = document.getElementById("project-card-template");
-const currentYearSpan = document.getElementById("current-year");
-const showSdgLegendBtn = document.getElementById("show-sdg-legend-btn");
-const sdgLegendModal = document.getElementById("sdg-legend-modal");
-const sdgLegendModalContent = document.getElementById(
-  "sdg-legend-modal-content"
-);
-const sdgModalCloseBtn = document.getElementById("sdg-modal-close-btn");
+const projectList = document.getElementById("project-list"),
+  searchInput = document.getElementById("search-input"),
+  categorySelect = document.getElementById("category-select"),
+  schoolingSelect = document.getElementById("schooling-select"),
+  techSelect = document.getElementById("tech-select"),
+  sdgSelect = document.getElementById("sdg-select"),
+  clearFiltersBtn = document.getElementById("clear-filters-btn"),
+  loadingMessage = document.getElementById("loading-message"),
+  noResultsMessage = document.getElementById("no-results-message"),
+  paginationControls = document.getElementById("pagination-controls"),
+  prevPageBtn = document.getElementById("prev-page-btn"),
+  nextPageBtn = document.getElementById("next-page-btn"),
+  pageInfo = document.getElementById("page-info"),
+  projectCardTemplate = document.getElementById("project-card-template"),
+  currentYearSpan = document.getElementById("current-year"),
+  showSdgLegendBtn = document.getElementById("show-sdg-legend-btn"),
+  sdgLegendModal = document.getElementById("sdg-legend-modal"),
+  sdgLegendModalContent = document.getElementById("sdg-legend-modal-content"),
+  sdgModalCloseBtn = document.getElementById("sdg-modal-close-btn");
 
 // --- State ---
 let allProjects = [];
@@ -32,22 +30,19 @@ const projectsPerPage = 12;
 // --- Utility Functions ---
 const fetchData = async (url) => {
   try {
-    const cacheBustingUrl = `${url}?t=${new Date().getTime()}`;
-    const response = await fetch(cacheBustingUrl);
-    if (!response.ok) {
-      if (response.status === 304) {
-        const retryResponse = await fetch(url);
-        if (!retryResponse.ok) {
-          throw new Error(`HTTP error retry! status: ${retryResponse.status}`);
-        }
-        return await retryResponse.json();
+    const t = `${url}?t=${new Date().getTime()}`,
+      e = await fetch(t);
+    if (!e.ok) {
+      if (304 === e.status) {
+        const t = await fetch(url);
+        if (!t.ok) throw new Error(`HTTP error retry! status: ${t.status}`);
+        return await t.json();
       }
-      throw new Error(`HTTP error! status: ${response.status}`);
+      throw new Error(`HTTP error! status: ${e.status}`);
     }
-    return await response.json();
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    return null;
+    return await e.json();
+  } catch (t) {
+    return console.error("Error fetching data:", t), null;
   }
 };
 
@@ -57,7 +52,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     currentYearSpan.textContent = new Date().getFullYear();
   }
   if (!projectCardTemplate?.content) {
-    console.error("CRITICAL: Project card template not found!");
+    console.error("CRITICAL: Template not found!");
     if (loadingMessage) loadingMessage.textContent = "Error plantilla.";
     return;
   }
@@ -67,16 +62,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     return;
   }
   if (!projectList || !loadingMessage || !noResultsMessage) {
-    console.error("CRITICAL: Missing essential list/message elements.");
+    console.error("CRITICAL: Missing essential elements.");
     return;
   }
-
   await loadInitialData();
   setupEventListeners();
   if (showSdgLegendBtn && sdgLegendModal && sdgModalCloseBtn) {
     setupSdgLegendModal();
-  } else {
-    console.warn("Modal SDG Legend elements missing.");
   }
 });
 
@@ -85,40 +77,24 @@ const loadInitialData = async () => {
   if (loadingMessage) loadingMessage.style.display = "block";
   if (noResultsMessage) noResultsMessage.style.display = "none";
   if (projectList) projectList.innerHTML = "";
-
-  const modifyDataForDemo = (data) => {
-    if (data && data.length >= 2) {
-      let hasPrimaria = data.some((p) => p.schooling === "Primaria");
-      if (!hasPrimaria) {
-        console.warn("Modificando datos de ejemplo para incluir 'Primaria'");
-        if (data[data.length - 1]) data[data.length - 1].schooling = "Primaria";
-        if (data[data.length - 2]) data[data.length - 2].schooling = "Primaria";
-      }
-    }
-    return data;
-  };
-
-  let projectsData = await fetchData("data/projectsLoremPicsum.json");
-  projectsData = modifyDataForDemo(projectsData); // Aplicar HACK (solo para LoremPicsum)
-
+  const projectsData = await fetchData("data/projectsLoremPicsum.json");
   if (projectsData && Array.isArray(projectsData)) {
     allProjects = projectsData;
-    console.log(`Total projects loaded: ${allProjects.length}`);
     populateFilters();
     if (sdgLegendModalContent) renderSdgLegend();
     applyFiltersAndRender();
   } else {
     if (loadingMessage) loadingMessage.textContent = "Error al cargar datos.";
-    console.error("Failed to load or parse project data.");
+    console.error("Failed to load/parse data.");
     if (noResultsMessage) {
-      noResultsMessage.textContent = "No se pudieron cargar los proyectos.";
+      noResultsMessage.textContent = "No se pudieron cargar proyectos.";
       noResultsMessage.style.display = "block";
     }
   }
   if (loadingMessage) loadingMessage.style.display = "none";
 };
 
-// --- Populate Filters ---
+// --- Populate Filters (con orden escolaridad) ---
 const populateFilters = () => {
   const categories = new Set();
   const schoolingLevels = new Set();
@@ -127,8 +103,19 @@ const populateFilters = () => {
     if (project.projectCategory) categories.add(project.projectCategory);
     if (project.schooling) schoolingLevels.add(project.schooling);
     if (project.technologies) {
-      project.technologies.forEach((tech) => technologies.add(tech.name));
+      project.technologies.forEach(
+        (tech) => tech.name && technologies.add(tech.name)
+      );
     }
+  });
+  const schoolingOrder = ["Primaria", "Secundaria", "Preparatoria"];
+  const sortedSchooling = Array.from(schoolingLevels).sort((a, b) => {
+    const indexA = schoolingOrder.indexOf(a);
+    const indexB = schoolingOrder.indexOf(b);
+    if (indexA === -1 && indexB === -1) return a.localeCompare(b);
+    if (indexA === -1) return 1;
+    if (indexB === -1) return -1;
+    return indexA - indexB;
   });
   populateSelect(
     document.getElementById("category-select"),
@@ -137,8 +124,9 @@ const populateFilters = () => {
   );
   populateSelect(
     document.getElementById("schooling-select"),
-    schoolingLevels,
-    "Escolaridad"
+    sortedSchooling,
+    "Escolaridad",
+    false
   );
   populateSelect(
     document.getElementById("tech-select"),
@@ -148,12 +136,19 @@ const populateFilters = () => {
   populateSdgSelect(document.getElementById("sdg-select"), "ODS");
 };
 
-const populateSelect = (selectElement, items, defaultOptionText) => {
+const populateSelect = (
+  selectElement,
+  items,
+  defaultOptionText,
+  sortAlphabetically = true
+) => {
   if (!selectElement) return;
   const currentValue = selectElement.value;
   selectElement.innerHTML = `<option value="">${defaultOptionText}</option>`;
-  const sortedItems = Array.from(items).sort((a, b) => a.localeCompare(b));
-  sortedItems.forEach((item) => {
+  const itemsToPopulate = sortAlphabetically
+    ? Array.from(items).sort((a, b) => a.localeCompare(b))
+    : Array.from(items);
+  itemsToPopulate.forEach((item) => {
     if (item) {
       const option = document.createElement("option");
       option.value = item;
@@ -198,31 +193,34 @@ const applyFiltersAndRender = () => {
   const selectedSchooling = schoolingSelect?.value ?? "";
   const selectedTech = techSelect?.value ?? "";
   const selectedSdg = sdgSelect?.value ? parseInt(sdgSelect.value, 10) : "";
-
-  filteredProjects = allProjects.filter((project) => {
-    const titleMatch =
-      project.projectTitle?.toLowerCase().includes(searchTerm) ?? false;
-    const studentMatch =
-      project.teamMembers?.some((member) =>
-        member.name?.toLowerCase().includes(searchTerm)
-      ) ?? false;
-    const categoryMatch =
-      !selectedCategory || project.projectCategory === selectedCategory;
-    const schoolingMatch =
-      !selectedSchooling || project.schooling === selectedSchooling;
-    const techMatch =
-      !selectedTech ||
-      project.technologies?.some((tech) => tech.name === selectedTech);
-    const sdgMatch = !selectedSdg || project.sdgIds?.includes(selectedSdg);
-    return (
-      (titleMatch || studentMatch) &&
-      categoryMatch &&
-      schoolingMatch &&
-      techMatch &&
-      sdgMatch
-    );
-  });
-
+  try {
+    filteredProjects = allProjects.filter((project) => {
+      const titleMatch =
+        project.projectTitle?.toLowerCase().includes(searchTerm) ?? false;
+      const studentMatch =
+        project.teamMembers?.some((member) =>
+          member.name?.toLowerCase().includes(searchTerm)
+        ) ?? false;
+      const categoryMatch =
+        !selectedCategory || project.projectCategory === selectedCategory;
+      const schoolingMatch =
+        !selectedSchooling || project.schooling === selectedSchooling;
+      const techMatch =
+        !selectedTech ||
+        project.technologies?.some((tech) => tech.name === selectedTech);
+      const sdgMatch = !selectedSdg || project.sdgIds?.includes(selectedSdg);
+      return (
+        (titleMatch || studentMatch) &&
+        categoryMatch &&
+        schoolingMatch &&
+        techMatch &&
+        sdgMatch
+      );
+    });
+  } catch (error) {
+    console.error("[Filter] Error:", error);
+    filteredProjects = [];
+  }
   currentPage = 1;
   renderProjects();
   updatePaginationControls();
@@ -239,11 +237,14 @@ const renderProjects = () => {
     const endIndex = startIndex + projectsPerPage;
     const projectsToRender = filteredProjects.slice(startIndex, endIndex);
     projectsToRender.forEach((project) => {
-      const card = createProjectCard(project);
-      if (card) {
-        projectList.appendChild(card);
-      } else {
-        console.error(`Error al crear tarjeta para ${project.projectTitle}`);
+      try {
+        const card = createProjectCard(project);
+        if (card) projectList.appendChild(card);
+      } catch (error) {
+        console.error(
+          `Error rendering card for ${project?.projectTitle}:`,
+          error
+        );
       }
     });
   }
@@ -252,33 +253,30 @@ const renderProjects = () => {
 // Renderizar Leyenda ODS como LISTA dentro del MODAL
 const renderSdgLegend = () => {
   if (!sdgLegendModalContent || typeof odsData === "undefined") return;
-  sdgLegendModalContent.innerHTML = ""; // Limpiar UL
+  sdgLegendModalContent.innerHTML = "";
   const sortedSdgKeys = Object.keys(odsData).sort(
     (a, b) => parseInt(a) - parseInt(b)
   );
   sortedSdgKeys.forEach((key) => {
     const sdg = odsData[key];
     const listItem = document.createElement("li");
-    listItem.className = "flex items-center space-x-3 sdg-legend-item";
-
-    const circle = document.createElement("span");
-    circle.className = "sdg-legend-circle-list"; // Clase para círculo en lista
-    circle.textContent = sdg.num;
-    circle.style.backgroundColor = sdg.color;
-    circle.title = `ODS ${sdg.num}: ${sdg.title}`;
-    circle.style.color = getContrastYIQ(sdg.color); // Contraste mejorado
-
+    listItem.className = "flex items-center space-x-2 sdg-legend-item";
+    const square = document.createElement("span");
+    square.className = "sdg-legend-square-list font-condensed font-bold";
+    square.textContent = sdg.num;
+    square.style.backgroundColor = sdg.color;
+    square.title = `ODS ${sdg.num}: ${sdg.title}`;
+    square.style.color = getContrastYIQ(sdg.color);
     const title = document.createElement("span");
-    title.className = "sdg-legend-title-list"; // Clase para título en lista
-    title.textContent = sdg.title; // Título completo
-
-    listItem.appendChild(circle);
+    title.className = "sdg-legend-title-list font-condensed font-semibold"; // <-- Asegurado semibold
+    title.textContent = sdg.title;
+    listItem.appendChild(square);
     listItem.appendChild(title);
-    sdgLegendModalContent.appendChild(listItem); // Añadir LI al UL
+    sdgLegendModalContent.appendChild(listItem);
   });
 };
 
-// Crear Tarjeta de Proyecto (ODS Overlay, Metadata B.1, Desc Font)
+// Crear Tarjeta de Proyecto
 const createProjectCard = (project) => {
   if (!projectCardTemplate?.content) {
     return null;
@@ -292,7 +290,6 @@ const createProjectCard = (project) => {
   const descElement = cardClone.querySelector("[data-card-desc]");
   const studentsContainer = cardClone.querySelector("[data-card-students]");
   const sdgOverlayContainer = cardClone.querySelector(".sdg-overlay");
-
   if (
     !linkElement ||
     !imgElement ||
@@ -303,112 +300,143 @@ const createProjectCard = (project) => {
     !studentsContainer ||
     !sdgOverlayContainer
   ) {
-    console.error("Elementos faltantes en plantilla.");
+    console.error("Template elements missing.");
     return null;
   }
 
-  linkElement.href = `project.html?slug=${project.slug}`;
-  imgElement.src =
-    project.coverImage?.url || "assets/img/gnius_logo_placeholder.png";
-  imgElement.alt =
-    project.coverImage?.altText ||
-    `Portada del proyecto ${project.projectTitle}`;
-  titleElement.textContent = project.projectTitle;
+  try {
+    linkElement.href = `project.html?slug=${project.slug || ""}`;
+    imgElement.src =
+      project.coverImage?.url || "assets/img/gnius_logo_placeholder.png";
+    imgElement.alt =
+      project.coverImage?.altText || `Portada ${project.projectTitle || ""}`;
+    imgElement.onerror = () => {
+      imgElement.src = "assets/img/gnius_logo_placeholder.png";
+    };
+    titleElement.textContent = project.projectTitle || "Sin Título"; // Clases en HTML
 
-  // RENDERIZADO CÍRCULOS ODS PEQUEÑOS EN TARJETA (OVERLAY)
-  sdgContainer.innerHTML = "";
-  if (
-    project.sdgIds &&
-    project.sdgIds.length > 0 &&
-    typeof odsData !== "undefined"
-  ) {
-    sdgOverlayContainer.style.display = "flex"; // Mostrar overlay (flex)
-    project.sdgIds.forEach((sdgId) => {
-      const sdgInfo = odsData[sdgId];
-      if (sdgInfo) {
-        const circle = document.createElement("span");
-        circle.className = "sdg-indicator-circle-small"; // Círculo pequeño
-        circle.textContent = sdgInfo.num;
-        circle.style.backgroundColor = sdgInfo.color;
-        circle.title = `ODS ${sdgInfo.num}: ${sdgInfo.title}`;
-        circle.style.color = getContrastYIQ(sdgInfo.color); // Contraste mejorado
-        sdgContainer.appendChild(circle);
+    // ODS Overlay
+    sdgContainer.innerHTML = "";
+    if (
+      project.sdgIds &&
+      project.sdgIds.length > 0 &&
+      typeof odsData !== "undefined"
+    ) {
+      sdgOverlayContainer.style.display = "flex";
+      project.sdgIds.forEach((sdgId) => {
+        const sdgInfo = odsData[sdgId];
+        if (sdgInfo) {
+          const square = document.createElement("span");
+          square.className =
+            "sdg-indicator-square-small font-condensed font-bold"; // Clases fuente/peso
+          square.textContent = sdgInfo.num;
+          square.style.backgroundColor = sdgInfo.color;
+          square.title = `ODS ${sdgInfo.num}: ${sdgInfo.title}`;
+          square.style.color = getContrastYIQ(sdgInfo.color);
+          sdgContainer.appendChild(square);
+        }
+      });
+    } else {
+      sdgOverlayContainer.style.display = "none";
+    }
+
+    // Metadata (Clases CSS + JS añaden fuente/peso)
+    metadataContainer.innerHTML = "";
+    if (project.projectCategory) {
+      const chip = document.createElement("span");
+      chip.className =
+        "chip chip-metadata chip-cyan-muted-border font-condensed font-medium";
+      chip.textContent = project.projectCategory;
+      metadataContainer.appendChild(chip);
+    }
+    if (project.schooling) {
+      const chip = document.createElement("span");
+      chip.className =
+        "chip chip-metadata chip-red-muted-border font-condensed font-medium";
+      chip.textContent = project.schooling;
+      metadataContainer.appendChild(chip);
+    }
+
+    // Descripción (Clase font-medium en HTML)
+    descElement.textContent = project.introContent
+      ? project.introContent.substring(0, 100) +
+        (project.introContent.length > 100 ? "..." : "")
+      : "Sin descripción.";
+
+    // Estudiantes (Clase font-semibold en CSS)
+    studentsContainer.innerHTML = "";
+    const maxStudentsToShow = 4;
+    if (project.teamMembers && project.teamMembers.length > 0) {
+      project.teamMembers.slice(0, maxStudentsToShow).forEach((member) => {
+        const chip = document.createElement("span");
+        chip.className = "chip chip-gray student-chip";
+        const icon = document.createElement("i");
+        icon.className = "fa-solid fa-user fa-xs mr-1";
+        icon.setAttribute("aria-hidden", "true");
+        chip.appendChild(icon);
+        chip.appendChild(document.createTextNode(member.name || ""));
+        studentsContainer.appendChild(chip);
+      });
+      if (project.teamMembers.length > maxStudentsToShow) {
+        const chip = document.createElement("span");
+        chip.className = "chip chip-gray student-chip";
+        chip.textContent = `+${project.teamMembers.length - maxStudentsToShow}`;
+        studentsContainer.appendChild(chip);
       }
-    });
-  } else {
-    sdgOverlayContainer.style.display = "none";
-  }
-
-  // Renderizar Metadata (Atenuado B.1 - Borde tenue)
-  metadataContainer.innerHTML = "";
-  if (project.projectCategory) {
-    const chip = document.createElement("span");
-    chip.className = "chip chip-metadata chip-cyan-muted-border";
-    chip.textContent = project.projectCategory;
-    metadataContainer.appendChild(chip);
-  }
-  if (project.schooling) {
-    const chip = document.createElement("span");
-    chip.className = "chip chip-metadata chip-red-muted-border";
-    chip.textContent = project.schooling;
-    metadataContainer.appendChild(chip);
-  }
-
-  // Descripción (Fuente SemiCondensed 600 - font-semibold en HTML)
-  descElement.textContent = project.introContent
-    ? project.introContent.substring(0, 100) +
-      (project.introContent.length > 100 ? "..." : "")
-    : "Sin descripción.";
-
-  // Renderizar Estudiantes (Peso 500 - font-medium aplicado en CSS)
-  studentsContainer.innerHTML = "";
-  const maxStudentsToShow = 4;
-  if (project.teamMembers && project.teamMembers.length > 0) {
-    project.teamMembers.slice(0, maxStudentsToShow).forEach((member) => {
+    } else {
       const chip = document.createElement("span");
       chip.className = "chip chip-gray student-chip";
-      chip.innerHTML = `<i class="fa-solid fa-user fa-xs" aria-hidden="true"></i> ${member.name}`;
-      studentsContainer.appendChild(chip);
-    });
-    if (project.teamMembers.length > maxStudentsToShow) {
-      const chip = document.createElement("span");
-      chip.className = "chip chip-gray student-chip";
-      chip.textContent = `+${project.teamMembers.length - maxStudentsToShow}`;
+      chip.textContent = "Equipo no especificado";
       studentsContainer.appendChild(chip);
     }
-  } else {
-    const chip = document.createElement("span");
-    chip.className = "chip chip-gray student-chip";
-    chip.textContent = "Equipo no especificado";
-    studentsContainer.appendChild(chip);
+  } catch (error) {
+    console.error(
+      `Error asignando datos para ${project?.projectTitle}:`,
+      error
+    );
+    return null;
   }
-
   return cardClone;
 };
 
 // --- Pagination ---
 const updatePaginationControls = () => {
-  /* ... sin cambios ... */
+  if (!paginationControls) return;
+  const totalPages = Math.ceil(filteredProjects.length / projectsPerPage);
+  if (totalPages <= 1) {
+    paginationControls.style.display = "none";
+    return;
+  }
+  paginationControls.style.display = "flex";
+  if (pageInfo) pageInfo.textContent = `Página ${currentPage} de ${totalPages}`;
+  if (prevPageBtn) prevPageBtn.disabled = currentPage === 1;
+  if (nextPageBtn) nextPageBtn.disabled = currentPage === totalPages;
 };
 const goToPage = (page) => {
-  /* ... sin cambios ... */
+  const totalPages = Math.ceil(filteredProjects.length / projectsPerPage);
+  if (page < 1 || page > totalPages) {
+    return;
+  }
+  currentPage = page;
+  renderProjects();
+  updatePaginationControls();
+  if (projectList) {
+    const mainContainer = document.querySelector(".container");
+    if (mainContainer) {
+      mainContainer.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
 };
 
 // --- Event Listeners ---
 const setupEventListeners = () => {
-  // Añadir listeners solo si los elementos existen
   if (searchInput) searchInput.addEventListener("input", applyFiltersAndRender);
-  else console.warn("Elemento searchInput no encontrado");
   if (categorySelect)
     categorySelect.addEventListener("change", applyFiltersAndRender);
-  else console.warn("Elemento categorySelect no encontrado");
   if (schoolingSelect)
     schoolingSelect.addEventListener("change", applyFiltersAndRender);
-  else console.warn("Elemento schoolingSelect no encontrado");
   if (techSelect) techSelect.addEventListener("change", applyFiltersAndRender);
-  else console.warn("Elemento techSelect no encontrado");
   if (sdgSelect) sdgSelect.addEventListener("change", applyFiltersAndRender);
-  else console.warn("Elemento sdgSelect no encontrado");
   if (clearFiltersBtn) {
     clearFiltersBtn.addEventListener("click", () => {
       if (searchInput) searchInput.value = "";
@@ -418,8 +446,6 @@ const setupEventListeners = () => {
       if (sdgSelect) sdgSelect.value = "";
       applyFiltersAndRender();
     });
-  } else {
-    console.warn("Elemento clearFiltersBtn no encontrado");
   }
   if (prevPageBtn) {
     prevPageBtn.addEventListener("click", () => {
@@ -427,8 +453,6 @@ const setupEventListeners = () => {
         goToPage(currentPage - 1);
       }
     });
-  } else {
-    console.warn("Elemento prevPageBtn no encontrado");
   }
   if (nextPageBtn) {
     nextPageBtn.addEventListener("click", () => {
@@ -437,8 +461,6 @@ const setupEventListeners = () => {
         goToPage(currentPage + 1);
       }
     });
-  } else {
-    console.warn("Elemento nextPageBtn no encontrado");
   }
 };
 
@@ -480,17 +502,15 @@ const setupSdgLegendModal = () => {
 
 // --- Helper para Contraste de Color ---
 function getContrastYIQ(hexcolor) {
-  hexcolor = hexcolor.replace("#", "");
-  if (hexcolor.length !== 6) return "#ffffff"; // Default blanco
+  hexcolor = hexcolor?.replace("#", "") ?? "";
+  if (hexcolor.length !== 6) return "#ffffff";
   try {
-    var r = parseInt(hexcolor.substr(0, 2), 16);
-    var g = parseInt(hexcolor.substr(2, 2), 16);
-    var b = parseInt(hexcolor.substr(4, 2), 16);
+    var r = parseInt(hexcolor.substr(0, 2), 16),
+      g = parseInt(hexcolor.substr(2, 2), 16),
+      b = parseInt(hexcolor.substr(4, 2), 16);
     var yiq = (r * 299 + g * 587 + b * 114) / 1000;
-    // Umbral ligeramente más alto para preferir texto blanco sobre fondos "medios"
     return yiq >= 135 ? "#1a1a1a" : "#ffffff";
   } catch (e) {
-    console.warn("Error parsing hex color for contrast:", hexcolor, e);
-    return "#ffffff"; // Fallback a blanco
+    return "#ffffff";
   }
 }
