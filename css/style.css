@@ -1,13 +1,13 @@
-/* css/style.css - v6 Corregido (Pesos de Fuente) */
+/* css/style.css - v4.9 (Estilos Completos - Correcciones Finales Index v3) */
 
 /* 1. Import Google Fonts */
-@import url("https://fonts.googleapis.com/css2?family=Saira:wght@400;500;600;700;800;900&family=Saira+Condensed:wght@400;500;600;700;800;900&family=Saira+Semi+Condensed:wght@400;500;600;700;800;900&display=swap"); /* Añadidos pesos 500 y 800 */
+@import url("https://fonts.googleapis.com/css2?family=Saira:wght@400;700&family=Saira+Condensed:wght@400;500;600;700&family=Saira+Semi+Condensed:wght@400;600;700&display=swap");
 
-/* 2. Definición de Variables de Color Gnius */
+/* 2. Variables de Color */
 :root {
   --gnius-dark-1: #0f0f0f;
   --gnius-dark-2: #1f1f1f;
-  --gnius-light: #ffffff;
+  --gnius-light: #f0f0f0;
   --gnius-yellow: #ffd700;
   --gnius-cyan: #00ffff;
   --gnius-red: #ff0000;
@@ -18,25 +18,34 @@
   --color-bg-base: var(--gnius-dark-1);
 }
 
-/* 3. Custom Base Styles */
+/* 3. Base & Tipografía */
 body {
   background-color: var(--color-bg-base);
   color: var(--color-text-base);
-  font-family: "Saira Semi Condensed", sans-serif;
+  font-family: "Saira Semi Condensed", sans-serif; /* Fuente UI Principal */
+  font-weight: 400; /* Peso Normal */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* --- CORRECCIÓN: Peso base medium (500) --- */
-  font-weight: 600;
+}
+/* Pesos estándar */
+.font-normal {
+  font-weight: 400 !important;
+}
+.font-medium {
+  font-weight: 500 !important;
+} /* Saira Condensed tiene 500 */
+.font-semibold {
+  font-weight: 600 !important;
+} /* Saira Semi Condensed tiene 600 */
+.font-bold {
+  font-weight: 700 !important;
+} /* Ambas tienen 700 */
+.font-condensed {
+  font-family: "Saira Condensed", sans-serif;
 }
 
-/* --- CORRECCIÓN: Estilo base para strong/b (extrabold 800) --- */
-strong,
-b {
-  font-weight: 00;
-}
-
-/* Estilos base para enlaces DENTRO de contenido de texto y en la lista de recursos */
-p a:not([class*="button"]):not([class*="btn"]):not([class*="chip"]),
+/* Enlaces en contenido */
+p a:not([class*="btn"]),
 .prose a,
 ul#resources-list li a {
   color: var(--gnius-cyan);
@@ -44,25 +53,22 @@ ul#resources-list li a {
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
   transition: color 0.15s ease-in-out;
-  /* Los enlaces heredarán el peso 500 del body a menos que se especifique diferente */
+  font-weight: 600;
 }
-p a:not([class*="button"]):not([class*="btn"]):not([class*="chip"]):hover,
+p a:not([class*="btn"]):hover,
 .prose a:hover,
 ul#resources-list li a:hover {
   color: var(--gnius-yellow);
 }
 
-/* Estilos base para elementos @tailwindcss/typography */
+/* Prose (Usa fuente body por defecto - Saira Semi Condensed 400) */
 .prose {
   color: var(--gnius-light);
-  /* Hereda font-weight: 500 del body */
 }
 .prose strong,
 .prose b {
-  /* --- CORRECCIÓN: Aplicar extrabold (800) --- */
-  font-weight: 800;
-  color: inherit; /* Mantener color */
-}
+  font-weight: 700;
+} /* Bold usa 700 */
 .prose code {
   background-color: var(--gnius-gray-dark);
   color: var(--gnius-yellow);
@@ -70,30 +76,182 @@ ul#resources-list li a:hover {
   border-radius: 0.25rem;
   font-size: 0.9em;
   font-family: "Saira Condensed", monospace;
-  /* Heredará peso 500, que suele estar bien para código */
 }
 
-/* Forzar fuente Saira Condensed en elementos del gráfico Radar */
-.chartjs-tooltip,
-.chartjs-tooltip *,
-.chartjs-point-label {
-  font-family: "Saira Condensed", sans-serif !important;
+/* 4. Componentes UI */
+
+/* Filtros (Forzar estilos) */
+.filter-input {
+  @apply block w-full border rounded px-3 py-2 text-gnius-light focus:outline-none focus:border-gnius-cyan focus:ring-1 focus:ring-gnius-cyan placeholder-gnius-gray-light text-base;
+  font-family: "Saira Semi Condensed", sans-serif !important; /* Asegurar fuente */
+  background-color: var(--gnius-gray-dark) !important;
+  border-color: var(--gnius-gray-light) !important;
+}
+select.filter-input {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23A0A0A0' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e") !important;
+  background-position: right 0.5rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+  padding-right: 2.5rem;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
-/* 4. Custom Component Styles */
-
-/* --- CORRECCIÓN: Redefinir .font-bold para que sea extrabold (800) --- */
-.font-bold {
-  font-weight: 800 !important; /* Usar !important para asegurar override */
+/* Botones (Forzar estilos btn y btn-danger) */
+.btn {
+  @apply inline-flex items-center justify-center px-5 py-2 border border-transparent text-base font-semibold rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gnius-dark-1 transition ease-in-out duration-150;
+  font-family: "Saira Semi Condensed", sans-serif !important; /* Asegurar fuente */
 }
-/* .font-semibold (600) y otros pesos no se modifican por defecto */
+.btn-primary {
+  @apply bg-gnius-cyan text-gnius-dark-1 hover:bg-cyan-300 focus:ring-gnius-cyan;
+}
+.btn-danger {
+  background-color: var(--gnius-red) !important;
+  color: white !important;
+  border-color: transparent !important; /* Asegurar que no haya borde por defecto */
+  padding: 0.5rem 1.25rem !important; /* Corresponde a py-2 px-5 de Tailwind */
+  border-radius: 0.375rem !important; /* Corresponde a rounded-md */
+  font-weight: 600 !important; /* Corresponde a font-semibold */
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important; /* Corresponde a shadow-sm */
+  @apply hover:bg-red-700 focus:ring-gnius-red;
+}
+.btn-neutral {
+  @apply bg-gnius-gray-dark text-gnius-light hover:bg-gnius-gray-light focus:ring-gnius-gray-light border border-gnius-gray-light;
+}
+.btn:disabled {
+  @apply opacity-50 cursor-not-allowed;
+}
 
-/* --- CHIP BASE --- */
+/* Botón Flotante Leyenda ODS (Más Visible) */
+.btn-float-legend {
+  @apply fixed bottom-5 left-5 z-40 flex items-center justify-center w-14 h-14 rounded-full shadow-lg transition-transform duration-200 ease-in-out;
+  background-color: var(--gnius-yellow); /* Fondo Amarillo */
+  color: var(--gnius-dark-1); /* Icono Oscuro */
+  border: 2px solid var(--gnius-dark-1); /* Borde oscuro */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); /* Sombra más pronunciada */
+}
+.btn-float-legend:hover {
+  transform: scale(1.08);
+  background-color: color-mix(in srgb, var(--gnius-yellow) 90%, white);
+}
+.btn-float-legend i {
+  font-size: 1.5rem; /* Icono más grande */
+}
+
+/* Leyenda ODS Modal */
+/* ... (Estilos modal-overlay, modal-content, scrollbar sin cambios v4.7) ... */
+.modal-overlay {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, visibility 0s linear 0.3s;
+}
+.modal-overlay.visible {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease-in-out, visibility 0s linear 0s;
+}
+.modal-content {
+  transform: scale(0.95) translateY(10px);
+  opacity: 0;
+  transition: transform 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28),
+    opacity 0.2s ease-out;
+}
+.modal-overlay.visible .modal-content {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
+.modal-overlay.hidden {
+  pointer-events: none;
+}
+#sdg-legend-modal-content {
+  scrollbar-width: thin;
+  scrollbar-color: var(--gnius-cyan) var(--gnius-gray-dark);
+}
+#sdg-legend-modal-content::-webkit-scrollbar {
+  width: 8px;
+}
+#sdg-legend-modal-content::-webkit-scrollbar-track {
+  background: var(--gnius-gray-dark);
+  border-radius: 4px;
+}
+#sdg-legend-modal-content::-webkit-scrollbar-thumb {
+  background-color: var(--gnius-cyan);
+  border-radius: 4px;
+  border: 2px solid var(--gnius-gray-dark);
+}
+
+/* Estilo Chip Leyenda ODS (Dentro del Modal) */
+.chip-sdg-legend {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 9999px;
+  padding: 0.15rem 0.7rem 0.15rem 0.2rem;
+  margin: 0.1rem;
+  font-family: "Saira Condensed", sans-serif;
+  font-size: 0.875rem; /* 14px */
+  line-height: 1.3;
+  text-shadow: none;
+  overflow: hidden; /* white-space: nowrap; */ /* Permitir wrap */
+  border: 1.5px solid;
+  background-color: var(--gnius-dark-1);
+  color: var(--gnius-light);
+  transition: background-color 0.2s ease-in-out;
+  cursor: default;
+  max-width: 100%;
+}
+.chip-sdg-legend:hover {
+  background-color: var(--gnius-gray-dark);
+}
+.chip-sdg-legend-num {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  width: 1.6em;
+  height: 1.6em;
+  margin-right: 0.5rem;
+  font-weight: 700;
+  font-size: 0.9em;
+  flex-shrink: 0;
+}
+.chip-sdg-legend-title {
+  font-weight: 600; /* SemiBold 14px */
+  white-space: normal;
+  line-height: 1.1;
+}
+
+/* Círculo Indicador ODS (Para TARJETAS) */
+.sdg-overlay {
+  /* Contenedor overlay en tarjeta */
+  @apply flex items-center space-x-1.5; /* Asegurar flex y espacio */
+}
+.sdg-overlay-label {
+  /* Etiqueta "ODS Cubiertos:" */
+  @apply text-gnius-light/80 text-[0.6rem] font-condensed font-semibold text-right uppercase tracking-wide;
+  white-space: nowrap; /* Evitar que la etiqueta se parta */
+}
+.sdg-indicator-circle-small {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  width: 1.4em;
+  height: 1.4em;
+  font-family: "Saira Condensed", sans-serif;
+  font-weight: 700;
+  font-size: 0.7em;
+  flex-shrink: 0;
+  margin: 0 0.05rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* CHIP BASE (Fuente Condensed) */
 .chip {
   padding: 0.25rem 0.75rem;
   border-radius: 9999px;
   font-size: 0.75rem;
-  font-weight: 600; /* Semibold para chips */
+  font-weight: 600;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -101,45 +259,44 @@ ul#resources-list li a:hover {
   text-align: center;
   white-space: nowrap;
   margin: 0.1rem;
-}
-.chip-yellow {
-  background-color: var(--gnius-yellow);
-  color: #111111;
-}
-.chip-cyan {
-  background-color: var(--gnius-cyan);
-  color: #111111;
-}
-.chip-red {
-  background-color: var(--gnius-red);
-  color: var(--gnius-light);
-}
-.chip-gray {
-  background-color: var(--gnius-border);
-  color: var(--gnius-light);
-}
-.chip-cyan-outline {
-  border: 1px solid var(--gnius-cyan);
-  color: var(--gnius-cyan);
-  background-color: transparent;
-  padding: calc(0.25rem - 1px) calc(0.75rem - 1px);
-}
-.chip-yellow-outline {
-  border: 1px solid var(--gnius-yellow);
-  color: var(--gnius-yellow);
-  background-color: transparent;
-  padding: calc(0.25rem - 1px) calc(0.75rem - 1px);
+  font-family: "Saira Condensed", sans-serif; /* Fuente Condensed */
 }
 
-/* Chip estudiante individual */
+/* Chips Metadata Atenuados (Opción B.1 - Borde tenue) */
+.chip-metadata {
+  padding: 0.15rem 0.6rem;
+  font-size: 0.7rem;
+  font-weight: 500; /* Condensed Medium */
+  border-radius: 4px;
+  background-color: var(--gnius-gray-dark);
+  border: 1px solid;
+}
+.chip-cyan-muted-border {
+  color: var(--gnius-cyan);
+  border-color: color-mix(in srgb, var(--gnius-cyan) 50%, transparent);
+}
+.chip-red-muted-border {
+  color: var(--gnius-red);
+  border-color: color-mix(in srgb, var(--gnius-red) 50%, transparent);
+}
+
+/* Chip Estudiante (Fuente Condensed) */
+.chip-gray {
+  background-color: var(--gnius-gray-dark);
+  color: var(--gnius-light);
+  border: 1px solid var(--gnius-gray-light);
+}
 .student-chip {
-  /* Clases base chip + color + margen aplicados en JS/HTML */
+  font-size: 0.7rem;
+  padding: 0.2rem 0.5rem;
+  font-weight: 400; /* Condensed Normal */
 }
 .student-chip i {
   margin-right: 0.25rem;
+  color: rgba(240, 240, 240, 0.7);
 }
 
-/* --- CHIP TECNOLOGÍA --- */
+/* CHIP TECNOLOGÍA (Fuente Condensed) */
 .tech-chip-container {
   display: inline-flex;
   align-items: center;
@@ -152,7 +309,7 @@ ul#resources-list li a:hover {
   font-size: 0.85rem;
   line-height: 1.1;
   color: var(--gnius-light);
-  font-weight: 400; /* Resetear a normal/400 para Saira Condensed */
+  font-weight: 400;
 }
 .tech-chip-container .tech-icon {
   margin-right: 0.5rem;
@@ -161,7 +318,7 @@ ul#resources-list li a:hover {
   line-height: 1;
 }
 .tech-chip-container .tech-name {
-  font-weight: 400; /* Asegurar peso normal */
+  font-weight: 400;
   white-space: nowrap;
   margin-right: 0.5rem;
 }
@@ -178,10 +335,11 @@ ul#resources-list li a:hover {
   padding: 0.05rem 0.4rem;
   border-radius: 9999px;
   font-size: 0.6rem;
-  font-weight: 700; /* Bold para categoría */
+  font-weight: 700;
   line-height: 1;
   text-transform: uppercase;
   white-space: nowrap;
+  font-family: "Saira Condensed", sans-serif;
 }
 .tech-inner-chip-Hardware {
   background-color: var(--gnius-cyan);
@@ -196,55 +354,51 @@ ul#resources-list li a:hover {
   color: var(--gnius-light);
 }
 
-/* --- Secciones Aside (project.html) --- */
+/* Secciones Aside (project.html) */
 .aside-section {
   padding: 1.5rem;
   background-color: var(--gnius-dark-2);
   border-radius: 0.5rem;
   margin-bottom: 2rem;
 }
-.aside-title {
-  /* Estilos definidos con clases Tailwind en HTML */
-}
 
-/* --- Títulos de Sección Principal (project.html) --- */
-.section-title {
-  /* Estilos definidos con clases Tailwind en HTML */
-}
-
-/* --- Galería y Modal --- */
+/* Galería y Modal Imagen */
 .gallery-item {
   aspect-ratio: 16 / 9;
   transition: transform 0.2s ease-in-out;
+  cursor: pointer;
 }
 .gallery-item:hover {
   transform: scale(1.03);
 }
-.gallery-item img {
-  /* Clases Tailwind base en HTML */
-}
 #imageModal {
-  /* Base y transición aplicados con Tailwind en HTML */
+  /* Estilos overlay */
 }
-.modal-content {
-  /* Estructura base con Tailwind */
+.modal-overlay {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, visibility 0s linear 0.3s;
 }
-.modal-content-wide {
-  /* Tamaño y borde con Tailwind */
+#imageModal.visible {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease-in-out, visibility 0s linear 0s;
 }
 #modalCloseBtn {
   position: absolute;
   top: 0.5rem;
   right: 0.5rem;
-  z-index: 20;
+  z-index: 60;
   line-height: 1;
 }
 #modalImage {
-  display: block; /* Clases Tailwind en HTML */
+  display: block;
 }
 #modalCaption {
   scrollbar-width: thin;
-  scrollbar-color: var(--gnius-cyan) var(--gnius-gray-dark); /* Clases Tailwind en HTML */
+  scrollbar-color: var(--gnius-cyan) var(--gnius-gray-dark);
+  font-family: "Saira Condensed", sans-serif;
+  font-size: 0.9rem;
 }
 #modalCaption::-webkit-scrollbar {
   width: 8px;
@@ -259,36 +413,15 @@ ul#resources-list li a:hover {
   border: 2px solid var(--gnius-gray-dark);
 }
 
-/* --- Estilos para Botones (Clases .btn ya definidas en HTML/JS) --- */
-.btn {
-  @apply inline-flex items-center justify-center px-5 py-2 border border-transparent text-base font-medium rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gnius-dark-1 transition ease-in-out duration-150;
-}
-.btn-primary {
-  @apply bg-gnius-cyan text-gnius-dark-1 hover:bg-cyan-300 focus:ring-gnius-cyan;
-}
-.btn-secondary {
-  @apply bg-gnius-yellow text-gnius-dark-1 hover:bg-yellow-300 focus:ring-gnius-yellow;
-}
-.btn-danger {
-  @apply bg-gnius-red text-gnius-light hover:bg-red-700 focus:ring-gnius-red;
-}
-.btn-neutral {
-  @apply bg-gnius-gray-dark text-gnius-light hover:bg-gnius-gray-light focus:ring-gnius-gray-light;
-}
-.btn:disabled {
-  @apply opacity-50 cursor-not-allowed;
-}
-
-/* Enlace discreto "Ver Detalles" card, "Descargar", "Ver Proyecto" */
+/* Links Acción */
 .link-action {
-  @apply text-sm font-semibold transition duration-150 ease-in-out; /* Semibold (600) */
-  /* Color y underline aplicados en HTML */
+  @apply text-sm font-semibold transition duration-150 ease-in-out;
+  font-family: "Saira Semi Condensed", sans-serif;
 }
-
-/* Enlace específico "Ver Certificado" */
 .certificate-link {
-  @apply flex items-center text-sm font-semibold transition duration-150 ease-in-out; /* Semibold (600) */
+  @apply flex items-center text-sm font-semibold transition duration-150 ease-in-out;
   color: var(--gnius-yellow);
+  font-family: "Saira Semi Condensed", sans-serif;
 }
 .certificate-link:hover {
   color: color-mix(in srgb, var(--gnius-yellow) 80%, white);

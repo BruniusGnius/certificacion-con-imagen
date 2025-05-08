@@ -1,356 +1,536 @@
-// js/main.js - v3 Corregido (ReferenceError)
+// js/main.js - v4.9 (Correcciones Finales: Filtros, Estilos, Overlay, Font)
 
-document.addEventListener("DOMContentLoaded", () => {
-  // --- DOM Elements ---
-  const projectListContainer = document.getElementById("project-list");
-  const projectCardTemplate = document.getElementById("project-card-template");
-  const loadingMessage = document.getElementById("loading-message");
-  const noResultsMessage = document.getElementById("no-results-message");
-  const paginationControls = document.getElementById("pagination-controls");
-  const prevPageBtn = document.getElementById("prev-page-btn");
-  const nextPageBtn = document.getElementById("next-page-btn");
-  const pageInfo = document.getElementById("page-info");
-  const searchInput = document.getElementById("search-input");
-  const categorySelect = document.getElementById("category-select");
-  const levelSelect = document.getElementById("level-select");
-  const techSelect = document.getElementById("tech-select");
-  const clearFiltersBtn = document.getElementById("clear-filters-btn");
-  const currentYearSpan = document.getElementById("current-year");
+// --- DOM Elements ---
+const projectList = document.getElementById("project-list");
+const searchInput = document.getElementById("search-input");
+const categorySelect = document.getElementById("category-select");
+const schoolingSelect = document.getElementById("schooling-select");
+const techSelect = document.getElementById("tech-select");
+const sdgSelect = document.getElementById("sdg-select");
+const clearFiltersBtn = document.getElementById("clear-filters-btn");
+const loadingMessage = document.getElementById("loading-message");
+const noResultsMessage = document.getElementById("no-results-message");
+const paginationControls = document.getElementById("pagination-controls");
+const prevPageBtn = document.getElementById("prev-page-btn");
+const nextPageBtn = document.getElementById("next-page-btn");
+const pageInfo = document.getElementById("page-info");
+const projectCardTemplate = document.getElementById("project-card-template");
+const currentYearSpan = document.getElementById("current-year");
+const showSdgLegendBtn = document.getElementById("show-sdg-legend-btn");
+const sdgLegendModal = document.getElementById("sdg-legend-modal");
+const sdgLegendModalContent = document.getElementById(
+  "sdg-legend-modal-content"
+);
+const sdgModalCloseBtn = document.getElementById("sdg-modal-close-btn");
 
-  // --- State Variables ---
-  let allProjects = [];
-  let filteredProjects = [];
-  let currentPage = 1;
-  const itemsPerPage = 12;
-  let hadLoadingError = false; // Track if a loading error occurred
+// --- State ---
+let allProjects = [];
+let filteredProjects = [];
+let currentPage = 1;
+const projectsPerPage = 12;
 
-  // --- Helper Functions ---
-  const setFiltersDisabled = (disabled) => {
-    if (searchInput) searchInput.disabled = disabled;
-    if (categorySelect) categorySelect.disabled = disabled;
-    if (levelSelect) levelSelect.disabled = disabled;
-    if (techSelect) techSelect.disabled = disabled;
-    if (clearFiltersBtn) clearFiltersBtn.disabled = disabled;
-  };
-
-  // --- Initialization ---
-  async function init() {
-    updateCopyrightYear();
-    hadLoadingError = false; // Reset error flag
-    try {
-      showLoading(true);
-      setFiltersDisabled(true);
-      const response = await fetch("data/projects.json");
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+// --- Utility Functions ---
+const fetchData = async (url) => {
+  try {
+    const cacheBustingUrl = `${url}?t=${new Date().getTime()}`;
+    const response = await fetch(cacheBustingUrl);
+    if (!response.ok) {
+      if (response.status === 304) {
+        // Manejar 304 si ocurre
+        const retryResponse = await fetch(url);
+        if (!retryResponse.ok) {
+          throw new Error(`HTTP error retry! status: ${retryResponse.status}`);
+        }
+        return await retryResponse.json();
       }
-      allProjects = await response.json();
-      filteredProjects = [...allProjects];
-
-      if (!Array.isArray(allProjects)) {
-        throw new Error(
-          "El archivo JSON no contiene un array de proyectos válido."
-        );
-      }
-
-      if (allProjects.length > 0) {
-        populateFilters();
-        setupEventListeners();
-        displayPage(currentPage);
-        showNoResults(false);
-        // Filters will be enabled in 'finally' if no error
-      } else {
-        showNoResults(true, "No hay proyectos para mostrar.");
-        // Keep filters disabled if no projects initially
-      }
-    } catch (error) {
-      hadLoadingError = true; // Set error flag
-      console.error("Error al cargar o procesar proyectos:", error);
-      showError(
-        `No se pudieron cargar los proyectos. ${error.message}. Intenta recargar la página.`
-      );
-      setFiltersDisabled(true); // Keep filters disabled on error
-    } finally {
-      showLoading(false);
-      // --- CORRECCIÓN AQUÍ ---
-      // Habilitar filtros solo si NO hubo error Y hay proyectos cargados.
-      if (!hadLoadingError && allProjects.length > 0) {
-        setFiltersDisabled(false);
-      }
-      // --- FIN CORRECCIÓN ---
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return null;
+  }
+};
+
+// --- Initialization ---
+document.addEventListener("DOMContentLoaded", async () => {
+  console.log("Initializing Gnius Portfolios...");
+  if (currentYearSpan) {
+    currentYearSpan.textContent = new Date().getFullYear();
+  }
+  // Verificar elementos críticos
+  if (!projectCardTemplate?.content) {
+    console.error("CRITICAL: Project card template not found!");
+    loadingMessage.textContent = "Error plantilla.";
+    return;
+  }
+  if (typeof odsData === "undefined") {
+    console.error("CRITICAL: odsData not defined.");
+    loadingMessage.textContent = "Error datos ODS.";
+    return;
+  }
+  if (!projectList || !loadingMessage || !noResultsMessage) {
+    console.error("CRITICAL: Missing essential list/message elements.");
+    return;
   }
 
-  // --- UI Updates ---
-  function showLoading(isLoading) {
-    if (loadingMessage) {
-      loadingMessage.style.display = isLoading ? "block" : "none";
-    }
+  await loadInitialData();
+  // Configurar listeners solo si los elementos existen
+  setupEventListeners();
+  if (showSdgLegendBtn && sdgLegendModal && sdgModalCloseBtn) {
+    setupSdgLegendModal();
+  } else {
+    console.warn(
+      "Modal SDG Legend elements missing, modal functionality disabled."
+    );
   }
+});
 
-  function showNoResults(
-    show,
-    message = "No se encontraron proyectos que coincidan con la búsqueda."
-  ) {
-    if (noResultsMessage) {
-      noResultsMessage.textContent = message;
-      noResultsMessage.style.display = show ? "block" : "none";
-    }
-    if (paginationControls) {
-      paginationControls.style.display = show ? "none" : "flex";
-    }
+// --- Data Loading and Processing ---
+const loadInitialData = async () => {
+  loadingMessage.style.display = "block";
+  noResultsMessage.style.display = "none";
+  projectList.innerHTML = "";
+  const projectsData = await fetchData("data/projectsLoremPicsum.json"); // Usar datos con Lorem Picsum
+
+  if (projectsData && Array.isArray(projectsData)) {
+    allProjects = projectsData;
+    console.log(`Total projects loaded: ${allProjects.length}`);
+    populateFilters();
+    if (sdgLegendModalContent) renderSdgLegend(); // Renderizar leyenda si el contenedor existe
+    applyFiltersAndRender(); // Aplicar filtros (ninguno al inicio) y renderizar
+  } else {
+    loadingMessage.textContent = "Error al cargar datos de proyectos.";
+    console.error("Failed to load or parse project data.");
+    noResultsMessage.textContent = "No se pudieron cargar los proyectos.";
+    noResultsMessage.style.display = "block";
   }
+  loadingMessage.style.display = "none";
+};
 
-  function showError(message) {
-    if (projectListContainer) {
-      // Limpiar antes de mostrar error
-      projectListContainer.innerHTML = `<p class="text-center col-span-full text-gnius-red bg-red-900/30 p-4 rounded">${message}</p>`;
+// --- Populate Filters ---
+const populateFilters = () => {
+  const categories = new Set();
+  const schoolingLevels = new Set();
+  const technologies = new Set();
+  allProjects.forEach((project) => {
+    if (project.projectCategory) categories.add(project.projectCategory);
+    if (project.schooling) schoolingLevels.add(project.schooling);
+    if (project.technologies) {
+      project.technologies.forEach((tech) => technologies.add(tech.name));
     }
-    showNoResults(false); // Ocultar "no results"
-    if (paginationControls) paginationControls.style.display = "none"; // Ocultar paginación
-    // No hay un `errorMessageContainer` global en index.html
-  }
+  });
+  // Pasar el elemento DOM directamente
+  populateSelect(
+    document.getElementById("category-select"),
+    categories,
+    "Categoría"
+  );
+  populateSelect(
+    document.getElementById("schooling-select"),
+    schoolingLevels,
+    "Escolaridad"
+  );
+  populateSelect(
+    document.getElementById("tech-select"),
+    technologies,
+    "Tecnología"
+  );
+  populateSdgSelect(document.getElementById("sdg-select"), "ODS");
+};
 
-  function updateCopyrightYear() {
-    if (currentYearSpan) {
-      currentYearSpan.textContent = new Date().getFullYear();
-    }
-  }
-
-  // --- Filter Population ---
-  function populateFilters() {
-    const categories = new Set();
-    const levels = new Set();
-    const technologies = new Set();
-
-    allProjects.forEach((project) => {
-      if (project.projectCategory)
-        categories.add(project.projectCategory.trim());
-      if (project.studentLevel) levels.add(project.studentLevel.trim());
-      if (project.technologies && Array.isArray(project.technologies)) {
-        project.technologies.forEach((tech) => {
-          if (tech.name) technologies.add(tech.name.trim());
-        });
-      }
-    });
-
-    populateSelect(categorySelect, categories, "Todas las Categorías");
-    populateSelect(levelSelect, levels, "Todos los Niveles");
-    populateSelect(techSelect, technologies, "Todas las Tecnologías");
-  }
-
-  function populateSelect(selectElement, itemsSet, defaultOptionText) {
-    if (!selectElement) return;
-    const firstOption = selectElement.options[0];
-    selectElement.innerHTML = "";
-    if (firstOption) {
-      firstOption.textContent = defaultOptionText;
-      selectElement.appendChild(firstOption);
-    }
-
-    const sortedItems = Array.from(itemsSet).sort((a, b) => a.localeCompare(b));
-    sortedItems.forEach((item) => {
+const populateSelect = (selectElement, items, defaultOptionText) => {
+  if (!selectElement) {
+    console.warn(`Select element for "${defaultOptionText}" not found.`);
+    return;
+  } // Verificar elemento
+  const currentValue = selectElement.value; // Guardar valor antes de limpiar
+  selectElement.innerHTML = `<option value="">${defaultOptionText}</option>`; // Reset con placeholder
+  const sortedItems = Array.from(items).sort((a, b) => a.localeCompare(b));
+  sortedItems.forEach((item) => {
+    if (item) {
+      // Evitar añadir opciones vacías si algún dato es ""
       const option = document.createElement("option");
       option.value = item;
       option.textContent = item;
       selectElement.appendChild(option);
+    }
+  });
+  // Restaurar valor seleccionado si aún existe y es válido
+  if (
+    currentValue &&
+    Array.from(selectElement.options).some((opt) => opt.value === currentValue)
+  ) {
+    selectElement.value = currentValue;
+  }
+};
+
+const populateSdgSelect = (selectElement, defaultOptionText) => {
+  if (!selectElement || typeof odsData === "undefined") return;
+  const currentValue = selectElement.value;
+  selectElement.innerHTML = `<option value="">${defaultOptionText}</option>`;
+  const sortedSdgKeys = Object.keys(odsData).sort(
+    (a, b) => parseInt(a) - parseInt(b)
+  );
+  sortedSdgKeys.forEach((key) => {
+    const sdg = odsData[key];
+    const option = document.createElement("option");
+    option.value = sdg.num;
+    option.textContent = `${sdg.num}. ${sdg.title}`;
+    selectElement.appendChild(option);
+  });
+  if (
+    currentValue &&
+    selectElement.querySelector(`option[value="${currentValue}"]`)
+  ) {
+    selectElement.value = currentValue;
+  }
+};
+
+// --- Filtering Logic ---
+const applyFiltersAndRender = () => {
+  console.log("Aplicando filtros...");
+  const searchTerm = searchInput?.value.toLowerCase().trim() ?? "";
+  const selectedCategory = categorySelect?.value ?? "";
+  const selectedSchooling = schoolingSelect?.value ?? "";
+  const selectedTech = techSelect?.value ?? "";
+  const selectedSdg = sdgSelect?.value ? parseInt(sdgSelect.value, 10) : ""; // Convierte a número o ''
+  console.log(
+    `  Filtros: search=${searchTerm}, cat=${selectedCategory}, school=${selectedSchooling}, tech=${selectedTech}, sdg=${selectedSdg}`
+  );
+
+  filteredProjects = allProjects.filter((project) => {
+    const titleMatch =
+      project.projectTitle?.toLowerCase().includes(searchTerm) ?? false;
+    const studentMatch =
+      project.teamMembers?.some((member) =>
+        member.name?.toLowerCase().includes(searchTerm)
+      ) ?? false; // Añadido optional chaining a member.name
+    const categoryMatch =
+      !selectedCategory || project.projectCategory === selectedCategory;
+    const schoolingMatch =
+      !selectedSchooling || project.schooling === selectedSchooling;
+
+    // ** CORRECCIÓN: Eliminar '?? false' al final **
+    const techMatch =
+      !selectedTech ||
+      project.technologies?.some((tech) => tech.name === selectedTech);
+    const sdgMatch = !selectedSdg || project.sdgIds?.includes(selectedSdg);
+
+    // Devolver el resultado de todas las condiciones
+    return (
+      (titleMatch || studentMatch) &&
+      categoryMatch &&
+      schoolingMatch &&
+      techMatch &&
+      sdgMatch
+    );
+  });
+  console.log(`Proyectos después de filtrar: ${filteredProjects.length}`);
+
+  currentPage = 1; // Resetear página al filtrar
+  renderProjects();
+  updatePaginationControls();
+};
+
+// --- Rendering ---
+const renderProjects = () => {
+  if (!projectList || !noResultsMessage) return; // Salir si elementos no existen
+  projectList.innerHTML = "";
+  noResultsMessage.style.display =
+    filteredProjects.length === 0 ? "block" : "none";
+
+  if (filteredProjects.length > 0) {
+    const startIndex = (currentPage - 1) * projectsPerPage;
+    const endIndex = startIndex + projectsPerPage;
+    const projectsToRender = filteredProjects.slice(startIndex, endIndex);
+
+    projectsToRender.forEach((project) => {
+      const card = createProjectCard(project);
+      if (card) {
+        projectList.appendChild(card);
+      } else {
+        console.error(`Error al crear tarjeta para ${project.projectTitle}`);
+      }
     });
   }
+};
 
-  // --- Rendering Project Cards ---
-  function renderProjectCard(project) {
-    if (!projectCardTemplate) return null;
-
-    const cardClone = projectCardTemplate.content.cloneNode(true);
-    const cardElement = cardClone.querySelector("article");
-    const link = cardClone.querySelector("[data-card-link]");
-    const img = cardClone.querySelector("[data-card-img]");
-    const title = cardClone.querySelector("[data-card-title]");
-    const metadataContainer = cardClone.querySelector("[data-card-metadata]");
-    const desc = cardClone.querySelector("[data-card-desc]");
-    const studentsContainer = cardClone.querySelector("[data-card-students]");
-
-    if (link) link.href = `project.html?slug=${project.slug}`;
-    if (img) {
-      img.src =
-        project.coverUrl?.url || "assets/img/gnius_logo_placeholder.png";
-      img.alt =
-        project.coverUrl?.altText ||
-        `Portada del proyecto ${project.projectTitle}`;
-    }
-    if (title) title.textContent = project.projectTitle;
-    if (desc) {
-      const maxLength = 150;
-      desc.textContent =
-        project.intro_content.length > maxLength
-          ? project.intro_content.substring(0, maxLength).trim() + "..."
-          : project.intro_content;
-    }
-
-    // Add metadata chips
-    if (metadataContainer) {
-      metadataContainer.innerHTML = "";
-      if (project.projectCategory) {
-        metadataContainer.appendChild(
-          createChip(project.projectCategory, "chip-cyan")
-        );
+// Renderizar Leyenda ODS (Dentro del Modal)
+const renderSdgLegend = () => {
+  if (!sdgLegendModalContent || typeof odsData === "undefined") return;
+  sdgLegendModalContent.innerHTML = "";
+  const sortedSdgKeys = Object.keys(odsData).sort(
+    (a, b) => parseInt(a) - parseInt(b)
+  );
+  sortedSdgKeys.forEach((key) => {
+    const sdg = odsData[key];
+    const legendChip = document.createElement("span");
+    legendChip.className = "chip-sdg-legend";
+    legendChip.style.borderColor = sdg.color;
+    const circle = document.createElement("span");
+    circle.className = "chip-sdg-legend-num";
+    circle.textContent = sdg.num;
+    circle.style.backgroundColor = sdg.color;
+    circle.title = `ODS ${sdg.num}: ${sdg.title}`;
+    let numColor = "#ffffff";
+    try {
+      const hex = sdg.color.replace("#", "");
+      if (hex.length === 6) {
+        const r = parseInt(hex.substring(0, 2), 16),
+          g = parseInt(hex.substring(2, 4), 16),
+          b = parseInt(hex.substring(4, 6), 16);
+        const lum = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+        if (lum > 0.6) numColor = "#1a1a1a";
       }
-      if (project.studentLevel) {
-        metadataContainer.appendChild(
-          createChip(project.studentLevel, "chip-red")
-        );
+    } catch (e) {}
+    circle.style.color = numColor;
+    const title = document.createElement("span");
+    title.className = "chip-sdg-legend-title";
+    title.textContent = sdg.title; // Título completo
+    legendChip.appendChild(circle);
+    legendChip.appendChild(title);
+    sdgLegendModalContent.appendChild(legendChip);
+  });
+};
+
+// Crear Tarjeta de Proyecto (ODS Overlay, Metadata B.1, Desc Font)
+const createProjectCard = (project) => {
+  if (!projectCardTemplate?.content) {
+    return null;
+  }
+  const cardClone = projectCardTemplate.content.cloneNode(true);
+  const linkElement = cardClone.querySelector("[data-card-link]");
+  const imgElement = cardClone.querySelector("[data-card-img]");
+  const titleElement = cardClone.querySelector("[data-card-title]");
+  const sdgContainer = cardClone.querySelector("[data-card-sdgs]");
+  const metadataContainer = cardClone.querySelector("[data-card-metadata]");
+  const descElement = cardClone.querySelector("[data-card-desc]");
+  const studentsContainer = cardClone.querySelector("[data-card-students]");
+  const sdgOverlayContainer = cardClone.querySelector(".sdg-overlay");
+
+  if (
+    !linkElement ||
+    !imgElement ||
+    !titleElement ||
+    !sdgContainer ||
+    !metadataContainer ||
+    !descElement ||
+    !studentsContainer ||
+    !sdgOverlayContainer
+  ) {
+    console.error("Elementos faltantes en plantilla.");
+    return null;
+  }
+
+  linkElement.href = `project.html?slug=${project.slug}`;
+  imgElement.src =
+    project.coverImage?.url || "assets/img/gnius_logo_placeholder.png";
+  imgElement.alt =
+    project.coverImage?.altText ||
+    `Portada del proyecto ${project.projectTitle}`;
+  titleElement.textContent = project.projectTitle;
+
+  // RENDERIZADO CÍRCULOS ODS EN OVERLAY
+  sdgContainer.innerHTML = "";
+  if (
+    project.sdgIds &&
+    project.sdgIds.length > 0 &&
+    typeof odsData !== "undefined"
+  ) {
+    sdgOverlayContainer.style.display = "flex"; // Mostrar overlay (es flex)
+    project.sdgIds.forEach((sdgId) => {
+      const sdgInfo = odsData[sdgId];
+      if (sdgInfo) {
+        const circle = document.createElement("span");
+        circle.className = "sdg-indicator-circle-small";
+        circle.textContent = sdgInfo.num;
+        circle.style.backgroundColor = sdgInfo.color;
+        circle.title = `ODS ${sdgInfo.num}: ${sdgInfo.title}`;
+        let numColor = "#ffffff";
+        try {
+          const hex = sdgInfo.color.replace("#", "");
+          if (hex.length === 6) {
+            const r = parseInt(hex.substring(0, 2), 16),
+              g = parseInt(hex.substring(2, 4), 16),
+              b = parseInt(hex.substring(4, 6), 16);
+            const lum = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+            if (lum > 0.6) numColor = "#1a1a1a";
+          }
+        } catch (e) {}
+        circle.style.color = numColor;
+        sdgContainer.appendChild(circle);
       }
-    }
-
-    // Add student chips
-    if (
-      studentsContainer &&
-      project.teamMembers &&
-      Array.isArray(project.teamMembers)
-    ) {
-      studentsContainer.innerHTML = "";
-      project.teamMembers.slice(0, 3).forEach((member) => {
-        studentsContainer.appendChild(createStudentChip(member.name));
-      });
-      if (project.teamMembers.length > 3) {
-        const moreChip = document.createElement("span");
-        moreChip.className = "chip chip-gray text-xs";
-        moreChip.textContent = `+${project.teamMembers.length - 3} más`;
-        studentsContainer.appendChild(moreChip);
-      }
-    }
-
-    return cardElement;
-  }
-
-  function createChip(text, colorClass) {
-    const chip = document.createElement("span");
-    chip.className = `chip ${colorClass}`;
-    chip.textContent = text;
-    return chip;
-  }
-
-  function createStudentChip(name) {
-    const chip = document.createElement("span");
-    chip.className = "chip chip-gray student-chip"; // Incluye .student-chip
-    const icon = document.createElement("i");
-    icon.className = "fa-solid fa-user";
-    chip.appendChild(icon);
-    chip.appendChild(document.createTextNode(name));
-    return chip;
-  }
-
-  // --- Pagination ---
-  function displayPage(page) {
-    currentPage = page;
-    if (!projectListContainer) return;
-
-    projectListContainer.innerHTML = "";
-    showNoResults(false);
-
-    if (filteredProjects.length === 0) {
-      showNoResults(true);
-      updatePaginationUI(0, 0);
-      return;
-    }
-
-    const totalPages = Math.ceil(filteredProjects.length / itemsPerPage);
-    page = Math.max(1, Math.min(page, totalPages));
-
-    const startIndex = (page - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    const paginatedProjects = filteredProjects.slice(startIndex, endIndex);
-
-    projectListContainer.innerHTML = "";
-    if (paginatedProjects.length > 0) {
-      paginatedProjects.forEach((project) => {
-        const card = renderProjectCard(project);
-        if (card) {
-          projectListContainer.appendChild(card);
-        }
-      });
-    } else if (page > 1) {
-      showNoResults(true, "No hay más proyectos en esta página.");
-    }
-
-    updatePaginationUI(page, totalPages);
-  }
-
-  function updatePaginationUI(page, totalPages) {
-    if (!paginationControls || totalPages <= 0) {
-      if (paginationControls) paginationControls.style.display = "none";
-      return;
-    }
-    if (totalPages === 1) {
-      paginationControls.style.display = "none";
-      return;
-    }
-    paginationControls.style.display = "flex";
-    if (pageInfo) pageInfo.textContent = `Página ${page} de ${totalPages}`;
-    if (prevPageBtn) prevPageBtn.disabled = page === 1;
-    if (nextPageBtn) nextPageBtn.disabled = page === totalPages;
-  }
-
-  function goToPrevPage() {
-    if (currentPage > 1) displayPage(currentPage - 1);
-  }
-
-  function goToNextPage() {
-    const totalPages = Math.ceil(filteredProjects.length / itemsPerPage);
-    if (currentPage < totalPages) displayPage(currentPage + 1);
-  }
-
-  // --- Filtering ---
-  function applyFilters() {
-    // Pequeño debounce para no filtrar en cada tecla si escribe rápido
-    // clearTimeout(filterTimeout);
-    // filterTimeout = setTimeout(() => { // Necesitaría declarar filterTimeout fuera
-    const searchTerm = searchInput.value.toLowerCase().trim();
-    const selectedCategory = categorySelect.value;
-    const selectedLevel = levelSelect.value;
-    const selectedTech = techSelect.value;
-
-    filteredProjects = allProjects.filter((project) => {
-      const pTitle = project.projectTitle?.toLowerCase() || "";
-      const pCategory = project.projectCategory || "";
-      const pLevel = project.studentLevel || "";
-      const studentsText =
-        project.teamMembers?.map((m) => m.name.toLowerCase()).join(" ") || "";
-      const techNames = project.technologies?.map((t) => t.name) || [];
-
-      const textMatch =
-        searchTerm === "" ||
-        pTitle.includes(searchTerm) ||
-        studentsText.includes(searchTerm);
-      const categoryMatch = !selectedCategory || pCategory === selectedCategory;
-      const levelMatch = !selectedLevel || pLevel === selectedLevel;
-      const techMatch = !selectedTech || techNames.includes(selectedTech);
-
-      return textMatch && categoryMatch && levelMatch && techMatch;
     });
-
-    displayPage(1);
-    // }, 250); // Espera 250ms después de dejar de escribir
+  } else {
+    sdgOverlayContainer.style.display = "none";
   }
-  // let filterTimeout; // Declarar fuera para el debounce (opcional)
 
-  // --- Event Listeners ---
-  function setupEventListeners() {
-    prevPageBtn?.addEventListener("click", goToPrevPage);
-    nextPageBtn?.addEventListener("click", goToNextPage);
-    searchInput?.addEventListener("input", applyFilters); // 'input' para tiempo real
-    categorySelect?.addEventListener("change", applyFilters);
-    levelSelect?.addEventListener("change", applyFilters);
-    techSelect?.addEventListener("change", applyFilters);
-    clearFiltersBtn?.addEventListener("click", () => {
+  // Renderizar Metadata (Atenuado B.1)
+  metadataContainer.innerHTML = "";
+  if (project.projectCategory) {
+    const chip = document.createElement("span");
+    chip.className = "chip chip-metadata chip-cyan-muted-border";
+    chip.textContent = project.projectCategory;
+    metadataContainer.appendChild(chip);
+  }
+  if (project.schooling) {
+    const chip = document.createElement("span");
+    chip.className = "chip chip-metadata chip-red-muted-border";
+    chip.textContent = project.schooling;
+    metadataContainer.appendChild(chip);
+  }
+
+  // Descripción (Clase font-semibold añadida en HTML)
+  descElement.textContent = project.introContent
+    ? project.introContent.substring(0, 100) +
+      (project.introContent.length > 100 ? "..." : "")
+    : "Sin descripción.";
+
+  // Renderizar Estudiantes
+  studentsContainer.innerHTML = "";
+  const maxStudentsToShow = 4;
+  if (project.teamMembers && project.teamMembers.length > 0) {
+    project.teamMembers.slice(0, maxStudentsToShow).forEach((member) => {
+      const chip = document.createElement("span");
+      chip.className = "chip chip-gray student-chip";
+      chip.innerHTML = `<i class="fa-solid fa-user fa-xs" aria-hidden="true"></i> ${member.name}`;
+      studentsContainer.appendChild(chip);
+    });
+    if (project.teamMembers.length > maxStudentsToShow) {
+      const chip = document.createElement("span");
+      chip.className = "chip chip-gray student-chip";
+      chip.textContent = `+${project.teamMembers.length - maxStudentsToShow}`;
+      studentsContainer.appendChild(chip);
+    }
+  } else {
+    const chip = document.createElement("span");
+    chip.className = "chip chip-gray student-chip";
+    chip.textContent = "Equipo no especificado";
+    studentsContainer.appendChild(chip);
+  }
+
+  return cardClone;
+};
+
+// --- Pagination ---
+const updatePaginationControls = () => {
+  if (!paginationControls) return;
+  const totalPages = Math.ceil(filteredProjects.length / projectsPerPage);
+  if (totalPages <= 1) {
+    paginationControls.style.display = "none";
+    return;
+  }
+  paginationControls.style.display = "flex";
+  if (pageInfo) pageInfo.textContent = `Página ${currentPage} de ${totalPages}`;
+  if (prevPageBtn) prevPageBtn.disabled = currentPage === 1;
+  if (nextPageBtn) nextPageBtn.disabled = currentPage === totalPages;
+};
+
+const goToPage = (page) => {
+  const totalPages = Math.ceil(filteredProjects.length / projectsPerPage);
+  if (page < 1 || page > totalPages) {
+    return;
+  }
+  currentPage = page;
+  renderProjects();
+  updatePaginationControls();
+  if (projectList) {
+    const mainContainer = document.querySelector(".container");
+    if (mainContainer) {
+      mainContainer.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
+};
+
+// --- Event Listeners ---
+const setupEventListeners = () => {
+  // Añadir listeners solo si los elementos existen
+  if (searchInput) searchInput.addEventListener("input", applyFiltersAndRender);
+  else console.warn("Elemento searchInput no encontrado");
+  if (categorySelect)
+    categorySelect.addEventListener("change", applyFiltersAndRender);
+  else console.warn("Elemento categorySelect no encontrado");
+  if (schoolingSelect)
+    schoolingSelect.addEventListener("change", applyFiltersAndRender);
+  else console.warn("Elemento schoolingSelect no encontrado");
+  if (techSelect) techSelect.addEventListener("change", applyFiltersAndRender);
+  else console.warn("Elemento techSelect no encontrado");
+  if (sdgSelect) sdgSelect.addEventListener("change", applyFiltersAndRender);
+  else console.warn("Elemento sdgSelect no encontrado");
+
+  if (clearFiltersBtn) {
+    clearFiltersBtn.addEventListener("click", () => {
       if (searchInput) searchInput.value = "";
       if (categorySelect) categorySelect.value = "";
-      if (levelSelect) levelSelect.value = "";
+      if (schoolingSelect) schoolingSelect.value = "";
       if (techSelect) techSelect.value = "";
-      applyFilters();
+      if (sdgSelect) sdgSelect.value = "";
+      applyFiltersAndRender(); // Volver a aplicar filtros después de limpiar
     });
+  } else {
+    console.warn("Elemento clearFiltersBtn no encontrado");
   }
 
-  // --- Start the application ---
-  init();
-});
+  if (prevPageBtn) {
+    prevPageBtn.addEventListener("click", () => {
+      if (currentPage > 1) {
+        goToPage(currentPage - 1);
+      }
+    });
+  } else {
+    console.warn("Elemento prevPageBtn no encontrado");
+  }
+  if (nextPageBtn) {
+    nextPageBtn.addEventListener("click", () => {
+      const totalPages = Math.ceil(filteredProjects.length / projectsPerPage);
+      if (currentPage < totalPages) {
+        goToPage(currentPage + 1);
+      }
+    });
+  } else {
+    console.warn("Elemento nextPageBtn no encontrado");
+  }
+};
+
+// --- Lógica Modal Leyenda ODS ---
+const setupSdgLegendModal = () => {
+  if (!showSdgLegendBtn || !sdgLegendModal || !sdgModalCloseBtn) return; // Ya se advirtió antes
+
+  const openModal = () => {
+    sdgLegendModal.classList.remove("hidden");
+    void sdgLegendModal.offsetWidth; // Trigger reflow for transition
+    sdgLegendModal.classList.add("visible");
+    document.body.style.overflow = "hidden";
+  };
+  const closeModal = () => {
+    sdgLegendModal.classList.remove("visible");
+    document.body.style.overflow = "";
+  };
+
+  sdgLegendModal.addEventListener("transitionend", (event) => {
+    if (
+      event.target === sdgLegendModal &&
+      event.propertyName === "opacity" &&
+      !sdgLegendModal.classList.contains("visible")
+    ) {
+      sdgLegendModal.classList.add("hidden");
+    }
+  });
+
+  showSdgLegendBtn.addEventListener("click", openModal);
+  sdgModalCloseBtn.addEventListener("click", closeModal);
+  sdgLegendModal.addEventListener("click", (event) => {
+    if (event.target === sdgLegendModal) {
+      closeModal();
+    }
+  });
+  document.addEventListener("keydown", (event) => {
+    if (
+      event.key === "Escape" &&
+      sdgLegendModal.classList.contains("visible")
+    ) {
+      closeModal();
+    }
+  });
+};
