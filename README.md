@@ -1,161 +1,160 @@
-# Generador de Portafolios y Certificados Estáticos - Gnius Club 🚀
+# Generador de Portafolios y Certificados Estáticos - Gnius Club (v4.0 - ODS & Rúbrica) 🚀
 
-Este proyecto genera un sitio web estático para mostrar portafolios de proyectos estudiantiles y certificados digitales asociados para **Gnius Club**. Utiliza Google Sheets como fuente única de datos, Google Apps Script para automatizar la conversión a JSON, y tecnologías web estándar (HTML, CSS con Tailwind, JavaScript Vanilla) para el frontend. El sitio está optimizado para desplegarse fácilmente en GitHub Pages.
+    Este proyecto genera un sitio web estático para mostrar portafolios de proyectos estudiantiles y certificados digitales asociados para **Gnius Club**. Utiliza Google Sheets como fuente única de datos, Google Apps Script para automatizar la conversión a JSON, y tecnologías web estándar (HTML, CSS con Tailwind, JavaScript Vanilla) para el frontend. El sitio está optimizado para desplegarse fácilmente en GitHub Pages e incluye la visualización de Objetivos de Desarrollo Sostenible (ODS) y una nueva estructura de evaluación por rúbrica.
 
-## ✨ Descripción General
+    ## ✨ Descripción General
 
-Gnius Club certifica proyectos de innovación estudiantiles mediante SBTs (Soulbound Tokens). Este sistema permite:
+    Gnius Club certifica proyectos de innovación estudiantiles. Este sistema permite:
 
-1.  **Gestionar** toda la información de los proyectos y los detalles de los certificados de los miembros del equipo desde una **única Hoja de Cálculo de Google**.
-2.  **Automatizar** (parcialmente) la actualización del sitio web mediante un **Google Apps Script** que convierte los datos de la hoja en un archivo `data/projects.json`.
-3.  **Mostrar** los portafolios de proyectos individuales en una página de detalles con información completa, galería de imágenes, gráfico de evaluación y tecnologías utilizadas.
-4.  **Mostrar** los certificados digitales asociados a cada miembro, enlazando de vuelta al proyecto como evidencia.
-5.  **Ofrecer** una interfaz web responsiva y con una estética moderna inspirada en Gnius Club.
+    1.  **Gestionar** toda la información (proyectos, miembros, ODS, evaluación por rúbrica) desde una **única Hoja de Cálculo de Google**.
+    2.  **Automatizar** (parcialmente) la actualización del sitio mediante un **Google Apps Script** que convierte los datos de la hoja en `data/projects.json`, calculando la calificación final del proyecto.
+    3.  **Mostrar** portafolios de proyectos con detalles, ODS asociados, nueva visualización de evaluación (Gauge + Criterios), galería, tecnologías y equipo.
+    4.  **Mostrar** certificados digitales por miembro, con insignias y niveles predefinidos, enlazando de vuelta al proyecto.
+    5.  **Ofrecer** una interfaz web responsiva con estética moderna.
 
-## 🌟 Características Principales
+    ## 🌟 Características Principales (v4.0)
 
-*   **Página Principal (`index.html`):** Listado de proyectos paginado con filtros por título/estudiante, categoría, nivel y tecnología.
-*   **Página de Detalles del Proyecto (`project.html`):** Vista completa de un proyecto, incluyendo:
-    *   Descripción del problema y solución.
-    *   Proceso de innovación.
-    *   Evidencia principal (video o imagen).
-    *   Evidencia secundaria.
-    *   Gráfico Radar interactivo (Chart.js) con puntuaciones de evaluación.
-    *   Galería de imágenes con modal para ampliación.
-    *   Información del equipo con enlaces a certificados.
-    *   Tecnologías utilizadas con iconos.
-    *   Recursos adicionales.
-*   **Página de Certificado (`certificate.html`):** Muestra la información específica del certificado de un miembro (curso, insignia, nivel, habilidades, criterios), una imagen pre-renderizada del certificado y un enlace de descarga/impresión.
-*   **Gestión Centralizada:** Toda la información se maneja desde una única Google Sheet.
-*   **Automatización Parcial:** Script para generar el archivo JSON de datos.
-*   **Diseño Responsivo:** Adaptado a móviles, tablets y escritorio usando Tailwind CSS.
-*   **Despliegue Sencillo:** Listo para desplegar en GitHub Pages.
+    *   **Página Principal (`index.html`):**
+        *   Listado paginado de proyectos.
+        *   Filtros por título/estudiante, categoría, escolaridad (`schooling`), tecnología y **ODS**.
+        *   Cards de proyecto mostrando **chips ODS** distintivos, categoría, escolaridad, descripción, y **+4 miembros**.
+    *   **Página de Detalles del Proyecto (`project.html`):**
+        *   Vista completa del proyecto.
+        *   **Badges ODS** en la sección Hero.
+        *   Nueva sección "Objetivos de Desarrollo Sostenible" con **mosaico visual de ODS**.
+        *   **Sección de Evaluación Revisada:**
+            *   **Gráfico Gauge** mostrando calificación final del proyecto (1-10).
+            *   **Chips/Visualización** para los 5 criterios de la rúbrica (puntuación 1-3 cada uno).
+        *   Galería de imágenes con modal, información del equipo, tecnologías, recursos.
+    *   **Página de Certificado (`certificate.html`):**
+        *   Muestra información del miembro.
+        *   **Insignias y Niveles predefinidos** (`Code Explorer`, `Master`, etc.).
+        *   **Visualización de imagen PNG** asociada a la insignia/nivel.
+        *   Previsualización de certificado y enlace de descarga.
+    *   **Gestión Centralizada:** Google Sheet como fuente única.
+    *   **Automatización Parcial:** Script Apps Script (`generarJson.gs`) para validación y generación JSON (incluye cálculo de nota).
+    *   **Diseño Responsivo:** Mobile-first con Tailwind CSS.
+    *   **Despliegue Sencillo:** GitHub Pages.
 
-## 🔧 Tecnologías Utilizadas
+    ## 🔧 Tecnologías Utilizadas
 
-*   **Frontend:**
-    *   HTML5 Semántico
-    *   CSS3 (con [Tailwind CSS v3](https://tailwindcss.com/) vía CDN)
-    *   JavaScript Vanilla (ES6+)
-    *   [Chart.js v4+](https://www.chartjs.org/) (vía CDN) para gráficos radar.
-    *   [Font Awesome 6 Free](https://fontawesome.com/) (vía CDN) para iconos.
-    *   [Google Fonts](https://fonts.google.com/) (Saira Semi Condensed, Saira Condensed, Saira)
-*   **Gestión de Datos y Automatización:**
-    *   [Google Sheets](https://www.google.com/sheets/about/)
-    *   [Google Apps Script](https://developers.google.com/apps-script)
-*   **Despliegue:**
-    *   [GitHub Pages](https://pages.github.com/)
+    *   **Frontend:** HTML5, CSS3 (Tailwind CSS v3 CDN + `style.css`), JavaScript Vanilla (ES6+), Chart.js v4+ (CDN), Font Awesome 6 Free (CDN), Google Fonts (Saira family).
+    *   **Gestión de Datos y Automatización:** Google Sheets, Google Apps Script.
+    *   **Despliegue:** GitHub Pages.
 
-## 📁 Estructura del Proyecto
+    ## 📁 Estructura del Proyecto (v4.0)
 
-```
-.
-├── index.html              # Página principal (listado de proyectos)
-├── project.html            # Plantilla para detalles de proyecto
-├── certificate.html        # Plantilla para mostrar certificados
-├── css/
-│   └── style.css           # Estilos CSS personalizados y overrides
-├── js/
-│   ├── main.js             # Lógica para index.html (filtros, paginación, renderizado cards)
-│   ├── project.js          # Lógica para project.html (carga datos, gráfico, galería, modal)
-│   └── certificate.js      # Lógica para certificate.html (carga datos certificado)
-├── data/
-│   └── projects.json       # Archivo JSON con datos de proyectos (GENERADO POR SCRIPT)
-├── assets/
-│   └── img/
-│       ├── gnius_logo_placeholder.png # Reemplazar con el logo real
-│       ├── certificado.png     # Imagen base (o placeholder) para certificados
-│       └── [project-slug]/     # Carpetas por proyecto para sus imágenes
-│           ├── cover.jpg
-│           ├── gallery-01.jpg
-│           └── nombre-alumno-cert-preview.jpg
-│           └── nombre-alumno-cert-print.pdf
-│           └── ...
-└── README.md               # Este archivo
-└── (Archivos Google Apps Script - gestionados en Google Drive)
-    ├── generarJson.gs      # Script principal para convertir Sheets a JSON
-    └── Sidebar.html        # Interfaz HTML para el script en Sheets
-```
-
-## 🚀 Configuración Inicial
-
-1.  **Clonar Repositorio:** Clona este repositorio en tu máquina local.
-    ```bash
-    git clone [URL-DEL-REPOSITORIO]
-    cd [NOMBRE-DEL-REPOSITORIO]
     ```
-2.  **Google Sheet:**
-    *   Crea una nueva Hoja de Cálculo de Google.
-    *   Copia la estructura de encabezados definida (ver [Instrucciones Detalladas](#-gestión-de-datos-google-sheets)). Puedes usar el CSV de ejemplo proporcionado para empezar.
-    *   **Importante:** Sigue las instrucciones de formato detalladas para las columnas complejas (`teamMembers`, `technologies`, etc.).
-3.  **Google Apps Script:**
-    *   Dentro de tu Google Sheet, ve a `Extensiones` > `Apps Script`.
-    *   Copia el contenido de `generarJson.gs` y pégalo en el editor de scripts (reemplazando el contenido por defecto).
-    *   Crea un nuevo archivo HTML (`Archivo > Nuevo > Archivo HTML`) y nómbralo `Sidebar.html` (respetando mayúsculas/minúsculas).
-    *   Copia el contenido del `Sidebar.html` proporcionado y pégalo en este nuevo archivo.
-    *   Guarda ambos archivos en el editor de Apps Script.
-    *   Recarga tu Google Sheet. Debería aparecer un nuevo menú "Gnius Club Tools". La primera vez que uses "Generar JSON", te pedirá autorización para acceder a la hoja. Concédela.
-4.  **Assets:**
-    *   Reemplaza `assets/img/gnius_logo_placeholder.png` con el logo oficial de Gnius Club.
-    *   Coloca la imagen base del certificado (si usas una genérica) como `assets/img/certificado.png` o ajusta las rutas según tu necesidad.
-5.  **Pruebas Locales:** Para probar el sitio localmente, necesitas un servidor web simple debido a las solicitudes `fetch` al archivo JSON. Puedes usar:
-    *   La extensión "Live Server" en VS Code.
-    *   Python: `python -m http.server` (Python 3) en la raíz del proyecto.
-    *   Node.js: `npx serve`
+    .
+    ├── index.html
+    ├── project.html
+    ├── certificate.html
+    ├── css/
+    │   └── style.css
+    ├── js/
+    │   ├── main.js
+    │   ├── project.js
+    │   ├── certificate.js
+    │   └── ods-data.js         # NUEVO: Mapeo de datos ODS
+    ├── data/
+    │   ├── projects.json       # GENERADO: Datos principales
+    │   └── projectsLoremPicsum.json # GENERADO: Con placeholders Lorem Picsum
+    ├── assets/
+    │   ├── img/
+    │   │   ├── gnius_logo_placeholder.png
+    │   │   ├── ods/            # NUEVO: Logos ODS (ods-1.png ... ods-17.png)
+    │   │   ├── badges/         # NUEVO: Imágenes Insignias (code-explorer.png ...)
+    │   │   ├── levels/         # NUEVO: Imágenes Niveles (rookie.png ...)
+    │   │   └── [project-slug]/ # Carpetas por proyecto
+    │   │       ├── cover.jpg
+    │   │       ├── gallery-01.jpg
+    │   │       └── [nombre-alumno]-cert-preview.jpg
+    │   │       └── [nombre-alumno]-cert-print.pdf
+    │   │       └── ...
+    │   └── docs/               # (Opcional, para PDFs de recursos)
+    ├── Google sheets/          # NUEVO/ACTUALIZADO: Documentación y ejemplos
+    │   ├── estructura tabla.csv
+    │   ├── datos inventados usando lorem picsum.csv
+    │   ├── generarJson.gs
+    │   ├── Sidebar.html
+    │   ├── Instrucciones de llenado tabla google sheets.md
+    │   ├── Instrucciones del uso del script de google sheets.md
+    │   └── Instrucciones para asistente IA sobre el llenado de tabla.md
+    └── README.md               # Este archivo
+    ```
 
-## 🛠️ Uso y Flujo de Trabajo para Actualizar Contenido
+    ## 🚀 Configuración Inicial
 
-Este es el proceso **esencial** para añadir o modificar proyectos:
+    1.  **Clonar Repositorio.**
+    2.  **Google Sheet:**
+        *   Crea una Hoja de Cálculo.
+        *   Copia los **nuevos encabezados** de `Google sheets/estructura tabla.csv`.
+        *   **MUY IMPORTANTE:** Sigue las **nuevas** [Instrucciones de Llenado](Google%20sheets/Instrucciones%20de%20llenado%20tabla%20google%20sheets.md), especialmente para `teamMembers`, `technologies`, `sdgIds` y los campos `rubric*`.
+    3.  **Google Apps Script:**
+        *   Abre `Extensiones > Apps Script` en tu Sheet.
+        *   Copia el contenido de `Google sheets/generarJson.gs` al editor (reemplazando `Código.gs`).
+        *   Crea un archivo HTML (`Archivo > Nuevo > Archivo HTML`), nómbralo `Sidebar.html` y copia el contenido de `Google sheets/Sidebar.html`.
+        *   Guarda ambos. Recarga la Sheet. Autoriza el script la primera vez que uses `Gnius Club Tools > Generar JSON`.
+    4.  **Assets:**
+        *   Reemplaza `assets/img/gnius_logo_placeholder.png` con el logo real.
+        *   **IMPORTANTE:** Asegúrate de tener las imágenes PNG para los 17 ODS, 12 Insignias y 3 Niveles en las carpetas `assets/img/ods/`, `assets/img/badges/`, `assets/img/levels/` con los nombres de archivo correctos (ej. `ods-1.png`, `code-explorer.png`, `rookie.png`).
+    5.  **Pruebas Locales:** Usa "Live Server" (VS Code), `python -m http.server`, o `npx serve`.
 
-1.  **📝 Editar Google Sheet:** Añade una nueva fila para un nuevo proyecto o modifica una existente. Rellena **todas** las columnas siguiendo estrictamente las **[Instrucciones Detalladas](#-gestión-de-datos-google-sheets)** (especialmente el formato `Prop1;Prop2 | ...` y el uso de comas dentro de Habilidades/Criterios).
-2.  **🖼️ Generar/Subir Imágenes:**
-    *   Prepara las imágenes necesarias: portada (`cover.jpg`), galería (`gallery-XX.jpg`), imagen/video principal (`media.jpg` si aplica).
-    *   **Certificados:** Genera los **dos** archivos de imagen/PDF (`*-cert-preview.jpg`, `*-cert-print.pdf`) para **cada** miembro que reciba certificado.
-    *   Crea la carpeta del proyecto en `assets/img/[slug-del-proyecto]/` (el slug es el título en minúsculas con guiones).
-    *   Sube **todas** estas imágenes a esa carpeta en tu copia local del repositorio.
-3.  **✍️ Actualizar Rutas en Sheets:** Vuelve a la Google Sheet y asegúrate de que las columnas `coverUrl_url`, `media_url` (si es imagen), `teamMembers` (rutas de certificados) y `imageGallery` contengan las **rutas relativas correctas** a los archivos que acabas de subir (ej: `assets/img/mi-proyecto-slug/cover.jpg`).
-4.  **⚙️ Generar JSON:** En la Google Sheet, ve a `Gnius Club Tools > Generar JSON`. El script validará formatos básicos. Si hay errores, corrígelos en la hoja y vuelve a generar.
-5.  **📋 Copiar JSON:** Copia **todo** el texto JSON que aparece en la barra lateral usando el botón "Copiar".
-6.  **🔄 Actualizar `data/projects.json`:** Abre el archivo `data/projects.json` en tu editor de código local. **Borra todo su contenido** y pega el JSON que copiaste. Guarda el archivo.
-7.  **⬆️ Commit & Push:** Usa Git para confirmar (`commit`) todos los cambios (el `projects.json` modificado y las **nuevas imágenes** añadidas en `assets/img/`) y súbelos (`push`) a tu repositorio en GitHub.
-8.  **🌐 Despliegue:** GitHub Pages detectará los cambios y actualizará el sitio web automáticamente en unos minutos.
+    ## 🛠️ Uso y Flujo de Trabajo para Actualizar Contenido (v4.0)
 
-## 📊 Gestión de Datos (Google Sheets)
+    1.  **📝 Editar Google Sheet:** Añade/modifica una fila siguiendo las **nuevas instrucciones**. Rellena los IDs de ODS (`sdgIds`) y las 5 columnas de rúbrica (`rubric*` con valores 1, 2 o 3). Asegúrate de usar los valores predefinidos para Insignia/Nivel en `teamMembers`.
+    2.  **🖼️ Preparar/Subir Imágenes:**
+        *   Prepara imágenes de portada, galería, media.
+        *   Genera las **dos** imágenes de certificado (`*-cert-preview.jpg`, `*-cert-print.pdf/.jpg`) para cada miembro.
+        *   Crea la carpeta `assets/img/[slug-del-proyecto]/`.
+        *   Sube **TODAS** las imágenes del proyecto (cover, gallery, media, certificados) a esa carpeta en tu repositorio local.
+        *   (Las imágenes de ODS/Insignias/Niveles ya deberían estar en sus carpetas raíz).
+    3.  **✍️ Actualizar Rutas/IDs en Sheets:** Verifica que `coverImageUrl`, `mediaUrl` (si imagen), `teamMembers` (rutas cert.) y `imageGallery` tengan las rutas relativas correctas. Asegúrate de que `sdgIds` tenga los números correctos.
+    4.  **⚙️ Generar JSON:** Usa `Gnius Club Tools > Generar JSON`. Revisa advertencias/errores en la barra lateral y corrige la hoja si es necesario.
+    5.  **📋 Copiar JSON:** Copia el JSON generado usando el botón.
+    6.  **🔄 Actualizar `data/projects.json`:** Reemplaza el contenido del archivo local con el JSON copiado y guarda.
+    7.  **⬆️ Commit & Push:** Confirma (`commit`) y sube (`push`) los cambios (`projects.json` y **nuevas imágenes** en `assets/img/[slug]/`) a GitHub.
+    8.  **🌐 Despliegue:** GitHub Pages se actualiza automáticamente.
 
-La clave de este sistema es la hoja de cálculo única.
+    ## 📊 Gestión de Datos (Google Sheets - v4.0)
 
-*   **Estructura:** La primera fila contiene los encabezados exactos que espera el script. Cada fila subsiguiente es un proyecto.
-*   **Formato Complejo:** Columnas como `teamMembers`, `technologies`, `additionalResources`, y `imageGallery` contienen múltiples piezas de información estructurada:
-    *   **Elementos separados por:** ` | ` (espacio, barra, espacio)
-    *   **Propiedades dentro de un elemento separadas por:** `;` (punto y coma, sin espacios)
-    *   **IMPORTANTE (Team Members):** Las listas internas de Habilidades y Criterios deben ir separadas por **coma (`,`)**.
-*   **Instrucciones Detalladas:** Consulta el documento de **Instrucciones para Llenar Google Sheets** proporcionado por separado para una descripción completa de cada columna, el orden exacto de las propiedades en los campos complejos y ejemplos detallados.
-*   **Asistente IA:** Usa el **Prompt para IA Asistente** proporcionado para ayudarte a formatear correctamente los datos para las celdas complejas si es necesario.
+    *   **Nuevos Encabezados:** Usa `camelCase` en inglés (ver `estructura tabla.csv`).
+    *   **`schooling`:** Reemplaza `studentLevel`. Valores: "Primaria", "Secundaria", "Preparatoria".
+    *   **`sdgIds`:** Lista de números (1-17) separados por coma.
+    *   **`rubric*`:** 5 columnas (`rubricInnovation`, `rubricCollaboration`, etc.) con valor 1, 2 o 3 cada una.
+    *   **`finalProjectGrade`:** **No se introduce manualmente.** El script la calcula (1-10) a partir de las 5 columnas `rubric*` y la guarda en el JSON.
+    *   **`teamMembers`:**
+        *   Formato `;` y `|` sin cambios, pero usa comas `,` para separar habilidades/criterios internos.
+        *   **Insignia (Propiedad 5):** Debe ser uno de los 12 valores predefinidos.
+        *   **Nivel (Propiedad 6):** Debe ser uno de los 3 valores predefinidos.
+    *   **Consulta las [Instrucciones de Llenado](Google%20sheets/Instrucciones%20de%20llenado%20tabla%20google%20sheets.md) detalladas y usa los [Prompts para IA](Google%20sheets/Instrucciones%20para%20asistente%20IA%20sobre%20el%20llenado%20tabla.md) si necesitas ayuda.**
 
-## 🤖 Google Apps Script (`generarJson.gs`)
+    ## 🤖 Google Apps Script (`generarJson.gs` - v4.0)
 
-*   **Función:** Lee la hoja activa, valida datos básicos, parsea campos complejos, genera slugs, estructura el JSON final.
-*   **Uso:** Se ejecuta desde el menú `Gnius Club Tools > Generar JSON` dentro de la hoja de cálculo. Muestra el resultado en una barra lateral para copiar.
-*   **Permisos:** Requiere autorización para acceder a la hoja de cálculo la primera vez que se ejecuta.
+    *   Adaptado a la nueva estructura de encabezados (`camelCase`).
+    *   Parsea `sdgIds`.
+    *   Lee las 5 puntuaciones `rubric*`.
+    *   **Calcula y añade `finalProjectGrade` (1-10) al JSON.**
+    *   Valida valores de `schooling`, `sdgIds`, `rubric*`, Insignias y Niveles.
+    *   Muestra resultado/validaciones en la barra lateral.
 
-## 🎨 Personalización (Opcional)
+    ## 🎨 Personalización y Desarrollo Frontend
 
-*   **Estilos Visuales:** Modifica `css/style.css` para ajustar colores, fuentes o añadir estilos personalizados. Puedes sobrescribir clases de Tailwind o añadir nuevas. Las variables de color están definidas al inicio del CSS.
-*   **Configuración Tailwind (CDN):** Puedes ajustar la configuración básica de Tailwind directamente en el `<script>` dentro del `<head>` de los archivos HTML, aunque se recomienda usar `style.css` para cambios mayores.
-*   **Comportamiento JS:** Modifica los archivos en la carpeta `js/` para cambiar la lógica de filtrado, paginación, renderizado, etc.
+    *   **Estilos:** Modifica `css/style.css`. Variables de color `--gnius-*` definidas al inicio.
+    *   **Lógica:** Adapta los archivos `js/main.js`, `js/project.js`, `js/certificate.js`.
+    *   **Datos ODS:** La información (título, color, imagen) de cada ODS se encuentra en `js/ods-data.js`.
 
-## 🚀 Despliegue en GitHub Pages
+    ## 🚀 Despliegue en GitHub Pages
 
-1.  Asegúrate de que tu repositorio esté en GitHub.
-2.  Ve a la configuración de tu repositorio (`Settings` > `Pages`).
-3.  En la sección "Build and deployment", bajo "Source", selecciona `Deploy from a branch`.
-4.  Elige la rama donde está tu código (normalmente `main` o `master`).
-5.  Selecciona la carpeta raíz (`/root`) como fuente.
-6.  Haz clic en `Save`.
-7.  GitHub construirá y desplegará tu sitio. La URL estará disponible en la misma sección de configuración de Pages (puede tardar unos minutos la primera vez).
+    (Sin cambios en el proceso)
 
-Cada vez que hagas `push` a la rama configurada, GitHub Pages actualizará el sitio automáticamente.
+    1.  Repositorio en GitHub.
+    2.  `Settings > Pages`.
+    3.  `Build and deployment` > Source: `Deploy from a branch`.
+    4.  Branch: `main` (o tu rama principal), Folder: `/root`.
+    5.  `Save`.
+    6.  La URL estará disponible allí. Pushes a la rama actualizan el sitio.
 
----
+    ---
 
-¡Esperamos que esta herramienta sea de gran utilidad para Gnius Club!
+    ¡Esperamos que esta versión actualizada sea aún más útil para Gnius Club!

@@ -1,7 +1,7 @@
-/* css/style.css - v4.9 (Estilos Completos - Correcciones Finales Index v3) */
+/* css/style.css - v4.11 (Estilos COMPLETOS - Iteración 2 Final Corregida v3) */
 
 /* 1. Import Google Fonts */
-@import url("https://fonts.googleapis.com/css2?family=Saira:wght@400;700&family=Saira+Condensed:wght@400;500;600;700&family=Saira+Semi+Condensed:wght@400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Saira:wght@400;700&family=Saira+Condensed:wght@400;500;600;700&family=Saira+Semi+Condensed:wght@400;500;600;700&display=swap");
 
 /* 2. Variables de Color */
 :root {
@@ -22,24 +22,23 @@
 body {
   background-color: var(--color-bg-base);
   color: var(--color-text-base);
-  font-family: "Saira Semi Condensed", sans-serif; /* Fuente UI Principal */
-  font-weight: 400; /* Peso Normal */
+  font-family: "Saira Semi Condensed", sans-serif;
+  font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-/* Pesos estándar */
 .font-normal {
   font-weight: 400 !important;
 }
 .font-medium {
   font-weight: 500 !important;
-} /* Saira Condensed tiene 500 */
+}
 .font-semibold {
   font-weight: 600 !important;
-} /* Saira Semi Condensed tiene 600 */
+}
 .font-bold {
   font-weight: 700 !important;
-} /* Ambas tienen 700 */
+}
 .font-condensed {
   font-family: "Saira Condensed", sans-serif;
 }
@@ -61,14 +60,16 @@ ul#resources-list li a:hover {
   color: var(--gnius-yellow);
 }
 
-/* Prose (Usa fuente body por defecto - Saira Semi Condensed 400) */
+/* Prose */
 .prose {
   color: var(--gnius-light);
+  font-family: inherit;
+  font-weight: inherit;
 }
 .prose strong,
 .prose b {
   font-weight: 700;
-} /* Bold usa 700 */
+}
 .prose code {
   background-color: var(--gnius-gray-dark);
   color: var(--gnius-yellow);
@@ -80,10 +81,10 @@ ul#resources-list li a:hover {
 
 /* 4. Componentes UI */
 
-/* Filtros (Forzar estilos) */
+/* Filtros */
 .filter-input {
   @apply block w-full border rounded px-3 py-2 text-gnius-light focus:outline-none focus:border-gnius-cyan focus:ring-1 focus:ring-gnius-cyan placeholder-gnius-gray-light text-base;
-  font-family: "Saira Semi Condensed", sans-serif !important; /* Asegurar fuente */
+  font-family: "Saira Semi Condensed", sans-serif !important;
   background-color: var(--gnius-gray-dark) !important;
   border-color: var(--gnius-gray-light) !important;
 }
@@ -98,10 +99,10 @@ select.filter-input {
   appearance: none;
 }
 
-/* Botones (Forzar estilos btn y btn-danger) */
+/* Botones */
 .btn {
   @apply inline-flex items-center justify-center px-5 py-2 border border-transparent text-base font-semibold rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gnius-dark-1 transition ease-in-out duration-150;
-  font-family: "Saira Semi Condensed", sans-serif !important; /* Asegurar fuente */
+  font-family: "Saira Semi Condensed", sans-serif !important;
 }
 .btn-primary {
   @apply bg-gnius-cyan text-gnius-dark-1 hover:bg-cyan-300 focus:ring-gnius-cyan;
@@ -109,11 +110,11 @@ select.filter-input {
 .btn-danger {
   background-color: var(--gnius-red) !important;
   color: white !important;
-  border-color: transparent !important; /* Asegurar que no haya borde por defecto */
-  padding: 0.5rem 1.25rem !important; /* Corresponde a py-2 px-5 de Tailwind */
-  border-radius: 0.375rem !important; /* Corresponde a rounded-md */
-  font-weight: 600 !important; /* Corresponde a font-semibold */
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important; /* Corresponde a shadow-sm */
+  border-color: transparent !important;
+  padding: 0.5rem 1.25rem !important;
+  border-radius: 0.375rem !important;
+  font-weight: 600 !important;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
   @apply hover:bg-red-700 focus:ring-gnius-red;
 }
 .btn-neutral {
@@ -123,24 +124,33 @@ select.filter-input {
   @apply opacity-50 cursor-not-allowed;
 }
 
-/* Botón Flotante Leyenda ODS (Más Visible) */
+/* Botón Flotante Leyenda ODS */
 .btn-float-legend {
-  @apply fixed bottom-5 left-5 z-40 flex items-center justify-center w-14 h-14 rounded-full shadow-lg transition-transform duration-200 ease-in-out;
-  background-color: var(--gnius-yellow); /* Fondo Amarillo */
-  color: var(--gnius-dark-1); /* Icono Oscuro */
-  border: 2px solid var(--gnius-dark-1); /* Borde oscuro */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); /* Sombra más pronunciada */
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 45;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: var(--gnius-yellow);
+  color: var(--gnius-dark-1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+  transition: transform 0.2s ease-in-out, background-color 0.2s;
+  border: none;
 }
 .btn-float-legend:hover {
   transform: scale(1.08);
   background-color: color-mix(in srgb, var(--gnius-yellow) 90%, white);
 }
 .btn-float-legend i {
-  font-size: 1.5rem; /* Icono más grande */
+  font-size: 1.75rem;
 }
 
 /* Leyenda ODS Modal */
-/* ... (Estilos modal-overlay, modal-content, scrollbar sin cambios v4.7) ... */
 .modal-overlay {
   opacity: 0;
   visibility: hidden;
@@ -164,83 +174,71 @@ select.filter-input {
 .modal-overlay.hidden {
   pointer-events: none;
 }
-#sdg-legend-modal-content {
+.legend-modal-body {
+  /* Clase añadida en HTML al div scrolleable */
   scrollbar-width: thin;
   scrollbar-color: var(--gnius-cyan) var(--gnius-gray-dark);
 }
-#sdg-legend-modal-content::-webkit-scrollbar {
+.legend-modal-body::-webkit-scrollbar {
   width: 8px;
 }
-#sdg-legend-modal-content::-webkit-scrollbar-track {
+.legend-modal-body::-webkit-scrollbar-track {
   background: var(--gnius-gray-dark);
   border-radius: 4px;
 }
-#sdg-legend-modal-content::-webkit-scrollbar-thumb {
+.legend-modal-body::-webkit-scrollbar-thumb {
   background-color: var(--gnius-cyan);
   border-radius: 4px;
   border: 2px solid var(--gnius-gray-dark);
 }
 
-/* Estilo Chip Leyenda ODS (Dentro del Modal) */
-.chip-sdg-legend {
-  display: inline-flex;
-  align-items: center;
-  border-radius: 9999px;
-  padding: 0.15rem 0.7rem 0.15rem 0.2rem;
-  margin: 0.1rem;
-  font-family: "Saira Condensed", sans-serif;
-  font-size: 0.875rem; /* 14px */
-  line-height: 1.3;
-  text-shadow: none;
-  overflow: hidden; /* white-space: nowrap; */ /* Permitir wrap */
-  border: 1.5px solid;
-  background-color: var(--gnius-dark-1);
-  color: var(--gnius-light);
-  transition: background-color 0.2s ease-in-out;
-  cursor: default;
-  max-width: 100%;
+/* Estilo Item Leyenda ODS (Formato Lista) */
+.sdg-legend-item {
+  /* Estilo para cada LI */
 }
-.chip-sdg-legend:hover {
-  background-color: var(--gnius-gray-dark);
-}
-.chip-sdg-legend-num {
+.sdg-legend-circle-list {
+  /* Círculo en la lista */
   display: inline-flex;
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  width: 1.6em;
-  height: 1.6em;
-  margin-right: 0.5rem;
+  width: 2em;
+  height: 2em;
+  margin-right: 0.6rem;
+  font-family: "Saira Condensed", sans-serif;
   font-weight: 700;
-  font-size: 0.9em;
+  font-size: 0.9rem;
   flex-shrink: 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
-.chip-sdg-legend-title {
-  font-weight: 600; /* SemiBold 14px */
-  white-space: normal;
-  line-height: 1.1;
+.sdg-legend-title-list {
+  /* Título en la lista */
+  font-family: "Saira Condensed", sans-serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  line-height: 1.2;
+  color: var(--gnius-light);
 }
 
 /* Círculo Indicador ODS (Para TARJETAS) */
 .sdg-overlay {
   /* Contenedor overlay en tarjeta */
-  @apply flex items-center space-x-1.5; /* Asegurar flex y espacio */
 }
 .sdg-overlay-label {
-  /* Etiqueta "ODS Cubiertos:" */
-  @apply text-gnius-light/80 text-[0.6rem] font-condensed font-semibold text-right uppercase tracking-wide;
-  white-space: nowrap; /* Evitar que la etiqueta se parta */
+  @apply text-gnius-light/80 text-[0.65rem] font-condensed font-medium uppercase tracking-wide mr-1;
+  white-space: nowrap;
 }
 .sdg-indicator-circle-small {
+  /* Círculo pequeño en tarjeta */
   display: inline-flex;
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  width: 1.4em;
-  height: 1.4em;
+  width: 1.8em; /* Más grande */
+  height: 1.8em;
   font-family: "Saira Condensed", sans-serif;
   font-weight: 700;
-  font-size: 0.7em;
+  font-size: 0.8em; /* Número más grande (~11px) */
   flex-shrink: 0;
   margin: 0 0.05rem;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
@@ -259,14 +257,14 @@ select.filter-input {
   text-align: center;
   white-space: nowrap;
   margin: 0.1rem;
-  font-family: "Saira Condensed", sans-serif; /* Fuente Condensed */
+  font-family: "Saira Condensed", sans-serif;
 }
 
 /* Chips Metadata Atenuados (Opción B.1 - Borde tenue) */
 .chip-metadata {
   padding: 0.15rem 0.6rem;
   font-size: 0.7rem;
-  font-weight: 500; /* Condensed Medium */
+  font-weight: 500;
   border-radius: 4px;
   background-color: var(--gnius-gray-dark);
   border: 1px solid;
@@ -280,7 +278,7 @@ select.filter-input {
   border-color: color-mix(in srgb, var(--gnius-red) 50%, transparent);
 }
 
-/* Chip Estudiante (Fuente Condensed) */
+/* Chip Estudiante (Fuente Condensed, Peso Medium) */
 .chip-gray {
   background-color: var(--gnius-gray-dark);
   color: var(--gnius-light);
@@ -289,14 +287,14 @@ select.filter-input {
 .student-chip {
   font-size: 0.7rem;
   padding: 0.2rem 0.5rem;
-  font-weight: 400; /* Condensed Normal */
+  font-weight: 500; /* Condensed Medium */
 }
 .student-chip i {
   margin-right: 0.25rem;
   color: rgba(240, 240, 240, 0.7);
 }
 
-/* CHIP TECNOLOGÍA (Fuente Condensed) */
+/* CHIP TECNOLOGÍA */
 .tech-chip-container {
   display: inline-flex;
   align-items: center;
@@ -367,6 +365,12 @@ select.filter-input {
   aspect-ratio: 16 / 9;
   transition: transform 0.2s ease-in-out;
   cursor: pointer;
+  overflow: hidden;
+  border-radius: 0.375rem;
+  background-color: var(--gnius-gray-dark);
+}
+.gallery-item img {
+  @apply w-full h-full object-cover;
 }
 .gallery-item:hover {
   transform: scale(1.03);
@@ -374,31 +378,35 @@ select.filter-input {
 #imageModal {
   /* Estilos overlay */
 }
-.modal-overlay {
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease-in-out, visibility 0s linear 0.3s;
-}
-#imageModal.visible {
-  opacity: 1;
-  visibility: visible;
-  transition: opacity 0.3s ease-in-out, visibility 0s linear 0s;
-}
 #modalCloseBtn {
   position: absolute;
   top: 0.5rem;
   right: 0.5rem;
   z-index: 60;
   line-height: 1;
+  @apply bg-gnius-red text-white rounded-full h-8 w-8 flex items-center justify-center text-xl font-bold hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-gnius-red focus:ring-offset-2 focus:ring-offset-gnius-dark-2;
 }
 #modalImage {
   display: block;
+  width: 100%;
+  height: auto;
+  max-height: calc(90vh - 80px);
+  object-fit: contain;
+  margin: auto;
 }
 #modalCaption {
-  scrollbar-width: thin;
-  scrollbar-color: var(--gnius-cyan) var(--gnius-gray-dark);
+  padding: 0.75rem 1rem;
+  text-align: center;
   font-family: "Saira Condensed", sans-serif;
   font-size: 0.9rem;
+  color: var(--gnius-light);
+  background-color: var(--gnius-dark-1);
+  border-top: 1px solid var(--gnius-gray-dark);
+  flex-shrink: 0;
+  max-height: 80px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--gnius-cyan) var(--gnius-gray-dark);
 }
 #modalCaption::-webkit-scrollbar {
   width: 8px;

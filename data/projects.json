@@ -1,1790 +1,224 @@
 [
   {
-    "projectTitle": "Sistema Inteligente de Monitoreo de Calidad del Aire Urbano",
-    "projectCategory": "IoT",
-    "studentLevel": "Preparatoria",
-    "intro_title": "Aire Limpio: Sensores Urbanos IoT",
-    "intro_content": "Desarrollo de una red de sensores de bajo costo (PM2.5, CO, O3) conectados vía LoRaWAN/WiFi (usando ESP32) para monitorear la calidad del aire en puntos clave de la ciudad y visualizar los datos en un mapa web.",
-    "problemDescription": "La contaminación del aire es un problema grave en zonas urbanas, pero los sistemas de monitoreo oficiales son costosos y tienen cobertura limitada, dificultando la toma de conciencia y acciones locales.",
-    "solutionProposed": "Una red distribuida de nodos sensores económicos basados en ESP32 y sensores específicos (PMS5003, MQ-7, MQ-131) que envían datos a una plataforma central (ej. ThingsBoard) para su almacenamiento, análisis y visualización en un mapa interactivo accesible al público.",
-    "innovationProcess": "<p><strong>Investigación Inicial:</strong> Se estudiaron los principales contaminantes urbanos (PM2.5, CO, O3) y se evaluaron diferentes <em>sensores de bajo costo</em> disponibles. Se analizaron protocolos IoT como MQTT y LoRaWAN para determinar la mejor opción de conectividad.</p><p><strong>Diseño del Hardware:</strong> Se seleccionó el ESP32 por su conectividad WiFi/Bluetooth integrada. Se diseñó un circuito simple para conectar los sensores: <ul><li>PMS5003 (PM2.5)</li><li>MQ-7 (CO)</li><li>MQ-131 (O3)</li></ul> Se modeló e imprimió en 3D una carcasa <em>resistente a la intemperie</em>.</p><p><strong>Desarrollo del Software:</strong> Se programó el firmware en C++ (Arduino IDE) para leer datos de los sensores, procesarlos mínimamente y enviarlos vía MQTT sobre WiFi a un broker. Se configuró una instancia de <em>ThingsBoard</em> como plataforma IoT para recibir, almacenar y visualizar los datos.</p><p><strong>Despliegue y Pruebas:</strong> Se ensamblaron 5 nodos prototipo. Se desplegaron en ubicaciones estratégicas (cerca de avenidas, parques). Se realizaron pruebas de conectividad y se hizo una <em>calibración básica</em> cruzando datos con estaciones oficiales cercanas.</p><p><strong>Visualización Final:</strong> Se creó un dashboard en ThingsBoard con gráficos históricos y un mapa web (usando widget de mapa) que muestra la ubicación de los sensores y su lectura más reciente mediante códigos de color.</p>",
-    "slug": "sistema-inteligente-de-monitoreo-de-calidad-del-aire-urbano",
-    "projectDate": "2025-02-15",
-    "coverUrl": {
-      "url": "https://picsum.photos/seed/aire-iot-cover/640/360",
-      "altText": "Sensor de calidad de aire con placa ESP32 mostrando lecturas en una pequeña pantalla OLED."
+    "projectTitle": "Robot Educativo Autónomo 'R.E.A.'",
+    "projectCategory": "Robótica Educativa",
+    "schooling": "Secundaria",
+    "projectDate": "2024-11-15",
+    "sdgIds": [4, 9],
+    "introTitle": "Conoce a R.E.A.: Tu Compañero Robótico de Aprendizaje",
+    "introContent": "R.E.A. es un prototipo de robot diseñado para asistir a estudiantes en el aprendizaje de conceptos básicos de programación y electrónica de una manera interactiva y divertida, fomentando el pensamiento lógico y la resolución de problemas.",
+    "coverImage": {
+      "url": "assets/img/robot-rea/cover.jpg",
+      "altText": "Robot R.E.A. blanco y azul sobre una mesa de trabajo, mostrando sus sensores frontales."
     },
+    "problemDescription": "Los métodos tradicionales de enseñanza de programación pueden ser abstractos y poco motivadores para algunos estudiantes de secundaria, generando una barrera inicial hacia las STEM.",
+    "solutionProposed": "Desarrollamos a R.E.A., un robot físico programable con una interfaz gráfica sencilla (basada en bloques) y sensores que interactúan con el entorno, haciendo el aprendizaje tangible y lúdico.",
+    "innovationProcess": "<p><strong>Investigación:</strong> Analizamos plataformas robóticas existentes (LEGO Mindstorms, mBot) y realizamos encuestas a estudiantes y profesores sobre sus necesidades y preferencias.</p><p><strong>Diseño:</strong> Prototipado rápido del chasis usando impresión 3D (Tinkercad) y selección de componentes electrónicos clave: Arduino UNO como cerebro, sensores de ultrasonido para detección de obstáculos y servomotores para movimiento.</p><p><strong>Desarrollo:</strong> Programación del firmware base en C++ (Arduino IDE) para control de motores y lectura de sensores. Desarrollo de una interfaz gráfica personalizada usando Blockly para permitir programación visual por bloques.</p><p><strong>Pruebas:</strong> Múltiples sesiones de prueba con un grupo piloto de estudiantes de 1er año de secundaria. Recopilamos feedback sobre la facilidad de uso, la robustez del robot y la efectividad de las actividades propuestas, iterando sobre el diseño y el software.</p>",
     "media": {
       "type": "video",
-      "url": "https://www.youtube.com/embed/Aeroq8M-pc8"
+      "url": "https://www.youtube.com/embed/8_pXTJ4sJvM"
     },
     "teamMembers": [
       {
-        "name": "Bruno Cortés",
-        "role": "Hardware / Sensores",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_BRUNO_C_1",
-        "certificate_courseName": "Redes de Sensores IoT",
-        "certificate_badgeName": "Especialista Sensores",
-        "certificate_level": "Avanzado",
-        "certificate_skills": "Electrónica,Sensores (PMS5003 MQ7 MQ131),Diseño PCB (básico),Impresión 3D",
-        "certificate_criteria": "Integración hardware,Calibración sensores,Diseño carcasa",
-        "certificate_college": "PrepaTec Ciudad Futuro",
-        "certificate_issueDate": "2025-02-09",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
+        "name": "Juan Pérez García",
+        "role": "Líder de Proyecto / Programador Firmware",
+        "sbtLink": "https://polygonscan.com/token/0xTOKEN_ADDRESS_EXAMPLE_JUAN",
+        "certificateCourseName": "Introducción a la Robótica con Arduino",
+        "certificateBadgeName": "Expert Roboteer",
+        "certificateLevel": "Master",
+        "certificateSkills": "Arduino (C++),Programación lógica,Resolución de problemas,Liderazgo de equipos,Diseño de circuitos básicos",
+        "certificateCriteria": "Funcionalidad del código,Eficiencia algoritmos,Integración Hardware-Software,Colaboración",
+        "certificateCollege": "Instituto Tecnológico Juvenil",
+        "certificateIssueDate": "2024-11-09",
+        "certificatePreviewUrl": "assets/img/robot-rea/juan-perez-cert-preview.jpg",
+        "certificatePrintUrl": "assets/img/robot-rea/juan-perez-cert-print.pdf"
       },
       {
-        "name": "Regina Duarte",
-        "role": "Backend / Plataforma IoT",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_REGINA_D_1",
-        "certificate_courseName": "Redes de Sensores IoT",
-        "certificate_badgeName": "Administradora Cloud IoT",
-        "certificate_level": "Intermedio",
-        "certificate_skills": "ThingsBoard,Node-RED (opcional),Bases Datos (TimeSeries),APIs",
-        "certificate_criteria": "Configuración plataforma,Flujo datos,Visualización dashboard",
-        "certificate_college": "PrepaTec Ciudad Futuro",
-        "certificate_issueDate": "2025-02-09",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Mateo Sandoval",
-        "role": "Frontend / Mapa Web",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_MATEO_S_1",
-        "certificate_courseName": "Desarrollo Web con APIs",
-        "certificate_badgeName": "Desarrollador Frontend GIS",
-        "certificate_level": "Intermedio",
-        "certificate_skills": "HTML,CSS,JavaScript,Leaflet.js,APIs REST",
-        "certificate_criteria": "Diseño interfaz mapa,Consumo API,Visualización datos geo",
-        "certificate_college": "PrepaTec Ciudad Futuro",
-        "certificate_issueDate": "2025-02-09",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Camila Ríos",
-        "role": "Análisis Datos / Documentación",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_CAMILA_R_1",
-        "certificate_courseName": "Introducción Data Science",
-        "certificate_badgeName": "Analista Datos Ambientales Jr",
-        "certificate_level": "Básico",
-        "certificate_skills": "Análisis exploratorio datos,Python (Pandas básico),Documentación técnica",
-        "certificate_criteria": "Interpretación datos,Calidad reportes",
-        "certificate_college": "PrepaTec Ciudad Futuro",
-        "certificate_issueDate": "2025-02-09",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
+        "name": "María López Fernández",
+        "role": "Diseñadora 3D / Encargada de Pruebas UX",
+        "certificateCourseName": "Introducción a la Robótica con Arduino",
+        "certificateBadgeName": "Design Architect",
+        "certificateLevel": "Master",
+        "certificateSkills": "Diseño 3D (Tinkercad),Metodologías de prueba de usuario,Comunicación efectiva,Empatía con el usuario,Documentación técnica",
+        "certificateCriteria": "Ergonomía del diseño,Facilidad de uso (interfaz),Recolección de feedback,Presentación de resultados",
+        "certificateCollege": "Instituto Tecnológico Juvenil",
+        "certificateIssueDate": "2024-11-09",
+        "certificatePreviewUrl": "assets/img/robot-rea/maria-lopez-cert-preview.jpg",
+        "certificatePrintUrl": "assets/img/robot-rea/maria-lopez-cert-print.pdf"
       }
     ],
     "technologies": [
       {
-        "name": "ESP32",
+        "name": "Arduino UNO",
         "icon": "fa-solid fa-microchip",
         "category": "Hardware"
       },
       {
-        "name": "LoRaWAN",
-        "icon": "fa-solid fa-tower-broadcast",
-        "category": "Hardware"
-      },
-      {
-        "name": "MQTT",
-        "icon": "fa-solid fa-network-wired",
-        "category": "Software"
-      },
-      {
-        "name": "Sensor PM2.5 (PMS5003)",
-        "icon": "fa-solid fa-smog",
-        "category": "Hardware"
-      },
-      {
-        "name": "ThingsBoard",
-        "icon": "fa-solid fa-server",
-        "category": "Software"
-      },
-      {
-        "name": "Leaflet.js",
-        "icon": "fa-solid fa-map-location-dot",
-        "category": "Software"
-      }
-    ],
-    "additionalResources": [
-      {
-        "title": "Dataset Calidad Aire CDMX (Ejemplo)",
-        "url": "https://datos.cdmx.gob.mx/dataset/calidad-del-aire",
-        "type": "link"
-      },
-      {
-        "title": "Documentación ThingsBoard",
-        "url": "https://thingsboard.io/docs/",
-        "type": "website"
-      },
-      {
-        "title": "Código Firmware Ejemplo",
-        "url": "https://github.com/gnius-examples/air-quality-iot",
-        "type": "github"
-      }
-    ],
-    "evaluationScores": {
-      "eval_Impacto Potencial": 100,
-      "eval_Creatividad Solucion": 100,
-      "eval_Innovacion Tecnica": 100,
-      "eval_Ejecucion Tecnica": 100,
-      "eval_Colaboracion Equipo": 100,
-      "eval_Sostenibilidad Diseño": 100
-    }
-  },
-  {
-    "projectTitle": "Videojuego Educativo 'Aventura Matemática' en Godot Engine",
-    "projectCategory": "Desarrollo de Juegos",
-    "studentLevel": "Secundaria",
-    "intro_title": "¡Resuelve y Avanza! Aventura Matemática 2D",
-    "intro_content": "Un videojuego de plataformas 2D creado con Godot Engine donde el jugador debe resolver problemas matemáticos (sumas, restas, multiplicaciones básicas) para superar obstáculos y avanzar niveles.",
-    "problemDescription": "La práctica de operaciones matemáticas básicas puede ser monótona. Integrarla en un formato de videojuego puede aumentar la motivación y el engagement.",
-    "solutionProposed": "Un juego de plataformas donde se presentan problemas matemáticos en momentos clave (abrir puertas, derrotar enemigos simples). El jugador introduce la respuesta para progresar. Incluye niveles con dificultad incremental.",
-    "innovationProcess": "<p><strong>Conceptualización y Diseño:</strong> Se definió la mecánica central: resolver operaciones matemáticas para avanzar. Se diseñó un personaje amigable y se esbozaron <em>3 niveles iniciales</em> con dificultad progresiva. Se determinó el tipo de operaciones (sumas, restas, multiplicaciones).</p><p><strong>Desarrollo de Arte:</strong> Se crearon los <em>sprites</em> para el personaje principal (correr, saltar, idle), enemigos básicos y elementos interactivos (puertas, monedas). Se diseñó un <em>tileset</em> modular para construir los escenarios de los niveles.</p><p><strong>Programación (GDScript):</strong><ol><li>Implementación del movimiento del jugador (plataformas 2D).</li><li>Creación de la escena base del nivel.</li><li>Desarrollo del sistema de generación de problemas matemáticos aleatorios según el nivel.</li><li>Programación de la interfaz para mostrar la pregunta e ingresar la respuesta.</li><li>Lógica para verificar respuestas y activar eventos (abrir puerta, etc.).</li></ol></p><p><strong>Integración y Pulido:</strong> Se ensamblaron los niveles usando el editor de Godot. Se añadieron efectos de sonido simples y música de fondo. Se realizaron pruebas internas para ajustar la dificultad y corregir bugs.</p>",
-    "slug": "videojuego-educativo-aventura-matematica-en-godot-engine",
-    "projectDate": "2024-11-25",
-    "coverUrl": {
-      "url": "https://picsum.photos/seed/godot-math-cover/640/360",
-      "altText": "Personaje de videojuego 2D saltando sobre plataformas en un escenario colorido."
-    },
-    "media": {
-      "type": "video",
-      "url": "https://www.youtube.com/embed/cUdfsfA6S4M"
-    },
-    "teamMembers": [
-      {
-        "name": "Leonardo Ávila",
-        "role": "Programador Godot / Líder",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_LEONARDO_A_2",
-        "certificate_courseName": "Desarrollo de Juegos con Godot",
-        "certificate_badgeName": "Maestro GDScript",
-        "certificate_level": "Intermedio",
-        "certificate_skills": "Godot Engine,GDScript,Lógica de juegos 2D,Diseño niveles (básico)",
-        "certificate_criteria": "Funcionalidad completa,Código organizado,Jugabilidad",
-        "certificate_college": "Instituto Turing Jr",
-        "certificate_issueDate": "2024-11-19",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Renata Vargas",
-        "role": "Artista 2D / Animadora",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_RENATA_V_2",
-        "certificate_courseName": "Arte Pixel y Animación 2D",
-        "certificate_badgeName": "Artista Pixel",
-        "certificate_level": "Intermedio",
-        "certificate_skills": "Pixel Art,Aseprite (o similar),Animación sprites 2D,Diseño Tilesets",
-        "certificate_criteria": "Calidad artística,Animaciones fluidas,Coherencia visual",
-        "certificate_college": "Instituto Turing Jr",
-        "certificate_issueDate": "2024-11-19",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Santiago Luna",
-        "role": "Diseñador Juego / Niveles",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_SANTIAGO_L_2",
-        "certificate_courseName": "Diseño de Videojuegos Educativos",
-        "certificate_badgeName": "Arquitecto Lúdico",
-        "certificate_level": "Básico",
-        "certificate_skills": "Diseño de juegos,Curva dificultad,Diseño niveles,Matemáticas (contenido)",
-        "certificate_criteria": "Originalidad mecánica,Progresión dificultad,Claridad retos",
-        "certificate_college": "Instituto Turing Jr",
-        "certificate_issueDate": "2024-11-19",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Camila Herrera",
-        "role": "Música y Sonido",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_CAMILA_H_2",
-        "certificate_courseName": "Producción Musical para Juegos",
-        "certificate_badgeName": "Compositora Gamer",
-        "certificate_level": "Básico",
-        "certificate_skills": "Composición musical (básica),Edición audio,SFX",
-        "certificate_criteria": "Calidad audio,Adecuación música/SFX",
-        "certificate_college": "Instituto Turing Jr",
-        "certificate_issueDate": "2024-11-19",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Mateo Navarro",
-        "role": "Tester / QA",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_MATEO_N_2",
-        "certificate_courseName": "Desarrollo de Juegos con Godot",
-        "certificate_badgeName": "Detective de Bugs",
-        "certificate_level": "Básico",
-        "certificate_skills": "Pruebas videojuegos,Reporte errores,Feedback jugabilidad",
-        "certificate_criteria": "Identificación bugs,Calidad feedback",
-        "certificate_college": "Instituto Turing Jr",
-        "certificate_issueDate": "2024-11-19",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
-      }
-    ],
-    "technologies": [
-      {
-        "name": "Godot Engine",
-        "icon": "fa-solid fa-robot",
-        "category": "Software"
-      },
-      {
-        "name": "GDScript",
+        "name": "C++ (Arduino)",
         "icon": "fa-solid fa-code",
         "category": "Software"
       },
       {
-        "name": "Pixel Art",
-        "icon": "fa-solid fa-palette",
-        "category": "Tool"
-      },
-      {
-        "name": "Aseprite",
-        "icon": "fa-solid fa-image",
+        "name": "Blockly",
+        "icon": "fa-solid fa-shapes",
         "category": "Software"
       },
+      { "name": "Tinkercad", "icon": "fa-solid fa-cube", "category": "Tool" },
       {
-        "name": "Diseño de Juegos",
-        "icon": "fa-solid fa-gamepad",
+        "name": "Sensor Ultrasonido HC-SR04",
+        "icon": "fa-solid fa-wave-square",
+        "category": "Hardware"
+      },
+      {
+        "name": "Impresión 3D",
+        "icon": "fa-solid fa-print",
         "category": "Tool"
       }
     ],
     "additionalResources": [
       {
-        "title": "Documentación Godot Engine",
-        "url": "https://docs.godotengine.org/en/stable/",
+        "title": "Código Fuente del Firmware",
+        "url": "https://github.com/gnius-club/robot-rea-example",
+        "type": "github"
+      },
+      {
+        "title": "Manual de Usuario (Borrador)",
+        "url": "assets/docs/rea-manual-draft.pdf",
+        "type": "pdf"
+      },
+      {
+        "title": "Blog de Desarrollo",
+        "url": "https://medium.com/@gniusclub/construyendo-rea-paso-a-paso-example",
         "type": "website"
-      },
-      {
-        "title": "Tutorial Plataformas 2D Godot",
-        "url": "https://docs.godotengine.org/en/stable/getting_started/first_2d_game/index.html",
-        "type": "link"
-      },
-      {
-        "title": "Demo Jugable (Itch.io)",
-        "url": "https://example-user.itch.io/aventura-matematica",
-        "type": "link"
       }
     ],
-    "evaluationScores": {
-      "eval_Impacto Potencial": 95,
-      "eval_Creatividad Solucion": 95,
-      "eval_Innovacion Tecnica": 95,
-      "eval_Ejecucion Tecnica": 95,
-      "eval_Colaboracion Equipo": 95,
-      "eval_Sostenibilidad Diseño": 95
-    }
+    "imageGallery": [
+      {
+        "url": "assets/img/robot-rea/gallery-01.jpg",
+        "altText": "Prototipo inicial de R.E.A. con cables visibles y placa Arduino expuesta.",
+        "caption": "Prototipo v0.1 - ¡Primeros pasos!"
+      },
+      {
+        "url": "assets/img/robot-rea/gallery-02.jpg",
+        "altText": "Estudiantes de secundaria interactuando con la interfaz de bloques de R.E.A. en una tablet.",
+        "caption": "Pruebas de Usabilidad con Grupo Piloto"
+      },
+      {
+        "url": "assets/img/robot-rea/gallery-03.jpg",
+        "altText": "Diagrama del circuito electrónico de R.E.A. dibujado en Fritzing.",
+        "caption": "Esquema Eléctrico Simplificado"
+      }
+    ],
+    "projectRubricScores": {
+      "innovation": 3,
+      "collaboration": 3,
+      "impact": 2,
+      "techuse": 3,
+      "presentation": 2
+    },
+    "finalProjectGrade": 9,
+    "slug": "robot-educativo-autonomo-rea"
   },
   {
-    "projectTitle": "Aplicación Web 'Recetario Comunitario' con Flask/Python",
+    "projectTitle": "Plataforma Web 'ConectaIdeas'",
     "projectCategory": "Desarrollo Web",
-    "studentLevel": "Secundaria",
-    "intro_title": "Sabores Compartidos: Recetario Web",
-    "intro_content": "Una aplicación web simple construida con Flask (Python) donde los usuarios pueden ver, añadir y buscar recetas de cocina compartidas por la comunidad.",
-    "problemDescription": "Buscar y compartir recetas online puede implicar navegar por sitios complejos o con mucha publicidad. Se busca una alternativa simple y colaborativa.",
-    "solutionProposed": "Una aplicación web básica con Flask que permite: listar recetas (con imagen, título), ver detalle de una receta (ingredientes, pasos), añadir nueva receta mediante un formulario. Usa una base de datos simple (SQLite o similar) para persistencia.",
-    "innovationProcess": "<p><strong>Diseño de Base de Datos:</strong> Se definió una tabla <em>simple</em> en SQLite para almacenar las recetas, incluyendo campos como: <ul><li>ID (autoincremental)</li><li>Título</li><li>Descripción Corta</li><li>Ingredientes (texto)</li><li>Instrucciones (texto)</li><li>URL Imagen (opcional)</li></ul></p><p><strong>Desarrollo Backend (Flask):</strong> Se crearon las rutas principales: <ul><li><code>/</code>: Mostrar todas las recetas.</li><li><code>/receta/<id></code>: Mostrar detalles de una receta.</li><li><code>/nueva</code>: Mostrar formulario y procesar envío (POST) para añadir receta.</li></ul> Se utilizó SQLAlchemy (ORM básico) para interactuar con la base de datos SQLite. Se implementó lógica para leer y escribir recetas.</p><p><strong>Desarrollo Frontend (Jinja2/HTML/CSS):</strong> Se crearon plantillas HTML usando Jinja2 para mostrar dinámicamente la lista y los detalles de las recetas. Se diseñó un formulario HTML para la carga de nuevas recetas. Se aplicó CSS básico (posiblemente con un framework como Bootstrap) para un diseño <em>limpio y funcional</em>.</p><p><strong>Pruebas y Despliegue:</strong> Se realizaron pruebas locales para asegurar que las rutas, la base de datos y los formularios funcionaran correctamente. Se desplegó la aplicación en una plataforma gratuita como PythonAnywhere o Render.</p>",
-    "slug": "aplicacion-web-recetario-comunitario-con-flaskzpython",
-    "projectDate": "2024-10-10",
-    "coverUrl": {
-      "url": "https://picsum.photos/seed/flask-recipe-cover/640/360",
-      "altText": "Captura de pantalla de la página principal mostrando tarjetas con fotos y nombres de recetas."
+    "schooling": "Preparatoria",
+    "projectDate": "2024-05-20",
+    "sdgIds": [8, 9, 17],
+    "introTitle": "ConectaIdeas: Donde Nacen las Colaboraciones Estudiantiles",
+    "introContent": "Una red social educativa diseñada para que estudiantes de preparatoria puedan compartir ideas de proyectos, buscar colaboradores con habilidades complementarias y llevar sus iniciativas al siguiente nivel.",
+    "coverImage": {
+      "url": "assets/img/conectaideas/cover.png",
+      "altText": "Captura de pantalla de la interfaz de ConectaIdeas mostrando perfiles de usuario y tarjetas de proyectos."
     },
+    "problemDescription": "Los estudiantes a menudo tienen ideas innovadoras pero carecen de un espacio centralizado para encontrar compañeros con diferentes talentos (programación, diseño, comunicación) y formar equipos efectivos.",
+    "solutionProposed": "Creamos 'ConectaIdeas', una plataforma web con perfiles de usuario que destacan habilidades e intereses, un muro para publicar ideas de proyectos buscando equipo, y un sistema de mensajería para facilitar la comunicación.",
+    "innovationProcess": "<p><strong>Definición:</strong> Mapeo de funcionalidades clave (registro, perfil, publicar idea, buscar proyectos/usuarios, mensajería). Brainstorming de UX.</p><p><strong>Diseño:</strong> Wireframes y prototipos interactivos en Figma. Diseño de la identidad visual.</p><p><strong>Desarrollo (Full-Stack):</strong> Frontend con React y Tailwind CSS para una interfaz moderna y responsiva. Backend con Node.js (Express) y base de datos NoSQL (MongoDB) para flexibilidad. Implementación de autenticación (JWT).</p><p><strong>Despliegue y Pruebas:</strong> Despliegue inicial en Vercel/Netlify. Pruebas funcionales y de usabilidad con compañeros.</p>",
     "media": {
       "type": "video",
-      "url": "https://www.youtube.com/embed/Z1RJmh_OqeA"
+      "url": "https://www.youtube.com/embed/N5WZNj1X3QM"
     },
     "teamMembers": [
       {
-        "name": "Isabella Castro",
-        "role": "Desarrolladora Backend (Flask)",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_ISABELLA_C_3",
-        "certificate_courseName": "Desarrollo Web con Python y Flask",
-        "certificate_badgeName": "Arquitecta Flask",
-        "certificate_level": "Intermedio",
-        "certificate_skills": "Python,Flask,SQLite,SQLAlchemy (opcional),HTML (Jinja2)",
-        "certificate_criteria": "Funcionalidad backend,Lógica aplicación,Manejo BD",
-        "certificate_college": "Secundaria Técnica #42",
-        "certificate_issueDate": "2024-10-04",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
+        "name": "Carlos Mendoza",
+        "role": "Desarrollador Full-Stack",
+        "certificateCourseName": "Desarrollo Web Moderno",
+        "certificateBadgeName": "App Maverick",
+        "certificateLevel": "Hacker",
+        "certificateSkills": "React,Node.js,MongoDB,JavaScript (ES6+),Git,API REST",
+        "certificateCriteria": "Calidad del código,Arquitectura de la aplicación,Funcionalidad completa,Resolución de bugs",
+        "certificateCollege": "Prepa Federal #1",
+        "certificateIssueDate": "2024-05-14",
+        "certificatePreviewUrl": "assets/img/conectaideas/carlos-mendoza-cert-preview.jpg",
+        "certificatePrintUrl": "assets/img/conectaideas/carlos-mendoza-cert-print.jpg"
       },
       {
-        "name": "Nicolás Pardo",
-        "role": "Desarrollador Frontend",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_NICOLAS_P_3",
-        "certificate_courseName": "Desarrollo Web con Python y Flask",
-        "certificate_badgeName": "Maquetador Web",
-        "certificate_level": "Intermedio",
-        "certificate_skills": "HTML,CSS,Jinja2,Bootstrap/Tailwind (básico)",
-        "certificate_criteria": "Diseño interfaz,Maquetación,Responsividad básica",
-        "certificate_college": "Secundaria Técnica #42",
-        "certificate_issueDate": "2024-10-04",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Valentina Jiménez",
-        "role": "Diseño UI/UX",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_VALENTINA_J_3",
-        "certificate_courseName": "Diseño de Interfaces Web",
-        "certificate_badgeName": "Diseñadora Experiencias Culinarias",
-        "certificate_level": "Básico",
-        "certificate_skills": "Diseño UI,Wireframing,Flujo usuario",
-        "certificate_criteria": "Usabilidad interfaz,Claridad diseño",
-        "certificate_college": "Secundaria Técnica #42",
-        "certificate_issueDate": "2024-10-04",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "David Romero",
-        "role": "Gestor de Contenido (Recetas)",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_DAVID_R_3",
-        "certificate_courseName": "Redacción y Contenido Digital",
-        "certificate_badgeName": "Chef Digital",
-        "certificate_level": "Básico",
-        "certificate_skills": "Redacción recetas,Fotografía básica (opcional),Organización contenido",
-        "certificate_criteria": "Calidad contenido,Formato recetas",
-        "certificate_college": "Secundaria Técnica #42",
-        "certificate_issueDate": "2024-10-04",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Ana Sofía Mora",
-        "role": "Tester",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_ANASOFIA_M_3",
-        "certificate_courseName": "Desarrollo Web con Python y Flask",
-        "certificate_badgeName": "Catadora de Código",
-        "certificate_level": "Básico",
-        "certificate_skills": "Pruebas funcionales,Reporte errores",
-        "certificate_criteria": "Identificación bugs",
-        "certificate_college": "Secundaria Técnica #42",
-        "certificate_issueDate": "2024-10-04",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
+        "name": "Laura Jiménez",
+        "role": "Diseñadora UI/UX",
+        "sbtLink": "https://polygonscan.com/token/0xTOKEN_ADDRESS_EXAMPLE_LAURA",
+        "certificateCourseName": "Diseño de Interfaces Digitales",
+        "certificateBadgeName": "Design Architect",
+        "certificateLevel": "Hacker",
+        "certificateSkills": "Figma,Prototipado interactivo,Diseño responsivo,User personas,Arquitectura de información",
+        "certificateCriteria": "Claridad de la interfaz,Consistencia visual,Navegación intuitiva,Aplicación de principios UX",
+        "certificateCollege": "Prepa Federal #1",
+        "certificateIssueDate": "2024-05-14",
+        "certificatePreviewUrl": "assets/img/conectaideas/laura-jimenez-cert-preview.jpg",
+        "certificatePrintUrl": "assets/img/conectaideas/laura-jimenez-cert-print.pdf"
       }
     ],
     "technologies": [
+      { "name": "React", "icon": "fa-brands fa-react", "category": "Software" },
       {
-        "name": "Python",
-        "icon": "fa-brands fa-python",
+        "name": "Node.js",
+        "icon": "fa-brands fa-node-js",
         "category": "Software"
       },
       {
-        "name": "Flask",
-        "icon": "fa-solid fa-network-wired",
-        "category": "Software"
-      },
-      {
-        "name": "SQLite",
+        "name": "MongoDB",
         "icon": "fa-solid fa-database",
         "category": "Software"
       },
       {
-        "name": "HTML",
-        "icon": "fa-brands fa-html5",
-        "category": "Software"
-      },
-      {
-        "name": "CSS",
-        "icon": "fa-solid fa-css3-alt",
-        "category": "Software"
-      },
-      {
-        "name": "Jinja2",
-        "icon": "fa-solid fa-code",
+        "name": "Tailwind CSS",
+        "icon": "fa-solid fa-wind",
         "category": "Tool"
-      }
+      },
+      { "name": "Figma", "icon": "fa-brands fa-figma", "category": "Tool" },
+      { "name": "Git", "icon": "fa-brands fa-git-alt", "category": "Tool" }
     ],
     "additionalResources": [
       {
-        "title": "Documentación Flask",
-        "url": "https://flask.palletsprojects.com/",
-        "type": "website"
-      },
-      {
-        "title": "Tutorial SQLAlchemy (Opcional)",
-        "url": "https://www.sqlalchemy.org/",
-        "type": "website"
-      },
-      {
-        "title": "Demo Aplicación",
-        "url": "https://recetario-flask-ejemplo.onrender.com",
-        "type": "link"
-      }
-    ],
-    "evaluationScores": {
-      "eval_Impacto Potencial": 85,
-      "eval_Creatividad Solucion": 85,
-      "eval_Innovacion Tecnica": 85,
-      "eval_Ejecucion Tecnica": 85,
-      "eval_Colaboracion Equipo": 85,
-      "eval_Sostenibilidad Diseño": 85
-    }
-  },
-  {
-    "projectTitle": "Sistema de Recomendación Musical Simple",
-    "projectCategory": "Data Science",
-    "studentLevel": "Preparatoria",
-    "intro_title": "Tu Próxima Canción Favorita: Recomendador Musical",
-    "intro_content": "Un script en Python que toma el historial de escucha de un usuario (simulado o real básico) y sugiere nuevas canciones basado en similitud de géneros o artistas (filtrado colaborativo/contenido simple).",
-    "problemDescription": "Descubrir nueva música alineada a los gustos personales puede ser un desafío ante la vasta oferta disponible.",
-    "solutionProposed": "Implementar un algoritmo simple de recomendación: (1) Basado en contenido: Recomendar canciones del mismo género/artista. (2) Colaborativo (muy simple): Encontrar usuarios 'similares' (que escucharon canciones en común) y recomendar canciones que ellos escucharon pero el usuario actual no.",
-    "innovationProcess": "<p><strong>Adquisición y Preparación de Datos:</strong> Se utilizó un <em>dataset público</em> (o se simularon datos) con información de usuario, canción y artista/género. Se realizó limpieza básica y se estructuraron los datos usando <em>Pandas</em> DataFrames.</p><p><strong>Implementación de Filtrado Basado en Contenido:</strong> Se creó una función que, dada una canción, encuentra otras canciones del <em>mismo género o artista</em> principal en el dataset y las devuelve como recomendaciones.</p><p><strong>Implementación de Filtrado Colaborativo Simple:</strong><ol><li>Se calculó una matriz de similitud entre usuarios basada en el índice de Jaccard (canciones en común).</li><li>Para un usuario dado, se encontraron los N usuarios más similares.</li><li>Se recomendaron canciones populares entre esos usuarios similares que el usuario actual <em>no había escuchado</em>.</li></ol></p><p><strong>Evaluación (Básica):</strong> Se realizaron pruebas cualitativas pidiendo a usuarios simulados evaluar la relevancia de las recomendaciones generadas por ambos métodos.</p>",
-    "slug": "sistema-de-recomendacion-musical-simple",
-    "projectDate": "2025-04-30",
-    "coverUrl": {
-      "url": "https://picsum.photos/seed/music-rec-cover/640/360",
-      "altText": "Visualización abstracta de conexiones entre artistas musicales."
-    },
-    "media": {
-      "type": "video",
-      "url": "https://www.youtube.com/embed/9gBC9N-mGSo"
-    },
-    "teamMembers": [
-      {
-        "name": "Daniela Fuentes",
-        "role": "Científica de Datos Jr",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_DANIELA_F_4",
-        "certificate_courseName": "Introducción a Sistemas de Recomendación",
-        "certificate_badgeName": "Recomendadora Algorítmica",
-        "certificate_level": "Intermedio",
-        "certificate_skills": "Python,Pandas,Scikit-learn (básico),Algoritmos recomendación (simple)",
-        "certificate_criteria": "Lógica algoritmo,Manejo datos,Precisión (evaluación básica)",
-        "certificate_college": "Prepa Gauss",
-        "certificate_issueDate": "2025-04-24",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Rodrigo Peña",
-        "role": "Ingeniero de Datos Jr",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_RODRIGO_P_4",
-        "certificate_courseName": "Introducción a Sistemas de Recomendación",
-        "certificate_badgeName": "Organizador de Datos",
-        "certificate_level": "Intermedio",
-        "certificate_skills": "Python,Pandas,Limpieza datos,Estructuración datos",
-        "certificate_criteria": "Calidad datos,Eficiencia procesamiento",
-        "certificate_college": "Prepa Gauss",
-        "certificate_issueDate": "2025-04-24",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Gabriela Núñez",
-        "role": "Investigadora Musical",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_GABRIELA_N_4",
-        "certificate_courseName": "Cultura Musical y Datos",
-        "certificate_badgeName": "Musicóloga Digital",
-        "certificate_level": "Básico",
-        "certificate_skills": "Géneros musicales,Metadatos musicales,Investigación",
-        "certificate_criteria": "Clasificación géneros,Riqueza metadatos",
-        "certificate_college": "Prepa Gauss",
-        "certificate_issueDate": "2025-04-24",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Adrián Solís",
-        "role": "Tester / Validador",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_ADRIAN_S_4",
-        "certificate_courseName": "Introducción a Sistemas de Recomendación",
-        "certificate_badgeName": "Evaluador de Recomendaciones",
-        "certificate_level": "Básico",
-        "certificate_skills": "Pruebas funcionales,Evaluación cualitativa",
-        "certificate_criteria": "Validación lógica,Feedback relevancia",
-        "certificate_college": "Prepa Gauss",
-        "certificate_issueDate": "2025-04-24",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
-      }
-    ],
-    "technologies": [
-      {
-        "name": "Python",
-        "icon": "fa-brands fa-python",
-        "category": "Software"
-      },
-      {
-        "name": "Pandas",
-        "icon": "fa-solid fa-table-list",
-        "category": "Software"
-      },
-      {
-        "name": "Scikit-learn",
-        "icon": "fa-solid fa-gear",
-        "category": "Software"
-      },
-      {
-        "name": "Filtrado Colaborativo",
-        "icon": "fa-solid fa-users",
-        "category": "Tool"
-      },
-      {
-        "name": "Filtrado Basado en Contenido",
-        "icon": "fa-solid fa-tags",
-        "category": "Tool"
-      }
-    ],
-    "additionalResources": [
-      {
-        "title": "Dataset Musical Ejemplo (Million Song Dataset subset)",
-        "url": "http://millionsongdataset.com/",
+        "title": "Prototipo Interactivo",
+        "url": "https://www.figma.com/proto/EXAMPLE_ID/ConectaIdeas?node-id=1%3A2",
         "type": "link"
       },
       {
-        "title": "Artículo sobre Recomendadores",
-        "url": "https://developers.google.com/machine-learning/recommendation",
-        "type": "link"
-      },
-      {
-        "title": "Código Ejemplo GitHub",
-        "url": "https://github.com/gnius-examples/music-recommender",
+        "title": "Repositorio Frontend",
+        "url": "https://github.com/gnius-club/conectaideas-frontend-example",
         "type": "github"
       }
     ],
-    "evaluationScores": {
-      "eval_Impacto Potencial": 70,
-      "eval_Creatividad Solucion": 70,
-      "eval_Innovacion Tecnica": 70,
-      "eval_Ejecucion Tecnica": 70,
-      "eval_Colaboracion Equipo": 70,
-      "eval_Sostenibilidad Diseño": 70
-    }
-  },
-  {
-    "projectTitle": "Brazo Robótico Controlado por Gestos (Leap Motion/Arduino)",
-    "projectCategory": "Robótica Avanzada",
-    "studentLevel": "Preparatoria",
-    "intro_title": "Control Intuitivo: Brazo Robótico por Gestos",
-    "intro_content": "Integración de un sensor Leap Motion para capturar gestos de la mano y controlar los movimientos de un brazo robótico simple (3-4 servos) conectado a un Arduino.",
-    "problemDescription": "Controlar un brazo robótico con joysticks o botones puede ser poco intuitivo para tareas complejas. El control por gestos ofrece una alternativa natural.",
-    "solutionProposed": "Capturar datos de posición y orientación de la mano/dedos desde Leap Motion SDK (usando Python o C#). Mapear estos datos a ángulos de los servomotores del brazo robótico. Enviar los comandos de ángulo al Arduino vía comunicación serial.",
-    "innovationProcess": "<p><strong>Configuración Inicial:</strong> Instalación del Leap Motion SDK y drivers. Ensamblaje del brazo robótico (kit o impresión 3D) con <em>4 servomotores</em> (base, hombro, codo, pinza).</p><p><strong>Lectura de Gestos (Python/C#):</strong> Se desarrolló un script en Python que utiliza el SDK de Leap Motion para: <ul><li>Obtener la posición de la palma de la mano.</li><li>Obtener la orientación (pitch, roll, yaw) de la mano.</li><li>Detectar el gesto de 'pinza' (distancia pulgar-índice).</li></ul></p><p><strong>Mapeo Gesto-Servo:</strong> Se definió una lógica de mapeo <em>directa pero limitada</em>: <ul><li>Posición X/Y de la mano -> Ángulos base/hombro.</li><li>Pitch de la mano -> Ángulo codo.</li><li>Gesto pinza -> Apertura/cierre pinza.</li></ul> Se aplicaron límites y escalado para convertir rangos de Leap Motion a rangos de servo (0-180 grados).</p><p><strong>Comunicación Serial:</strong> El script Python envía los ángulos calculados al Arduino a través del puerto serial en un formato simple (ej. <code><A1,A2,A3,A4></code>).</p><p><strong>Control Arduino:</strong> El código Arduino recibe la cadena serial, la parsea y usa la librería `Servo.h` para mover cada servomotor al ángulo correspondiente.</p><p><strong>Calibración y Pruebas:</strong> Se realizaron ajustes <em>iterativos</em> en el mapeo y los límites de los servos para lograr un movimiento más fluido y predecible, aunque la precisión fina fue un desafío.</p>",
-    "slug": "brazo-robotico-controlado-por-gestos-leap-motionzarduino",
-    "projectDate": "2025-07-15",
-    "coverUrl": {
-      "url": "https://picsum.photos/seed/leap-arm-cover/640/360",
-      "altText": "Mano interactuando con sensor Leap Motion mientras un brazo robótico replica el movimiento."
+    "imageGallery": [
+      {
+        "url": "assets/img/conectaideas/gallery-01.png",
+        "altText": "Wireframes de baja fidelidad de las pantallas principales de ConectaIdeas.",
+        "caption": "Wireframing Inicial"
+      },
+      {
+        "url": "assets/img/conectaideas/gallery-02.png",
+        "altText": "Modelo de datos diseñado para la base de datos MongoDB.",
+        "caption": "Esquema de la Base de Datos"
+      }
+    ],
+    "projectRubricScores": {
+      "innovation": 3,
+      "collaboration": 3,
+      "impact": 3,
+      "techuse": 2,
+      "presentation": 2
     },
-    "media": {
-      "type": "video",
-      "url": "https://www.youtube.com/embed/PFpKug_0TJE"
-    },
-    "teamMembers": [
-      {
-        "name": "Andrés Villa",
-        "role": "Líder / Programador Python/C#",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_ANDRES_VL_5",
-        "certificate_courseName": "Control Robótico Avanzado",
-        "certificate_badgeName": "Maestro de Gestos",
-        "certificate_level": "Avanzado",
-        "certificate_skills": "Python/C#,Leap Motion SDK,Comunicación Serial,Mapeo Datos",
-        "certificate_criteria": "Funcionalidad control,Precisión mapeo,Latencia baja",
-        "certificate_college": "CETI Colomos",
-        "certificate_issueDate": "2025-07-09",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Sofía Mendoza",
-        "role": "Programadora Arduino / Servos",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_SOFIA_M_5",
-        "certificate_courseName": "Control Robótico Avanzado",
-        "certificate_badgeName": "Ingeniera Servomotores",
-        "certificate_level": "Intermedio",
-        "certificate_skills": "Arduino (C++),Servomotores,Comunicación Serial (receptor)",
-        "certificate_criteria": "Control preciso servos,Comunicación fiable",
-        "certificate_college": "CETI Colomos",
-        "certificate_issueDate": "2025-07-09",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Diego Castillo",
-        "role": "Ensamblaje Brazo Robótico",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_DIEGO_C_5",
-        "certificate_courseName": "Mecatrónica Aplicada",
-        "certificate_badgeName": "Ensamblador Robótico",
-        "certificate_level": "Intermedio",
-        "certificate_skills": "Mecánica brazo robot,Ensamblaje,Conexiones servos",
-        "certificate_criteria": "Calidad ensamblaje,Movimiento fluido",
-        "certificate_college": "CETI Colomos",
-        "certificate_issueDate": "2025-07-09",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Fernanda Lara",
-        "role": "Pruebas / Calibración",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_FERNANDA_L_5",
-        "certificate_courseName": "Control Robótico Avanzado",
-        "certificate_badgeName": "Calibradora Kinemática",
-        "certificate_level": "Básico",
-        "certificate_skills": "Pruebas funcionales,Calibración,Ajuste mapeo",
-        "certificate_criteria": "Precisión movimiento,Reporte pruebas",
-        "certificate_college": "CETI Colomos",
-        "certificate_issueDate": "2025-07-09",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Ricardo Jiménez",
-        "role": "Documentación",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_RICARDO_J_5",
-        "certificate_courseName": "Control Robótico Avanzado",
-        "certificate_badgeName": "Documentador Robótico",
-        "certificate_level": "Básico",
-        "certificate_skills": "Documentación técnica",
-        "certificate_criteria": "Claridad explicación",
-        "certificate_college": "CETI Colomos",
-        "certificate_issueDate": "2025-07-09",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
-      }
-    ],
-    "technologies": [
-      {
-        "name": "Leap Motion",
-        "icon": "fa-solid fa-hand-pointer",
-        "category": "Hardware"
-      },
-      {
-        "name": "Arduino",
-        "icon": "fa-solid fa-microchip",
-        "category": "Hardware"
-      },
-      {
-        "name": "Servomotor",
-        "icon": "fa-solid fa-gear",
-        "category": "Hardware"
-      },
-      {
-        "name": "Python / C#",
-        "icon": "fa-solid fa-code",
-        "category": "Software"
-      },
-      {
-        "name": "Comunicación Serial",
-        "icon": "fa-solid fa-plug",
-        "category": "Tool"
-      }
-    ],
-    "additionalResources": [
-      {
-        "title": "Documentación Leap Motion SDK",
-        "url": "https://developer.leapmotion.com/documentation/",
-        "type": "website"
-      },
-      {
-        "title": "Brazo Robótico Ejemplo (Impresión 3D)",
-        "url": "https://www.thingiverse.com/thing:1454048",
-        "type": "link"
-      },
-      {
-        "title": "Código Ejemplo (GitHub)",
-        "url": "https://github.com/gnius-examples/leap-robot-arm",
-        "type": "github"
-      }
-    ],
-    "evaluationScores": {
-      "eval_Impacto Potencial": 92,
-      "eval_Creatividad Solucion": 85,
-      "eval_Innovacion Tecnica": 96,
-      "eval_Ejecucion Tecnica": 90,
-      "eval_Colaboracion Equipo": 94,
-      "eval_Sostenibilidad Diseño": 80
-    }
-  },
-  {
-    "projectTitle": "Generador de Poesía Asistido por IA (GPT/Markov)",
-    "projectCategory": "Inteligencia Artificial",
-    "studentLevel": "Preparatoria",
-    "intro_title": "Versos Digitales: Poesía con IA",
-    "intro_content": "Una herramienta simple (web o script) que utiliza modelos de lenguaje (como cadenas de Markov entrenadas o una API de GPT simple) para generar versos o poemas cortos a partir de una palabra clave o tema inicial.",
-    "problemDescription": "Explorar la creatividad computacional y cómo los modelos de lenguaje pueden ser usados para tareas artísticas como la generación de texto poético.",
-    "solutionProposed": "(1) Cadenas de Markov: Entrenar un modelo de Markov con un corpus de poesía existente y generar nuevo texto basado en probabilidades de transición. (2) API GPT: Usar una API (como OpenAI con un modelo pequeño/gratuito si es posible) con un prompt diseñado para generar poesía sobre un tema.",
-    "innovationProcess": "<p><strong>Enfoque Cadenas de Markov:</strong><ol><li><strong>Recopilación de Corpus:</strong> Se reunieron ~500 poemas de dominio público (ej. de Project Gutenberg) sobre naturaleza y amor.</li><li><strong>Preprocesamiento:</strong> Se limpió el texto (puntuación, mayúsculas) y se tokenizó.</li><li><strong>Entrenamiento Modelo Markov:</strong> Se implementó un modelo simple en Python para calcular las probabilidades de transición entre palabras (o bigramas).</li><li><strong>Generación:</strong> Se generaron secuencias de palabras a partir de una semilla, siguiendo las probabilidades aprendidas. Se añadió un filtro básico de longitud.</li></ol></p><p><strong>Enfoque API GPT (Exploratorio):</strong> Se experimentó con la API gratuita de un modelo pequeño. Se diseñaron <em>prompts específicos</em> como: 'Escribe un haiku sobre la lluvia en la ciudad' o 'Genera 4 versos melancólicos sobre el otoño'. Se analizó la <em>coherencia y creatividad</em> de las respuestas.</p><p><strong>Interfaz (Simple):</strong> Se creó una interfaz web básica (HTML/JS) donde el usuario podía elegir el método (Markov/API), ingresar una palabra clave (para Markov) o tema (para API) y ver el texto generado.</p>",
-    "slug": "generador-de-poesia-asistido-por-ia-gptzmarkov",
-    "projectDate": "2025-03-20",
-    "coverUrl": {
-      "url": "https://picsum.photos/seed/ai-poetry-cover/640/360",
-      "altText": "Texto de un poema corto generado por computadora sobre un fondo abstracto."
-    },
-    "media": {
-      "type": "video",
-      "url": "https://www.youtube.com/embed/MVgVzMpStMo"
-    },
-    "teamMembers": [
-      {
-        "name": "Isabella Navarro",
-        "role": "Desarrolladora IA (Python)",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_ISABELLA_N_6",
-        "certificate_courseName": "IA Generativa de Texto",
-        "certificate_badgeName": "Poeta Algorítmica",
-        "certificate_level": "Intermedio",
-        "certificate_skills": "Python,Cadenas Markov,APIs (GPT),Procesamiento Texto",
-        "certificate_criteria": "Lógica generación,Calidad texto generado,Manejo API",
-        "certificate_college": "Prepa #6 Coyoacán",
-        "certificate_issueDate": "2025-03-14",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Santiago Herrera",
-        "role": "Investigador / Corpus Poético",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_SANTIAGO_H_6",
-        "certificate_courseName": "Literatura y Tecnología",
-        "certificate_badgeName": "Archivista Lírico",
-        "certificate_level": "Intermedio",
-        "certificate_skills": "Literatura (Poesía),Creación Corpus,Análisis Texto",
-        "certificate_criteria": "Calidad corpus,Selección textos relevantes",
-        "certificate_college": "Prepa #6 Coyoacán",
-        "certificate_issueDate": "2025-03-14",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Regina Ponce",
-        "role": "Diseño de Interfaz / Prompting",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_REGINA_P_6",
-        "certificate_courseName": "Interacción Humano-Computadora",
-        "certificate_badgeName": "Diseñadora Prompts",
-        "certificate_level": "Básico",
-        "certificate_skills": "Diseño UI (simple),Prompt Engineering (básico),HTML/CSS (básico)",
-        "certificate_criteria": "Usabilidad interfaz,Efectividad prompts",
-        "certificate_college": "Prepa #6 Coyoacán",
-        "certificate_issueDate": "2025-03-14",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Mateo Castillo",
-        "role": "Evaluador / Editor",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_MATEO_C_6",
-        "certificate_courseName": "IA Generativa de Texto",
-        "certificate_badgeName": "Editor IA",
-        "certificate_level": "Básico",
-        "certificate_skills": "Evaluación cualitativa,Edición texto,Poética (básica)",
-        "certificate_criteria": "Feedback calidad,Sugerencias mejora",
-        "certificate_college": "Prepa #6 Coyoacán",
-        "certificate_issueDate": "2025-03-14",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Camila Segura",
-        "role": "Presentación",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_CAMILA_S_6",
-        "certificate_courseName": "IA Generativa de Texto",
-        "certificate_badgeName": "Divulgadora IA",
-        "certificate_level": "Básico",
-        "certificate_skills": "Presentación",
-        "certificate_criteria": "Claridad explicación",
-        "certificate_college": "Prepa #6 Coyoacán",
-        "certificate_issueDate": "2025-03-14",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
-      }
-    ],
-    "technologies": [
-      {
-        "name": "Python",
-        "icon": "fa-brands fa-python",
-        "category": "Software"
-      },
-      {
-        "name": "Cadenas de Markov",
-        "icon": "fa-solid fa-link",
-        "category": "Tool"
-      },
-      {
-        "name": "API GPT (OpenAI)",
-        "icon": "fa-solid fa-robot",
-        "category": "Software"
-      },
-      {
-        "name": "Procesamiento de Lenguaje Natural (PLN)",
-        "icon": "fa-solid fa-brain",
-        "category": "Tool"
-      },
-      {
-        "name": "Literatura",
-        "icon": "fa-solid fa-book",
-        "category": "Tool"
-      }
-    ],
-    "additionalResources": [
-      {
-        "title": "Tutorial Cadenas de Markov Python",
-        "url": "https://www.example.com/markov-python",
-        "type": "link"
-      },
-      {
-        "title": "Documentación API OpenAI",
-        "url": "https://platform.openai.com/docs",
-        "type": "website"
-      },
-      {
-        "title": "Herramienta Online (Ejemplo)",
-        "url": "https://poem-generator-example.netlify.app/",
-        "type": "link"
-      }
-    ],
-    "evaluationScores": {
-      "eval_Impacto Potencial": 75,
-      "eval_Creatividad Solucion": 96,
-      "eval_Innovacion Tecnica": 88,
-      "eval_Ejecucion Tecnica": 80,
-      "eval_Colaboracion Equipo": 90,
-      "eval_Sostenibilidad Diseño": 85
-    }
-  },
-  {
-    "projectTitle": "Realidad Aumentada Simple: Modelo 3D sobre Marcador (AR.js)",
-    "projectCategory": "Realidad Aumentada",
-    "studentLevel": "Secundaria",
-    "intro_title": "Magia Virtual: AR con Marcadores",
-    "intro_content": "Una página web simple que usa la cámara del dispositivo y la librería AR.js para detectar un marcador impreso y superponer un modelo 3D (ej. un átomo, un animal simple) sobre él.",
-    "problemDescription": "La Realidad Aumentada ofrece formas interactivas de visualizar información y modelos 3D en el mundo real, pero puede parecer compleja de implementar.",
-    "solutionProposed": "Utilizar AR.js (basado en A-Frame o Three.js) para crear una escena web AR. Definir un marcador personalizado (imagen). Cargar un modelo 3D (formato glTF/GLB). Asociar el modelo al marcador para que aparezca cuando la cámara lo detecte.",
-    "innovationProcess": "<p><strong>Configuración del Entorno:</strong> Se creó una estructura de proyecto HTML simple. Se incluyeron las librerías <em>A-Frame</em> y <em>AR.js</em> vía CDN. Se aseguró el permiso de cámara.</p><p><strong>Creación del Marcador:</strong> Se diseñó un marcador gráfico simple (un patrón con borde negro grueso) usando Inkscape y se generó el archivo <code>.patt</code> correspondiente usando el generador online de AR.js.</p><p><strong>Obtención del Modelo 3D:</strong> Se descargó un modelo 3D <em>gratuito y optimizado</em> de un átomo de carbono en formato <code>.glb</code> desde Sketchfab.</p><p><strong>Desarrollo de la Escena A-Frame:</strong> Se escribió el código HTML usando etiquetas A-Frame: <ul><li><code><a-scene></code> con el componente <code>arjs</code> embebido.</li><li><code><a-marker></code> referenciando el archivo <code>.patt</code> del marcador.</li><li><code><a-entity></code> dentro del marcador, con el componente <code>gltf-model</code> apuntando al archivo <code>.glb</code> del átomo, ajustando su <em>escala y posición</em> inicial.</li></ul></p><p><strong>Pruebas y Ajustes:</strong> Se probó la detección del marcador impreso con la cámara del móvil. Se ajustó la escala y posición del modelo 3D para que apareciera correctamente sobre el marcador.</p>",
-    "slug": "realidad-aumentada-simple-modelo-3d-sobre-marcador-arjs",
-    "projectDate": "2024-12-01",
-    "coverUrl": {
-      "url": "https://picsum.photos/seed/ar-marker-cover/640/360",
-      "altText": "Smartphone mostrando un modelo 3D de un átomo flotando sobre un marcador físico impreso."
-    },
-    "media": {
-      "type": "video",
-      "url": "https://www.youtube.com/embed/mARrfQlG3cc"
-    },
-    "teamMembers": [
-      {
-        "name": "Valeria Ríos",
-        "role": "Desarrolladora AR.js / A-Frame",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_VALERIA_RS_7",
-        "certificate_courseName": "Introducción a la Realidad Aumentada Web",
-        "certificate_badgeName": "Creadora AR Web",
-        "certificate_level": "Intermedio",
-        "certificate_skills": "AR.js,A-Frame,HTML,JavaScript (básico),Modelos 3D (uso)",
-        "certificate_criteria": "Funcionalidad AR,Detección marcador,Visualización modelo",
-        "certificate_college": "Instituto Da Vinci",
-        "certificate_issueDate": "2024-11-24",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Diego Luna",
-        "role": "Diseñador 3D / Marcador",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_DIEGO_L_7",
-        "certificate_courseName": "Modelado 3D Básico",
-        "certificate_badgeName": "Artista 3D Jr",
-        "certificate_level": "Básico",
-        "certificate_skills": "Modelado 3D (Blender/Tinkercad),Formato glTF/GLB,Diseño marcador AR",
-        "certificate_criteria": "Calidad modelo 3D,Diseño marcador efectivo",
-        "certificate_college": "Instituto Da Vinci",
-        "certificate_issueDate": "2024-11-24",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Camila Soto",
-        "role": "Contenido / Pruebas",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_CAMILA_ST_7",
-        "certificate_courseName": "Introducción a la Realidad Aumentada Web",
-        "certificate_badgeName": "Tester AR",
-        "certificate_level": "Básico",
-        "certificate_skills": "Pruebas funcionales AR,Documentación uso",
-        "certificate_criteria": "Reporte bugs,Claridad instrucciones",
-        "certificate_college": "Instituto Da Vinci",
-        "certificate_issueDate": "2024-11-24",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Mateo Ponce",
-        "role": "Asistente Técnico",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_MATEO_P_7",
-        "certificate_courseName": "Introducción a la Realidad Aumentada Web",
-        "certificate_badgeName": "Soporte AR",
-        "certificate_level": "Básico",
-        "certificate_skills": "HTML (básico),Resolución problemas básicos",
-        "certificate_criteria": "Apoyo técnico",
-        "certificate_college": "Instituto Da Vinci",
-        "certificate_issueDate": "2024-11-24",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Renata Flores",
-        "role": "Presentación",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_RENATA_F_7",
-        "certificate_courseName": "Introducción a la Realidad Aumentada Web",
-        "certificate_badgeName": "Comunicadora AR",
-        "certificate_level": "Básico",
-        "certificate_skills": "Presentación",
-        "certificate_criteria": "Claridad explicación",
-        "certificate_college": "Instituto Da Vinci",
-        "certificate_issueDate": "2024-11-24",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
-      }
-    ],
-    "technologies": [
-      {
-        "name": "AR.js",
-        "icon": "fa-solid fa-camera",
-        "category": "Software"
-      },
-      {
-        "name": "A-Frame",
-        "icon": "fa-solid fa-cubes",
-        "category": "Software"
-      },
-      {
-        "name": "Three.js",
-        "icon": "fa-solid fa-cube",
-        "category": "Software"
-      },
-      {
-        "name": "HTML",
-        "icon": "fa-brands fa-html5",
-        "category": "Software"
-      },
-      {
-        "name": "glTF/GLB",
-        "icon": "fa-solid fa-box-archive",
-        "category": "Tool"
-      }
-    ],
-    "additionalResources": [
-      {
-        "title": "Documentación AR.js",
-        "url": "https://ar-js-org.github.io/AR.js-Docs/",
-        "type": "website"
-      },
-      {
-        "title": "Documentación A-Frame",
-        "url": "https://aframe.io/docs/",
-        "type": "website"
-      },
-      {
-        "title": "Modelos 3D Gratuitos (Sketchfab)",
-        "url": "https://sketchfab.com/features/gltf",
-        "type": "link"
-      }
-    ],
-    "evaluationScores": {
-      "eval_Impacto Potencial": 80,
-      "eval_Creatividad Solucion": 88,
-      "eval_Innovacion Tecnica": 82,
-      "eval_Ejecucion Tecnica": 90,
-      "eval_Colaboracion Equipo": 95,
-      "eval_Sostenibilidad Diseño": 78
-    }
-  },
-  {
-    "projectTitle": "Analizador Simple de Sentimiento en Texto (Python/NLTK)",
-    "projectCategory": "Inteligencia Artificial",
-    "studentLevel": "Preparatoria",
-    "intro_title": "¿Positivo o Negativo? Análisis de Sentimiento",
-    "intro_content": "Un script en Python que utiliza NLTK o una librería similar (VADER, TextBlob) para analizar un texto corto (ej. un tweet, una reseña) y clasificar su sentimiento predominante (positivo, negativo, neutro).",
-    "problemDescription": "Comprender la opinión o emoción expresada en grandes volúmenes de texto puede ser útil para análisis social, de mercado, etc.",
-    "solutionProposed": "Usar una librería de PLN como NLTK con un lexicón de sentimientos (como VADER) o un clasificador pre-entrenado (TextBlob) para asignar una puntuación de polaridad a un texto de entrada y clasificarlo.",
-    "innovationProcess": "<p><strong>Configuración del Entorno:</strong> Instalación de Python y las librerías necesarias (NLTK, VADER-Sentiment o TextBlob). Descarga de recursos adicionales (ej. léxico VADER, corpus NLTK).</p><p><strong>Preprocesamiento de Texto:</strong> Se implementó una función simple para <em>limpiar</em> el texto de entrada: convertir a minúsculas, eliminar puntuación básica y quizás quitar stopwords (palabras comunes como 'el', 'la', 'y').</p><p><strong>Análisis con VADER (Enfoque Principal):</strong> Se utilizó la librería <em>VADER (Valence Aware Dictionary and sEntiment Reasoner)</em> por su facilidad de uso y buen rendimiento en textos cortos e informales. Se calculó el 'compound score' (puntuación compuesta) que VADER proporciona.</p><p><strong>Clasificación:</strong> Se definieron umbrales para el compound score: <ul><li>> 0.05: Positivo</li><li>< -0.05: Negativo</li><li>Entre -0.05 y 0.05: Neutro</li></ul></p><p><strong>Pruebas y Validación:</strong> Se creó un pequeño conjunto de textos de prueba (tweets, reseñas) etiquetados manualmente. Se comparó la clasificación del script con las etiquetas manuales para evaluar la <em>precisión</em> básica.</p>",
-    "slug": "analizador-simple-de-sentimiento-en-texto-pythonznltk",
-    "projectDate": "2025-01-10",
-    "coverUrl": {
-      "url": "https://picsum.photos/seed/sentiment-nltk-cover/640/360",
-      "altText": "Texto de ejemplo con etiquetas 'Positivo', 'Negativo', 'Neutro' indicando el sentimiento detectado."
-    },
-    "media": {
-      "type": "video",
-      "url": "https://www.youtube.com/embed/WFcVfczשרשר"
-    },
-    "teamMembers": [
-      {
-        "name": "Fernanda Peña",
-        "role": "Desarrolladora PLN (Python)",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_FERNANDA_P_9",
-        "certificate_courseName": "Procesamiento de Lenguaje Natural Básico",
-        "certificate_badgeName": "Lingüista Computacional Jr",
-        "certificate_level": "Intermedio",
-        "certificate_skills": "Python,NLTK,VADER/TextBlob,PLN (conceptos)",
-        "certificate_criteria": "Funcionalidad análisis,Precisión (evaluación simple),Manejo librerías",
-        "certificate_college": "Instituto Babbage",
-        "certificate_issueDate": "2025-01-04",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Ricardo Moreno",
-        "role": "Investigador / Datos Prueba",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_RICARDO_M_9",
-        "certificate_courseName": "Procesamiento de Lenguaje Natural Básico",
-        "certificate_badgeName": "Curador de Texto",
-        "certificate_level": "Básico",
-        "certificate_skills": "Recopilación texto,Clasificación manual (para prueba),Análisis lingüístico (básico)",
-        "certificate_criteria": "Calidad datos prueba,Variedad ejemplos",
-        "certificate_college": "Instituto Babbage",
-        "certificate_issueDate": "2025-01-04",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Camila Ortiz",
-        "role": "Tester / Validación",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_CAMILA_O_9",
-        "certificate_courseName": "Procesamiento de Lenguaje Natural Básico",
-        "certificate_badgeName": "Validadora Sentimientos",
-        "certificate_level": "Básico",
-        "certificate_skills": "Pruebas funcionales,Evaluación cualitativa",
-        "certificate_criteria": "Validación clasificación,Reporte errores",
-        "certificate_college": "Instituto Babbage",
-        "certificate_issueDate": "2025-01-04",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Diego Vidal",
-        "role": "Documentación",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_DIEGO_V_9",
-        "certificate_courseName": "Procesamiento de Lenguaje Natural Básico",
-        "certificate_badgeName": "Documentador PLN",
-        "certificate_level": "Básico",
-        "certificate_skills": "Documentación código,Explicación proceso",
-        "certificate_criteria": "Claridad documentación",
-        "certificate_college": "Instituto Babbage",
-        "certificate_issueDate": "2025-01-04",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
-      }
-    ],
-    "technologies": [
-      {
-        "name": "Python",
-        "icon": "fa-brands fa-python",
-        "category": "Software"
-      },
-      {
-        "name": "NLTK",
-        "icon": "fa-solid fa-book-open-reader",
-        "category": "Software"
-      },
-      {
-        "name": "VADER / TextBlob",
-        "icon": "fa-solid fa-comment-dots",
-        "category": "Software"
-      },
-      {
-        "name": "Análisis de Sentimiento",
-        "icon": "fa-solid fa-face-smile-beam",
-        "category": "Tool"
-      },
-      {
-        "name": "PLN",
-        "icon": "fa-solid fa-brain",
-        "category": "Tool"
-      }
-    ],
-    "additionalResources": [
-      {
-        "title": "Documentación NLTK",
-        "url": "https://www.nltk.org/",
-        "type": "website"
-      },
-      {
-        "title": "Librería VADER",
-        "url": "https://github.com/cjhutto/vaderSentiment",
-        "type": "github"
-      },
-      {
-        "title": "Librería TextBlob",
-        "url": "https://textblob.readthedocs.io/",
-        "type": "website"
-      }
-    ],
-    "evaluationScores": {
-      "eval_Impacto Potencial": 82,
-      "eval_Creatividad Solucion": 75,
-      "eval_Innovacion Tecnica": 88,
-      "eval_Ejecucion Tecnica": 85,
-      "eval_Colaboracion Equipo": 93,
-      "eval_Sostenibilidad Diseño": 78
-    }
-  },
-  {
-    "projectTitle": "Purificador de Agua Casero con Filtros Naturales",
-    "projectCategory": "Ciencia Aplicada",
-    "studentLevel": "Secundaria",
-    "intro_title": "Agua Limpia DIY: Filtro Natural",
-    "intro_content": "Construcción de un prototipo de filtro de agua utilizando capas de materiales naturales (arena, grava, carbón activado casero, algodón) para purificar agua turbia de forma básica.",
-    "problemDescription": "El acceso a agua potable es crucial. Entender los principios básicos de filtración mediante un experimento práctico fomenta la conciencia ambiental y científica.",
-    "solutionProposed": "Construir un filtro por capas en un recipiente (ej. botella cortada). Pasar agua turbia (con tierra) a través de él y observar cómo las capas retienen partículas y el carbón (si se usa) ayuda a eliminar olores/colores. Medir turbidez antes y después (cualitativamente).",
-    "innovationProcess": "<p><strong>Investigación y Diseño:</strong> Se investigaron diferentes diseños de filtros de agua caseros y las propiedades filtrantes de: <ul><li>Grava (filtración gruesa)</li><li>Arena gruesa</li><li>Arena fina (filtración fina)</li><li>Carbón activado (adsorción de olores/colores)</li><li>Algodón (última barrera)</li></ul> Se decidió usar una botella de plástico cortada como recipiente.</p><p><strong>Preparación de Materiales:</strong> Se recolectó arena y grava, se lavaron <em>repetidamente</em> para eliminar impurezas. Se preparó carbón activado casero mediante la <em>carbonización incompleta</em> de trozos de madera en un recipiente metálico cerrado.</p><p><strong>Construcción del Filtro:</strong> Se ensambló el filtro en la botella invertida, colocando las capas en orden inverso a la filtración (de abajo hacia arriba): algodón, carbón, arena fina, arena gruesa, grava.</p><p><strong>Experimentación:</strong><ol><li>Se preparó agua turbia mezclando tierra y agua.</li><li>Se vertió lentamente el agua turbia en la parte superior del filtro.</li><li>Se recolectó el agua filtrada en un recipiente limpio.</li><li>Se comparó <em>visualmente</em> la turbidez y el olor del agua antes y después de filtrar.</li><li>Se repitió el proceso varias veces, observando si la eficiencia cambiaba.</li></ol></p><p><strong>Análisis:</strong> Se documentaron las observaciones y se discutió la efectividad de cada capa del filtro.</p>",
-    "slug": "purificador-de-agua-casero-con-filtros-naturales",
-    "projectDate": "2024-09-20",
-    "coverUrl": {
-      "url": "https://picsum.photos/seed/water-filter-diy-cover/640/360",
-      "altText": "Botella de plástico cortada con capas visibles de grava, arena, carbón y algodón, con agua filtrada goteando abajo."
-    },
-    "media": {
-      "type": "video",
-      "url": "https://www.youtube.com/embed/4z4l8qo9w2I"
-    },
-    "teamMembers": [
-      {
-        "name": "Santiago Gil",
-        "role": "Constructor / Experimentador",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_SANTIAGO_G_10",
-        "certificate_courseName": "Ciencia Experimental",
-        "certificate_badgeName": "Científico Casero",
-        "certificate_level": "Básico",
-        "certificate_skills": "Método científico (básico),Construcción prototipos,Observación,Registro datos",
-        "certificate_criteria": "Funcionalidad filtro,Claridad proceso,Observación detallada",
-        "certificate_college": "Secundaria Marie Curie",
-        "certificate_issueDate": "2024-09-14",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Regina Lara",
-        "role": "Investigadora Materiales",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_REGINA_L_10",
-        "certificate_courseName": "Ciencia Experimental",
-        "certificate_badgeName": "Exploradora Materiales",
-        "certificate_level": "Básico",
-        "certificate_skills": "Investigación,Propiedades materiales,Química básica",
-        "certificate_criteria": "Selección materiales,Justificación elección",
-        "certificate_college": "Secundaria Marie Curie",
-        "certificate_issueDate": "2024-09-14",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Leonardo Reyes",
-        "role": "Documentación / Fotografía",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_LEONARDO_R_10",
-        "certificate_courseName": "Ciencia Experimental",
-        "certificate_badgeName": "Documentalista Científico",
-        "certificate_level": "Básico",
-        "certificate_skills": "Documentación proceso,Fotografía básica",
-        "certificate_criteria": "Registro visual claro,Explicación pasos",
-        "certificate_college": "Secundaria Marie Curie",
-        "certificate_issueDate": "2024-09-14",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Ximena Campos",
-        "role": "Análisis Resultados",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_XIMENA_C_10",
-        "certificate_courseName": "Ciencia Experimental",
-        "certificate_badgeName": "Analista Observacional",
-        "certificate_level": "Básico",
-        "certificate_skills": "Análisis cualitativo,Comparación antes/después",
-        "certificate_criteria": "Interpretación resultados",
-        "certificate_college": "Secundaria Marie Curie",
-        "certificate_issueDate": "2024-09-14",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Bruno Montes",
-        "role": "Preparación Carbón Activado",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_BRUNO_M_10",
-        "certificate_courseName": "Ciencia Experimental",
-        "certificate_badgeName": "Maestro Carbón",
-        "certificate_level": "Básico",
-        "certificate_skills": "Seguridad laboratorio (básica),Proceso químico (simple)",
-        "certificate_criteria": "Obtención carbón",
-        "certificate_college": "Secundaria Marie Curie",
-        "certificate_issueDate": "2024-09-14",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
-      }
-    ],
-    "technologies": [
-      {
-        "name": "Filtro de Agua",
-        "icon": "fa-solid fa-filter",
-        "category": "Tool"
-      },
-      {
-        "name": "Arena / Grava",
-        "icon": "fa-solid fa-mountain",
-        "category": "Tool"
-      },
-      {
-        "name": "Carbón Activado",
-        "icon": "fa-solid fa-fire",
-        "category": "Tool"
-      },
-      {
-        "name": "Método Científico",
-        "icon": "fa-solid fa-vial-virus",
-        "category": "Tool"
-      },
-      {
-        "name": "Observación",
-        "icon": "fa-solid fa-eye",
-        "category": "Tool"
-      }
-    ],
-    "additionalResources": [
-      {
-        "title": "Cómo Hacer Carbón Activado Casero (Instructable)",
-        "url": "https://www.instructables.com/How-To-Make-Your-Own-Activated-Charcoal/",
-        "type": "link"
-      },
-      {
-        "title": "Experimentos Filtración Agua",
-        "url": "https://www.sciencebuddies.org/science-fair-projects/project-ideas/EnvSci_p018/environmental-science/make-your-own-water-filter",
-        "type": "link"
-      }
-    ],
-    "evaluationScores": {
-      "eval_Impacto Potencial": 75,
-      "eval_Creatividad Solucion": 85,
-      "eval_Innovacion Tecnica": 60,
-      "eval_Ejecucion Tecnica": 70,
-      "eval_Colaboracion Equipo": 95,
-      "eval_Sostenibilidad Diseño": 90
-    }
-  },
-  {
-    "projectTitle": "Estudio de Biodiversidad Local con Trampas Fotográficas Caseras",
-    "projectCategory": "Biología y Tecnología",
-    "studentLevel": "Secundaria",
-    "intro_title": "Cámara Oculta: Espiando la Fauna Local",
-    "intro_content": "Construcción y despliegue de trampas fotográficas simples (usando Raspberry Pi Zero/Pico, cámara y sensor PIR) para capturar imágenes de la fauna nocturna o esquiva en un área verde local (parque, jardín escolar).",
-    "problemDescription": "Estudiar la biodiversidad local, especialmente animales nocturnos o tímidos, requiere métodos no invasivos. Las trampas fotográficas comerciales son caras.",
-    "solutionProposed": "Construir una cámara trampa con Raspberry Pi Zero W o Pico W, módulo de cámara Pi, sensor PIR y baterías. Programar un script Python para tomar una foto/video cuando el PIR detecte movimiento. Desplegar en un lugar seguro y analizar las imágenes capturadas.",
-    "innovationProcess": "<p><strong>Diseño y Ensamblaje:</strong> Se optó por Raspberry Pi Zero W por su bajo consumo. Se conectó el módulo de cámara v2 y un sensor PIR HC-SR501 a los pines GPIO. Se utilizó una <em>power bank USB</em> como fuente de alimentación. Todo se montó dentro de una caja de plástico <em>sellada</em> para protección básica.</p><p><strong>Configuración Software:</strong> Se instaló Raspberry Pi OS Lite. Se habilitó la interfaz de cámara y se instalaron las librerías <code>picamera</code> y <code>gpiozero</code> en Python.</p><p><strong>Programación Script (Python):</strong> Se escribió un script que: <ol><li>Inicializa el sensor PIR y la cámara.</li><li>Entra en un bucle esperando detección de movimiento del PIR.</li><li>Al detectar movimiento, captura una ráfaga de <em>3 fotos</em> con 1 segundo de intervalo.</li><li>Guarda las fotos con fecha y hora en el nombre del archivo.</li><li>Espera un tiempo (ej. 30 seg) antes de volver a activar el sensor para evitar capturas repetitivas.</li></ol></p><p><strong>Despliegue y Monitoreo:</strong> Se colocó la cámara trampa sujeta a un árbol en el jardín escolar, apuntando a una zona de paso potencial. Se dejó funcionando durante <em>3 noches</em>.</p><p><strong>Análisis de Resultados:</strong> Se descargaron las imágenes de la tarjeta SD. Se revisaron y clasificaron las fotos, identificando las especies capturadas (principalmente gatos, tlacuaches y algunos pájaros madrugadores). Se creó un informe con las observaciones.</p>",
-    "slug": "estudio-de-biodiversidad-local-con-trampas-fotograficas-caseras",
-    "projectDate": "2024-11-05",
-    "coverUrl": {
-      "url": "https://picsum.photos/seed/camera-trap-cover/640/360",
-      "altText": "Foto nocturna de un tlacuache capturado por una cámara trampa casera."
-    },
-    "media": {
-      "type": "video",
-      "url": "https://www.youtube.com/embed/kEMefxyStcQ"
-    },
-    "teamMembers": [
-      {
-        "name": "Andrés Navarro",
-        "role": "Desarrollador Python/RPi",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_ANDRES_N_11",
-        "certificate_courseName": "Tecnología para la Biodiversidad",
-        "certificate_badgeName": "Ingeniero Vida Silvestre Digital",
-        "certificate_level": "Intermedio",
-        "certificate_skills": "Python,Raspberry Pi,GPIO Zero,picamera,Linux (básico)",
-        "certificate_criteria": "Funcionalidad script,Captura imagen,Autonomía (batería)",
-        "certificate_college": "Club de Ciencias Naturales",
-        "certificate_issueDate": "2024-10-31",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Isabella Fuentes",
-        "role": "Bióloga / Identificación Especies",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_ISABELLA_F_11",
-        "certificate_courseName": "Biología de Campo",
-        "certificate_badgeName": "Naturalista Digital",
-        "certificate_level": "Intermedio",
-        "certificate_skills": "Biodiversidad local,Identificación fauna,Ecología básica",
-        "certificate_criteria": "Precisión identificación,Análisis datos biológicos",
-        "certificate_college": "Club de Ciencias Naturales",
-        "certificate_issueDate": "2024-10-31",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Jorge Durán",
-        "role": "Ensamblaje Hardware / Carcasa",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_JORGE_D_11",
-        "certificate_courseName": "Tecnología para la Biodiversidad",
-        "certificate_badgeName": "Constructor de Campo",
-        "certificate_level": "Básico",
-        "certificate_skills": "Ensamblaje electrónico,Diseño carcasa (simple),Protección intemperie",
-        "certificate_criteria": "Robustez dispositivo,Resistencia ambiental",
-        "certificate_college": "Club de Ciencias Naturales",
-        "certificate_issueDate": "2024-10-31",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Valentina Ponce",
-        "role": "Análisis Imágenes / Documentación",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_VALENTINA_P_11",
-        "certificate_courseName": "Tecnología para la Biodiversidad",
-        "certificate_badgeName": "Documentalista Biodiversidad",
-        "certificate_level": "Básico",
-        "certificate_skills": "Análisis imágenes,Clasificación datos,Documentación",
-        "certificate_criteria": "Organización fotos,Calidad documentación",
-        "certificate_college": "Club de Ciencias Naturales",
-        "certificate_issueDate": "2024-10-31",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
-      }
-    ],
-    "technologies": [
-      {
-        "name": "Raspberry Pi Zero/Pico",
-        "icon": "fa-brands fa-raspberry-pi",
-        "category": "Hardware"
-      },
-      {
-        "name": "Python",
-        "icon": "fa-brands fa-python",
-        "category": "Software"
-      },
-      {
-        "name": "Sensor PIR",
-        "icon": "fa-solid fa-person-rays",
-        "category": "Hardware"
-      },
-      {
-        "name": "Módulo Cámara Pi",
-        "icon": "fa-solid fa-camera",
-        "category": "Hardware"
-      },
-      {
-        "name": "GPIO Zero",
-        "icon": "fa-solid fa-plug",
-        "category": "Software"
-      }
-    ],
-    "additionalResources": [
-      {
-        "title": "Tutorial Cámara Trampa RPi",
-        "url": "https://projects.raspberrypi.org/en/projects/wildlife-camera-trap",
-        "type": "link"
-      },
-      {
-        "title": "Guía Fauna Local (Ejemplo)",
-        "url": "https://www.naturalista.mx/",
-        "type": "website"
-      }
-    ],
-    "evaluationScores": {
-      "eval_Impacto Potencial": 90,
-      "eval_Creatividad Solucion": 80,
-      "eval_Innovacion Tecnica": 85,
-      "eval_Ejecucion Tecnica": 88,
-      "eval_Colaboracion Equipo": 96,
-      "eval_Sostenibilidad Diseño": 82
-    }
-  },
-  {
-    "projectTitle": "Creación de Música Electrónica con Secuenciador Web (Tone.js)",
-    "projectCategory": "Música y Tecnología",
-    "studentLevel": "Preparatoria",
-    "intro_title": "Ritmos Digitales: Secuenciador Web",
-    "intro_content": "Desarrollo de un secuenciador de batería o melodía simple basado en web usando Tone.js y JavaScript, permitiendo al usuario crear patrones rítmicos o melódicos en el navegador.",
-    "problemDescription": "Explorar la síntesis de sonido y la creación musical algorítmica directamente en el navegador, haciéndolo accesible sin software especializado.",
-    "solutionProposed": "Crear una interfaz HTML con una cuadrícula (botones o divs). Usar Tone.js para generar sonidos de batería (sintetizados o samples) o notas de sintetizador. Programar la lógica del secuenciador en JavaScript para reproducir el patrón de la cuadrícula a un tempo determinado.",
-    "innovationProcess": "<p><strong>Configuración y Sonidos Base:</strong> Se incluyó Tone.js vía CDN. Se configuró un <em>Sampler</em> de Tone.js cargando samples de batería gratuitos (kick, snare, hi-hat). Se creó un sintetizador simple (<code>Tone.Synth</code>) para las melodías.</p><p><strong>Diseño de Interfaz (HTML/CSS):</strong> Se creó una cuadrícula HTML (ej. 8 columnas x 4 filas para batería). Se añadieron controles básicos: botón Play/Stop, slider de Tempo (BPM).</p><p><strong>Lógica del Secuenciador (JavaScript):</strong><ol><li>Se usó <code>Tone.Transport</code> para manejar el tiempo y el loop.</li><li>Se creó una función que se ejecuta en cada paso del loop (ej. cada 16ª nota).</li><li>Dentro de la función, se lee el estado de la cuadrícula (qué botones están activos) para la columna/paso actual.</li><li>Si un botón de instrumento está activo, se dispara el sonido correspondiente (<code>sampler.triggerAttackRelease</code> o <code>synth.triggerAttackRelease</code>) en ese momento del transporte.</li><li>Se añadió lógica para que los clics en la cuadrícula activen/desactiven los pasos.</li></ol></p><p><strong>Funcionalidades Adicionales:</strong> Se implementó el control de tempo modificando <code>Tone.Transport.bpm.value</code>. Se añadió una indicación visual del paso actual recorriendo la cuadrícula.</p>",
-    "slug": "creacion-de-musica-electronica-con-secuenciador-web-tonejs",
-    "projectDate": "2024-08-18",
-    "coverUrl": {
-      "url": "https://picsum.photos/seed/tonejs-seq-cover/640/360",
-      "altText": "Interfaz de secuenciador web con una cuadrícula para activar notas y controles de tempo."
-    },
-    "media": {
-      "type": "video",
-      "url": "https://www.youtube.com/embed/TGCRb9lKxIE"
-    },
-    "teamMembers": [
-      {
-        "name": "Mariana Vega",
-        "role": "Desarrolladora Web Audio (JS)",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_MARIANA_V_12",
-        "certificate_courseName": "Música Interactiva en la Web",
-        "certificate_badgeName": "Productora WebAudio",
-        "certificate_level": "Avanzado",
-        "certificate_skills": "JavaScript,Tone.js,Web Audio API (básico),HTML,CSS",
-        "certificate_criteria": "Funcionalidad secuenciador,Calidad sonido,Interfaz reactiva",
-        "certificate_college": "Academia de Código Sonoro",
-        "certificate_issueDate": "2024-08-13",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Luis Carlos Mora",
-        "role": "Diseñador Sonido / Samples",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_LUISCARLOS_M_12",
-        "certificate_courseName": "Música Interactiva en la Web",
-        "certificate_badgeName": "Diseñador Kits Batería",
-        "certificate_level": "Intermedio",
-        "certificate_skills": "Síntesis (básica),Edición Samples,Diseño Sonoro",
-        "certificate_criteria": "Calidad sonidos,Variedad kits",
-        "certificate_college": "Academia de Código Sonoro",
-        "certificate_issueDate": "2024-08-13",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Sofía Beltrán",
-        "role": "Diseñadora UI/UX",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_SOFIA_B_12",
-        "certificate_courseName": "Diseño de Interfaces Musicales",
-        "certificate_badgeName": "Diseñadora Ritmos Visuales",
-        "certificate_level": "Básico",
-        "certificate_skills": "Diseño UI,CSS,Experiencia Usuario (música)",
-        "certificate_criteria": "Usabilidad interfaz,Diseño claro",
-        "certificate_college": "Academia de Código Sonoro",
-        "certificate_issueDate": "2024-08-13",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Andrés Islas",
-        "role": "Tester / Compositor",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_ANDRES_I_12",
-        "certificate_courseName": "Música Interactiva en la Web",
-        "certificate_badgeName": "Explorador Rítmico",
-        "certificate_level": "Básico",
-        "certificate_skills": "Pruebas funcionales,Creación patrones,Feedback musical",
-        "certificate_criteria": "Reporte bugs,Creatividad patrones",
-        "certificate_college": "Academia de Código Sonoro",
-        "certificate_issueDate": "2024-08-13",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
-      }
-    ],
-    "technologies": [
-      {
-        "name": "JavaScript",
-        "icon": "fa-brands fa-js",
-        "category": "Software"
-      },
-      {
-        "name": "Tone.js",
-        "icon": "fa-solid fa-headphones",
-        "category": "Software"
-      },
-      {
-        "name": "Web Audio API",
-        "icon": "fa-solid fa-volume-high",
-        "category": "Software"
-      },
-      {
-        "name": "HTML",
-        "icon": "fa-brands fa-html5",
-        "category": "Software"
-      },
-      {
-        "name": "CSS",
-        "icon": "fa-solid fa-css3-alt",
-        "category": "Software"
-      }
-    ],
-    "additionalResources": [
-      {
-        "title": "Documentación Tone.js",
-        "url": "https://tonejs.github.io/docs/",
-        "type": "website"
-      },
-      {
-        "title": "Ejemplos Tone.js",
-        "url": "https://tonejs.github.io/examples",
-        "type": "link"
-      },
-      {
-        "title": "Demo Secuenciador",
-        "url": "https://web-sequencer-example.glitch.me/",
-        "type": "link"
-      }
-    ],
-    "evaluationScores": {
-      "eval_Impacto Potencial": 70,
-      "eval_Creatividad Solucion": 92,
-      "eval_Innovacion Tecnica": 86,
-      "eval_Ejecucion Tecnica": 88,
-      "eval_Colaboracion Equipo": 90,
-      "eval_Sostenibilidad Diseño": 80
-    }
-  },
-  {
-    "projectTitle": "Huerto Vertical Automatizado con Micro:bit",
-    "projectCategory": "IoT",
-    "studentLevel": "Secundaria",
-    "intro_title": "Cultivo Inteligente: Huerto Vertical",
-    "intro_content": "Diseño y construcción de un pequeño huerto vertical con sistema de riego por goteo automatizado y monitoreo de luz/humedad usando Micro:bit y sensores.",
-    "problemDescription": "Los huertos verticales son una solución para espacios reducidos, pero requieren monitoreo constante. La automatización simplifica su cuidado.",
-    "solutionProposed": "Construir estructura vertical. Instalar sistema de riego por goteo con bomba pequeña. Conectar sensor de humedad de suelo y sensor de luz al Micro:bit. Programar con MakeCode para regar automáticamente si la tierra está seca y (opcionalmente) encender luz LED si falta luz natural.",
-    "innovationProcess": "<p><strong>Diseño Estructural:</strong> Se diseñó una estructura simple de <em>3 niveles</em> usando tubos de PVC y conectores, apta para macetas pequeñas. Se planificó el recorrido del tubo de riego por goteo.</p><p><strong>Sistema de Riego:</strong> Se utilizó una pequeña bomba de agua sumergible (5V) conectada a un relé. El relé es controlado por un pin digital del Micro:bit. Se usó manguera fina y goteros ajustables.</p><p><strong>Sensores y Actuadores:</strong> <ul><li>Sensor de humedad del suelo (capacitivo) conectado a un pin analógico.</li><li>Sensor de luz (LDR en divisor de voltaje) conectado a otro pin analógico.</li><li>(Opcional) Tira de LEDs controlable conectada a un pin digital.</li></ul></p><p><strong>Programación (MakeCode):</strong> Se creó un programa con bloques que: <ol><li>Lee continuamente el valor del sensor de humedad.</li><li>Si el valor baja de un <em>umbral predefinido</em> (tierra seca), activa el pin del relé (enciende bomba) por un tiempo corto (ej. 10 segundos).</li><li>Lee el valor del sensor de luz.</li><li>Si el valor baja de otro umbral (poca luz), enciende los LEDs (opcional).</li><li>Muestra el estado (ej. 'Regando', 'Humedad OK') en la matriz LED del Micro:bit.</li></ol></p><p><strong>Montaje y Ajuste Final:</strong> Se ensambló todo, se colocaron las plantas y se ajustaron los umbrales de humedad y luz, y el tiempo de riego, observando las necesidades de las plantas durante varios días.</p>",
-    "slug": "huerto-vertical-automatizado-con-micro-bit",
-    "projectDate": "2025-04-12",
-    "coverUrl": {
-      "url": "https://picsum.photos/seed/vertical-garden-cover/640/360",
-      "altText": "Estructura de huerto vertical con plantas, tubos de riego y sensores conectados a un Micro:bit."
-    },
-    "media": {
-      "type": "video",
-      "url": "https://www.youtube.com/embed/u2z9SZWSI7M"
-    },
-    "teamMembers": [
-      {
-        "name": "Emiliano Prado",
-        "role": "Programador Micro:bit",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_EMILIANO_P_13",
-        "certificate_courseName": "Proyectos STEM con Micro:bit",
-        "certificate_badgeName": "Inventor Micro:bit",
-        "certificate_level": "Intermedio",
-        "certificate_skills": "Micro:bit,MakeCode,Sensores (humedad luz),Control bomba/LED",
-        "certificate_criteria": "Funcionalidad automatización,Lógica programa,Lectura correcta sensores",
-        "certificate_college": "Club de Robótica Escolar",
-        "certificate_issueDate": "2025-04-07",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Ximena Cortés",
-        "role": "Diseño / Construcción Huerto",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_XIMENA_CR_13",
-        "certificate_courseName": "Proyectos STEM con Micro:bit",
-        "certificate_badgeName": "Constructora Verde",
-        "certificate_level": "Intermedio",
-        "certificate_skills": "Diseño estructural,Construcción madera/PVC,Sistema riego",
-        "certificate_criteria": "Estabilidad estructura,Funcionamiento riego",
-        "certificate_college": "Club de Robótica Escolar",
-        "certificate_issueDate": "2025-04-07",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Leonardo Yañez",
-        "role": "Conexiones / Electrónica",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_LEONARDO_Y_13",
-        "certificate_courseName": "Proyectos STEM con Micro:bit",
-        "certificate_badgeName": "Electrónico Jr",
-        "certificate_level": "Básico",
-        "certificate_skills": "Conexiones Micro:bit,Sensores,Actuadores,Soldadura básica",
-        "certificate_criteria": "Conexiones correctas,Seguridad eléctrica (baja tensión)",
-        "certificate_college": "Club de Robótica Escolar",
-        "certificate_issueDate": "2025-04-07",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Regina Zepeda",
-        "role": "Cultivo / Monitoreo Plantas",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_REGINA_Z_13",
-        "certificate_courseName": "Introducción a la Horticultura",
-        "certificate_badgeName": "Cuidadora Plantas Tech",
-        "certificate_level": "Básico",
-        "certificate_skills": "Horticultura básica,Observación plantas,Registro crecimiento",
-        "certificate_criteria": "Salud plantas,Interpretación datos sensores",
-        "certificate_college": "Club de Robótica Escolar",
-        "certificate_issueDate": "2025-04-07",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Bruno Islas",
-        "role": "Documentación",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_BRUNO_I_13",
-        "certificate_courseName": "Proyectos STEM con Micro:bit",
-        "certificate_badgeName": "Cronista STEM",
-        "certificate_level": "Básico",
-        "certificate_skills": "Documentación,Fotografía proceso",
-        "certificate_criteria": "Claridad documentación",
-        "certificate_college": "Club de Robótica Escolar",
-        "certificate_issueDate": "2025-04-07",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
-      }
-    ],
-    "technologies": [
-      {
-        "name": "Micro:bit",
-        "icon": "fa-solid fa-robot",
-        "category": "Hardware"
-      },
-      {
-        "name": "MakeCode",
-        "icon": "fa-solid fa-puzzle-piece",
-        "category": "Software"
-      },
-      {
-        "name": "Sensor Humedad Suelo",
-        "icon": "fa-solid fa-droplet",
-        "category": "Hardware"
-      },
-      {
-        "name": "Sensor de Luz (LDR)",
-        "icon": "fa-solid fa-sun",
-        "category": "Hardware"
-      },
-      {
-        "name": "Bomba Agua Pequeña",
-        "icon": "fa-solid fa-faucet-drip",
-        "category": "Hardware"
-      },
-      {
-        "name": "Riego por Goteo",
-        "icon": "fa-solid fa-seedling",
-        "category": "Tool"
-      }
-    ],
-    "additionalResources": [
-      {
-        "title": "Guía Proyectos Micro:bit",
-        "url": "https://makecode.microbit.org/projects",
-        "type": "website"
-      },
-      {
-        "title": "Ideas Huertos Verticales",
-        "url": "https://www.pinterest.com/search/pins/?q=vertical%20garden%20diy",
-        "type": "link"
-      }
-    ],
-    "evaluationScores": {
-      "eval_Impacto Potencial": 88,
-      "eval_Creatividad Solucion": 82,
-      "eval_Innovacion Tecnica": 85,
-      "eval_Ejecucion Tecnica": 90,
-      "eval_Colaboracion Equipo": 97,
-      "eval_Sostenibilidad Diseño": 85
-    }
-  },
-  {
-    "projectTitle": "Mapa Interactivo de Puntos de Interés Histórico Local",
-    "projectCategory": "Desarrollo Web",
-    "studentLevel": "Secundaria",
-    "intro_title": "Historia en el Mapa: Recorrido Virtual",
-    "intro_content": "Una página web con un mapa interactivo (usando Leaflet.js) que muestra marcadores en puntos de interés histórico de la localidad. Al hacer clic en un marcador, aparece información (texto, imagen) sobre ese lugar.",
-    "problemDescription": "Conocer la historia local puede ser poco atractivo para los jóvenes. Un mapa interactivo ofrece una forma visual y exploratoria de descubrir el patrimonio cercano.",
-    "solutionProposed": "Crear una página HTML básica. Incluir Leaflet.js. Recopilar coordenadas GPS e información histórica de puntos locales. Programar en JavaScript para inicializar el mapa, añadir marcadores en las coordenadas correctas y configurar popups que muestren la información al hacer clic.",
-    "innovationProcess": "<p><strong>Recopilación de Datos:</strong> Se investigaron <em>10 puntos históricos</em> relevantes en la colonia/barrio. Se buscó información resumida (1-2 párrafos) y una imagen representativa para cada uno. Se obtuvieron las <em>coordenadas GPS</em> (latitud, longitud) usando Google Maps.</p><p><strong>Estructura de Datos:</strong> Se creó un array de objetos JavaScript (o un archivo JSON simple) para almacenar la información de cada punto: <code>{ nombre: '...', lat: ..., lon: ..., info: '...', imagenUrl: '...' }</code>.</p><p><strong>Configuración del Mapa (Leaflet.js):</strong> <ol><li>Se incluyó Leaflet CSS y JS en el HTML.</li><li>Se inicializó un mapa centrado en la localidad.</li><li>Se añadió una capa base de tiles (ej. OpenStreetMap).</li></ol></p><p><strong>Creación de Marcadores y Popups:</strong> Se iteró sobre el array de puntos de interés. Para cada punto: <ul><li>Se creó un <code>L.marker</code> en sus coordenadas.</li><li>Se usó <code>.bindPopup()</code> para asociarle un contenido HTML que incluye el nombre, la información y la imagen.</li><li>Se añadió el marcador al mapa.</li></ul></p><p><strong>Estilización y Mejoras:</strong> Se ajustó el zoom inicial del mapa. Se aplicó CSS básico para mejorar la apariencia de los popups. Se consideró usar <em>iconos personalizados</em> para los marcadores (opcional).</p>",
-    "slug": "mapa-interactivo-de-puntos-de-interes-historico-local",
-    "projectDate": "2024-05-19",
-    "coverUrl": {
-      "url": "https://picsum.photos/seed/historic-map-cover/640/360",
-      "altText": "Mapa web mostrando una ciudad con varios marcadores de puntos de interés."
-    },
-    "media": {
-      "type": "video",
-      "url": "https://www.youtube.com/embed/-SfiOSummer"
-    },
-    "teamMembers": [
-      {
-        "name": "Ismael Guzmán",
-        "role": "Desarrollador Web (Leaflet)",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_ISMAEL_G_14",
-        "certificate_courseName": "Mapas Web Interactivos",
-        "certificate_badgeName": "Cartógrafo Digital",
-        "certificate_level": "Intermedio",
-        "certificate_skills": "HTML,CSS,JavaScript,Leaflet.js,GeoJSON (opcional)",
-        "certificate_criteria": "Funcionalidad mapa,Interactividad marcadores,Visualización datos geo",
-        "certificate_college": "Taller de Historia Digital",
-        "certificate_issueDate": "2024-05-14",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Natalia Solís",
-        "role": "Investigadora Histórica",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_NATALIA_S_14",
-        "certificate_courseName": "Historia Local y Patrimonio",
-        "certificate_badgeName": "Historiadora Jr",
-        "certificate_level": "Intermedio",
-        "certificate_skills": "Investigación histórica,Redacción contenido,Obtención coordenadas",
-        "certificate_criteria": "Precisión histórica,Calidad contenido,Exactitud ubicación",
-        "certificate_college": "Taller de Historia Digital",
-        "certificate_issueDate": "2024-05-14",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Gerardo Bravo",
-        "role": "Diseñador UI/UX (Mapa)",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_GERARDO_B_14",
-        "certificate_courseName": "Mapas Web Interactivos",
-        "certificate_badgeName": "Diseñador Mapas",
-        "certificate_level": "Básico",
-        "certificate_skills": "Diseño interfaz mapa,CSS (estilos mapa/popup),Usabilidad",
-        "certificate_criteria": "Claridad mapa,Diseño popups",
-        "certificate_college": "Taller de Historia Digital",
-        "certificate_issueDate": "2024-05-14",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Adriana Mota",
-        "role": "Fotografía / Contenido Multimedia",
-        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_ADRIANA_M_14",
-        "certificate_courseName": "Fotografía y Narrativa Visual",
-        "certificate_badgeName": "Fotógrafa Patrimonial",
-        "certificate_level": "Básico",
-        "certificate_skills": "Fotografía,Edición imágenes",
-        "certificate_criteria": "Calidad imágenes,Relevancia visual",
-        "certificate_college": "Taller de Historia Digital",
-        "certificate_issueDate": "2024-05-14",
-        "certificate_previewUrl": "assets/img/certificado.png",
-        "certificate_printUrl": "assets/img/certificado.png"
-      }
-    ],
-    "technologies": [
-      {
-        "name": "Leaflet.js",
-        "icon": "fa-solid fa-map-location-dot",
-        "category": "Software"
-      },
-      {
-        "name": "JavaScript",
-        "icon": "fa-brands fa-js",
-        "category": "Software"
-      },
-      {
-        "name": "HTML",
-        "icon": "fa-brands fa-html5",
-        "category": "Software"
-      },
-      {
-        "name": "CSS",
-        "icon": "fa-solid fa-css3-alt",
-        "category": "Software"
-      },
-      {
-        "name": "Geocoding",
-        "icon": "fa-solid fa-location-crosshairs",
-        "category": "Tool"
-      }
-    ],
-    "additionalResources": [
-      {
-        "title": "Documentación Leaflet.js",
-        "url": "https://leafletjs.com/reference.html",
-        "type": "website"
-      },
-      {
-        "title": "Obtener Coordenadas (Google Maps)",
-        "url": "https://support.google.com/maps/answer/18539",
-        "type": "link"
-      },
-      {
-        "title": "Demo Mapa Histórico",
-        "url": "https://historic-map-example.glitch.me/",
-        "type": "link"
-      }
-    ],
-    "evaluationScores": {
-      "eval_Impacto Potencial": 85,
-      "eval_Creatividad Solucion": 88,
-      "eval_Innovacion Tecnica": 80,
-      "eval_Ejecucion Tecnica": 92,
-      "eval_Colaboracion Equipo": 94,
-      "eval_Sostenibilidad Diseño": 76
-    }
+    "finalProjectGrade": 9,
+    "slug": "plataforma-web-conectaideas"
   }
 ]

@@ -1,0 +1,1104 @@
+[
+  {
+    "projectTitle": "Sistema Inteligente de Monitoreo de Calidad del Aire Urbano",
+    "projectCategory": "IoT",
+    "schooling": "Preparatoria",
+    "projectDate": "2025-02-15",
+    "sdgIds": [7, 11, 13],
+    "introTitle": "Aire Limpio: Sensores Urbanos IoT",
+    "introContent": "Desarrollo de una red de sensores de bajo costo (PM2.5, CO, O3) conectados vía LoRaWAN/WiFi (usando ESP32) para monitorear la calidad del aire en puntos clave de la ciudad y visualizar los datos en un mapa web.",
+    "coverImage": {
+      "url": "https://picsum.photos/seed/aire-iot-cover/640/360",
+      "altText": "Sensor de calidad de aire con placa ESP32 mostrando lecturas en una pequeña pantalla OLED."
+    },
+    "problemDescription": "La contaminación del aire es un problema grave en zonas urbanas, pero los sistemas de monitoreo oficiales son costosos y tienen cobertura limitada, dificultando la toma de conciencia y acciones locales.",
+    "solutionProposed": "Una red distribuida de nodos sensores económicos basados en ESP32 y sensores específicos (PMS5003, MQ-7, MQ-131) que envían datos a una plataforma central (ej. ThingsBoard) para su almacenamiento, análisis y visualización en un mapa interactivo accesible al público.",
+    "innovationProcess": "<p><strong>Investigación:</strong> Tipos de contaminantes, sensores disponibles, protocolos de comunicación IoT (MQTT, LoRaWAN).</p><p><strong>Diseño Hardware:</strong> Selección de componentes, diseño de carcasa protectora impresa en 3D.</p><p><strong>Desarrollo Software:</strong> Programación firmware ESP32 (Arduino C++) para lectura de sensores y comunicación. Desarrollo backend (opcional) o configuración de plataforma IoT (ThingsBoard).</p><p><strong>Despliegue y Calibración:</strong> Instalación de nodos, pruebas de conectividad, calibración básica de sensores.</p><p><strong>Visualización:</strong> Creación de dashboard y mapa web.</p>",
+    "media": {
+      "type": "video",
+      "url": "https://www.youtube.com/embed/Aeroq8M-pc8"
+    },
+    "teamMembers": [
+      {
+        "name": "Valeria Montes",
+        "role": "Líder Proyecto / ESP32 Dev",
+        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_VALERIA_M_1",
+        "certificateCourseName": "Redes de Sensores IoT",
+        "certificateBadgeName": "Network Pioneer",
+        "certificateLevel": "Master",
+        "certificateSkills": "ESP32,C++,LoRaWAN,MQTT,Sensores Calidad Aire,ThingsBoard",
+        "certificateCriteria": "Diseño sistema,Programación embebida,Gestión datos IoT,Liderazgo;Funcionalidad red,Precisión datos,Escalabilidad",
+        "certificateCollege": "PrepaTec Ciudad Futuro",
+        "certificateIssueDate": "2025-02-09",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      },
+      {
+        "name": "Bruno Cortés",
+        "role": "Hardware / Sensores",
+        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_BRUNO_C_1",
+        "certificateCourseName": "Redes de Sensores IoT",
+        "certificateBadgeName": "Tech Voyager",
+        "certificateLevel": "Hacker",
+        "certificateSkills": "Electrónica,Sensores (PMS5003 MQ7 MQ131),Diseño PCB (básico),Impresión 3D",
+        "certificateCriteria": "Integración hardware,Calibración sensores,Diseño carcasa",
+        "certificateCollege": "PrepaTec Ciudad Futuro",
+        "certificateIssueDate": "2025-02-09",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      }
+    ],
+    "technologies": [
+      {
+        "name": "ESP32",
+        "icon": "fa-solid fa-microchip",
+        "category": "Hardware"
+      },
+      {
+        "name": "LoRaWAN",
+        "icon": "fa-solid fa-tower-broadcast",
+        "category": "Hardware"
+      },
+      {
+        "name": "MQTT",
+        "icon": "fa-solid fa-network-wired",
+        "category": "Software"
+      },
+      {
+        "name": "Sensor PM2.5 (PMS5003)",
+        "icon": "fa-solid fa-smog",
+        "category": "Hardware"
+      },
+      {
+        "name": "ThingsBoard",
+        "icon": "fa-solid fa-server",
+        "category": "Software"
+      },
+      {
+        "name": "Leaflet.js",
+        "icon": "fa-solid fa-map-location-dot",
+        "category": "Software"
+      }
+    ],
+    "additionalResources": [
+      {
+        "title": "Dataset Calidad Aire CDMX (Ejemplo)",
+        "url": "https://datos.cdmx.gob.mx/dataset/calidad-del-aire",
+        "type": "link"
+      },
+      {
+        "title": "Documentación ThingsBoard",
+        "url": "https://thingsboard.io/docs/",
+        "type": "website"
+      },
+      {
+        "title": "Código Firmware Ejemplo",
+        "url": "https://github.com/gnius-examples/air-quality-iot",
+        "type": "github"
+      }
+    ],
+    "imageGallery": [
+      {
+        "url": "https://picsum.photos/seed/aire-iot-gal1/800/450",
+        "altText": "Nodo sensor ensamblado dentro de su carcasa impresa en 3D.",
+        "caption": "Nodo Sensor Físico"
+      },
+      {
+        "url": "https://picsum.photos/seed/aire-iot-gal2/800/450",
+        "altText": "Dashboard en ThingsBoard mostrando gráficos de PM2.5 y CO.",
+        "caption": "Dashboard en la Nube"
+      },
+      {
+        "url": "https://picsum.photos/seed/aire-iot-gal3/800/450",
+        "altText": "Mapa web interactivo con puntos indicando la ubicación y estado de los sensores.",
+        "caption": "Visualización Geográfica"
+      }
+    ],
+    "projectRubricScores": {
+      "innovation": 3,
+      "collaboration": 3,
+      "impact": 3,
+      "techuse": 3,
+      "presentation": 3
+    },
+    "finalProjectGrade": 10,
+    "slug": "sistema-inteligente-de-monitoreo-de-calidad-del-aire-urbano"
+  },
+  {
+    "projectTitle": "Videojuego Educativo 'Aventura Matemática' en Godot Engine",
+    "projectCategory": "Desarrollo de Juegos",
+    "schooling": "Secundaria",
+    "projectDate": "2024-11-25",
+    "sdgIds": [4],
+    "introTitle": "¡Resuelve y Avanza! Aventura Matemática 2D",
+    "introContent": "Un videojuego de plataformas 2D creado con Godot Engine donde el jugador debe resolver problemas matemáticos (sumas, restas, multiplicaciones básicas) para superar obstáculos y avanzar niveles.",
+    "coverImage": {
+      "url": "https://picsum.photos/seed/godot-math-cover/640/360",
+      "altText": "Personaje de videojuego 2D saltando sobre plataformas en un escenario colorido."
+    },
+    "problemDescription": "La práctica de operaciones matemáticas básicas puede ser monótona. Integrarla en un formato de videojuego puede aumentar la motivación y el engagement.",
+    "solutionProposed": "Un juego de plataformas donde se presentan problemas matemáticos en momentos clave (abrir puertas, derrotar enemigos simples). El jugador introduce la respuesta para progresar. Incluye niveles con dificultad incremental.",
+    "innovationProcess": "<p><strong>Diseño:</strong> Concepto del juego, diseño de niveles, mecánicas matemáticas.</p><p><strong>Arte:</strong> Creación de sprites para personaje, enemigos, ítems y tilesets para escenarios.</p><p><strong>Desarrollo:</strong> Programación en GDScript (lenguaje de Godot) para movimiento del jugador, física básica, lógica de los problemas matemáticos, sistema de vidas/puntos, diseño de niveles en el editor.</p><p><strong>Sonido:</strong> Integración de música de fondo y efectos de sonido.</p>",
+    "media": {
+      "type": "video",
+      "url": "https://www.youtube.com/embed/cUdfsfA6S4M"
+    },
+    "teamMembers": [
+      {
+        "name": "Leonardo Ávila",
+        "role": "Programador Godot / Líder",
+        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_LEONARDO_A_2",
+        "certificateCourseName": "Desarrollo de Juegos con Godot",
+        "certificateBadgeName": "Algorithm Seeker",
+        "certificateLevel": "Hacker",
+        "certificateSkills": "Godot Engine,GDScript,Lógica de juegos 2D,Diseño niveles (básico)",
+        "certificateCriteria": "Funcionalidad completa,Código organizado,Jugabilidad",
+        "certificateCollege": "Instituto Turing Jr",
+        "certificateIssueDate": "2024-11-19",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      },
+      {
+        "name": "Renata Vargas",
+        "role": "Artista 2D / Animadora",
+        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_RENATA_V_2",
+        "certificateCourseName": "Arte Pixel y Animación 2D",
+        "certificateBadgeName": "Design Architect",
+        "certificateLevel": "Master",
+        "certificateSkills": "Pixel Art,Aseprite (o similar),Animación sprites 2D,Diseño Tilesets",
+        "certificateCriteria": "Calidad artística,Animaciones fluidas,Coherencia visual",
+        "certificateCollege": "Instituto Turing Jr",
+        "certificateIssueDate": "2024-11-19",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      }
+    ],
+    "technologies": [
+      {
+        "name": "Godot Engine",
+        "icon": "fa-solid fa-robot",
+        "category": "Software"
+      },
+      {
+        "name": "GDScript",
+        "icon": "fa-solid fa-code",
+        "category": "Software"
+      },
+      {
+        "name": "Pixel Art",
+        "icon": "fa-solid fa-palette",
+        "category": "Tool"
+      },
+      {
+        "name": "Aseprite",
+        "icon": "fa-solid fa-image",
+        "category": "Software"
+      },
+      {
+        "name": "Diseño de Juegos",
+        "icon": "fa-solid fa-gamepad",
+        "category": "Tool"
+      }
+    ],
+    "additionalResources": [
+      {
+        "title": "Documentación Godot Engine",
+        "url": "https://docs.godotengine.org/en/stable/",
+        "type": "website"
+      },
+      {
+        "title": "Tutorial Plataformas 2D Godot",
+        "url": "https://docs.godotengine.org/en/stable/getting_started/first_2d_game/index.html",
+        "type": "link"
+      },
+      {
+        "title": "Demo Jugable (Itch.io)",
+        "url": "https://example-user.itch.io/aventura-matematica",
+        "type": "link"
+      }
+    ],
+    "imageGallery": [
+      {
+        "url": "https://picsum.photos/seed/godot-math-gal1/800/450",
+        "altText": "Sprite sheet del personaje principal con sus animaciones.",
+        "caption": "Animación Personaje"
+      },
+      {
+        "url": "https://picsum.photos/seed/godot-math-gal2/800/450",
+        "altText": "Editor de niveles de Godot mostrando el diseño de una pantalla.",
+        "caption": "Diseño de Nivel"
+      },
+      {
+        "url": "https://picsum.photos/seed/godot-math-gal3/800/450",
+        "altText": "Código GDScript para validar la respuesta matemática del jugador.",
+        "caption": "Lógica Matemática"
+      }
+    ],
+    "projectRubricScores": {
+      "innovation": 3,
+      "collaboration": 2,
+      "impact": 2,
+      "techuse": 3,
+      "presentation": 2
+    },
+    "finalProjectGrade": 8,
+    "slug": "videojuego-educativo-aventura-matematica-en-godot-engine"
+  },
+  {
+    "projectTitle": "Aplicación Web 'Recetario Comunitario' con Flask/Python",
+    "projectCategory": "Desarrollo Web",
+    "schooling": "Secundaria",
+    "projectDate": "2024-10-10",
+    "sdgIds": [2, 12],
+    "introTitle": "Sabores Compartidos: Recetario Web",
+    "introContent": "Una aplicación web simple construida con Flask (Python) donde los usuarios pueden ver, añadir y buscar recetas de cocina compartidas por la comunidad.",
+    "coverImage": {
+      "url": "https://picsum.photos/seed/flask-recipe-cover/640/360",
+      "altText": "Captura de pantalla de la página principal mostrando tarjetas con fotos y nombres de recetas."
+    },
+    "problemDescription": "Buscar y compartir recetas online puede implicar navegar por sitios complejos o con mucha publicidad. Se busca una alternativa simple y colaborativa.",
+    "solutionProposed": "Una aplicación web básica con Flask que permite: listar recetas (con imagen, título), ver detalle de una receta (ingredientes, pasos), añadir nueva receta mediante un formulario. Usa una base de datos simple (SQLite o similar) para persistencia.",
+    "innovationProcess": "<p><strong>Backend:</strong> Definición de rutas Flask, manejo de formularios (WTForms), interacción con base de datos (SQLAlchemy o directo SQLite), estructura de modelos.</p><p><strong>Frontend:</strong> Creación de plantillas HTML (Jinja2), diseño básico con CSS (posiblemente Tailwind o Bootstrap), formulario de carga.</p><p><strong>Base de Datos:</strong> Diseño de tabla(s) para recetas.</p>",
+    "media": {
+      "type": "video",
+      "url": "https://www.youtube.com/embed/Z1RJmh_OqeA"
+    },
+    "teamMembers": [
+      {
+        "name": "Isabella Castro",
+        "role": "Desarrolladora Backend (Flask)",
+        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_ISABELLA_C_3",
+        "certificateCourseName": "Desarrollo Web con Python y Flask",
+        "certificateBadgeName": "App Maverick",
+        "certificateLevel": "Master",
+        "certificateSkills": "Python,Flask,SQLite,SQLAlchemy (opcional),HTML (Jinja2)",
+        "certificateCriteria": "Funcionalidad backend,Lógica aplicación,Manejo BD",
+        "certificateCollege": "Secundaria Técnica #42",
+        "certificateIssueDate": "2024-10-04",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      },
+      {
+        "name": "Nicolás Pardo",
+        "role": "Desarrollador Frontend",
+        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_NICOLAS_P_3",
+        "certificateCourseName": "Desarrollo Web con Python y Flask",
+        "certificateBadgeName": "Code Explorer",
+        "certificateLevel": "Rookie",
+        "certificateSkills": "HTML,CSS,Jinja2,Bootstrap/Tailwind (básico)",
+        "certificateCriteria": "Diseño interfaz,Maquetación,Responsividad básica",
+        "certificateCollege": "Secundaria Técnica #42",
+        "certificateIssueDate": "2024-10-04",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      }
+    ],
+    "technologies": [
+      {
+        "name": "Python",
+        "icon": "fa-brands fa-python",
+        "category": "Software"
+      },
+      {
+        "name": "Flask",
+        "icon": "fa-solid fa-network-wired",
+        "category": "Software"
+      },
+      {
+        "name": "SQLite",
+        "icon": "fa-solid fa-database",
+        "category": "Software"
+      },
+      { "name": "HTML", "icon": "fa-brands fa-html5", "category": "Software" },
+      { "name": "CSS", "icon": "fa-solid fa-css3-alt", "category": "Software" },
+      { "name": "Jinja2", "icon": "fa-solid fa-code", "category": "Tool" }
+    ],
+    "additionalResources": [
+      {
+        "title": "Documentación Flask",
+        "url": "https://flask.palletsprojects.com/",
+        "type": "website"
+      },
+      {
+        "title": "Tutorial SQLAlchemy (Opcional)",
+        "url": "https://www.sqlalchemy.org/",
+        "type": "website"
+      },
+      {
+        "title": "Demo Aplicación",
+        "url": "https://recetario-flask-ejemplo.onrender.com",
+        "type": "link"
+      }
+    ],
+    "imageGallery": [
+      {
+        "url": "https://picsum.photos/seed/flask-recipe-gal1/800/450",
+        "altText": "Código Python mostrando una ruta de Flask para mostrar una receta.",
+        "caption": "Código Backend"
+      },
+      {
+        "url": "https://picsum.photos/seed/flask-recipe-gal2/800/450",
+        "altText": "Plantilla HTML con Jinja2 para mostrar la lista de recetas.",
+        "caption": "Plantilla Frontend"
+      },
+      {
+        "url": "https://picsum.photos/seed/flask-recipe-gal3/800/450",
+        "altText": "Formulario web para añadir una nueva receta.",
+        "caption": "Formulario Añadir Receta"
+      }
+    ],
+    "projectRubricScores": {
+      "innovation": 2,
+      "collaboration": 2,
+      "impact": 2,
+      "techuse": 2,
+      "presentation": 2
+    },
+    "finalProjectGrade": 6,
+    "slug": "aplicacion-web-recetario-comunitario-con-flaskzpython"
+  },
+  {
+    "projectTitle": "Sistema de Recomendación Musical Simple",
+    "projectCategory": "Data Science",
+    "schooling": "Preparatoria",
+    "projectDate": "2025-04-30",
+    "sdgIds": [9, 10],
+    "introTitle": "Tu Próxima Canción Favorita: Recomendador Musical",
+    "introContent": "Un script en Python que toma el historial de escucha de un usuario (simulado o real básico) y sugiere nuevas canciones basado en similitud de géneros o artistas (filtrado colaborativo/contenido simple).",
+    "coverImage": {
+      "url": "https://picsum.photos/seed/music-rec-cover/640/360",
+      "altText": "Visualización abstracta de conexiones entre artistas musicales."
+    },
+    "problemDescription": "Descubrir nueva música alineada a los gustos personales puede ser un desafío ante la vasta oferta disponible.",
+    "solutionProposed": "Implementar un algoritmo simple de recomendación: (1) Basado en contenido: Recomendar canciones del mismo género/artista. (2) Colaborativo (muy simple): Encontrar usuarios 'similares' (que escucharon canciones en común) y recomendar canciones que ellos escucharon pero el usuario actual no.",
+    "innovationProcess": "<p>Obtención/simulación de datos de escucha. Limpieza y estructuración de datos (Pandas). Implementación de lógica de similitud (ej. Jaccard index para usuarios, comparación de tags para contenido). Generación de lista de recomendaciones.</p>",
+    "media": {
+      "type": "video",
+      "url": "https://www.youtube.com/embed/9gBC9N-mGSo"
+    },
+    "teamMembers": [
+      {
+        "name": "Daniela Fuentes",
+        "role": "Científica de Datos Jr",
+        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_DANIELA_F_4",
+        "certificateCourseName": "Introducción a Sistemas de Recomendación",
+        "certificateBadgeName": "AI Paragon",
+        "certificateLevel": "Hacker",
+        "certificateSkills": "Python,Pandas,Scikit-learn (básico),Algoritmos recomendación (simple)",
+        "certificateCriteria": "Lógica algoritmo,Manejo datos,Precisión (evaluación básica)",
+        "certificateCollege": "Prepa Gauss",
+        "certificateIssueDate": "2025-04-24",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      }
+    ],
+    "technologies": [
+      {
+        "name": "Python",
+        "icon": "fa-brands fa-python",
+        "category": "Software"
+      },
+      {
+        "name": "Pandas",
+        "icon": "fa-solid fa-table-list",
+        "category": "Software"
+      },
+      {
+        "name": "Scikit-learn",
+        "icon": "fa-solid fa-gear",
+        "category": "Software"
+      },
+      {
+        "name": "Filtrado Colaborativo",
+        "icon": "fa-solid fa-users",
+        "category": "Tool"
+      },
+      {
+        "name": "Filtrado Basado en Contenido",
+        "icon": "fa-solid fa-tags",
+        "category": "Tool"
+      }
+    ],
+    "additionalResources": [
+      {
+        "title": "Dataset Musical Ejemplo (Million Song Dataset subset)",
+        "url": "http://millionsongdataset.com/",
+        "type": "link"
+      },
+      {
+        "title": "Artículo sobre Recomendadores",
+        "url": "https://developers.google.com/machine-learning/recommendation",
+        "type": "link"
+      },
+      {
+        "title": "Código Ejemplo GitHub",
+        "url": "https://github.com/gnius-examples/music-recommender",
+        "type": "github"
+      }
+    ],
+    "imageGallery": [
+      {
+        "url": "https://picsum.photos/seed/music-rec-gal1/800/450",
+        "altText": "Matriz usuario-item (simplificada) mostrando qué canciones escuchó cada usuario.",
+        "caption": "Matriz de Datos"
+      },
+      {
+        "url": "https://picsum.photos/seed/music-rec-gal2/800/450",
+        "altText": "Visualización de géneros musicales predominantes en el dataset.",
+        "caption": "Análisis de Géneros"
+      }
+    ],
+    "projectRubricScores": {
+      "innovation": 1,
+      "collaboration": 1,
+      "impact": 1,
+      "techuse": 1,
+      "presentation": 1
+    },
+    "finalProjectGrade": 1,
+    "slug": "sistema-de-recomendacion-musical-simple"
+  },
+  {
+    "projectTitle": "Brazo Robótico Controlado por Gestos (Leap Motion/Arduino)",
+    "projectCategory": "Robótica Avanzada",
+    "schooling": "Preparatoria",
+    "projectDate": "2025-07-15",
+    "sdgIds": [9],
+    "introTitle": "Control Intuitivo: Brazo Robótico por Gestos",
+    "introContent": "Integración de un sensor Leap Motion para capturar gestos de la mano y controlar los movimientos de un brazo robótico simple (3-4 servos) conectado a un Arduino.",
+    "coverImage": {
+      "url": "https://picsum.photos/seed/leap-arm-cover/640/360",
+      "altText": "Mano interactuando con sensor Leap Motion mientras un brazo robótico replica el movimiento."
+    },
+    "problemDescription": "Controlar un brazo robótico con joysticks o botones puede ser poco intuitivo para tareas complejas. El control por gestos ofrece una alternativa natural.",
+    "solutionProposed": "Capturar datos de posición y orientación de la mano/dedos desde Leap Motion SDK (usando Python o C#). Mapear estos datos a ángulos de los servomotores del brazo robótico. Enviar los comandos de ángulo al Arduino vía comunicación serial.",
+    "innovationProcess": "<p>Configuración Leap Motion SDK. Programación script PC para leer datos Leap Motion y mapear gestos a ángulos. Programación Arduino para recibir comandos seriales y mover servos. Ensamblaje brazo robótico. Calibración mapeo gesto-servo.</p>",
+    "media": {
+      "type": "video",
+      "url": "https://www.youtube.com/embed/PFpKug_0TJE"
+    },
+    "teamMembers": [
+      {
+        "name": "Andrés Villa",
+        "role": "Líder / Programador Python/C#",
+        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_ANDRES_VL_5",
+        "certificateCourseName": "Control Robótico Avanzado",
+        "certificateBadgeName": "Expert Roboteer",
+        "certificateLevel": "Hacker",
+        "certificateSkills": "Python/C#,Leap Motion SDK,Comunicación Serial,Mapeo Datos",
+        "certificateCriteria": "Funcionalidad control,Precisión mapeo,Latencia baja",
+        "certificateCollege": "CETI Colomos",
+        "certificateIssueDate": "2025-07-09",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      },
+      {
+        "name": "Sofía Mendoza",
+        "role": "Programadora Arduino / Servos",
+        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_SOFIA_M_5",
+        "certificateCourseName": "Control Robótico Avanzado",
+        "certificateBadgeName": "Micro Programmer",
+        "certificateLevel": "Master",
+        "certificateSkills": "Arduino (C++),Servomotores,Comunicación Serial (receptor)",
+        "certificateCriteria": "Control preciso servos,Comunicación fiable",
+        "certificateCollege": "CETI Colomos",
+        "certificateIssueDate": "2025-07-09",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      }
+    ],
+    "technologies": [
+      {
+        "name": "Leap Motion",
+        "icon": "fa-solid fa-hand-pointer",
+        "category": "Hardware"
+      },
+      {
+        "name": "Arduino",
+        "icon": "fa-solid fa-microchip",
+        "category": "Hardware"
+      },
+      {
+        "name": "Servomotor",
+        "icon": "fa-solid fa-gear",
+        "category": "Hardware"
+      },
+      {
+        "name": "Python / C#",
+        "icon": "fa-solid fa-code",
+        "category": "Software"
+      },
+      {
+        "name": "Comunicación Serial",
+        "icon": "fa-solid fa-plug",
+        "category": "Tool"
+      }
+    ],
+    "additionalResources": [
+      {
+        "title": "Documentación Leap Motion SDK",
+        "url": "https://developer.leapmotion.com/documentation/",
+        "type": "website"
+      },
+      {
+        "title": "Brazo Robótico Ejemplo (Impresión 3D)",
+        "url": "https://www.thingiverse.com/thing:1454048",
+        "type": "link"
+      },
+      {
+        "title": "Código Ejemplo (GitHub)",
+        "url": "https://github.com/gnius-examples/leap-robot-arm",
+        "type": "github"
+      }
+    ],
+    "imageGallery": [
+      {
+        "url": "https://picsum.photos/seed/leap-arm-gal1/800/450",
+        "altText": "Visualización 3D de la mano capturada por Leap Motion.",
+        "caption": "Captura de Gestos"
+      },
+      {
+        "url": "https://picsum.photos/seed/leap-arm-gal2/800/450",
+        "altText": "Brazo robótico ensamblado con sus servomotores visibles.",
+        "caption": "Hardware Ensamblado"
+      },
+      {
+        "url": "https://picsum.photos/seed/leap-arm-gal3/800/450",
+        "altText": "Código mostrando el mapeo de coordenadas de la mano a ángulos de servo.",
+        "caption": "Mapeo Gesto-Servo"
+      }
+    ],
+    "projectRubricScores": {
+      "innovation": 3,
+      "collaboration": 2,
+      "impact": 3,
+      "techuse": 3,
+      "presentation": 2
+    },
+    "finalProjectGrade": 9,
+    "slug": "brazo-robotico-controlado-por-gestos-leap-motionzarduino"
+  },
+  {
+    "projectTitle": "Generador de Poesía Asistido por IA (GPT/Markov)",
+    "projectCategory": "Inteligencia Artificial",
+    "schooling": "Preparatoria",
+    "projectDate": "2025-03-20",
+    "sdgIds": [9, 16],
+    "introTitle": "Versos Digitales: Poesía con IA",
+    "introContent": "Una herramienta simple (web o script) que utiliza modelos de lenguaje (como cadenas de Markov entrenadas o una API de GPT simple) para generar versos o poemas cortos a partir de una palabra clave o tema inicial.",
+    "coverImage": {
+      "url": "https://picsum.photos/seed/ai-poetry-cover/640/360",
+      "altText": "Texto de un poema corto generado por computadora sobre un fondo abstracto."
+    },
+    "problemDescription": "Explorar la creatividad computacional y cómo los modelos de lenguaje pueden ser usados para tareas artísticas como la generación de texto poético.",
+    "solutionProposed": "(1) Cadenas de Markov: Entrenar un modelo de Markov con un corpus de poesía existente y generar nuevo texto basado en probabilidades de transición. (2) API GPT: Usar una API (como OpenAI con un modelo pequeño/gratuito si es posible) con un prompt diseñado para generar poesía sobre un tema.",
+    "innovationProcess": "<p><strong>Opción Markov:</strong> Selección/creación de corpus. Implementación de modelo de Markov en Python. Generación y filtrado de texto.</p><p><strong>Opción API:</strong> Obtención de clave API (si aplica). Diseño de prompts efectivos. Programación de script/interfaz para llamar a la API y mostrar resultados.</p>",
+    "media": {
+      "type": "video",
+      "url": "https://www.youtube.com/embed/MVgVzMpStMo"
+    },
+    "teamMembers": [
+      {
+        "name": "Isabella Navarro",
+        "role": "Desarrolladora IA (Python)",
+        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_ISABELLA_N_6",
+        "certificateCourseName": "IA Generativa de Texto",
+        "certificateBadgeName": "Prompt Sage",
+        "certificateLevel": "Hacker",
+        "certificateSkills": "Python,Cadenas Markov,APIs (GPT),Procesamiento Texto",
+        "certificateCriteria": "Lógica generación,Calidad texto generado,Manejo API",
+        "certificateCollege": "Prepa #6 Coyoacán",
+        "certificateIssueDate": "2025-03-14",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      }
+    ],
+    "technologies": [
+      {
+        "name": "Python",
+        "icon": "fa-brands fa-python",
+        "category": "Software"
+      },
+      {
+        "name": "Cadenas de Markov",
+        "icon": "fa-solid fa-link",
+        "category": "Tool"
+      },
+      {
+        "name": "API GPT (OpenAI)",
+        "icon": "fa-solid fa-robot",
+        "category": "Software"
+      },
+      {
+        "name": "Procesamiento de Lenguaje Natural (PLN)",
+        "icon": "fa-solid fa-brain",
+        "category": "Tool"
+      },
+      { "name": "Literatura", "icon": "fa-solid fa-book", "category": "Tool" }
+    ],
+    "additionalResources": [
+      {
+        "title": "Tutorial Cadenas de Markov Python",
+        "url": "https://www.example.com/markov-python",
+        "type": "link"
+      },
+      {
+        "title": "Documentación API OpenAI",
+        "url": "https://platform.openai.com/docs",
+        "type": "website"
+      },
+      {
+        "title": "Herramienta Online (Ejemplo)",
+        "url": "https://poem-generator-example.netlify.app/",
+        "type": "link"
+      }
+    ],
+    "imageGallery": [
+      {
+        "url": "https://picsum.photos/seed/ai-poetry-gal1/800/450",
+        "altText": "Ejemplo de texto generado usando Cadenas de Markov.",
+        "caption": "Generación Markov"
+      },
+      {
+        "url": "https://picsum.photos/seed/ai-poetry-gal2/800/450",
+        "altText": "Prompt utilizado para generar poesía con la API de GPT.",
+        "caption": "Diseño de Prompt"
+      },
+      {
+        "url": "https://picsum.photos/seed/ai-poetry-gal3/800/450",
+        "altText": "Corpus de poemas utilizado para entrenar el modelo Markov.",
+        "caption": "Corpus Poético"
+      }
+    ],
+    "projectRubricScores": {
+      "innovation": 3,
+      "collaboration": 2,
+      "impact": 2,
+      "techuse": 3,
+      "presentation": 3
+    },
+    "finalProjectGrade": 9,
+    "slug": "generador-de-poesia-asistido-por-ia-gptzmarkov"
+  },
+  {
+    "projectTitle": "Realidad Aumentada Simple: Modelo 3D sobre Marcador (AR.js)",
+    "projectCategory": "Realidad Aumentada",
+    "schooling": "Secundaria",
+    "projectDate": "2024-12-01",
+    "sdgIds": [4, 9],
+    "introTitle": "Magia Virtual: AR con Marcadores",
+    "introContent": "Una página web simple que usa la cámara del dispositivo y la librería AR.js para detectar un marcador impreso y superponer un modelo 3D (ej. un átomo, un animal simple) sobre él.",
+    "coverImage": {
+      "url": "https://picsum.photos/seed/ar-marker-cover/640/360",
+      "altText": "Smartphone mostrando un modelo 3D de un átomo flotando sobre un marcador físico impreso."
+    },
+    "problemDescription": "La Realidad Aumentada ofrece formas interactivas de visualizar información y modelos 3D en el mundo real, pero puede parecer compleja de implementar.",
+    "solutionProposed": "Utilizar AR.js (basado en A-Frame o Three.js) para crear una escena web AR. Definir un marcador personalizado (imagen). Cargar un modelo 3D (formato glTF/GLB). Asociar el modelo al marcador para que aparezca cuando la cámara lo detecte.",
+    "innovationProcess": "<p>Configuración de HTML con librerías AR.js y A-Frame/Three.js. Creación/descarga de marcador personalizado. Creación/descarga de modelo 3D simple (glTF/GLB). Escritura del código HTML/A-Frame para definir la escena, el marcador y el modelo asociado.</p>",
+    "media": {
+      "type": "video",
+      "url": "https://www.youtube.com/embed/mARrfQlG3cc"
+    },
+    "teamMembers": [
+      {
+        "name": "Valeria Ríos",
+        "role": "Desarrolladora AR.js / A-Frame",
+        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_VALERIA_RS_7",
+        "certificateCourseName": "Introducción a la Realidad Aumentada Web",
+        "certificateBadgeName": "Reality Master",
+        "certificateLevel": "Master",
+        "certificateSkills": "AR.js,A-Frame,HTML,JavaScript (básico),Modelos 3D (uso)",
+        "certificateCriteria": "Funcionalidad AR,Detección marcador,Visualización modelo",
+        "certificateCollege": "Instituto Da Vinci",
+        "certificateIssueDate": "2024-11-24",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      },
+      {
+        "name": "Diego Luna",
+        "role": "Diseñador 3D / Marcador",
+        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_DIEGO_L_7",
+        "certificateCourseName": "Modelado 3D Básico",
+        "certificateBadgeName": "Design Architect",
+        "certificateLevel": "Rookie",
+        "certificateSkills": "Modelado 3D (Blender/Tinkercad),Formato glTF/GLB,Diseño marcador AR",
+        "certificateCriteria": "Calidad modelo 3D,Diseño marcador efectivo",
+        "certificateCollege": "Instituto Da Vinci",
+        "certificateIssueDate": "2024-11-24",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      }
+    ],
+    "technologies": [
+      { "name": "AR.js", "icon": "fa-solid fa-camera", "category": "Software" },
+      {
+        "name": "A-Frame",
+        "icon": "fa-solid fa-cubes",
+        "category": "Software"
+      },
+      {
+        "name": "Three.js",
+        "icon": "fa-solid fa-cube",
+        "category": "Software"
+      },
+      { "name": "HTML", "icon": "fa-brands fa-html5", "category": "Software" },
+      {
+        "name": "glTF/GLB",
+        "icon": "fa-solid fa-box-archive",
+        "category": "Tool"
+      }
+    ],
+    "additionalResources": [
+      {
+        "title": "Documentación AR.js",
+        "url": "https://ar-js-org.github.io/AR.js-Docs/",
+        "type": "website"
+      },
+      {
+        "title": "Documentación A-Frame",
+        "url": "https://aframe.io/docs/",
+        "type": "website"
+      },
+      {
+        "title": "Modelos 3D Gratuitos (Sketchfab)",
+        "url": "https://sketchfab.com/features/gltf",
+        "type": "link"
+      }
+    ],
+    "imageGallery": [
+      {
+        "url": "https://picsum.photos/seed/ar-marker-gal1/800/450",
+        "altText": "Marcador personalizado diseñado para ser detectado por AR.js.",
+        "caption": "Marcador AR"
+      },
+      {
+        "url": "https://picsum.photos/seed/ar-marker-gal2/800/450",
+        "altText": "Modelo 3D de un dinosaurio simple en formato glTF.",
+        "caption": "Modelo 3D"
+      },
+      {
+        "url": "https://picsum.photos/seed/ar-marker-gal3/800/450",
+        "altText": "Código HTML/A-Frame de la escena AR básica.",
+        "caption": "Código Escena AR"
+      }
+    ],
+    "projectRubricScores": {
+      "innovation": 2,
+      "collaboration": 3,
+      "impact": 2,
+      "techuse": 3,
+      "presentation": 2
+    },
+    "finalProjectGrade": 8,
+    "slug": "realidad-aumentada-simple-modelo-3d-sobre-marcador-arjs"
+  },
+  {
+    "projectTitle": "Analizador Simple de Sentimiento en Texto (Python/NLTK)",
+    "projectCategory": "Inteligencia Artificial",
+    "schooling": "Preparatoria",
+    "projectDate": "2025-01-10",
+    "sdgIds": [16],
+    "introTitle": "¿Positivo o Negativo? Análisis de Sentimiento",
+    "introContent": "Un script en Python que utiliza NLTK o una librería similar (VADER, TextBlob) para analizar un texto corto (ej. un tweet, una reseña) y clasificar su sentimiento predominante (positivo, negativo, neutro).",
+    "coverImage": {
+      "url": "https://picsum.photos/seed/sentiment-nltk-cover/640/360",
+      "altText": "Texto de ejemplo con etiquetas 'Positivo', 'Negativo', 'Neutro' indicando el sentimiento detectado."
+    },
+    "problemDescription": "Comprender la opinión o emoción expresada en grandes volúmenes de texto puede ser útil para análisis social, de mercado, etc.",
+    "solutionProposed": "Usar una librería de PLN como NLTK con un lexicón de sentimientos (como VADER) o un clasificador pre-entrenado (TextBlob) para asignar una puntuación de polaridad a un texto de entrada y clasificarlo.",
+    "innovationProcess": "<p>Instalación de NLTK/VADER/TextBlob. Carga de léxicos/modelos necesarios. Preprocesamiento básico del texto (tokenización, limpieza). Aplicación del analizador de sentimiento. Interpretación de la puntuación resultante.</p>",
+    "media": {
+      "type": "video",
+      "url": "https://www.youtube.com/embed/WFcVfczשרשר"
+    },
+    "teamMembers": [
+      {
+        "name": "Fernanda Peña",
+        "role": "Desarrolladora PLN (Python)",
+        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_FERNANDA_P_9",
+        "certificateCourseName": "Procesamiento de Lenguaje Natural Básico",
+        "certificateBadgeName": "AI Paragon",
+        "certificateLevel": "Hacker",
+        "certificateSkills": "Python,NLTK,VADER/TextBlob,PLN (conceptos)",
+        "certificateCriteria": "Funcionalidad análisis,Precisión (evaluación simple),Manejo librerías",
+        "certificateCollege": "Instituto Babbage",
+        "certificateIssueDate": "2025-01-04",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      }
+    ],
+    "technologies": [
+      {
+        "name": "Python",
+        "icon": "fa-brands fa-python",
+        "category": "Software"
+      },
+      {
+        "name": "NLTK",
+        "icon": "fa-solid fa-book-open-reader",
+        "category": "Software"
+      },
+      {
+        "name": "VADER / TextBlob",
+        "icon": "fa-solid fa-comment-dots",
+        "category": "Software"
+      },
+      {
+        "name": "Análisis de Sentimiento",
+        "icon": "fa-solid fa-face-smile-beam",
+        "category": "Tool"
+      },
+      { "name": "PLN", "icon": "fa-solid fa-brain", "category": "Tool" }
+    ],
+    "additionalResources": [
+      {
+        "title": "Documentación NLTK",
+        "url": "https://www.nltk.org/",
+        "type": "website"
+      },
+      {
+        "title": "Librería VADER",
+        "url": "https://github.com/cjhutto/vaderSentiment",
+        "type": "github"
+      },
+      {
+        "title": "Librería TextBlob",
+        "url": "https://textblob.readthedocs.io/",
+        "type": "website"
+      }
+    ],
+    "imageGallery": [
+      {
+        "url": "https://picsum.photos/seed/sentiment-nltk-gal1/800/450",
+        "altText": "Código Python mostrando cómo usar VADER para obtener score de sentimiento.",
+        "caption": "Código Análisis"
+      },
+      {
+        "url": "https://picsum.photos/seed/sentiment-nltk-gal2/800/450",
+        "altText": "Ejemplos de textos clasificados como positivos, negativos y neutros por la herramienta.",
+        "caption": "Resultados de Clasificación"
+      }
+    ],
+    "projectRubricScores": {
+      "innovation": 2,
+      "collaboration": 3,
+      "impact": 2,
+      "techuse": 2,
+      "presentation": 2
+    },
+    "finalProjectGrade": 7,
+    "slug": "analizador-simple-de-sentimiento-en-texto-pythonznltk"
+  },
+  {
+    "projectTitle": "Purificador de Agua Casero con Filtros Naturales",
+    "projectCategory": "Ciencia Aplicada",
+    "schooling": "Secundaria",
+    "projectDate": "2024-09-20",
+    "sdgIds": [6],
+    "introTitle": "Agua Limpia DIY: Filtro Natural",
+    "introContent": "Construcción de un prototipo de filtro de agua utilizando capas de materiales naturales (arena, grava, carbón activado casero, algodón) para purificar agua turbia de forma básica.",
+    "coverImage": {
+      "url": "https://picsum.photos/seed/water-filter-diy-cover/640/360",
+      "altText": "Botella de plástico cortada con capas visibles de grava, arena, carbón y algodón, con agua filtrada goteando abajo."
+    },
+    "problemDescription": "El acceso a agua potable es crucial. Entender los principios básicos de filtración mediante un experimento práctico fomenta la conciencia ambiental y científica.",
+    "solutionProposed": "Construir un filtro por capas en un recipiente (ej. botella cortada). Pasar agua turbia (con tierra) a través de él y observar cómo las capas retienen partículas y el carbón (si se usa) ayuda a eliminar olores/colores. Medir turbidez antes y después (cualitativamente).",
+    "innovationProcess": "<p>Investigación sobre materiales filtrantes naturales. Recolección y preparación de materiales (lavar arena/grava, preparar carbón activado simple). Construcción del filtro por capas. Realización de pruebas de filtración y observación.</p>",
+    "media": {
+      "type": "video",
+      "url": "https://www.youtube.com/embed/4z4l8qo9w2I"
+    },
+    "teamMembers": [
+      {
+        "name": "Santiago Gil",
+        "role": "Constructor / Experimentador",
+        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_SANTIAGO_G_10",
+        "certificateCourseName": "Ciencia Experimental",
+        "certificateBadgeName": "Tech Voyager",
+        "certificateLevel": "Rookie",
+        "certificateSkills": "Método científico (básico),Construcción prototipos,Observación,Registro datos",
+        "certificateCriteria": "Funcionalidad filtro,Claridad proceso,Observación detallada",
+        "certificateCollege": "Secundaria Marie Curie",
+        "certificateIssueDate": "2024-09-14",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      }
+    ],
+    "technologies": [
+      {
+        "name": "Filtro de Agua",
+        "icon": "fa-solid fa-filter",
+        "category": "Tool"
+      },
+      {
+        "name": "Arena / Grava",
+        "icon": "fa-solid fa-mountain",
+        "category": "Tool"
+      },
+      {
+        "name": "Carbón Activado",
+        "icon": "fa-solid fa-fire",
+        "category": "Tool"
+      },
+      {
+        "name": "Método Científico",
+        "icon": "fa-solid fa-vial-virus",
+        "category": "Tool"
+      },
+      { "name": "Observación", "icon": "fa-solid fa-eye", "category": "Tool" }
+    ],
+    "additionalResources": [
+      {
+        "title": "Cómo Hacer Carbón Activado Casero (Instructable)",
+        "url": "https://www.instructables.com/How-To-Make-Your-Own-Activated-Charcoal/",
+        "type": "link"
+      },
+      {
+        "title": "Experimentos Filtración Agua",
+        "url": "https://www.sciencebuddies.org/science-fair-projects/project-ideas/EnvSci_p018/environmental-science/make-your-own-water-filter",
+        "type": "link"
+      }
+    ],
+    "imageGallery": [
+      {
+        "url": "https://picsum.photos/seed/water-filter-diy-gal1/800/450",
+        "altText": "Capas de arena, grava y carbón cuidadosamente colocadas en la botella cortada.",
+        "caption": "Construcción del Filtro"
+      },
+      {
+        "url": "https://picsum.photos/seed/water-filter-diy-gal2/800/450",
+        "altText": "Comparación visual del agua turbia antes y el agua filtrada después.",
+        "caption": "Resultados de Filtración"
+      },
+      {
+        "url": "https://picsum.photos/seed/water-filter-diy-gal3/800/450",
+        "altText": "Proceso de preparación del carbón activado casero (carbonización).",
+        "caption": "Carbón Activado DIY"
+      }
+    ],
+    "projectRubricScores": {
+      "innovation": 1,
+      "collaboration": 3,
+      "impact": 2,
+      "techuse": 1,
+      "presentation": 2
+    },
+    "finalProjectGrade": 5,
+    "slug": "purificador-de-agua-casero-con-filtros-naturales"
+  },
+  {
+    "projectTitle": "Estudio de Biodiversidad Local con Trampas Fotográficas Caseras",
+    "projectCategory": "Biología y Tecnología",
+    "schooling": "Secundaria",
+    "projectDate": "2024-11-05",
+    "sdgIds": [15],
+    "introTitle": "Cámara Oculta: Espiando la Fauna Local",
+    "introContent": "Construcción y despliegue de trampas fotográficas simples (usando Raspberry Pi Zero/Pico, cámara y sensor PIR) para capturar imágenes de la fauna nocturna o esquiva en un área verde local (parque, jardín escolar).",
+    "coverImage": {
+      "url": "https://picsum.photos/seed/camera-trap-cover/640/360",
+      "altText": "Foto nocturna de un tlacuache capturado por una cámara trampa casera."
+    },
+    "problemDescription": "Estudiar la biodiversidad local, especialmente animales nocturnos o tímidos, requiere métodos no invasivos. Las trampas fotográficas comerciales son caras.",
+    "solutionProposed": "Construir una cámara trampa con Raspberry Pi Zero W o Pico W, módulo de cámara Pi, sensor PIR y baterías. Programar un script Python para tomar una foto/video cuando el PIR detecte movimiento. Desplegar en un lugar seguro y analizar las imágenes capturadas.",
+    "innovationProcess": "<p>Ensamblaje hardware (Pi, cámara, PIR, carcasa). Configuración Raspberry Pi OS. Programación script Python (usando `picamera` y `gpiozero`). Pruebas de detección y captura. Despliegue en campo y recolección de datos (imágenes).</p>",
+    "media": {
+      "type": "video",
+      "url": "https://www.youtube.com/embed/kEMefxyStcQ"
+    },
+    "teamMembers": [
+      {
+        "name": "Andrés Navarro",
+        "role": "Desarrollador Python/RPi",
+        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_ANDRES_N_11",
+        "certificateCourseName": "Tecnología para la Biodiversidad",
+        "certificateBadgeName": "Network Pioneer",
+        "certificateLevel": "Master",
+        "certificateSkills": "Python,Raspberry Pi,GPIO Zero,picamera,Linux (básico)",
+        "certificateCriteria": "Funcionalidad script,Captura imagen,Autonomía (batería)",
+        "certificateCollege": "Club de Ciencias Naturales",
+        "certificateIssueDate": "2024-10-31",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      },
+      {
+        "name": "Isabella Fuentes",
+        "role": "Bióloga / Identificación Especies",
+        "sbtLink": "https://polygonscan.com/token/EXAMPLE_SBT_ISABELLA_F_11",
+        "certificateCourseName": "Biología de Campo",
+        "certificateBadgeName": "Code Explorer",
+        "certificateLevel": "Master",
+        "certificateSkills": "Biodiversidad local,Identificación fauna,Ecología básica",
+        "certificateCriteria": "Precisión identificación,Análisis datos biológicos",
+        "certificateCollege": "Club de Ciencias Naturales",
+        "certificateIssueDate": "2024-10-31",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      }
+    ],
+    "technologies": [
+      {
+        "name": "Raspberry Pi Zero/Pico",
+        "icon": "fa-brands fa-raspberry-pi",
+        "category": "Hardware"
+      },
+      {
+        "name": "Python",
+        "icon": "fa-brands fa-python",
+        "category": "Software"
+      },
+      {
+        "name": "Sensor PIR",
+        "icon": "fa-solid fa-person-rays",
+        "category": "Hardware"
+      },
+      {
+        "name": "Módulo Cámara Pi",
+        "icon": "fa-solid fa-camera",
+        "category": "Hardware"
+      },
+      {
+        "name": "GPIO Zero",
+        "icon": "fa-solid fa-plug",
+        "category": "Software"
+      }
+    ],
+    "additionalResources": [
+      {
+        "title": "Tutorial Cámara Trampa RPi",
+        "url": "https://projects.raspberrypi.org/en/projects/wildlife-camera-trap",
+        "type": "link"
+      },
+      {
+        "title": "Guía Fauna Local (Ejemplo)",
+        "url": "https://www.naturalista.mx/",
+        "type": "website"
+      }
+    ],
+    "imageGallery": [
+      {
+        "url": "https://picsum.photos/seed/camera-trap-gal1/800/450",
+        "altText": "Circuito ensamblado con Raspberry Pi, cámara y sensor PIR.",
+        "caption": "Hardware Ensamblado"
+      },
+      {
+        "url": "https://picsum.photos/seed/camera-trap-gal2/800/450",
+        "altText": "Código Python para detectar movimiento y tomar foto.",
+        "caption": "Script de Captura"
+      },
+      {
+        "url": "https://picsum.photos/seed/camera-trap-gal3/800/450",
+        "altText": "Tabla clasificando las especies identificadas en las fotos capturadas.",
+        "caption": "Resultados Estudio"
+      }
+    ],
+    "projectRubricScores": {
+      "innovation": 3,
+      "collaboration": 2,
+      "impact": 3,
+      "techuse": 2,
+      "presentation": 3
+    },
+    "finalProjectGrade": 9,
+    "slug": "estudio-de-biodiversidad-local-con-trampas-fotograficas-caseras"
+  }
+]
