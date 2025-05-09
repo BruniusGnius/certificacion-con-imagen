@@ -1,0 +1,167 @@
+/* css/certificate.css - Estilos para la página de certificado */
+
+/* 1. Import Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Saira:wght@400;500;600;700;800;900&family=Saira+Condensed:wght@400;500;600;700;800;900&family=Saira+Semi+Condensed:wght@400;500;600;700;800;900&display=swap");
+
+/* 2. Definición de Variables de Color Gnius */
+:root {
+  --gnius-dark-1: #0f0f0f;
+  --gnius-dark-2: #1f1f1f;
+  --gnius-light: #ffffff;
+  --gnius-yellow: #ffd700;
+  --gnius-cyan: #00ffff;
+  --gnius-red: #ff0000;
+  --gnius-gray-light: #555555;
+  --gnius-gray-dark: #333333;
+  --gnius-border: var(--gnius-gray-light);
+  --color-text-base: var(--gnius-light);
+  --color-bg-base: var(--gnius-dark-1);
+}
+
+/* 3. Custom Base Styles */
+body {
+  background-color: var(--color-bg-base);
+  color: var(--color-text-base);
+  font-family: "Saira Semi Condensed", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 600; /* Peso base semibold (600) */
+}
+
+strong,
+b {
+  font-weight: 800; /* Extrabold (800) */
+}
+
+/* Estilos base para enlaces DENTRO de contenido de texto */
+/* (El enlace SBT usa clases de Tailwind directamente) */
+p a:not([class*="button"]):not([class*="btn"]):not([class*="chip"]),
+.prose a {
+  color: var(--gnius-cyan);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color 0.15s ease-in-out;
+}
+p a:not([class*="button"]):not([class*="btn"]):not([class*="chip"]):hover,
+.prose a:hover {
+  color: var(--gnius-yellow);
+}
+
+/* Estilos base para elementos @tailwindcss/typography (poco probable que se use mucho aquí) */
+.prose {
+  color: var(--gnius-light);
+}
+.prose strong,
+.prose b {
+  font-weight: 800;
+  color: inherit;
+}
+.prose code {
+  background-color: var(--gnius-gray-dark);
+  color: var(--gnius-yellow);
+  padding: 0.1em 0.4em;
+  border-radius: 0.25rem;
+  font-size: 0.9em;
+  font-family: "Saira Condensed", monospace;
+}
+
+/* 4. Custom Component Styles */
+
+.font-bold {
+  font-weight: 800 !important;
+}
+
+/* --- CHIP BASE --- (Usado para Insignia, Nivel, Habilidades, Criterios) */
+.chip {
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem; /* El JS lo sobreescribe a text-xs en certificate.js, pero mantenemos base */
+  font-weight: 600; /* Semibold para chips */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.25;
+  text-align: center;
+  white-space: nowrap;
+  margin: 0.1rem;
+}
+.chip-yellow {
+  background-color: var(--gnius-yellow);
+  color: #111111;
+}
+.chip-cyan {
+  background-color: var(--gnius-cyan);
+  color: #111111;
+}
+.chip-red {
+  /* No usado directamente por los chips del certificado, pero se incluye por completitud */
+  background-color: var(--gnius-red);
+  color: var(--gnius-light);
+}
+.chip-gray {
+  /* No usado directamente por los chips del certificado */
+  background-color: var(--gnius-border);
+  color: var(--gnius-light);
+}
+.chip-cyan-outline {
+  /* Usado para Habilidades */
+  border: 1px solid var(--gnius-cyan);
+  color: var(--gnius-cyan);
+  background-color: transparent;
+  padding: calc(0.25rem - 1px) calc(0.75rem - 1px);
+}
+.chip-yellow-outline {
+  /* Usado para Criterios */
+  border: 1px solid var(--gnius-yellow);
+  color: var(--gnius-yellow);
+  background-color: transparent;
+  padding: calc(0.25rem - 1px) calc(0.75rem - 1px);
+}
+
+/* Chip estudiante individual (No usado aquí, pero incluido por si acaso en el futuro) */
+.student-chip {
+  /* Clases base chip + color + margen aplicados en JS/HTML */
+}
+.student-chip i {
+  margin-right: 0.25rem;
+}
+
+/* --- Estilos para Botones (Genéricos, aunque los enlaces usan .link-action) --- */
+.btn {
+  @apply inline-flex items-center justify-center px-5 py-2 border border-transparent text-base font-medium rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gnius-dark-1 transition ease-in-out duration-150;
+}
+.btn-primary {
+  @apply bg-gnius-cyan text-gnius-dark-1 hover:bg-cyan-300 focus:ring-gnius-cyan;
+}
+.btn-secondary {
+  @apply bg-gnius-yellow text-gnius-dark-1 hover:bg-yellow-300 focus:ring-gnius-yellow;
+}
+.btn-danger {
+  @apply bg-gnius-red text-gnius-light hover:bg-red-700 focus:ring-gnius-red;
+}
+.btn-neutral {
+  @apply bg-gnius-gray-dark text-gnius-light hover:bg-gnius-gray-light focus:ring-gnius-gray-light;
+}
+.btn:disabled {
+  @apply opacity-50 cursor-not-allowed;
+}
+
+/* Enlace discreto "Descargar", "Ver Proyecto" */
+.link-action {
+  @apply text-sm font-semibold transition duration-150 ease-in-out;
+  /* Color y underline aplicados en HTML/Tailwind o estilos de enlace base. */
+  /* En certificate.html se aplica underline en el HTML. */
+}
+
+/* Enlace específico "Ver Certificado" (No usado en certificate.html, pero por consistencia) */
+.certificate-link {
+  @apply flex items-center text-sm font-semibold transition duration-150 ease-in-out;
+  color: var(--gnius-yellow);
+}
+.certificate-link:hover {
+  color: color-mix(in srgb, var(--gnius-yellow) 80%, white);
+}
+.certificate-link i {
+  margin-right: 0.3rem;
+}

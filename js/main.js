@@ -77,7 +77,7 @@ const loadInitialData = async () => {
   if (loadingMessage) loadingMessage.style.display = "block";
   if (noResultsMessage) noResultsMessage.style.display = "none";
   if (projectList) projectList.innerHTML = "";
-  const projectsData = await fetchData("data/projectsLoremPicsum.json");
+  const projectsData = await fetchData("data/projects.json");
   if (projectsData && Array.isArray(projectsData)) {
     allProjects = projectsData;
     populateFilters();
