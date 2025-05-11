@@ -5,153 +5,178 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Certificado de Proyecto - Gnius Club</title>
-
-    <!-- Google Fonts, Font Awesome, Tailwind CDN, Tailwind Config -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Saira:wght@400;700&family=Saira+Condensed:wght@400;700&family=Saira+Semi+Condensed:wght@400;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@400;500;600;700;800;900&family=Saira+Semi+Condensed:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
     <script>
-        tailwind.config = { /* ... Mismo config que index.html ... */
-            theme: { extend: { colors: { 'gnius-dark-1': '#0F0F0F', 'gnius-dark-2': '#1F1F1F', 'gnius-light': '#F0F0F0', 'gnius-yellow': '#FFD700', 'gnius-cyan': '#00FFFF', 'gnius-red': '#FF0000', 'gnius-gray-light': '#555555', 'gnius-gray-dark': '#333333', }, fontFamily: { 'sans': ['Saira Semi Condensed', 'sans-serif'], 'condensed': ['Saira Condensed', 'sans-serif'], 'normal': ['Saira', 'sans-serif'] } } }
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'gnius-dark-1': '#0F0F0F',
+                        'gnius-dark-2': '#1F1F1F',
+                        'gnius-light': '#FFFFFF',
+                        'gnius-light-text': '#F0F0F0',
+                        'gnius-yellow': '#FFD700',
+                        'gnius-cyan': '#00FFFF',
+                        'gnius-red': '#FF0000',
+                        'gnius-green': '#4CAF50',
+                        'gnius-violet': '#8731fa', // Color para borde nivel
+                        'gnius-gray-light': '#555555',
+                        'gnius-gray-dark': '#333333',
+                        'gnius-border': 'var(--gnius-gray-light)',
+                    },
+                    fontFamily: {
+                        'sans': ['Saira Semi Condensed', 'sans-serif'],
+                        'condensed': ['Saira Condensed', 'sans-serif'],
+                    },
+                    fontWeight: {
+                        'normal': '400', 'medium': '500', 'semibold': '600',
+                        'bold': '700', 'extrabold': '800', 'black': '900',
+                    },
+                    boxShadow: {
+                        'cyan-glow-sm': '0 0 15px 3px rgba(0, 255, 255, 0.3)',
+                        'cyan-glow': '0 0 20px 5px rgba(0, 255, 255, 0.3)',
+                        'yellow-glow': '0 0 20px 5px rgba(255, 215, 0, 0.3)',
+                        'red-glow': '0 0 20px 5px rgba(255, 0, 0, 0.3)',
+                        'green-glow': '0 0 20px 5px rgba(76, 175, 80, 0.3)',
+                        'violet-glow': '0 0 20px 5px rgba(135, 49, 250, 0.3)',
+                    },
+                    aspectRatio: {
+                        '1200/926': '1200 / 926', // Proporción certificado
+                        '16/9': '16 / 9', '1/1': '1 / 1', '4/3': '4 / 3', '3/2': '3 / 2'
+                    },
+                }
+            }
         }
     </script>
     <link rel="stylesheet" href="css/style.css">
-
+    Use code with caution.
 </head>
 
-<body class="bg-gnius-dark-1 text-gnius-light font-sans">
-
-    <!-- Contenedor Principal -->
+<body class="bg-gnius-dark-1 text-gnius-light-text font-sans font-medium">
     <div class="container mx-auto px-4 py-8 text-lg">
 
-        <!-- Header -->
         <header class="mb-8 flex justify-between items-center">
             <a href="index.html"><img src="assets/img/gnius_logo_placeholder.png" alt="Gnius Club Logo"
                     class="h-12 w-auto"></a>
-            <a id="back-to-project-link" href="project.html" class="text-gnius-cyan hover:text-gnius-yellow"><i
-                    class="fa-solid fa-arrow-left-long mr-2"></i>Volver al Proyecto</a>
+            <a id="back-to-project-link" href="project.html"
+                class="text-gnius-cyan hover:text-gnius-yellow text-sm font-semibold">
+                <i class="fa-solid fa-arrow-left-long mr-2"></i>Volver al Proyecto
+            </a>
         </header>
 
-        <!-- Loading / Error Messages -->
-        <div id="loading-message" class="text-center text-xl py-10">Cargando certificado...</div>
-        <div id="error-message" class="text-center text-gnius-red bg-red-900/30 border border-gnius-red p-4 rounded-lg"
+        <div id="loading-message" class="text-center text-xl py-10 font-semibold">Cargando certificado...</div>
+        <div id="error-message"
+            class="text-center text-gnius-red bg-red-900/30 border border-gnius-red p-4 rounded-lg font-semibold"
             style="display: none;"></div>
 
-        <!-- Certificate Details Container -->
-        <main id="certificate-details" class="hidden bg-gnius-dark-2 p-6 md:p-8 rounded-lg shadow-lg">
+        <main id="certificate-details" class="hidden  p-6 md:p-8 rounded-lg shadow-lg">
 
-            <!-- Título Principal -->
-            <h1 class="text-2xl md:text-3xl font-bold text-gnius-light mb-8 text-left">Certificado de Proyecto de
-                Innovación</h1>
+            <h1 class="text-3xl md:text-4xl font-black text-gnius-light mb-10 text-center md:text-left">Certificado de
+                Proyecto de Innovación</h1>
 
             <div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
 
-                <!-- Columna Izquierda/Arriba: Visualización y Botones Discretos -->
+                <!-- Columna Izquierda/Arriba: Visualización y Descarga -->
                 <div class="lg:w-2/3 flex flex-col">
-                    <!-- Imagen Preview -->
                     <div
-                        class="aspect-video bg-gnius-gray-dark rounded-md overflow-hidden border border-gnius-gray-light flex items-center justify-center min-h-[200px] mb-4">
-                        <img id="certificate-preview-image" src="" alt="Previsualización del certificado"
+                        class="bg-gnius-gray-dark rounded-md overflow-hidden border border-gnius-gray-light flex items-center justify-center shadow-lg aspect-1200/926">
+                        <img id="certificate-preview-image" src="" alt="Previsualización del certificado del estudiante"
                             class="max-w-full max-h-full object-contain">
                     </div>
-
-                    <!-- Contenedor para Botones/Links discretos alineados a la derecha -->
-                    <div class="mt-auto text-right space-x-4">
-                        <!-- Botón/Link Descargar (Subrayado) -->
-                        <a id="certificate-download-link" href="#" download
-                            class="link-action text-gnius-cyan hover:text-gnius-yellow inline-flex items-center underline">
-                            <!-- Añadido underline -->
-                            <i class="fa-solid fa-download mr-1"></i>Descargar
-                        </a>
-                        <!-- Botón/Link Ver Proyecto (Subrayado) -->
+                    <!-- Contenedor de botones alineado a la derecha -->
+                    <div class="mt-6 flex flex-col sm:flex-row items-center sm:justify-end gap-4 sm:gap-6">
                         <a id="view-project-button" href="project.html"
-                            class="link-action text-gnius-cyan hover:text-gnius-yellow inline-flex items-center underline">
-                            <!-- Añadido underline -->
-                            <i class="fa-solid fa-flask-vial mr-1"></i>Ver Proyecto
+                            class="link-action text-gnius-cyan hover:text-gnius-yellow inline-flex items-center text-base underline">
+                            <i class="fa-solid fa-flask-vial mr-2"></i>Ver Proyecto
+                        </a>
+                        <a id="certificate-download-link" href="#" download
+                            class="link-action text-gnius-cyan hover:text-gnius-yellow inline-flex items-center text-base underline">
+                            <i class="fa-solid fa-download mr-2"></i>Descargar Certificado
                         </a>
                     </div>
-                </div><!-- Fin Columna Izquierda -->
-
+                </div>
 
                 <!-- Columna Derecha/Abajo: Datos / Metadatos -->
-                <div class="lg:w-1/3 space-y-6">
-                    <!-- Nombre Estudiante -->
+                <aside class="lg:w-1/3 space-y-6 p-6 bg-gnius-dark-2 rounded-lg">
                     <h2 id="student-name" class="text-3xl font-bold text-gnius-light">[Nombre Estudiante]</h2>
 
-                    <!-- Curso -->
                     <div>
-                        <p class="text-sm font-semibold text-gnius-light/80 mb-1">Curso Asociado:</p>
+                        <p class="text-sm font-semibold text-gnius-light-text/80 mb-1">Curso Asociado:</p>
                         <p id="course-name" class="font-semibold text-xl text-gnius-yellow">[Nombre Curso]</p>
                     </div>
 
-                    <!-- Insignia y Nivel -->
-                    <div class="flex flex-wrap items-center gap-x-4 gap-y-2">
-                        <div>
-                            <p class="text-sm font-semibold text-gnius-light/80 mb-1">Insignia Obtenida:</p>
-                            <span id="badge-name" class="chip chip-yellow">[Insignia]</span>
-                        </div>
-                        <div>
-                            <p class="text-sm font-semibold text-gnius-light/80 mb-1">Nivel:</p>
-                            <span id="level" class="chip chip-cyan">[Nivel]</span>
-                        </div>
-                    </div>
-
-                    <!-- Habilidades -->
+                    <!-- Píldora para Insignia -->
                     <div>
-                        <p class="text-sm font-semibold text-gnius-light/80 mb-2">Habilidades Demostradas:</p>
-                        <div id="skills-list" class="flex flex-wrap gap-2">
-                            <!-- JS crea chips -->
+                        <p class="text-sm font-semibold text-gnius-light-text/80 mb-1">Insignia Obtenida:</p>
+                        <div id="badge-container" class="certificate-info-pill "><!-- {/* JS cambiará
+                        border-color */}-->
+                            <img id="badge-image" src="" alt="Insignia" class="certificate-pill-image hidden">
+                            <span id="badge-name" class="certificate-pill-text text-gnius-light-text">[Insignia]</span> <!--{/*
+                        Texto oscuro para fondo amarillo */}-->
                         </div>
                     </div>
 
-                    <!-- Criterios -->
+                    <!-- Píldora para Nivel -->
                     <div>
-                        <p class="text-sm font-semibold text-gnius-light/80 mb-2">Criterios de Evaluación Clave:</p>
-                        <div id="criteria-list" class="flex flex-wrap gap-2">
-                            <!-- JS crea chips -->
+                        <p class="text-sm font-semibold text-gnius-light-text/80 mb-1">Nivel Alcanzado:</p>
+                        <div id="level-container" class="certificate-info-pill"> <!--{/* Sin bg-*, JS pondrá borde violáceo
+                        y será fondo transparente */}-->
+                            <img id="level-image" src="" alt="Nivel" class="certificate-pill-image hidden">
+                            <span id="level" class="certificate-pill-text text-gnius-light-text">[Nivel]</span> <!--{/*
+                        Texto claro para fondo transparente */}-->
                         </div>
                     </div>
 
-                    <!-- Verificación SBT -->
+                    <div>
+                        <p class="text-sm font-semibold text-gnius-light-text/80 mb-2">Habilidades Demostradas:</p>
+                        <div id="skills-list" class="flex flex-wrap gap-1.5">
+                            <!--{/* JS crea chips .chip-cyan-outline .text-xs */}-->
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="text-sm font-semibold text-gnius-light-text/80 mb-2">Criterios de Evaluación Clave:
+                        </p>
+                        <div id="criteria-list" class="flex flex-wrap gap-1.5">
+                            <!-- {/* JS crea chips .chip-yellow-outline .text-xs */} -->
+                        </div>
+                    </div>
+
                     <div id="sbt-link-container" style="display: none;">
-                        <p class="text-sm font-semibold text-gnius-light/80 mb-1">Verificación:</p>
-                        <!-- Enlace con estilo base (CSS lo subraya) -->
+                        <p class="text-sm font-semibold text-gnius-light-text/80 mb-1">Verificación:</p>
                         <a id="sbt-link" href="#" target="_blank" rel="noopener noreferrer"
-                            class="inline-flex items-center text-sm underline text-cyan-500 font-semibold">
-                            <i class="fa-solid fa-link mr-2"></i> Ver Transacción SBT
+                            class="link-action text-gnius-cyan hover:text-gnius-yellow inline-flex items-center text-sm underline">
+                            <i class="fa-solid fa-link mr-2"></i>Ver Transacción SBT
                         </a>
                     </div>
 
-                    <!-- Emisión -->
                     <div id="issuance-info-block">
-                        <p class="text-sm font-semibold text-gnius-light/80 mb-1">Emitido:</p>
-                        <p id="issuance-info" class="text-base text-gnius-light/90">
-                            Por Gnius Club y <span id="college-name">[Nombre Colegio]</span> el <span
-                                id="issue-date">[Fecha Emisión]</span>.
+                        <p class="text-sm font-semibold text-gnius-light-text/80 mb-1">Emitido:</p>
+                        <p id="issuance-info" class="text-base text-gnius-light-text/90">
+                            Por Gnius Club y <span id="college-name" class="font-semibold">[Nombre Colegio]</span> el
+                            <span id="issue-date" class="font-semibold">[Fecha Emisión]</span>.
                         </p>
                     </div>
+                </aside>
 
-                </div> <!-- Fin Columna Derecha -->
-
-            </div> <!-- Fin Flex Container -->
-
+            </div>
         </main>
 
-        <!-- Footer -->
-        <footer class="mt-16 text-center text-sm text-gnius-light/60">
+        <footer class="mt-16 text-center text-sm text-gnius-light-text/60 font-medium">
             <p>© <span id="current-year-footer"></span> Gnius Club. Todos los derechos reservados.</p>
         </footer>
-
     </div>
 
-    <!-- Certificate JavaScript -->
     <script src="js/certificate.js"></script>
+
 </body>
 
 </html>
