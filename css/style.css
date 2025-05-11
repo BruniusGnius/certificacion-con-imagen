@@ -1,42 +1,66 @@
-/* css/style.css - v6 Corregido (Pesos de Fuente) */
-
-/* 1. Import Google Fonts */
-@import url("https://fonts.googleapis.com/css2?family=Saira:wght@400;500;600;700;800;900&family=Saira+Condensed:wght@400;500;600;700;800;900&family=Saira+Semi+Condensed:wght@400;500;600;700;800;900&display=swap"); /* Añadidos pesos 500 y 800 */
-
+/* css/style.css - v6.29 (Final Certificate Pill Styles) */
+/* 1. Import Google Fonts (Saira Semi Condensed y Saira Condensed) */
+@import url("https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@400;500;600;700;800;900&family=Saira+Semi+Condensed:wght@400;500;600;700;800;900&display=swap");
 /* 2. Definición de Variables de Color Gnius */
 :root {
   --gnius-dark-1: #0f0f0f;
   --gnius-dark-2: #1f1f1f;
-  --gnius-light: #ffffff;
+  --gnius-light: #ffffff; /* Blanco puro */
+  --gnius-light-text: #f0f0f0; /* Texto un poco menos brillante */
   --gnius-yellow: #ffd700;
   --gnius-cyan: #00ffff;
   --gnius-red: #ff0000;
+  --gnius-green: #4caf50; /* Verde estándar para semáforo */
+  --gnius-violet: #8731fa; /* Color violáceo para borde nivel */
   --gnius-gray-light: #555555;
   --gnius-gray-dark: #333333;
   --gnius-border: var(--gnius-gray-light);
-  --color-text-base: var(--gnius-light);
+  --color-text-base: var(--gnius-light-text);
   --color-bg-base: var(--gnius-dark-1);
+  /* Colores específicos Rúbrica (Verde/Amarillo/Rojo) */
+  --rubric-color-1: var(--gnius-red); /* Insuficiente */
+  --rubric-color-2: var(--gnius-yellow); /* Satisfactorio */
+  --rubric-color-3: var(--gnius-green); /* Excelente */
 }
-
 /* 3. Custom Base Styles */
 body {
   background-color: var(--color-bg-base);
   color: var(--color-text-base);
-  font-family: "Saira Semi Condensed", sans-serif;
+  font-family: "Saira Semi Condensed", sans-serif; /* Fuente Principal */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* --- CORRECCIÓN: Peso base medium (500) --- */
-  font-weight: 600;
+  font-weight: 500; /* Peso base Medium */
 }
-
-/* --- CORRECCIÓN: Estilo base para strong/b (extrabold 800) --- */
+p,
+li,
+span,
+div,
+section,
+aside,
+main,
+header,
+footer,
+a,
+button,
+input,
+select,
+textarea {
+  font-weight: inherit;
+}
 strong,
-b {
-  font-weight: 00;
+b,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
 }
-
-/* Estilos base para enlaces DENTRO de contenido de texto y en la lista de recursos */
-p a:not([class*="button"]):not([class*="btn"]):not([class*="chip"]),
+p
+  a:not([class*="button"]):not([class*="btn"]):not([class*="chip"]):not(
+    .certificate-link
+  ),
 .prose a,
 ul#resources-list li a {
   color: var(--gnius-cyan);
@@ -44,24 +68,25 @@ ul#resources-list li a {
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
   transition: color 0.15s ease-in-out;
-  /* Los enlaces heredarán el peso 500 del body a menos que se especifique diferente */
+  font-weight: 600;
 }
-p a:not([class*="button"]):not([class*="btn"]):not([class*="chip"]):hover,
+p
+  a:not([class*="button"]):not([class*="btn"]):not([class*="chip"]):not(
+    .certificate-link
+  ):hover,
 .prose a:hover,
 ul#resources-list li a:hover {
   color: var(--gnius-yellow);
 }
-
-/* Estilos base para elementos @tailwindcss/typography */
 .prose {
-  color: var(--gnius-light);
-  /* Hereda font-weight: 500 del body */
+  color: var(--gnius-light-text);
+  font-weight: 500;
+  font-family: "Saira Semi Condensed", sans-serif;
 }
 .prose strong,
 .prose b {
-  /* --- CORRECCIÓN: Aplicar extrabold (800) --- */
-  font-weight: 800;
-  color: inherit; /* Mantener color */
+  font-weight: 700;
+  color: inherit;
 }
 .prose code {
   background-color: var(--gnius-gray-dark);
@@ -70,30 +95,25 @@ ul#resources-list li a:hover {
   border-radius: 0.25rem;
   font-size: 0.9em;
   font-family: "Saira Condensed", monospace;
-  /* Heredará peso 500, que suele estar bien para código */
+  font-weight: 500;
 }
-
-/* Forzar fuente Saira Condensed en elementos del gráfico Radar */
 .chartjs-tooltip,
 .chartjs-tooltip *,
-.chartjs-point-label {
+#gaugeChart + p,
+.chartjs-point-label,
+.rubric-score-text {
   font-family: "Saira Condensed", sans-serif !important;
 }
-
 /* 4. Custom Component Styles */
-
-/* --- CORRECCIÓN: Redefinir .font-bold para que sea extrabold (800) --- */
 .font-bold {
-  font-weight: 800 !important; /* Usar !important para asegurar override */
+  font-weight: 800 !important;
 }
-/* .font-semibold (600) y otros pesos no se modifican por defecto */
-
-/* --- CHIP BASE --- */
+/* --- CHIP STYLES (Usados en Certificado para Habilidades/Criterios) --- */
 .chip {
   padding: 0.25rem 0.75rem;
   border-radius: 9999px;
   font-size: 0.75rem;
-  font-weight: 600; /* Semibold para chips */
+  font-weight: 600;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -101,6 +121,7 @@ ul#resources-list li a:hover {
   text-align: center;
   white-space: nowrap;
   margin: 0.1rem;
+  font-family: "Saira Semi Condensed", sans-serif;
 }
 .chip-yellow {
   background-color: var(--gnius-yellow);
@@ -112,34 +133,61 @@ ul#resources-list li a:hover {
 }
 .chip-red {
   background-color: var(--gnius-red);
-  color: var(--gnius-light);
+  color: var(--gnius-light-text);
 }
 .chip-gray {
   background-color: var(--gnius-border);
-  color: var(--gnius-light);
+  color: var(--gnius-light-text);
 }
 .chip-cyan-outline {
   border: 1px solid var(--gnius-cyan);
   color: var(--gnius-cyan);
   background-color: transparent;
   padding: calc(0.25rem - 1px) calc(0.75rem - 1px);
+  font-size: 0.65rem; /* text-xs */
 }
 .chip-yellow-outline {
   border: 1px solid var(--gnius-yellow);
   color: var(--gnius-yellow);
   background-color: transparent;
   padding: calc(0.25rem - 1px) calc(0.75rem - 1px);
+  font-size: 0.65rem; /* text-xs */
 }
-
-/* Chip estudiante individual */
+.chip-metadata {
+  font-family: "Saira Condensed", sans-serif !important;
+  font-weight: 500 !important;
+  font-size: 0.75rem !important;
+  padding: 0.2rem 0.65rem !important;
+  line-height: 1.1 !important;
+  border-width: 1px;
+  border-style: solid;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  text-align: center;
+  white-space: nowrap;
+  margin: 2px;
+}
+.chip-cyan-muted-border {
+  border-color: rgba(0, 255, 255, 0.4);
+  color: rgba(0, 255, 255, 0.9);
+  background-color: transparent !important;
+}
+.chip-red-muted-border {
+  border-color: rgba(255, 0, 0, 0.4);
+  color: rgba(255, 0, 0, 0.9);
+  background-color: transparent !important;
+}
 .student-chip {
-  /* Clases base chip + color + margen aplicados en JS/HTML */
+  font-family: "Saira Condensed", sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 0.75rem !important;
+  @apply chip;
 }
 .student-chip i {
   margin-right: 0.25rem;
 }
-
-/* --- CHIP TECNOLOGÍA --- */
 .tech-chip-container {
   display: inline-flex;
   align-items: center;
@@ -151,8 +199,8 @@ ul#resources-list li a:hover {
   font-family: "Saira Condensed", sans-serif;
   font-size: 0.85rem;
   line-height: 1.1;
-  color: var(--gnius-light);
-  font-weight: 400; /* Resetear a normal/400 para Saira Condensed */
+  color: var(--gnius-light-text);
+  font-weight: 500;
 }
 .tech-chip-container .tech-icon {
   margin-right: 0.5rem;
@@ -161,7 +209,7 @@ ul#resources-list li a:hover {
   line-height: 1;
 }
 .tech-chip-container .tech-name {
-  font-weight: 400; /* Asegurar peso normal */
+  font-weight: 500;
   white-space: nowrap;
   margin-right: 0.5rem;
 }
@@ -178,7 +226,7 @@ ul#resources-list li a:hover {
   padding: 0.05rem 0.4rem;
   border-radius: 9999px;
   font-size: 0.6rem;
-  font-weight: 700; /* Bold para categoría */
+  font-weight: 700;
   line-height: 1;
   text-transform: uppercase;
   white-space: nowrap;
@@ -193,26 +241,14 @@ ul#resources-list li a:hover {
 }
 .tech-inner-chip-Tool {
   background-color: var(--gnius-red);
-  color: var(--gnius-light);
+  color: var(--gnius-light-text);
 }
-
-/* --- Secciones Aside (project.html) --- */
 .aside-section {
   padding: 1.5rem;
   background-color: var(--gnius-dark-2);
   border-radius: 0.5rem;
   margin-bottom: 2rem;
 }
-.aside-title {
-  /* Estilos definidos con clases Tailwind en HTML */
-}
-
-/* --- Títulos de Sección Principal (project.html) --- */
-.section-title {
-  /* Estilos definidos con clases Tailwind en HTML */
-}
-
-/* --- Galería y Modal --- */
 .gallery-item {
   aspect-ratio: 16 / 9;
   transition: transform 0.2s ease-in-out;
@@ -220,48 +256,43 @@ ul#resources-list li a:hover {
 .gallery-item:hover {
   transform: scale(1.03);
 }
-.gallery-item img {
-  /* Clases Tailwind base en HTML */
-}
-#imageModal {
-  /* Base y transición aplicados con Tailwind en HTML */
-}
 .modal-content {
-  /* Estructura base con Tailwind */
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
-.modal-content-wide {
-  /* Tamaño y borde con Tailwind */
-}
-#modalCloseBtn {
+#imageModal #modalCloseBtn {
   position: absolute;
   top: 0.5rem;
   right: 0.5rem;
   z-index: 20;
   line-height: 1;
 }
-#modalImage {
-  display: block; /* Clases Tailwind en HTML */
+#imageModal #modalImage {
+  display: block;
 }
-#modalCaption {
+#imageModal #modalCaption {
+  font-family: "Saira Semi Condensed", sans-serif;
+  font-weight: 500;
   scrollbar-width: thin;
-  scrollbar-color: var(--gnius-cyan) var(--gnius-gray-dark); /* Clases Tailwind en HTML */
+  scrollbar-color: var(--gnius-cyan) var(--gnius-gray-dark);
 }
-#modalCaption::-webkit-scrollbar {
+#imageModal #modalCaption::-webkit-scrollbar {
   width: 8px;
 }
-#modalCaption::-webkit-scrollbar-track {
+#imageModal #modalCaption::-webkit-scrollbar-track {
   background: var(--gnius-gray-dark);
   border-radius: 4px;
 }
-#modalCaption::-webkit-scrollbar-thumb {
+#imageModal #modalCaption::-webkit-scrollbar-thumb {
   background-color: var(--gnius-cyan);
   border-radius: 4px;
   border: 2px solid var(--gnius-gray-dark);
 }
-
-/* --- Estilos para Botones (Clases .btn ya definidas en HTML/JS) --- */
 .btn {
-  @apply inline-flex items-center justify-center px-5 py-2 border border-transparent text-base font-medium rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gnius-dark-1 transition ease-in-out duration-150;
+  @apply inline-flex items-center justify-center px-5 py-2 border border-transparent text-base rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gnius-dark-1 transition ease-in-out duration-150;
+  font-weight: 600;
+  font-family: "Saira Semi Condensed", sans-serif;
 }
 .btn-primary {
   @apply bg-gnius-cyan text-gnius-dark-1 hover:bg-cyan-300 focus:ring-gnius-cyan;
@@ -270,29 +301,368 @@ ul#resources-list li a:hover {
   @apply bg-gnius-yellow text-gnius-dark-1 hover:bg-yellow-300 focus:ring-gnius-yellow;
 }
 .btn-danger {
-  @apply bg-gnius-red text-gnius-light hover:bg-red-700 focus:ring-gnius-red;
+  @apply bg-gnius-red text-gnius-light-text hover:bg-red-700 focus:ring-gnius-red;
 }
 .btn-neutral {
-  @apply bg-gnius-gray-dark text-gnius-light hover:bg-gnius-gray-light focus:ring-gnius-gray-light;
+  @apply bg-gnius-gray-dark text-gnius-light-text hover:bg-gnius-gray-light focus:ring-gnius-gray-light;
 }
 .btn:disabled {
   @apply opacity-50 cursor-not-allowed;
 }
-
-/* Enlace discreto "Ver Detalles" card, "Descargar", "Ver Proyecto" */
 .link-action {
-  @apply text-sm font-semibold transition duration-150 ease-in-out; /* Semibold (600) */
-  /* Color y underline aplicados en HTML */
+  @apply text-sm font-semibold transition duration-150 ease-in-out;
+  font-family: "Saira Semi Condensed", sans-serif;
 }
-
-/* Enlace específico "Ver Certificado" */
 .certificate-link {
-  @apply flex items-center text-sm font-semibold transition duration-150 ease-in-out; /* Semibold (600) */
+  display: inline-flex;
+  align-items: center;
   color: var(--gnius-yellow);
+  font-family: "Saira Semi Condensed", sans-serif;
+  font-weight: 600;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  transition: color 0.15s ease-in-out;
+  text-decoration: none;
 }
 .certificate-link:hover {
   color: color-mix(in srgb, var(--gnius-yellow) 80%, white);
+  text-decoration: underline;
 }
-.certificate-link i {
-  margin-right: 0.3rem;
+.certificate-link i.fa-award {
+  margin-right: 0.25rem;
+  font-size: 1em;
+}
+/* --- ODS HERO BADGES (PROJECT.HTML - HORIZONTAL REDISEÑO) --- */
+.sdg-hero-badge {
+  width: auto;
+  min-width: 60px;
+  height: 32px;
+  border-radius: 4px;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 0.5rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+.sdg-hero-badge:hover {
+  transform: scale(1.03) translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+.sdg-hero-badge-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  gap: 0.3rem;
+}
+.sdg-hero-badge-number {
+  font-family: "Saira Condensed", sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  line-height: 1;
+  flex-shrink: 0;
+  color: var(--sdg-contrast-color, white);
+}
+.sdg-hero-badge-icon {
+  height: 60%;
+  width: auto;
+  max-width: 18px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+/* --- PANEL ODS DETALLE (PROJECT.HTML - CSS GRID, ALTURA FIJA, SOLO NÚMERO Y TÍTULO) --- */
+.sdg-panel-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 75px;
+  padding: 0.4rem;
+  border-radius: 0.25rem;
+  text-decoration: none;
+  overflow: hidden;
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out,
+    opacity 0.3s ease-out;
+  position: relative;
+}
+.sdg-panel-item.active {
+  color: var(--sdg-contrast-color, white);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+}
+.sdg-panel-item.active:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25), 0 0 18px var(--sdg-base-color);
+}
+.sdg-panel-item.inactive {
+  background-color: var(--gnius-gray-dark);
+  opacity: 0.65;
+  border: 1px solid var(--gnius-gray-light);
+}
+.sdg-panel-item.inactive:hover {
+  opacity: 0.8;
+  transform: scale(1.01);
+  border-color: var(--gnius-border);
+}
+.sdg-panel-item .sdg-panel-item-text-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-grow: 1;
+}
+.sdg-panel-item .sdg-panel-item-number {
+  font-family: "Saira Condensed", sans-serif;
+  font-weight: 900;
+  font-size: 1.75rem;
+  line-height: 1;
+  margin-bottom: 0.15rem;
+}
+.sdg-panel-item.active .sdg-panel-item-number {
+  color: var(--sdg-contrast-color);
+}
+.sdg-panel-item.inactive .sdg-panel-item-number {
+  color: var(--gnius-gray-light);
+}
+.sdg-panel-item .sdg-panel-item-title {
+  font-family: "Saira Condensed", sans-serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  line-height: 1.15;
+  text-transform: uppercase;
+  width: 100%;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.sdg-panel-item.active .sdg-panel-item-title {
+  color: var(--sdg-contrast-color);
+}
+.sdg-panel-item.inactive .sdg-panel-item-title {
+  color: var(--gnius-gray-light);
+}
+.general-ods-logo-tile {
+  background-color: var(--gnius-dark-2) !important;
+  border: 1px solid var(--gnius-gray-dark) !important;
+  opacity: 0.8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.general-ods-logo-tile:hover {
+  transform: scale(1.01);
+  opacity: 1;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+.general-ods-logo-tile .sdg-panel-item-icon-container {
+  height: 100%;
+  margin-bottom: 0;
+}
+.general-ods-logo-tile .sdg-panel-item-icon {
+  max-width: 70%;
+  max-height: 70%;
+  filter: none !important;
+}
+/* Gauge Chart Container */
+#gaugeChartContainer {
+  /* Clases Tailwind definen tamaño */
+}
+#gauge-score-text {
+  font-family: "Saira Condensed", sans-serif;
+  font-weight: 900; /* Black */ /* Tamaño y posición definidos en HTML */
+}
+/* Rubric Bar Chart Styles */
+.rubric-criterion {
+  margin-bottom: 0.75rem;
+}
+.rubric-bar-chart-wrapper {
+  height: 1rem;
+  background-color: var(--gnius-gray-dark);
+  border-radius: 0.25rem;
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+}
+.rubric-bar {
+  height: 100%;
+  border-radius: 0.25rem;
+  transition: width 0.5s ease-out;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 0.5rem;
+}
+.rubric-score-text {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.7);
+  font-family: "Saira Condensed", sans-serif !important;
+}
+.rubric-bar-1 {
+  background-color: var(--rubric-color-1);
+}
+.rubric-bar-2 {
+  background-color: var(--rubric-color-2);
+}
+.rubric-bar-3 {
+  background-color: var(--rubric-color-3);
+}
+.rubric-bar-2 .rubric-score-text,
+.rubric-bar-3 .rubric-score-text {
+  color: rgba(0, 0, 0, 0.8);
+}
+/* --- ESTILOS PARA PÍLDORAS DE INSIGNIA/NIVEL (CERTIFICATE.HTML - ESTILO USUARIO) --- */
+.certificate-info-pill {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  /* Padding: Top/Bottom .5rem, Right 1rem. Left se ajusta para el texto. */
+  padding-top: 0.25rem; /* Ajusta para centrar verticalmente el texto */
+  padding-bottom: 0.32rem;
+  padding-right: 1rem; /* Espacio a la derecha del texto */
+  /* Padding Izquierdo: (30px para la mitad de la imagen que está DENTRO) + (0.5rem espacio texto) */
+  padding-left: 2rem;
+  margin-left: 30px; /* Compensa los 30px de la imagen que sobresalen */
+  /* Solo redondear esquinas derechas */
+  border-top-right-radius: 9999px;
+  border-bottom-right-radius: 9999px;
+  border-top-left-radius: 0; /* Esquina recta */
+  border-bottom-left-radius: 0; /* Esquina recta */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  margin-top: 10px;
+  margin-bottom: 10px;
+  /* Borde base (JS lo modificará) */
+  border-width: 3px; /* Grosor del borde deseado */
+  border-style: solid;
+  border-color: transparent; /* JS cambiará esto o usará background-image para degradado */
+  /* background-color es aplicado por Tailwind en HTML (ej. bg-gnius-yellow) o transparente por JS */
+}
+.certificate-pill-image {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  position: absolute;
+  left: -30px; /* Mitad de la imagen fuera */
+  top: 50%;
+  transform: translateY(-50%); /* Centrado vertical perfecto de la imagen */
+  z-index: 10; /* Encima de la píldora */
+}
+.certificate-pill-text {
+  font-family: "Saira Semi Condensed", sans-serif;
+  font-weight: 800; /* Extrabold */
+  font-size: 0.9rem; /* 14.4px */
+  line-height: 1.2;
+  color: var(
+    --gnius-light-text
+  ); /* Color de texto blanco por defecto para la píldora de Nivel */
+  /* Para la píldora de Insignia, Tailwind aplicará text-gnius-dark-1 en el HTML */
+}
+/* --- Estilos Específicos Iteración 2 (Index Page - Filtros y ODS) --- */
+.filter-input {
+  @apply block w-full bg-gnius-dark-1 border-gnius-gray-light text-gnius-light-text placeholder-gnius-gray-light rounded-md shadow-sm focus:ring-gnius-cyan focus:border-gnius-cyan text-sm py-2 px-3;
+  font-weight: 500;
+  font-family: "Saira Semi Condensed", sans-serif;
+}
+.filter-input::placeholder {
+  font-weight: 500;
+  color: var(--gnius-gray-light);
+}
+select.filter-input {
+  @apply pr-8 bg-no-repeat;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23555555' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 0.5rem center;
+  background-size: 1.5em 1.5em;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.sdg-indicator-square-small {
+  width: 1.125rem;
+  height: 1.125rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+  font-size: 0.625rem;
+  line-height: 1;
+  color: white;
+  font-family: "Saira Condensed", sans-serif;
+  font-weight: 700;
+}
+.sdg-overlay .sdg-overlay-label {
+  font-size: 0.75rem;
+  font-family: "Saira Condensed", sans-serif;
+  font-weight: 600;
+}
+.modal-overlay {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, visibility 0s linear 0.3s;
+}
+.modal-overlay.visible {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease-in-out;
+}
+.modal-overlay.visible .modal-content {
+  transform: scale(1);
+  opacity: 1;
+}
+#sdg-legend-modal .modal-content {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+#sdg-legend-modal .sdg-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+#sdg-legend-modal .sdg-legend-square-list {
+  width: 1.75rem;
+  height: 1.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  line-height: 1;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  flex-shrink: 0;
+  font-family: "Saira Condensed", sans-serif;
+  font-weight: 700;
+  color: white;
+}
+#sdg-legend-modal .sdg-legend-title-list {
+  font-size: 1rem;
+  font-family: "Saira Semi Condensed", sans-serif;
+  font-weight: 600;
+  color: var(--gnius-light-text);
+}
+.legend-modal-body {
+  scrollbar-width: thin;
+  scrollbar-color: var(--gnius-cyan) var(--gnius-gray-dark);
+}
+.legend-modal-body::-webkit-scrollbar {
+  width: 8px;
+}
+.legend-modal-body::-webkit-scrollbar-track {
+  background: var(--gnius-gray-dark);
+  border-radius: 4px;
+}
+.legend-modal-body::-webkit-scrollbar-thumb {
+  background-color: var(--gnius-cyan);
+  border-radius: 4px;
+  border: 2px solid var(--gnius-gray-dark);
+}
+.btn-float-legend {
+  @apply fixed bottom-5 left-5 z-40 bg-gnius-yellow text-gnius-dark-1 rounded-full h-12 w-12 flex items-center justify-center shadow-lg hover:bg-yellow-300 focus:outline-none focus:ring-2 focus:ring-gnius-yellow focus:ring-offset-2 focus:ring-offset-gnius-dark-1;
+  font-size: 1.25rem;
 }

@@ -2,7 +2,7 @@
  * @OnlyCurrentDoc
  *
  * Script para generar un archivo JSON con datos de proyectos Gnius Club
- * a partir de una hoja de Google Sheets. V3.1 - Maneja timezone inválido.
+ * a partir de una hoja de Google Sheets. V4.3 - Corrige pase de 'timezone'.
  */
 
 // --- Constantes y Configuración ---
@@ -11,30 +11,55 @@ const PROP_SEPARATOR = ";";
 const EXPECTED_HEADERS = [
   "projectTitle",
   "projectCategory",
-  "studentLevel",
+  "schooling",
   "projectDate",
-  "intro_title",
-  "intro_content",
-  "coverUrl_url",
-  "coverUrl_altText",
+  "sdgIds",
+  "introTitle",
+  "introContent",
+  "coverImageUrl",
+  "coverImageAltText",
   "problemDescription",
   "solutionProposed",
   "innovationProcess",
-  "media_type",
-  "media_url",
-  "media_altText",
+  "mediaType",
+  "mediaUrl",
+  "mediaAltText",
   "teamMembers",
   "technologies",
   "additionalResources",
   "imageGallery",
+  "rubricInnovation",
+  "rubricCollaboration",
+  "rubricImpact",
+  "rubricTechUse",
+  "rubricPresentation",
 ];
 const COMPLEX_FIELD_INDICES = {
-  teamMembers: 14,
-  technologies: 15,
-  additionalResources: 16,
-  imageGallery: 17,
+  teamMembers: 15,
+  technologies: 16,
+  additionalResources: 17,
+  imageGallery: 18,
 };
-const EVAL_SCORE_PREFIX = "eval_";
+const VALID_BADGES = [
+  "Code Explorer",
+  "Algorithm Seeker",
+  "Micro Programmer",
+  "Robot Navigator",
+  "Tech Voyager",
+  "Network Pioneer",
+  "Design Architect",
+  "Reality Master",
+  "Expert Roboteer",
+  "Prompt Sage",
+  "App Maverick",
+  "AI Paragon",
+];
+const VALID_LEVELS = ["Rookie", "Master", "Hacker"];
+
+// Variable global para mensajes (se reinicia en cada ejecución)
+let validationMessages = [];
+// Variable global para timezone (se asigna en cada ejecución)
+let scriptTimezone = "Etc/GMT"; // Default seguro
 
 // --- Funciones del Menú y UI ---
 function onOpen() {
@@ -43,7 +68,6 @@ function onOpen() {
     .addItem("Generar JSON", "showJsonGeneratorSidebar")
     .addToUi();
 }
-
 function showJsonGeneratorSidebar() {
   const html = HtmlService.createTemplateFromFile("Sidebar")
     .evaluate()
@@ -54,24 +78,29 @@ function showJsonGeneratorSidebar() {
 
 // --- Función Principal de Generación ---
 function generateJson() {
+  // Reiniciar mensajes y obtener timezone
+  validationMessages = [];
+  scriptTimezone =
+    SpreadsheetApp.getActiveSpreadsheet().getSpreadsheetTimeZone(); // Asignar a la global
+  let timezoneWarning = null;
+
+  if (
+    !scriptTimezone ||
+    typeof scriptTimezone !== "string" ||
+    scriptTimezone.trim() === ""
+  ) {
+    scriptTimezone = "Etc/GMT"; // Reasignar global si es inválida
+    Logger.log(
+      `WARN: Timezone inválida. Usando por defecto: ${scriptTimezone}`
+    );
+    timezoneWarning = `ADVERTENCIA: No se pudo obtener zona horaria válida de la hoja. Se usará '${scriptTimezone}' por defecto para formatear fechas. Verifica la configuración de la hoja (Archivo > Configuración).`;
+    validationMessages.push(timezoneWarning);
+  }
+
   try {
     const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
     const dataRange = sheet.getDataRange();
     const values = dataRange.getValues();
-
-    // --- OBTENER Y VALIDAR TIMEZONE --- <<< CAMBIO AQUÍ
-    let timezone =
-      SpreadsheetApp.getActiveSpreadsheet().getSpreadsheetTimeZone();
-    let timezoneWarning = null;
-    if (!timezone || typeof timezone !== "string" || timezone.trim() === "") {
-      const defaultTimezone = "Etc/GMT"; // Zona horaria segura por defecto
-      Logger.log(
-        `WARN: Timezone inválida ('${timezone}'). Usando por defecto: ${defaultTimezone}`
-      );
-      timezoneWarning = `ADVERTENCIA: No se pudo obtener la zona horaria válida de la hoja. Se usará '${defaultTimezone}' por defecto para formatear fechas. Verifica la configuración de la hoja (Archivo > Configuración).`;
-      timezone = defaultTimezone; // Asignar el valor por defecto
-    }
-    // --- FIN CAMBIO TIMEZONE ---
 
     if (values.length < 2) {
       return JSON.stringify({
@@ -82,41 +111,38 @@ function generateJson() {
     const headers = values[0].map((header) => header.trim());
     const dataRows = values.slice(1);
 
-    const headerErrors = validateHeaders(headers);
+    const headerErrors = validateHeaders(headers, validationMessages);
     if (headerErrors.length > 0) {
       return JSON.stringify({
-        error: `Error en encabezados: ${headerErrors.join(", ")}`,
+        error: `Error en encabezados. ${headerErrors.join(
+          " "
+        )} Consulta los mensajes de validación.`,
+        validationMessages: validationMessages,
       });
     }
 
     const headerMap = createHeaderMap(headers);
     const projects = [];
-    let validationMessages = [];
-    // Añadir advertencia de timezone si existió
-    if (timezoneWarning) {
-      validationMessages.push(timezoneWarning);
-    }
 
     dataRows.forEach((row, index) => {
       const rowNum = index + 2;
       const projectData = {};
       let hasFatalError = false;
 
-      // --- Mapeo Básico y Slug ---
+      // Mapeo Básico y Slug
       headers.forEach((header, colIndex) => {
         if (
-          !header.startsWith(EVAL_SCORE_PREFIX) &&
-          !Object.values(COMPLEX_FIELD_INDICES).includes(colIndex)
+          !Object.values(COMPLEX_FIELD_INDICES).includes(colIndex) &&
+          !header.startsWith("rubric") &&
+          header !== "projectDate" &&
+          header !== "sdgIds"
         ) {
-          if (header !== "projectDate") {
-            projectData[header] =
-              row[colIndex] !== undefined && row[colIndex] !== null
-                ? String(row[colIndex]).trim()
-                : "";
-          }
+          projectData[header] =
+            row[colIndex] !== undefined && row[colIndex] !== null
+              ? String(row[colIndex]).trim()
+              : "";
         }
       });
-
       if (!projectData.projectTitle) {
         validationMessages.push(
           `Fila ${rowNum}: Falta 'projectTitle'. Se omitirá.`
@@ -126,11 +152,28 @@ function generateJson() {
         projectData.slug = slugify(projectData.projectTitle);
       }
 
-      // --- Manejo de Fechas (projectDate) ---
+      // Validar Schooling
+      const validSchooling = ["Primaria", "Secundaria", "Preparatoria"];
+      if (
+        projectData.schooling &&
+        !validSchooling.includes(projectData.schooling)
+      ) {
+        validationMessages.push(
+          `Fila ${rowNum}, Col 'schooling': Valor inválido ('${
+            projectData.schooling
+          }'). Permitidos: ${validSchooling.join(", ")}.`
+        );
+        projectData.schooling = ""; // Omitir valor inválido
+      }
+
+      // Manejo de Fechas
       const projectDateValue = row[headerMap.projectDate];
+      projectData.projectDate = null; // Default a null
       if (projectDateValue) {
-        // Pasamos el timezone validado
-        const formattedDate = formatDateFromSheet(projectDateValue, timezone);
+        const formattedDate = formatDateFromSheet(
+          projectDateValue,
+          scriptTimezone
+        ); // USA scriptTimezone
         if (formattedDate) {
           projectData.projectDate = formattedDate;
         } else {
@@ -140,77 +183,156 @@ function generateJson() {
         }
       }
 
-      // --- Estructurar Campos Simples (coverUrl) ---
-      const coverUrlValue = row[headerMap.coverUrl_url];
-      const coverAltValue = row[headerMap.coverUrl_altText];
-      if (!coverUrlValue) {
-        validationMessages.push(`Fila ${rowNum}: Falta 'coverUrl_url'.`);
-        hasFatalError = true;
-      } else if (!isValidRelativeUrl(coverUrlValue)) {
-        validationMessages.push(
-          `Fila ${rowNum}, 'coverUrl_url': URL inválida ('${coverUrlValue}').`
-        );
+      // Parsear SDG IDs
+      const sdgIdsRaw = row[headerMap.sdgIds]
+        ? String(row[headerMap.sdgIds]).trim()
+        : "";
+      projectData.sdgIds = [];
+      if (sdgIdsRaw) {
+        const ids = sdgIdsRaw
+          .split(/[\s,]+/)
+          .map((id) => Number(id.trim()))
+          .filter((id) => !isNaN(id));
+        const validIds = ids.filter((id) => id >= 1 && id <= 17);
+        if (validIds.length !== ids.length) {
+          validationMessages.push(
+            `Fila ${rowNum}, Col 'sdgIds': Contiene valores inválidos o fuera del rango 1-17 ('${sdgIdsRaw}'). Se usarán solo los válidos.`
+          );
+        }
+        projectData.sdgIds =
+          validIds.length > 0
+            ? [...new Set(validIds)].sort((a, b) => a - b)
+            : [];
       }
-      if (!coverAltValue) {
-        validationMessages.push(`Fila ${rowNum}: Falta 'coverUrl_altText'.`);
-      }
-      projectData.coverUrl = {
-        url: String(coverUrlValue || "").trim(),
-        altText: String(coverAltValue || "").trim(),
-      };
 
-      // --- Estructurar Media ---
-      const mediaTypeValue = String(row[headerMap.media_type] || "")
+      // Estructurar Cover Image
+      projectData.coverImage = {
+        url: String(projectData.coverImageUrl || "").trim(),
+        altText: String(projectData.coverImageAltText || "").trim(),
+      };
+      if (!projectData.coverImage.url) {
+        validationMessages.push(`Fila ${rowNum}: Falta 'coverImageUrl'.`);
+        hasFatalError = true;
+      } else if (
+        !isValidRelativeUrl(projectData.coverImage.url) &&
+        !isValidPicsumUrl(projectData.coverImage.url)
+      ) {
+        validationMessages.push(
+          `Fila ${rowNum}, 'coverImageUrl': URL inválida ('${projectData.coverImage.url}'). Debe ser relativa (assets/...) o de Picsum.`
+        );
+        hasFatalError = true;
+      }
+      if (!projectData.coverImage.altText) {
+        validationMessages.push(`Fila ${rowNum}: Falta 'coverImageAltText'.`);
+      }
+      delete projectData.coverImageUrl;
+      delete projectData.coverImageAltText;
+
+      // Estructurar Media
+      const mediaTypeValue = String(projectData.mediaType || "")
         .trim()
         .toLowerCase();
-      const mediaUrlValue = String(row[headerMap.media_url] || "").trim();
-      const mediaAltValue = String(row[headerMap.media_altText] || "").trim();
+      const mediaUrlValue = String(projectData.mediaUrl || "").trim();
+      const mediaAltValue = String(projectData.mediaAltText || "").trim();
       projectData.media = null;
       if (mediaTypeValue) {
         if (mediaTypeValue !== "video" && mediaTypeValue !== "image") {
           validationMessages.push(
-            `Fila ${rowNum}, 'media_type': Valor inválido ('${
-              row[headerMap.media_type]
-            }').`
+            `Fila ${rowNum}, 'mediaType': Valor inválido ('${projectData.mediaType}'). Debe ser 'video' o 'image'.`
           );
         } else {
           if (!mediaUrlValue) {
             validationMessages.push(
-              `Fila ${rowNum}: 'media_url' requerido para 'media_type' ${mediaTypeValue}.`
+              `Fila ${rowNum}: 'mediaUrl' requerido si 'mediaType' es '${mediaTypeValue}'.`
             );
           } else {
             if (
               mediaTypeValue === "image" &&
-              !isValidRelativeUrl(mediaUrlValue)
+              !isValidRelativeUrl(mediaUrlValue) &&
+              !isValidPicsumUrl(mediaUrlValue)
             ) {
               validationMessages.push(
-                `Fila ${rowNum}, 'media_url': URL relativa inválida ('${mediaUrlValue}').`
+                `Fila ${rowNum}, 'mediaUrl': URL relativa/Picsum inválida para imagen ('${mediaUrlValue}').`
               );
             } else if (
               mediaTypeValue === "video" &&
               !mediaUrlValue.includes("youtube.com/embed/")
             ) {
               validationMessages.push(
-                `Fila ${rowNum}, 'media_url': URL video inválida ('${mediaUrlValue}').`
+                `Fila ${rowNum}, 'mediaUrl': URL video YouTube Embed inválida ('${mediaUrlValue}').`
               );
             }
             if (mediaTypeValue === "image" && !mediaAltValue) {
               validationMessages.push(
-                `Fila ${rowNum}: 'media_altText' requerido para media tipo imagen.`
+                `Fila ${rowNum}: 'mediaAltText' requerido para media tipo imagen.`
               );
             }
-            projectData.media = {
-              type: mediaTypeValue,
-              url: mediaUrlValue,
-              altText: mediaTypeValue === "image" ? mediaAltValue : undefined,
-            };
+            if (
+              (mediaTypeValue === "image" &&
+                (isValidRelativeUrl(mediaUrlValue) ||
+                  isValidPicsumUrl(mediaUrlValue)) &&
+                mediaAltValue) ||
+              (mediaTypeValue === "video" &&
+                mediaUrlValue.includes("youtube.com/embed/"))
+            ) {
+              projectData.media = {
+                type: mediaTypeValue,
+                url: mediaUrlValue,
+                altText: mediaTypeValue === "image" ? mediaAltValue : undefined,
+              };
+            }
           }
         }
       }
+      delete projectData.mediaType;
+      delete projectData.mediaUrl;
+      delete projectData.mediaAltText;
 
-      // --- Parseo Campos Complejos ---
+      // Parseo Rúbrica y Calificación Final
+      projectData.projectRubricScores = {};
+      let rubricSum = 0;
+      let validRubricScoresCount = 0;
+      const rubricKeys = [
+        "rubricInnovation",
+        "rubricCollaboration",
+        "rubricImpact",
+        "rubricTechUse",
+        "rubricPresentation",
+      ];
+      rubricKeys.forEach((key) => {
+        const scoreRaw = row[headerMap[key]];
+        const score = Number(scoreRaw);
+        const jsonKey =
+          key.substring(6).charAt(0).toLowerCase() + key.substring(7);
+        if (scoreRaw === "" || scoreRaw === null || scoreRaw === undefined) {
+          validationMessages.push(
+            `Fila ${rowNum}, Col '${key}': Falta puntuación (1-3).`
+          );
+          projectData.projectRubricScores[jsonKey] = null;
+        } else if (isNaN(score) || ![1, 2, 3].includes(score)) {
+          validationMessages.push(
+            `Fila ${rowNum}, Col '${key}': Valor inválido ('${scoreRaw}'). Debe ser 1, 2 o 3.`
+          );
+          projectData.projectRubricScores[jsonKey] = null;
+        } else {
+          projectData.projectRubricScores[jsonKey] = score;
+          rubricSum += score;
+          validRubricScoresCount++;
+        }
+      });
+      if (validRubricScoresCount !== 5) {
+        validationMessages.push(
+          `Fila ${rowNum}: Faltan o son inválidas ${
+            5 - validRubricScoresCount
+          } puntuaciones de la rúbrica. Calificación final no se calculará.`
+        );
+        projectData.finalProjectGrade = null;
+      } else {
+        projectData.finalProjectGrade = calculateFinalGrade(rubricSum);
+      }
+
+      // Parseo Campos Complejos
       if (!hasFatalError) {
-        // Pasamos el timezone validado a parseTeamMember
         projectData.teamMembers = parseComplexField(
           row[headerMap.teamMembers],
           rowNum,
@@ -218,8 +340,9 @@ function generateJson() {
           ITEM_SEPARATOR,
           PROP_SEPARATOR,
           12,
-          (props, r, f) =>
-            parseTeamMember(props, r, f, timezone, validationMessages)
+          parseTeamMember,
+          scriptTimezone,
+          validationMessages
         );
         projectData.technologies = parseComplexField(
           row[headerMap.technologies],
@@ -228,7 +351,9 @@ function generateJson() {
           ITEM_SEPARATOR,
           PROP_SEPARATOR,
           3,
-          parseTechnology
+          parseTechnology,
+          scriptTimezone,
+          validationMessages
         );
         projectData.additionalResources = parseComplexField(
           row[headerMap.additionalResources],
@@ -237,7 +362,9 @@ function generateJson() {
           ITEM_SEPARATOR,
           PROP_SEPARATOR,
           3,
-          parseResource
+          parseResource,
+          scriptTimezone,
+          validationMessages
         );
         projectData.imageGallery = parseComplexField(
           row[headerMap.imageGallery],
@@ -246,12 +373,14 @@ function generateJson() {
           ITEM_SEPARATOR,
           PROP_SEPARATOR,
           3,
-          parseGalleryImage
+          parseGalleryImage,
+          scriptTimezone,
+          validationMessages
         );
 
         if (!projectData.teamMembers || projectData.teamMembers.length === 0) {
           validationMessages.push(
-            `Fila ${rowNum}: 'teamMembers' requerido/inválido.`
+            `Fila ${rowNum}: 'teamMembers' es requerido y debe tener al menos un miembro válido.`
           );
           hasFatalError = true;
         }
@@ -260,40 +389,13 @@ function generateJson() {
           projectData.technologies.length === 0
         ) {
           validationMessages.push(
-            `Fila ${rowNum}: 'technologies' requerido/inválido.`
-          );
-          hasFatalError = true;
-        }
-
-        // --- Parseo Puntuaciones ---
-        projectData.evaluationScores = {};
-        headers.forEach((header, colIndex) => {
-          if (header.startsWith(EVAL_SCORE_PREFIX)) {
-            const scoreKey = header;
-            const scoreValueRaw = row[colIndex];
-            if (scoreValueRaw !== null && scoreValueRaw !== "") {
-              const scoreValue = Number(scoreValueRaw);
-              if (!isNaN(scoreValue) && scoreValue >= 0 && scoreValue <= 100) {
-                projectData.evaluationScores[scoreKey] = scoreValue;
-              } else {
-                validationMessages.push(
-                  `Fila ${rowNum}, Col '${header}': Valor inválido ('${scoreValueRaw}').`
-                );
-                projectData.evaluationScores[scoreKey] = 0;
-              }
-            }
-          }
-        });
-        if (Object.keys(projectData.evaluationScores).length === 0) {
-          validationMessages.push(
-            `Fila ${rowNum}: No se encontraron puntuaciones válidas ('${EVAL_SCORE_PREFIX}*').`
-          );
+            `Fila ${rowNum}: 'technologies' es requerido y debe tener al menos una tecnología válida.`
+          ); /* No fatal */
         }
       }
 
-      // --- Añadir si OK ---
+      // Añadir proyecto si OK
       if (!hasFatalError) {
-        // Limpiar opcionales
         if (!projectData.media) delete projectData.media;
         if (!projectData.additionalResources)
           delete projectData.additionalResources;
@@ -301,14 +403,11 @@ function generateJson() {
         if (!projectData.innovationProcess)
           delete projectData.innovationProcess;
         if (!projectData.projectCategory) delete projectData.projectCategory;
-        if (!projectData.studentLevel) delete projectData.studentLevel;
-        if (!projectData.projectDate) delete projectData.projectDate;
-        // Limpiar originales
-        delete projectData.coverUrl_url;
-        delete projectData.coverUrl_altText;
-        delete projectData.media_type;
-        delete projectData.media_url;
-        delete projectData.media_altText;
+        if (!projectData.schooling) delete projectData.schooling;
+        if (projectData.projectDate === null) delete projectData.projectDate;
+        if (projectData.sdgIds.length === 0) delete projectData.sdgIds;
+        if (projectData.finalProjectGrade === null)
+          delete projectData.finalProjectGrade;
         projects.push(projectData);
       }
     }); // Fin forEach
@@ -319,17 +418,33 @@ function generateJson() {
     };
     return JSON.stringify(result, null, 2);
   } catch (e) {
-    Logger.log(`Error en generateJson: ${e}\nStack: ${e.stack}`);
+    Logger.log(`Error en generateJson: ${e.message}\nStack: ${e.stack}`);
     return JSON.stringify({
       error: `Error inesperado: ${e.message}. Revisa Logs.`,
+      validationMessages: validationMessages,
     });
   }
 }
 
-// --- Funciones de Parseo y Validación (sin cambios respecto a V3) ---
-// (Se mantienen las funciones formatDateFromSheet y parseTeamMember de la V3
-//  que ya usan el parámetro 'timezone' que ahora está validado)
+// --- Funciones Auxiliares ---
 
+function validateHeaders(actualHeaders, validationMessages) {
+  let errors = [];
+  const actualHeaderSet = new Set(actualHeaders);
+  EXPECTED_HEADERS.forEach((expected) => {
+    if (!actualHeaderSet.has(expected)) {
+      const msg = `Falta columna requerida: '${expected}'`;
+      errors.push(msg);
+      validationMessages.push(`Error Encabezado: ${msg}`);
+    }
+  });
+  return errors;
+}
+function createHeaderMap(headers) {
+  const map = {};
+  headers.forEach((h, i) => (map[h.trim()] = i));
+  return map;
+}
 function formatDateFromSheet(dateValue, timezone) {
   if (!dateValue) return null;
   let date = null;
@@ -365,12 +480,76 @@ function formatDateFromSheet(dateValue, timezone) {
     }
   }
   if (date && !isNaN(date.getTime())) {
-    return Utilities.formatDate(date, timezone, "yyyy-MM-dd");
+    try {
+      return Utilities.formatDate(date, timezone, "yyyy-MM-dd");
+    } catch (e) {
+      Logger.log(
+        `Error formateando fecha ${dateValue} con timezone ${timezone}: ${e}`
+      );
+      return null;
+    }
   }
   Logger.log(
     `No se pudo parsear la fecha: ${dateValue} con timezone ${timezone}`
   );
   return null;
+}
+
+function parseComplexField(
+  cellValue,
+  rowNum,
+  fieldName,
+  itemSep,
+  propSep,
+  expectedProps,
+  parserFn,
+  timezone,
+  validationMessages
+) {
+  if (!cellValue || typeof cellValue !== "string" || cellValue.trim() === "")
+    return null;
+  const items = cellValue.split(itemSep);
+  const result = [];
+  let hasErrors = false;
+  items.forEach((item, index) => {
+    const props = item.split(propSep).map((p) => p.trim());
+    if (props.length !== expectedProps) {
+      Logger.log(
+        `Fila ${rowNum}, ${fieldName}, Item ${
+          index + 1
+        }: Propiedades esperadas ${expectedProps} vs ${
+          props.length
+        }. Item: "${item}"`
+      );
+      validationMessages.push(
+        `Fila ${rowNum}, Campo '${fieldName}', Item ${
+          index + 1
+        }: Número incorrecto de propiedades (esperadas ${expectedProps}, encontradas ${
+          props.length
+        }).`
+      );
+      hasErrors = true;
+    } else {
+      const parsed = parserFn(
+        props,
+        rowNum,
+        fieldName,
+        timezone,
+        validationMessages
+      );
+      if (parsed) {
+        result.push(parsed);
+      } else {
+        hasErrors = true;
+      }
+    }
+  });
+  if (hasErrors && result.length === 0) {
+    Logger.log(
+      `Fila ${rowNum}, Campo '${fieldName}': Formato incorrecto, ningún item válido procesado.`
+    );
+  }
+  return result.length > 0 ? result : null;
 }
 
 function parseTeamMember(
@@ -397,34 +576,64 @@ function parseTeamMember(
   let isValid = true;
   const addValidationError = (msg) => {
     validationMessages.push(
-      `Fila ${rowNum}, ${fieldName} (${name || "?"}): ${msg}`
+      `Fila ${rowNum}, ${fieldName} (Miembro: ${name || "?"}): ${msg}`
     );
     isValid = false;
   };
   if (!name) addValidationError("Falta nombre.");
   if (!role) addValidationError("Falta rol.");
-  if (!courseName) addValidationError("Falta curso.");
-  if (!badgeName) addValidationError("Falta insignia.");
-  if (!level) addValidationError("Falta nivel.");
-  if (!college) addValidationError("Falta colegio.");
+  if (!courseName) addValidationError("Falta nombre del curso.");
+  if (!college) addValidationError("Falta nombre del colegio.");
+  if (!badgeName) {
+    addValidationError("Falta insignia.");
+  } else if (!VALID_BADGES.includes(badgeName)) {
+    addValidationError(
+      `Insignia inválida ('${badgeName}'). Permitidas: ${VALID_BADGES.join(
+        ", "
+      )}.`
+    );
+  }
+  if (!level) {
+    addValidationError("Falta nivel.");
+  } else if (!VALID_LEVELS.includes(level)) {
+    addValidationError(
+      `Nivel inválido ('${level}'). Permitidos: ${VALID_LEVELS.join(", ")}.`
+    );
+  }
   let formattedIssueDate = null;
   if (!issueDateRaw) {
-    addValidationError("Falta fecha emisión cert.");
+    addValidationError("Falta fecha de emisión del certificado.");
   } else {
     formattedIssueDate = formatDateFromSheet(issueDateRaw, timezone);
     if (!formattedIssueDate) {
-      addValidationError(`Fecha emisión inválida ('${issueDateRaw}').`);
+      addValidationError(
+        `Fecha de emisión inválida ('${issueDateRaw}'). Use DD-MM-YYYY o YYYY-MM-DD.`
+      );
     }
   }
-  if (!previewUrl || !isValidRelativeUrl(previewUrl)) {
-    addValidationError(`URL preview cert. inválida ('${previewUrl}').`);
+  // Usar assets/img/certificado.png como placeholder si las URLs están vacías o inválidas en los datos de ejemplo
+  const finalPreviewUrl =
+    previewUrl && isValidRelativeUrl(previewUrl)
+      ? previewUrl
+      : "assets/img/certificado.png";
+  const finalPrintUrl =
+    printUrl && isValidRelativeUrlOrPdf(printUrl)
+      ? printUrl
+      : "assets/img/certificado.png";
+  if (finalPreviewUrl !== previewUrl && previewUrl) {
+    validationMessages.push(
+      `Fila ${rowNum}, ${fieldName} (${name}): URL preview inválida ('${previewUrl}'), usando placeholder.`
+    );
   }
-  if (!printUrl || !isValidRelativeUrlOrPdf(printUrl)) {
-    addValidationError(`URL print cert. inválida ('${printUrl}').`);
+  if (finalPrintUrl !== printUrl && printUrl) {
+    validationMessages.push(
+      `Fila ${rowNum}, ${fieldName} (${name}): URL print inválida ('${printUrl}'), usando placeholder.`
+    );
   }
+
   if (sbtLink && !isValidUrl(sbtLink)) {
     validationMessages.push(
-      `Fila ${rowNum}, ${fieldName} (${name}): URL SBT inválida ('${sbtLink}').`
+      `Fila ${rowNum}, ${fieldName} (${name}): URL SBT inválida ('${sbtLink}'), se omitirá.`
     );
   }
   if (!isValid) return null;
@@ -432,83 +641,27 @@ function parseTeamMember(
     name: name,
     role: role,
     sbtLink: sbtLink && isValidUrl(sbtLink) ? sbtLink : undefined,
-    certificate_courseName: courseName,
-    certificate_badgeName: badgeName,
-    certificate_level: level,
-    certificate_skills: skills || "",
-    certificate_criteria: criteria || "",
-    certificate_college: college,
-    certificate_issueDate: formattedIssueDate,
-    certificate_previewUrl: previewUrl,
-    certificate_printUrl: printUrl,
+    certificateCourseName: courseName,
+    certificateBadgeName: badgeName,
+    certificateLevel: level,
+    certificateSkills: skills || "",
+    certificateCriteria: criteria || "",
+    certificateCollege: college,
+    certificateIssueDate: formattedIssueDate,
+    certificatePreviewUrl: finalPreviewUrl,
+    certificatePrintUrl: finalPrintUrl,
   };
 }
-
-// --- Resto de funciones auxiliares (sin cambios desde V3) ---
-function validateHeaders(actualHeaders) {
-  let errors = [];
-  const actualHeaderSet = new Set(actualHeaders);
-  EXPECTED_HEADERS.forEach((expected) => {
-    if (!actualHeaderSet.has(expected)) {
-      errors.push(`Falta columna: '${expected}'`);
-    }
-  });
-  if (!actualHeaders.some((h) => h.startsWith(EVAL_SCORE_PREFIX))) {
-    errors.push(`Falta columna puntuación ('${EVAL_SCORE_PREFIX}*')`);
-  }
-  return errors;
-}
-function createHeaderMap(headers) {
-  const map = {};
-  headers.forEach((h, i) => (map[h] = i));
-  return map;
-}
-function parseComplexField(
-  cellValue,
+function parseTechnology(
+  props,
   rowNum,
   fieldName,
-  itemSep,
-  propSep,
-  expectedProps,
-  parserFn
+  timezone,
+  validationMessages
 ) {
-  if (!cellValue || typeof cellValue !== "string" || cellValue.trim() === "")
-    return null;
-  const items = cellValue.split(itemSep);
-  const result = [];
-  let hasErrors = false;
-  items.forEach((item, index) => {
-    const props = item.split(propSep).map((p) => p.trim());
-    if (props.length !== expectedProps) {
-      Logger.log(
-        `Fila ${rowNum}, ${fieldName}, Item ${
-          index + 1
-        }: Props ${expectedProps} vs ${props.length}. Item: "${item}"`
-      );
-      hasErrors = true;
-    } else {
-      const parsed = parserFn(props, rowNum, fieldName);
-      if (parsed) {
-        result.push(parsed);
-      } else {
-        hasErrors = true;
-      }
-    }
-  });
-  if (
-    hasErrors &&
-    result.length === 0 &&
-    typeof validationMessages !== "undefined"
-  ) {
-    Logger.log(
-      `Fila ${rowNum}, Campo '${fieldName}': Formato incorrecto, ningún item procesado.`
-    );
-  }
-  return result.length > 0 ? result : null;
-}
-function parseTechnology(props, rowNum, fieldName) {
+  // Timezone no se usa pero se recibe
   const [name, icon, category] = props;
-  const validCats = ["hardware", "software", "tool"];
+  const validCats = ["Hardware", "Software", "Tool"];
   if (!name) {
     Logger.log(`Fila ${rowNum}, ${fieldName}: Falta nombre tec.`);
     return null;
@@ -517,44 +670,62 @@ function parseTechnology(props, rowNum, fieldName) {
     Logger.log(`Fila ${rowNum}, ${fieldName} (${name}): Falta icono.`);
     return null;
   }
-  if (!category || !validCats.includes(category.toLowerCase())) {
-    Logger.log(
-      `Fila ${rowNum}, ${fieldName} (${name}): Categoría inválida ('${category}').`
+  if (
+    !category ||
+    !validCats.some(
+      (validCat) => validCat.toLowerCase() === category.toLowerCase()
+    )
+  ) {
+    validationMessages.push(
+      `Fila ${rowNum}, Campo '${fieldName}' (${name}): Categoría inválida ('${category}'). Debe ser Hardware, Software o Tool.`
     );
     return null;
   }
-  return { name: name, icon: getFaIconClass(icon), category: category };
+  const matchedCategory = validCats.find(
+    (validCat) => validCat.toLowerCase() === category.toLowerCase()
+  );
+  return { name: name, icon: getFaIconClass(icon), category: matchedCategory };
 }
-function parseResource(props, rowNum, fieldName) {
+function parseResource(props, rowNum, fieldName, timezone, validationMessages) {
+  // Timezone no se usa pero se recibe
   const [title, url, type] = props;
   if (!title) {
     Logger.log(`Fila ${rowNum}, ${fieldName}: Falta título rec.`);
     return null;
   }
   if (!url || !(isValidUrl(url) || isValidRelativeUrl(url))) {
-    Logger.log(
-      `Fila ${rowNum}, ${fieldName} ('${title}'): URL inválida ('${url}').`
+    validationMessages.push(
+      `Fila ${rowNum}, Campo '${fieldName}' (${title}): URL inválida ('${url}').`
     );
     return null;
   }
   if (!type) {
-    Logger.log(`Fila ${rowNum}, ${fieldName} ('${title}'): Falta tipo rec.`);
+    validationMessages.push(
+      `Fila ${rowNum}, Campo '${fieldName}' (${title}): Falta el tipo de recurso.`
+    );
     return null;
   }
   return { title: title, url: url, type: type.toLowerCase() };
 }
-function parseGalleryImage(props, rowNum, fieldName) {
-  if (props.length !== 3) {
-    Logger.log(`Fila ${rowNum}, ${fieldName}: Props != 3.`);
-    return null;
-  }
+function parseGalleryImage(
+  props,
+  rowNum,
+  fieldName,
+  timezone,
+  validationMessages
+) {
+  // Timezone no se usa pero se recibe
   const [url, altText, caption] = props;
-  if (!url || !isValidRelativeUrl(url)) {
-    Logger.log(`Fila ${rowNum}, ${fieldName}: URL img inválida ('${url}').`);
+  if (!url || !(isValidRelativeUrl(url) || isValidPicsumUrl(url))) {
+    validationMessages.push(
+      `Fila ${rowNum}, Campo '${fieldName}': URL de imagen inválida ('${url}').`
+    );
     return null;
   }
   if (!altText) {
-    Logger.log(`Fila ${rowNum}, ${fieldName} ('${url}'): Falta alt text.`);
+    validationMessages.push(
+      `Fila ${rowNum}, Campo '${fieldName}' (URL: ${url}): Falta texto alternativo.`
+    );
     return null;
   }
   const img = { url: url, altText: altText };
@@ -562,6 +733,20 @@ function parseGalleryImage(props, rowNum, fieldName) {
     img.caption = caption;
   }
   return img;
+}
+
+function calculateFinalGrade(rubricSum) {
+  if (rubricSum >= 15) return 10;
+  if (rubricSum >= 13) return 9;
+  if (rubricSum >= 12) return 8;
+  if (rubricSum >= 11) return 7;
+  if (rubricSum >= 10) return 6;
+  if (rubricSum >= 9) return 5;
+  if (rubricSum >= 8) return 4;
+  if (rubricSum >= 7) return 3;
+  if (rubricSum >= 6) return 2;
+  if (rubricSum >= 5) return 1;
+  return 0;
 }
 function slugify(text) {
   if (!text) return "";
@@ -590,11 +775,17 @@ function isValidUrl(str) {
 function isValidRelativeUrl(str) {
   return (
     typeof str === "string" &&
-    (str.startsWith("assets/img/") || str.startsWith("assets/docs/"))
+    (str.startsWith("assets/img/") || str.startsWith("assets/docs/")) &&
+    !str.includes("..")
   );
 }
 function isValidRelativeUrlOrPdf(str) {
-  return isValidRelativeUrl(str);
+  return isValidRelativeUrl(str) && /\.(jpg|jpeg|png|pdf)$/i.test(str);
+}
+function isValidPicsumUrl(str) {
+  return (
+    typeof str === "string" && str.startsWith("https://picsum.photos/seed/")
+  );
 }
 function getFaIconClass(iconName) {
   if (!iconName) return "fa-solid fa-question-circle";
@@ -635,7 +826,9 @@ function getFaIconClass(iconName) {
     "arduino",
     "raspberry-pi",
   ];
-  return brands.includes(lower)
-    ? `fa-brands fa-${lower}`
-    : `fa-solid fa-${lower}`;
+  if (brands.includes(lower)) {
+    return `fa-brands fa-${lower}`;
+  } else {
+    return `fa-solid fa-${lower}`;
+  }
 }
