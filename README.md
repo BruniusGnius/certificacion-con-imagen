@@ -176,8 +176,8 @@ Consulta el documento `Google sheets/Instrucciones de llenado tabla google sheet
 
 Este proyecto fue desarrollado como una colaboración para **Gnius Club**.
 
-- **Arquitectura de la Solución y Desarrollo Principal:** Asistente IA Experto Full-Stack Gemini 2.5 PRO
-- **Dirección del Proyecto, Especificaciones Detalladas, Pruebas Exhaustivas y Ajustes Finos:** [Bruno Pérez "Brunius" / "Equipo Gnius Club"]
+- **Arquitectura de la Solución y Desarrollo Principal:** Asistente IA Experto Full-Stack
+- **Dirección del Proyecto, Especificaciones Detalladas, Pruebas Exhaustivas y Ajustes Finos:** [Tu Nombre / "Equipo Gnius Club"]
 
 Un agradecimiento especial a Gnius Club por la visión y la oportunidad de colaborar en esta innovadora herramienta.
 
