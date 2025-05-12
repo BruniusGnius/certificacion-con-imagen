@@ -31,7 +31,7 @@
       {
         "name": "Ana Sofía López Herrera",
         "role": "Líder del Proyecto",
-        "sbtLink": "https://sbt.example.com/ana-sofia",
+        "sbtLink": "https://verificador.gnius.mx/sbt/ana-sofia-lopez-herrera",
         "certificateCourseName": "Innovación Social y Sostenibilidad",
         "certificateBadgeName": "Prompt Sage",
         "certificateLevel": "Master",
@@ -39,12 +39,13 @@
         "certificateCriteria": "Impacto Comunitario,Viabilidad,Participación",
         "certificateCollege": "Escuela Secundaria Técnica 33",
         "certificateIssueDate": "2024-10-15",
-        "certificatePreviewUrl": "assets/img/eco-ladrillos/ana-lopez-cert-preview.png",
-        "certificatePrintUrl": "assets/img/eco-ladrillos/ana-lopez-cert-print.pdf"
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
       },
       {
         "name": "Juan Carlos Pérez Gómez",
         "role": "Diseñador Constructivo",
+        "sbtLink": "https://verificador.gnius.mx/sbt/juan-carlos-perez-gomez",
         "certificateCourseName": "Innovación Social y Sostenibilidad",
         "certificateBadgeName": "Design Architect",
         "certificateLevel": "Master",
@@ -52,12 +53,13 @@
         "certificateCriteria": "Diseño Funcional,Seguridad Estructural,Uso Materiales",
         "certificateCollege": "Escuela Secundaria Técnica 33",
         "certificateIssueDate": "2024-10-15",
-        "certificatePreviewUrl": "assets/img/eco-ladrillos/juan-perez-cert-preview.png",
-        "certificatePrintUrl": "assets/img/eco-ladrillos/juan-perez-cert-print.pdf"
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
       },
       {
         "name": "María Fernanda Vidal Cruz",
         "role": "Encargada de Talleres",
+        "sbtLink": "https://verificador.gnius.mx/sbt/maria-fernanda-vidal-cruz",
         "certificateCourseName": "Innovación Social y Sostenibilidad",
         "certificateBadgeName": "Tech Voyager",
         "certificateLevel": "Rookie",
@@ -65,12 +67,13 @@
         "certificateCriteria": "Calidad Talleres,Participación Asistentes,Materiales Didácticos",
         "certificateCollege": "Escuela Secundaria Técnica 33",
         "certificateIssueDate": "2024-10-15",
-        "certificatePreviewUrl": "assets/img/eco-ladrillos/maria-vidal-cert-preview.png",
-        "certificatePrintUrl": "assets/img/eco-ladrillos/maria-vidal-cert-print.pdf"
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
       },
       {
         "name": "Luis Mateo Rojas Díaz",
         "role": "Comunicación y Difusión",
+        "sbtLink": "https://verificador.gnius.mx/sbt/luis-mateo-rojas-diaz",
         "certificateCourseName": "Innovación Social y Sostenibilidad",
         "certificateBadgeName": "Code Explorer",
         "certificateLevel": "Rookie",
@@ -78,8 +81,8 @@
         "certificateCriteria": "Alcance Difusión,Claridad Mensaje,Material Visual",
         "certificateCollege": "Escuela Secundaria Técnica 33",
         "certificateIssueDate": "2024-10-15",
-        "certificatePreviewUrl": "assets/img/eco-ladrillos/luis-rojas-cert-preview.png",
-        "certificatePrintUrl": "assets/img/eco-ladrillos/luis-rojas-cert-print.pdf"
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
       }
     ],
     "technologies": [
@@ -161,6 +164,7 @@
       {
         "name": "Valeria Gómez Sánchez",
         "role": "Desarrolladora Principal React Native",
+        "sbtLink": "https://verificador.gnius.mx/sbt/valeria-gomez-sanchez",
         "certificateCourseName": "Desarrollo Móvil Sostenible",
         "certificateBadgeName": "App Maverick",
         "certificateLevel": "Hacker",
@@ -174,6 +178,7 @@
       {
         "name": "Diego Armando Luna Ríos",
         "role": "Diseñador UI/UX y Gamificación",
+        "sbtLink": "https://verificador.gnius.mx/sbt/diego-armando-luna-rios",
         "certificateCourseName": "Desarrollo Móvil Sostenible",
         "certificateBadgeName": "Design Architect",
         "certificateLevel": "Hacker",
@@ -187,6 +192,7 @@
       {
         "name": "Sofía Camila Herrera Torres",
         "role": "Investigación y Contenido",
+        "sbtLink": "https://verificador.gnius.mx/sbt/sofia-camila-herrera-torres",
         "certificateCourseName": "Desarrollo Móvil Sostenible",
         "certificateBadgeName": "Prompt Sage",
         "certificateLevel": "Master",
@@ -200,6 +206,7 @@
       {
         "name": "Miguel Ángel Castillo Ortiz",
         "role": "Marketing y Pruebas",
+        "sbtLink": "https://verificador.gnius.mx/sbt/miguel-angel-castillo-ortiz",
         "certificateCourseName": "Desarrollo Móvil Sostenible",
         "certificateBadgeName": "Micro Programmer",
         "certificateLevel": "Master",
@@ -286,6 +293,7 @@
       {
         "name": "Laura Jimena Ríos Castillo",
         "role": "Líder, Programadora ESP32",
+        "sbtLink": "https://verificador.gnius.mx/sbt/laura-jimena-rios-castillo",
         "certificateCourseName": "Automatización y Sistemas Embebidos",
         "certificateBadgeName": "Expert Roboteer",
         "certificateLevel": "Hacker",
@@ -299,6 +307,7 @@
       {
         "name": "Carlos Andrés Mora Solano",
         "role": "Diseño Mecánico y 3D",
+        "sbtLink": "https://verificador.gnius.mx/sbt/carlos-andres-mora-solano",
         "certificateCourseName": "Automatización y Sistemas Embebidos",
         "certificateBadgeName": "Design Architect",
         "certificateLevel": "Master",
@@ -312,6 +321,7 @@
       {
         "name": "Valentina Sofía Pardo Vargas",
         "role": "Encargada de Cultivo y Pruebas",
+        "sbtLink": "https://verificador.gnius.mx/sbt/valentina-sofia-pardo-vargas",
         "certificateCourseName": "Automatización y Sistemas Embebidos",
         "certificateBadgeName": "Tech Voyager",
         "certificateLevel": "Master",
@@ -325,6 +335,7 @@
       {
         "name": "Mateo Alejandro Navarro Gómez",
         "role": "Electrónica y Conexiones",
+        "sbtLink": "https://verificador.gnius.mx/sbt/mateo-alejandro-navarro-gomez",
         "certificateCourseName": "Automatización y Sistemas Embebidos",
         "certificateBadgeName": "Micro Programmer",
         "certificateLevel": "Rookie",
