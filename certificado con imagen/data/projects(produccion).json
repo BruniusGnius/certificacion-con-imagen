@@ -1,0 +1,224 @@
+[
+  {
+    "projectTitle": "Robot Educativo Autónomo 'R.E.A.'",
+    "projectCategory": "Robótica Educativa",
+    "schooling": "Secundaria",
+    "projectDate": "2024-11-15",
+    "sdgIds": [4, 9],
+    "introTitle": "Conoce a R.E.A.: Tu Compañero Robótico de Aprendizaje",
+    "introContent": "R.E.A. es un prototipo de robot diseñado para asistir a estudiantes en el aprendizaje de conceptos básicos de programación y electrónica de una manera interactiva y divertida, fomentando el pensamiento lógico y la resolución de problemas.",
+    "coverImage": {
+      "url": "assets/img/robot-rea/cover.jpg",
+      "altText": "Robot R.E.A. blanco y azul sobre una mesa de trabajo, mostrando sus sensores frontales."
+    },
+    "problemDescription": "Los métodos tradicionales de enseñanza de programación pueden ser abstractos y poco motivadores para algunos estudiantes de secundaria, generando una barrera inicial hacia las STEM.",
+    "solutionProposed": "Desarrollamos a R.E.A., un robot físico programable con una interfaz gráfica sencilla (basada en bloques) y sensores que interactúan con el entorno, haciendo el aprendizaje tangible y lúdico.",
+    "innovationProcess": "<p><strong>Investigación:</strong> Analizamos plataformas robóticas existentes (LEGO Mindstorms, mBot) y realizamos encuestas a estudiantes y profesores sobre sus necesidades y preferencias.</p><p><strong>Diseño:</strong> Prototipado rápido del chasis usando impresión 3D (Tinkercad) y selección de componentes electrónicos clave: Arduino UNO como cerebro, sensores de ultrasonido para detección de obstáculos y servomotores para movimiento.</p><p><strong>Desarrollo:</strong> Programación del firmware base en C++ (Arduino IDE) para control de motores y lectura de sensores. Desarrollo de una interfaz gráfica personalizada usando Blockly para permitir programación visual por bloques.</p><p><strong>Pruebas:</strong> Múltiples sesiones de prueba con un grupo piloto de estudiantes de 1er año de secundaria. Recopilamos feedback sobre la facilidad de uso, la robustez del robot y la efectividad de las actividades propuestas, iterando sobre el diseño y el software.</p>",
+    "media": {
+      "type": "video",
+      "url": "https://www.youtube.com/embed/8_pXTJ4sJvM"
+    },
+    "teamMembers": [
+      {
+        "name": "Juan Pérez García",
+        "role": "Líder de Proyecto / Programador Firmware",
+        "sbtLink": "https://polygonscan.com/token/0xTOKEN_ADDRESS_EXAMPLE_JUAN",
+        "certificateCourseName": "Introducción a la Robótica con Arduino",
+        "certificateBadgeName": "Expert Roboteer",
+        "certificateLevel": "Master",
+        "certificateSkills": "Arduino (C++),Programación lógica,Resolución de problemas,Liderazgo de equipos,Diseño de circuitos básicos",
+        "certificateCriteria": "Funcionalidad del código,Eficiencia algoritmos,Integración Hardware-Software,Colaboración",
+        "certificateCollege": "Instituto Tecnológico Juvenil",
+        "certificateIssueDate": "2024-11-09",
+        "certificatePreviewUrl": "assets/img/robot-rea/juan-perez-cert-preview.jpg",
+        "certificatePrintUrl": "assets/img/robot-rea/juan-perez-cert-print.pdf"
+      },
+      {
+        "name": "María López Fernández",
+        "role": "Diseñadora 3D / Encargada de Pruebas UX",
+        "certificateCourseName": "Introducción a la Robótica con Arduino",
+        "certificateBadgeName": "Design Architect",
+        "certificateLevel": "Master",
+        "certificateSkills": "Diseño 3D (Tinkercad),Metodologías de prueba de usuario,Comunicación efectiva,Empatía con el usuario,Documentación técnica",
+        "certificateCriteria": "Ergonomía del diseño,Facilidad de uso (interfaz),Recolección de feedback,Presentación de resultados",
+        "certificateCollege": "Instituto Tecnológico Juvenil",
+        "certificateIssueDate": "2024-11-09",
+        "certificatePreviewUrl": "assets/img/robot-rea/maria-lopez-cert-preview.jpg",
+        "certificatePrintUrl": "assets/img/robot-rea/maria-lopez-cert-print.pdf"
+      }
+    ],
+    "technologies": [
+      {
+        "name": "Arduino UNO",
+        "icon": "fa-solid fa-microchip",
+        "category": "Hardware"
+      },
+      {
+        "name": "C++ (Arduino)",
+        "icon": "fa-solid fa-code",
+        "category": "Software"
+      },
+      {
+        "name": "Blockly",
+        "icon": "fa-solid fa-shapes",
+        "category": "Software"
+      },
+      { "name": "Tinkercad", "icon": "fa-solid fa-cube", "category": "Tool" },
+      {
+        "name": "Sensor Ultrasonido HC-SR04",
+        "icon": "fa-solid fa-wave-square",
+        "category": "Hardware"
+      },
+      {
+        "name": "Impresión 3D",
+        "icon": "fa-solid fa-print",
+        "category": "Tool"
+      }
+    ],
+    "additionalResources": [
+      {
+        "title": "Código Fuente del Firmware",
+        "url": "https://github.com/gnius-club/robot-rea-example",
+        "type": "github"
+      },
+      {
+        "title": "Manual de Usuario (Borrador)",
+        "url": "assets/docs/rea-manual-draft.pdf",
+        "type": "pdf"
+      },
+      {
+        "title": "Blog de Desarrollo",
+        "url": "https://medium.com/@gniusclub/construyendo-rea-paso-a-paso-example",
+        "type": "website"
+      }
+    ],
+    "imageGallery": [
+      {
+        "url": "assets/img/robot-rea/gallery-01.jpg",
+        "altText": "Prototipo inicial de R.E.A. con cables visibles y placa Arduino expuesta.",
+        "caption": "Prototipo v0.1 - ¡Primeros pasos!"
+      },
+      {
+        "url": "assets/img/robot-rea/gallery-02.jpg",
+        "altText": "Estudiantes de secundaria interactuando con la interfaz de bloques de R.E.A. en una tablet.",
+        "caption": "Pruebas de Usabilidad con Grupo Piloto"
+      },
+      {
+        "url": "assets/img/robot-rea/gallery-03.jpg",
+        "altText": "Diagrama del circuito electrónico de R.E.A. dibujado en Fritzing.",
+        "caption": "Esquema Eléctrico Simplificado"
+      }
+    ],
+    "projectRubricScores": {
+      "innovation": 3,
+      "collaboration": 3,
+      "impact": 2,
+      "techuse": 3,
+      "presentation": 2
+    },
+    "finalProjectGrade": 9,
+    "slug": "robot-educativo-autonomo-rea"
+  },
+  {
+    "projectTitle": "Plataforma Web 'ConectaIdeas'",
+    "projectCategory": "Desarrollo Web",
+    "schooling": "Preparatoria",
+    "projectDate": "2024-05-20",
+    "sdgIds": [8, 9, 17],
+    "introTitle": "ConectaIdeas: Donde Nacen las Colaboraciones Estudiantiles",
+    "introContent": "Una red social educativa diseñada para que estudiantes de preparatoria puedan compartir ideas de proyectos, buscar colaboradores con habilidades complementarias y llevar sus iniciativas al siguiente nivel.",
+    "coverImage": {
+      "url": "assets/img/conectaideas/cover.png",
+      "altText": "Captura de pantalla de la interfaz de ConectaIdeas mostrando perfiles de usuario y tarjetas de proyectos."
+    },
+    "problemDescription": "Los estudiantes a menudo tienen ideas innovadoras pero carecen de un espacio centralizado para encontrar compañeros con diferentes talentos (programación, diseño, comunicación) y formar equipos efectivos.",
+    "solutionProposed": "Creamos 'ConectaIdeas', una plataforma web con perfiles de usuario que destacan habilidades e intereses, un muro para publicar ideas de proyectos buscando equipo, y un sistema de mensajería para facilitar la comunicación.",
+    "innovationProcess": "<p><strong>Definición:</strong> Mapeo de funcionalidades clave (registro, perfil, publicar idea, buscar proyectos/usuarios, mensajería). Brainstorming de UX.</p><p><strong>Diseño:</strong> Wireframes y prototipos interactivos en Figma. Diseño de la identidad visual.</p><p><strong>Desarrollo (Full-Stack):</strong> Frontend con React y Tailwind CSS para una interfaz moderna y responsiva. Backend con Node.js (Express) y base de datos NoSQL (MongoDB) para flexibilidad. Implementación de autenticación (JWT).</p><p><strong>Despliegue y Pruebas:</strong> Despliegue inicial en Vercel/Netlify. Pruebas funcionales y de usabilidad con compañeros.</p>",
+    "media": {
+      "type": "video",
+      "url": "https://www.youtube.com/embed/N5WZNj1X3QM"
+    },
+    "teamMembers": [
+      {
+        "name": "Carlos Mendoza",
+        "role": "Desarrollador Full-Stack",
+        "certificateCourseName": "Desarrollo Web Moderno",
+        "certificateBadgeName": "App Maverick",
+        "certificateLevel": "Hacker",
+        "certificateSkills": "React,Node.js,MongoDB,JavaScript (ES6+),Git,API REST",
+        "certificateCriteria": "Calidad del código,Arquitectura de la aplicación,Funcionalidad completa,Resolución de bugs",
+        "certificateCollege": "Prepa Federal #1",
+        "certificateIssueDate": "2024-05-14",
+        "certificatePreviewUrl": "assets/img/conectaideas/carlos-mendoza-cert-preview.jpg",
+        "certificatePrintUrl": "assets/img/conectaideas/carlos-mendoza-cert-print.jpg"
+      },
+      {
+        "name": "Laura Jiménez",
+        "role": "Diseñadora UI/UX",
+        "sbtLink": "https://polygonscan.com/token/0xTOKEN_ADDRESS_EXAMPLE_LAURA",
+        "certificateCourseName": "Diseño de Interfaces Digitales",
+        "certificateBadgeName": "Design Architect",
+        "certificateLevel": "Hacker",
+        "certificateSkills": "Figma,Prototipado interactivo,Diseño responsivo,User personas,Arquitectura de información",
+        "certificateCriteria": "Claridad de la interfaz,Consistencia visual,Navegación intuitiva,Aplicación de principios UX",
+        "certificateCollege": "Prepa Federal #1",
+        "certificateIssueDate": "2024-05-14",
+        "certificatePreviewUrl": "assets/img/conectaideas/laura-jimenez-cert-preview.jpg",
+        "certificatePrintUrl": "assets/img/conectaideas/laura-jimenez-cert-print.pdf"
+      }
+    ],
+    "technologies": [
+      { "name": "React", "icon": "fa-brands fa-react", "category": "Software" },
+      {
+        "name": "Node.js",
+        "icon": "fa-brands fa-node-js",
+        "category": "Software"
+      },
+      {
+        "name": "MongoDB",
+        "icon": "fa-solid fa-database",
+        "category": "Software"
+      },
+      {
+        "name": "Tailwind CSS",
+        "icon": "fa-solid fa-wind",
+        "category": "Tool"
+      },
+      { "name": "Figma", "icon": "fa-brands fa-figma", "category": "Tool" },
+      { "name": "Git", "icon": "fa-brands fa-git-alt", "category": "Tool" }
+    ],
+    "additionalResources": [
+      {
+        "title": "Prototipo Interactivo",
+        "url": "https://www.figma.com/proto/EXAMPLE_ID/ConectaIdeas?node-id=1%3A2",
+        "type": "link"
+      },
+      {
+        "title": "Repositorio Frontend",
+        "url": "https://github.com/gnius-club/conectaideas-frontend-example",
+        "type": "github"
+      }
+    ],
+    "imageGallery": [
+      {
+        "url": "assets/img/conectaideas/gallery-01.png",
+        "altText": "Wireframes de baja fidelidad de las pantallas principales de ConectaIdeas.",
+        "caption": "Wireframing Inicial"
+      },
+      {
+        "url": "assets/img/conectaideas/gallery-02.png",
+        "altText": "Modelo de datos diseñado para la base de datos MongoDB.",
+        "caption": "Esquema de la Base de Datos"
+      }
+    ],
+    "projectRubricScores": {
+      "innovation": 3,
+      "collaboration": 3,
+      "impact": 3,
+      "techuse": 2,
+      "presentation": 2
+    },
+    "finalProjectGrade": 9,
+    "slug": "plataforma-web-conectaideas"
+  }
+]

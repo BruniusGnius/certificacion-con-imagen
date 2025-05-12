@@ -1,0 +1,555 @@
+[
+  {
+    "projectTitle": "Robot Educativo Autónomo 'R.E.A.'",
+    "projectCategory": "Robótica Educativa",
+    "studentLevel": "Secundaria",
+    "intro_title": "Conoce a R.E.A.: Tu Compañero Robótico de Aprendizaje",
+    "intro_content": "R.E.A. es un prototipo de robot diseñado para asistir a estudiantes en el aprendizaje de conceptos básicos de programación y electrónica de una manera interactiva y divertida, fomentando el pensamiento lógico y la resolución de problemas.",
+    "problemDescription": "Los métodos tradicionales de enseñanza de programación pueden ser abstractos y poco motivadores para algunos estudiantes de secundaria, generando una barrera inicial hacia las STEM.",
+    "solutionProposed": "Desarrollamos a R.E.A., un robot físico programable con una interfaz gráfica sencilla (basada en bloques) y sensores que interactúan con el entorno, haciendo el aprendizaje tangible y lúdico.",
+    "innovationProcess": "<p><strong>Investigación:</strong> Analizamos plataformas robóticas existentes (LEGO Mindstorms, mBot) y realizamos encuestas a estudiantes y profesores sobre sus necesidades y preferencias.</p><p><strong>Diseño:</strong> Prototipado rápido del chasis usando impresión 3D (Tinkercad) y selección de componentes electrónicos clave: Arduino UNO como cerebro, sensores de ultrasonido para detección de obstáculos y servomotores para movimiento.</p><p><strong>Desarrollo:</strong> Programación del firmware base en C++ (Arduino IDE) para control de motores y lectura de sensores. Desarrollo de una interfaz gráfica personalizada usando Blockly para permitir programación visual por bloques.</p><p><strong>Pruebas:</strong> Múltiples sesiones de prueba con un grupo piloto de estudiantes de 1er año de secundaria. Recopilamos feedback sobre la facilidad de uso, la robustez del robot y la efectividad de las actividades propuestas, iterando sobre el diseño y el software.</p>",
+    "slug": "robot-educativo-autonomo-rea",
+    "projectDate": "2024-11-15",
+    "coverUrl": {
+      "url": "assets/img/robot-rea/cover.jpg",
+      "altText": "Robot R.E.A. blanco y azul sobre una mesa de trabajo, mostrando sus sensores frontales."
+    },
+    "media": {
+      "type": "video",
+      "url": "https://www.youtube.com/embed/8_pXTJ4sJvM"
+    },
+    "teamMembers": [
+      {
+        "name": "Juan Pérez García",
+        "role": "Líder de Proyecto / Programador Firmware",
+        "sbtLink": "https://polygonscan.com/token/0xTOKEN_ADDRESS_EXAMPLE_JUAN",
+        "certificate_courseName": "Introducción a la Robótica con Arduino",
+        "certificate_badgeName": "Constructor Robótico",
+        "certificate_level": "Avanzado",
+        "certificate_skills": "Arduino (C++),Programación lógica,Resolución de problemas,Liderazgo de equipos,Diseño de circuitos básicos",
+        "certificate_criteria": "Funcionalidad del código,Eficiencia algoritmos,Integración Hardware-Software,Colaboración",
+        "certificate_college": "Instituto Tecnológico Juvenil",
+        "certificate_issueDate": "2024-11-09",
+        "certificate_previewUrl": "assets/img/robot-rea/juan-perez-cert-preview.jpg",
+        "certificate_printUrl": "assets/img/robot-rea/juan-perez-cert-print.pdf"
+      },
+      {
+        "name": "María López Fernández",
+        "role": "Diseñadora 3D / Encargada de Pruebas UX",
+        "certificate_courseName": "Introducción a la Robótica con Arduino",
+        "certificate_badgeName": "Diseñadora de Experiencia Robótica",
+        "certificate_level": "Avanzado",
+        "certificate_skills": "Diseño 3D (Tinkercad),Metodologías de prueba de usuario,Comunicación efectiva,Empatía con el usuario,Documentación técnica",
+        "certificate_criteria": "Ergonomía del diseño,Facilidad de uso (interfaz),Recolección de feedback,Presentación de resultados",
+        "certificate_college": "Instituto Tecnológico Juvenil",
+        "certificate_issueDate": "2024-11-09",
+        "certificate_previewUrl": "assets/img/robot-rea/maria-lopez-cert-preview.jpg",
+        "certificate_printUrl": "assets/img/robot-rea/maria-lopez-cert-print.pdf"
+      }
+    ],
+    "technologies": [
+      {
+        "name": "Arduino UNO",
+        "icon": "fa-solid fa-microchip",
+        "category": "Hardware"
+      },
+      {
+        "name": "C++ (Arduino)",
+        "icon": "fa-solid fa-code",
+        "category": "Software"
+      },
+      {
+        "name": "Blockly",
+        "icon": "fa-solid fa-shapes",
+        "category": "Software"
+      },
+      {
+        "name": "Tinkercad",
+        "icon": "fa-solid fa-cube",
+        "category": "Tool"
+      },
+      {
+        "name": "Sensor Ultrasonido HC-SR04",
+        "icon": "fa-solid fa-wave-square",
+        "category": "Hardware"
+      },
+      {
+        "name": "Impresión 3D",
+        "icon": "fa-solid fa-print",
+        "category": "Tool"
+      }
+    ],
+    "additionalResources": [
+      {
+        "title": "Código Fuente del Firmware",
+        "url": "https://github.com/gnius-club/robot-rea-example",
+        "type": "github"
+      },
+      {
+        "title": "Manual de Usuario (Borrador)",
+        "url": "assets/docs/rea-manual-draft.pdf",
+        "type": "pdf"
+      },
+      {
+        "title": "Blog de Desarrollo",
+        "url": "https://medium.com/@gniusclub/construyendo-rea-paso-a-paso-example",
+        "type": "website"
+      }
+    ],
+    "imageGallery": [
+      {
+        "url": "assets/img/robot-rea/gallery-01.jpg",
+        "altText": "Prototipo inicial de R.E.A. con cables visibles y placa Arduino expuesta.",
+        "caption": "Prototipo v0.1 - ¡Primeros pasos!"
+      },
+      {
+        "url": "assets/img/robot-rea/gallery-02.jpg",
+        "altText": "Estudiantes de secundaria interactuando con la interfaz de bloques de R.E.A. en una tablet.",
+        "caption": "Pruebas de Usabilidad con Grupo Piloto"
+      },
+      {
+        "url": "assets/img/robot-rea/gallery-03.jpg",
+        "altText": "Diagrama del circuito electrónico de R.E.A. dibujado en Fritzing.",
+        "caption": "Esquema Eléctrico Simplificado"
+      }
+    ],
+    "evaluationScores": {
+      "eval_Impacto Potencial": 95,
+      "eval_Creatividad Solucion": 80,
+      "eval_Innovacion Tecnica": 85,
+      "eval_Ejecucion Tecnica": 90,
+      "eval_Colaboracion Equipo": 100,
+      "eval_Sostenibilidad Diseño": 75
+    }
+  },
+  {
+    "projectTitle": "Plataforma Web 'ConectaIdeas'",
+    "projectCategory": "Desarrollo Web",
+    "studentLevel": "Preparatoria",
+    "intro_title": "ConectaIdeas: Donde Nacen las Colaboraciones Estudiantiles",
+    "intro_content": "Una red social educativa diseñada para que estudiantes de preparatoria puedan compartir ideas de proyectos, buscar colaboradores con habilidades complementarias y llevar sus iniciativas al siguiente nivel.",
+    "problemDescription": "Los estudiantes a menudo tienen ideas innovadoras pero carecen de un espacio centralizado para encontrar compañeros con diferentes talentos (programación, diseño, comunicación) y formar equipos efectivos.",
+    "solutionProposed": "Creamos 'ConectaIdeas', una plataforma web con perfiles de usuario que destacan habilidades e intereses, un muro para publicar ideas de proyectos buscando equipo, y un sistema de mensajería para facilitar la comunicación.",
+    "innovationProcess": "<p><strong>Definición:</strong> Mapeo de funcionalidades clave (registro, perfil, publicar idea, buscar proyectos/usuarios, mensajería). Brainstorming de UX.</p><p><strong>Diseño:</strong> Wireframes y prototipos interactivos en Figma. Diseño de la identidad visual.</p><p><strong>Desarrollo (Full-Stack):</strong> Frontend con React y Tailwind CSS para una interfaz moderna y responsiva. Backend con Node.js (Express) y base de datos NoSQL (MongoDB) para flexibilidad. Implementación de autenticación (JWT).</p><p><strong>Despliegue y Pruebas:</strong> Despliegue inicial en Vercel/Netlify. Pruebas funcionales y de usabilidad con compañeros.</p>",
+    "slug": "plataforma-web-conectaideas",
+    "projectDate": "2024-05-20",
+    "coverUrl": {
+      "url": "assets/img/conectaideas/cover.png",
+      "altText": "Captura de pantalla de la interfaz de ConectaIdeas mostrando perfiles de usuario y tarjetas de proyectos."
+    },
+    "media": {
+      "type": "video",
+      "url": "https://www.youtube.com/embed/N5WZNj1X3QM"
+    },
+    "teamMembers": [
+      {
+        "name": "Carlos Mendoza",
+        "role": "Desarrollador Full-Stack",
+        "certificate_courseName": "Desarrollo Web Moderno",
+        "certificate_badgeName": "Arquitecto Web Junior",
+        "certificate_level": "Intermedio",
+        "certificate_skills": "React,Node.js,MongoDB,JavaScript (ES6+),Git,API REST",
+        "certificate_criteria": "Calidad del código,Arquitectura de la aplicación,Funcionalidad completa,Resolución de bugs",
+        "certificate_college": "Prepa Federal #1",
+        "certificate_issueDate": "2024-05-14",
+        "certificate_previewUrl": "assets/img/conectaideas/carlos-mendoza-cert-preview.jpg",
+        "certificate_printUrl": "assets/img/conectaideas/carlos-mendoza-cert-print.jpg"
+      },
+      {
+        "name": "Laura Jiménez",
+        "role": "Diseñadora UI/UX",
+        "sbtLink": "https://polygonscan.com/token/0xTOKEN_ADDRESS_EXAMPLE_LAURA",
+        "certificate_courseName": "Diseño de Interfaces Digitales",
+        "certificate_badgeName": "Diseñadora de Experiencia de Usuario",
+        "certificate_level": "Intermedio",
+        "certificate_skills": "Figma,Prototipado interactivo,Diseño responsivo,User personas,Arquitectura de información",
+        "certificate_criteria": "Claridad de la interfaz,Consistencia visual,Navegación intuitiva,Aplicación de principios UX",
+        "certificate_college": "Prepa Federal #1",
+        "certificate_issueDate": "2024-05-14",
+        "certificate_previewUrl": "assets/img/conectaideas/laura-jimenez-cert-preview.jpg",
+        "certificate_printUrl": "assets/img/conectaideas/laura-jimenez-cert-print.pdf"
+      }
+    ],
+    "technologies": [
+      {
+        "name": "React",
+        "icon": "fa-brands fa-react",
+        "category": "Software"
+      },
+      {
+        "name": "Node.js",
+        "icon": "fa-brands fa-node-js",
+        "category": "Software"
+      },
+      {
+        "name": "MongoDB",
+        "icon": "fa-solid fa-database",
+        "category": "Software"
+      },
+      {
+        "name": "Tailwind CSS",
+        "icon": "fa-solid fa-wind",
+        "category": "Tool"
+      },
+      {
+        "name": "Figma",
+        "icon": "fa-brands fa-figma",
+        "category": "Tool"
+      },
+      {
+        "name": "Git",
+        "icon": "fa-brands fa-git-alt",
+        "category": "Tool"
+      }
+    ],
+    "additionalResources": [
+      {
+        "title": "Prototipo Interactivo",
+        "url": "https://www.figma.com/proto/EXAMPLE_ID/ConectaIdeas?node-id=1%3A2",
+        "type": "link"
+      },
+      {
+        "title": "Repositorio Frontend",
+        "url": "https://github.com/gnius-club/conectaideas-frontend-example",
+        "type": "github"
+      }
+    ],
+    "imageGallery": [
+      {
+        "url": "assets/img/conectaideas/gallery-01.png",
+        "altText": "Wireframes de baja fidelidad de las pantallas principales de ConectaIdeas.",
+        "caption": "Wireframing Inicial"
+      },
+      {
+        "url": "assets/img/conectaideas/gallery-02.png",
+        "altText": "Modelo de datos diseñado para la base de datos MongoDB.",
+        "caption": "Esquema de la Base de Datos"
+      }
+    ],
+    "evaluationScores": {
+      "eval_Impacto Potencial": 85,
+      "eval_Creatividad Solucion": 90,
+      "eval_Innovacion Tecnica": 75,
+      "eval_Ejecucion Tecnica": 80,
+      "eval_Colaboracion Equipo": 95,
+      "eval_Sostenibilidad Diseño": 70
+    }
+  },
+  {
+    "projectTitle": "App Móvil 'EcoScan'",
+    "projectCategory": "Impacto Social",
+    "studentLevel": "Secundaria",
+    "intro_title": "EcoScan: Tu Guía de Reciclaje Inteligente",
+    "intro_content": "Una aplicación móvil (conceptual) que permitiría a los usuarios escanear códigos de barras de productos y recibir información instantánea sobre cómo reciclar correctamente su empaque.",
+    "problemDescription": "La confusión sobre qué y cómo reciclar diferentes tipos de empaques es una barrera significativa para aumentar las tasas de reciclaje en la comunidad.",
+    "solutionProposed": "Diseñamos el concepto y prototipo de 'EcoScan', una app que simplifica el reciclaje. Escaneas el producto, y la app te dice si el empaque es reciclable, en qué contenedor va, y dónde está el punto de reciclaje más cercano.",
+    "innovationProcess": "<p><strong>Investigación:</strong> Encuestas sobre hábitos de reciclaje y dificultades comunes. Análisis de apps similares.</p><p><strong>Diseño Conceptual:</strong> Definición del flujo de usuario principal (escanear -> ver info -> encontrar punto). Diseño de la arquitectura de información.</p><p><strong>Prototipado UI/UX:</strong> Creación de mockups y un prototipo navegable de alta fidelidad en Figma, simulando la experiencia de escaneo y visualización de resultados.</p><p><strong>Validación:</strong> Presentación del prototipo a compañeros y profesores para obtener feedback sobre la claridad y utilidad del concepto.</p>",
+    "slug": "app-movil-ecoscan",
+    "projectDate": "2024-08-01",
+    "coverUrl": {
+      "url": "assets/img/ecoscan/cover.jpg",
+      "altText": "Mockup de la pantalla principal de la app EcoScan en un smartphone, mostrando un botón de escaneo."
+    },
+    "media": {
+      "type": "image",
+      "url": "assets/img/ecoscan/media.jpg",
+      "altText": "Collage mostrando varias pantallas clave del prototipo de la app EcoScan."
+    },
+    "teamMembers": [
+      {
+        "name": "Sofía Herrera",
+        "role": "Líder de Proyecto / Diseñadora UX",
+        "certificate_courseName": "Diseño de Apps para el Bien Social",
+        "certificate_badgeName": "Innovadora Social Digital",
+        "certificate_level": "Básico",
+        "certificate_skills": "Investigación de usuarios,Diseño de flujo de usuario,Prototipado (Figma),Presentación de ideas",
+        "certificate_criteria": "Claridad del problema,Originalidad de la solución,Calidad del prototipo,Viabilidad conceptual",
+        "certificate_college": "Secundaria Comunitaria #5",
+        "certificate_issueDate": "2024-07-27",
+        "certificate_previewUrl": "assets/img/ecoscan/sofia-herrera-cert-preview.jpg",
+        "certificate_printUrl": "assets/img/ecoscan/sofia-herrera-cert-print.jpg"
+      },
+      {
+        "name": "David Castillo",
+        "role": "Investigador / Diseñador UI",
+        "certificate_courseName": "Diseño de Apps para el Bien Social",
+        "certificate_badgeName": "Diseñador de Interfaces Conscientes",
+        "certificate_level": "Básico",
+        "certificate_skills": "Diseño de interfaz (UI),Paletas de color,Tipografía,Iconografía,Análisis de datos (encuestas)",
+        "certificate_criteria": "Estética de la interfaz,Coherencia visual,Accesibilidad básica,Fundamentación de decisiones",
+        "certificate_college": "Secundaria Comunitaria #5",
+        "certificate_issueDate": "2024-07-27",
+        "certificate_previewUrl": "assets/img/ecoscan/david-castillo-cert-preview.jpg",
+        "certificate_printUrl": "assets/img/ecoscan/david-castillo-cert-print.jpg"
+      }
+    ],
+    "technologies": [
+      {
+        "name": "Figma",
+        "icon": "fa-brands fa-figma",
+        "category": "Tool"
+      },
+      {
+        "name": "Google Forms",
+        "icon": "fa-brands fa-google",
+        "category": "Tool"
+      },
+      {
+        "name": "Diseño Centrado en el Usuario",
+        "icon": "fa-solid fa-users",
+        "category": "Tool"
+      }
+    ],
+    "additionalResources": [
+      {
+        "title": "Prototipo Navegable (Figma)",
+        "url": "https://www.figma.com/proto/EXAMPLE_ID2/EcoScan-App?node-id=1%3A10",
+        "type": "link"
+      },
+      {
+        "title": "Resultados Encuesta (Resumen)",
+        "url": "assets/docs/ecoscan-survey-summary.pdf",
+        "type": "pdf"
+      }
+    ],
+    "imageGallery": [
+      {
+        "url": "assets/img/ecoscan/gallery-01.jpg",
+        "altText": "Mapa mental mostrando las funcionalidades planeadas para EcoScan.",
+        "caption": "Brainstorming de Funcionalidades"
+      },
+      {
+        "url": "assets/img/ecoscan/gallery-02.jpg",
+        "altText": "Primeros bocetos a mano de la interfaz de usuario de la app.",
+        "caption": "Bocetos Iniciales"
+      },
+      {
+        "url": "assets/img/ecoscan/gallery-03.jpg",
+        "altText": "Paleta de colores y selección tipográfica para la identidad visual de EcoScan.",
+        "caption": "Guía de Estilo Visual"
+      }
+    ],
+    "evaluationScores": {
+      "eval_Impacto Potencial": 100,
+      "eval_Creatividad Solucion": 85,
+      "eval_Innovacion Tecnica": 60,
+      "eval_Ejecucion Tecnica": 70,
+      "eval_Colaboracion Equipo": 90,
+      "eval_Sostenibilidad Diseño": 80
+    }
+  },
+  {
+    "projectTitle": "Sistema de Riego Inteligente para Huerto Escolar",
+    "projectCategory": "IoT (Internet de las Cosas)",
+    "studentLevel": "Primaria (Adaptado)",
+    "intro_title": "¡Plantas Felices! Nuestro Riego Inteligente",
+    "intro_content": "¡Plantas Felices! Nuestro Riego Inteligente",
+    "problemDescription": "Regar el huerto escolar manualmente requiere tiempo, a veces se nos olvida, y podemos usar más agua de la necesaria, especialmente los fines de semana.",
+    "solutionProposed": "Un sistema automatizado que mide la humedad de la tierra. Si está seca, activa una bomba que lleva agua a las plantas por un tiempo corto. Programamos todo usando Micro:bit y bloques.",
+    "innovationProcess": "<p><strong>Aprendizaje:</strong> Entendimos cómo funcionan los sensores de humedad y cómo programar el Micro:bit para leerlos y activar salidas (la bomba).</p><p><strong>Construcción:</strong> Conectamos el sensor de humedad y un relé (para controlar la bomba de forma segura) al Micro:bit. Montamos la pequeña bomba de agua y los tubos de riego.</p><p><strong>Programación:</strong> Usamos MakeCode (bloques) para crear el programa: 'Si humedad < umbral, encender bomba por X segundos, esperar'.</p><p><strong>Instalación y Ajuste:</strong> Colocamos el sensor en la tierra, la bomba en un depósito de agua, y ajustamos el umbral de humedad y el tiempo de riego observando las plantas.</p>",
+    "slug": "sistema-de-riego-inteligente-para-huerto-escolar",
+    "projectDate": "2025-03-10",
+    "coverUrl": {
+      "url": "assets/img/riego-escolar/cover.jpg",
+      "altText": "Primer plano de una planta en el huerto escolar con un sensor de humedad clavado en la tierra y tubos finos de riego."
+    },
+    "media": {
+      "type": "video",
+      "url": "https://www.youtube.com/embed/BZPBiDxJN38"
+    },
+    "teamMembers": [
+      {
+        "name": "Mateo Vargas",
+        "role": "Programador Principal",
+        "certificate_courseName": "Pequeños Inventores con Micro:bit",
+        "certificate_badgeName": "Mago del Código",
+        "certificate_level": "Explorador",
+        "certificate_skills": "Programación por bloques (MakeCode),Lógica condicional (Si... entonces),Lectura de sensores,Control de actuadores (relé)",
+        "certificate_criteria": "Funcionamiento del código,Claridad de los bloques,Resolución del problema planteado",
+        "certificate_college": "Colegio El Roble",
+        "certificate_issueDate": "2025-03-07",
+        "certificate_previewUrl": "assets/img/riego-escolar/mateo-vargas-cert-preview.jpg",
+        "certificate_printUrl": "assets/img/riego-escolar/mateo-vargas-cert-print.pdf"
+      },
+      {
+        "name": "Valentina Ríos",
+        "role": "Ensambladora / Cuidadora del Huerto",
+        "certificate_courseName": "Pequeños Inventores con Micro:bit",
+        "certificate_badgeName": "Constructora Curiosa",
+        "certificate_level": "Explorador",
+        "certificate_skills": "Conexión de componentes electrónicos,Seguimiento de diagramas simples,Observación y registro,Cuidado de plantas",
+        "certificate_criteria": "Correcta conexión de partes,Funcionamiento del sistema físico,Mantenimiento del huerto",
+        "certificate_college": "Colegio El Roble",
+        "certificate_issueDate": "2025-03-07",
+        "certificate_previewUrl": "assets/img/riego-escolar/valentina-rios-cert-preview.jpg",
+        "certificate_printUrl": "assets/img/riego-escolar/valentina-rios-cert-print.pdf"
+      }
+    ],
+    "technologies": [
+      {
+        "name": "Micro:bit",
+        "icon": "fa-solid fa-robot",
+        "category": "Hardware"
+      },
+      {
+        "name": "MakeCode",
+        "icon": "fa-solid fa-puzzle-piece",
+        "category": "Software"
+      },
+      {
+        "name": "Sensor de Humedad del Suelo",
+        "icon": "fa-solid fa-droplet",
+        "category": "Hardware"
+      },
+      {
+        "name": "Relé",
+        "icon": "fa-solid fa-toggle-on",
+        "category": "Hardware"
+      },
+      {
+        "name": "Bomba de Agua (Pequeña)",
+        "icon": "fa-solid fa-faucet-drip",
+        "category": "Hardware"
+      }
+    ],
+    "additionalResources": [
+      {
+        "title": "Guía de Conexión (Dibujo)",
+        "url": "assets/docs/riego-diagram.png",
+        "type": "link"
+      },
+      {
+        "title": "Código MakeCode (Compartido)",
+        "url": "https://makecode.microbit.org/_EXAMPLECODE",
+        "type": "website"
+      }
+    ],
+    "imageGallery": [
+      {
+        "url": "assets/img/riego-escolar/gallery-01.jpg",
+        "altText": "El Micro:bit conectado con cables al sensor de humedad y al módulo relé.",
+        "caption": "Conexiones Eléctricas"
+      },
+      {
+        "url": "assets/img/riego-escolar/gallery-02.jpg",
+        "altText": "Captura de pantalla del código en bloques creado en MakeCode.",
+        "caption": "Nuestro Programa"
+      },
+      {
+        "url": "assets/img/riego-escolar/gallery-03.jpg",
+        "altText": "El sistema de riego funcionando, con agua saliendo por los tubos hacia las plantas.",
+        "caption": "¡Funcionando!"
+      }
+    ],
+    "evaluationScores": {
+      "eval_Impacto Potencial": 70,
+      "eval_Creatividad Solucion": 80,
+      "eval_Innovacion Tecnica": 65,
+      "eval_Ejecucion Tecnica": 85,
+      "eval_Colaboracion Equipo": 95,
+      "eval_Sostenibilidad Diseño": 60
+    }
+  },
+  {
+    "projectTitle": "Animación Stop-Motion 'Viaje Estelar'",
+    "projectCategory": "Multimedia",
+    "studentLevel": "Primaria",
+    "intro_title": "¡Despegue! Una Aventura Espacial en Stop Motion",
+    "intro_content": "Creamos un cortometraje animado usando la técnica de stop motion. Cuenta la historia de un valiente astronauta (hecho de plastilina) que viaja a un planeta desconocido lleno de criaturas extrañas.",
+    "problemDescription": "Queríamos contar una historia visualmente atractiva y aprender cómo se hacen las películas animadas que vemos en la tele.",
+    "solutionProposed": "Utilizamos la técnica de stop motion, tomando cientos de fotos de personajes y escenarios hechos a mano (plastilina, cartón), moviéndolos un poquito cada vez. Luego unimos las fotos en un video y añadimos sonidos.",
+    "innovationProcess": "<p><strong>Guion e Historia:</strong> Creamos una historia simple sobre un viaje espacial. Dibujamos un storyboard con las escenas principales.</p><p><strong>Diseño y Creación:</strong> Diseñamos y construimos los personajes principales (astronauta, alienígenas) con plastilina y los escenarios (nave espacial, planeta) con cajas de cartón pintadas y otros materiales reciclados.</p><p><strong>Fotografía (Stop Motion):</strong> Montamos un pequeño set con buena iluminación (lámparas). Usamos una tablet con la app Stop Motion Studio para tomar las fotos, moviendo los personajes cuadro a cuadro con mucha paciencia.</p><p><strong>Edición y Sonido:</strong> Editamos la secuencia de fotos en la misma app, ajustamos la velocidad y añadimos efectos de sonido básicos (grabados por nosotros) y música libre de derechos.</p>",
+    "slug": "animacion-stop-motion-viaje-estelar",
+    "projectDate": "2024-06-30",
+    "coverUrl": {
+      "url": "assets/img/viaje-estelar/cover.png",
+      "altText": "Escena clave de la animación stop motion mostrando al astronauta de plastilina frente a una criatura alienígena colorida."
+    },
+    "media": {
+      "type": "video",
+      "url": "https://www.youtube.com/embed/O9zZAxnQRAM"
+    },
+    "teamMembers": [
+      {
+        "name": "Elena Gómez",
+        "role": "Directora / Animadora Principal",
+        "certificate_courseName": "Creación de Historias Animadas",
+        "certificate_badgeName": "Cineasta Stop Motion",
+        "certificate_level": "Curioso",
+        "certificate_skills": "Stop Motion,Narrativa visual,Diseño de personajes (básico),Edición de video (básico),Paciencia",
+        "certificate_criteria": "Originalidad de la historia,Fluidez de la animación,Calidad visual,Trabajo en equipo",
+        "certificate_college": "Primaria Benito Juárez",
+        "certificate_issueDate": "2024-06-27",
+        "certificate_previewUrl": "assets/img/viaje-estelar/elena-gomez-cert-preview.jpg",
+        "certificate_printUrl": "assets/img/viaje-estelar/elena-gomez-cert-print.png"
+      },
+      {
+        "name": "Javier Luna",
+        "role": "Constructor de Escenarios / Sonidista",
+        "certificate_courseName": "Creación de Historias Animadas",
+        "certificate_badgeName": "Artesano Multimedia",
+        "certificate_level": "Curioso",
+        "certificate_skills": "Construcción con materiales reciclados,Creatividad manual,Grabación de audio simple,Organización",
+        "certificate_criteria": "Detalle de los escenarios,Originalidad de los sonidos,Colaboración,Cuidado del material",
+        "certificate_college": "Primaria Benito Juárez",
+        "certificate_issueDate": "2024-06-27",
+        "certificate_previewUrl": "assets/img/viaje-estelar/javier-luna-cert-preview.jpg",
+        "certificate_printUrl": "assets/img/viaje-estelar/javier-luna-cert-print.png"
+      }
+    ],
+    "technologies": [
+      {
+        "name": "Stop Motion Studio (App)",
+        "icon": "fa-solid fa-film",
+        "category": "Software"
+      },
+      {
+        "name": "Plastilina",
+        "icon": "fa-solid fa-palette",
+        "category": "Tool"
+      },
+      {
+        "name": "Materiales Reciclados",
+        "icon": "fa-solid fa-recycle",
+        "category": "Tool"
+      },
+      {
+        "name": "Tablet/Smartphone",
+        "icon": "fa-solid fa-tablet-screen-button",
+        "category": "Hardware"
+      }
+    ],
+    "additionalResources": [
+      {
+        "title": "Storyboard Original (Fotos)",
+        "url": "assets/img/viaje-estelar/storyboard.jpg",
+        "type": "link"
+      }
+    ],
+    "imageGallery": [
+      {
+        "url": "assets/img/viaje-estelar/gallery-01.jpg",
+        "altText": "Foto del personaje astronauta de plastilina antes de empezar a animar.",
+        "caption": "Nuestro Protagonista"
+      },
+      {
+        "url": "assets/img/viaje-estelar/gallery-02.jpg",
+        "altText": "El set de grabación montado con cajas de cartón pintadas simulando un planeta.",
+        "caption": "Creando el Planeta Misterioso"
+      },
+      {
+        "url": "assets/img/viaje-estelar/gallery-03.jpg",
+        "altText": "Captura de pantalla de la interfaz de la app Stop Motion Studio durante la edición.",
+        "caption": "Editando Cuadro a Cuadro"
+      }
+    ],
+    "evaluationScores": {
+      "eval_Impacto Potencial": 60,
+      "eval_Creatividad Solucion": 95,
+      "eval_Innovacion Tecnica": 70,
+      "eval_Ejecucion Tecnica": 75,
+      "eval_Colaboracion Equipo": 100,
+      "eval_Sostenibilidad Diseño": 85
+    }
+  }
+]

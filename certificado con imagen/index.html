@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolios de Proyectos - Gnius Club</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@400;500;600;700&family=Saira+Semi+Condensed:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { 'gnius-dark-1': '#0F0F0F', 'gnius-dark-2': '#1F1F1F', 'gnius-light': '#F0F0F0', 'gnius-yellow': '#FFD700', 'gnius-cyan': '#00FFFF', 'gnius-red': '#FF0000', 'gnius-gray-light': '#555555', 'gnius-gray-dark': '#333333', },
+                    fontFamily: { 'sans': ['Saira Semi Condensed', 'sans-serif'], 'condensed': ['Saira Condensed', 'sans-serif'], },
+                    fontWeight: { 'normal': '400', 'medium': '500', 'semibold': '600', 'bold': '700' },
+                    boxShadow: { 'cyan-glow-sm': '0 0 15px 3px rgba(0, 255, 255, 0.3)', 'cyan-glow': '0 0 20px 5px rgba(0, 255, 255, 0.3)', }
+                }
+            }
+        }
+    </script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body class="bg-gnius-dark-1 text-gnius-light font-sans font-normal">
+
+    <div class="container mx-auto px-4 py-8">
+        <header class="mb-8"> <img src="assets/img/gnius_logo_placeholder.png" alt="Gnius Club Logo"
+                class="h-12 w-auto"> </header>
+
+        <!-- Filtros / Búsqueda -->
+        <section id="filters" class="mb-6 p-4 bg-gnius-dark-2 rounded-lg flex flex-row flex-wrap items-center gap-4">
+            <div class="w-full md:basis-3/6 lg:basis-1/3 flex-grow-[1.5]"> <label for="search-input"
+                    class="sr-only">Buscar</label> <input type="text" id="search-input"
+                    placeholder="Buscar proyecto o estudiante..." class="filter-input w-full font-semibold"> </div>
+            <div class="w-full sm:w-auto flex-grow md:basis-2/6 lg:basis-1/4"> <label for="category-select"
+                    class="sr-only">Categoría</label> <select id="category-select"
+                    class="filter-input w-full font-semibold">
+                    <option value="">Categoría</option>
+                </select> </div>
+            <div class="w-full sm:w-auto flex-grow md:basis-2/6 lg:basis-1/4"> <label for="schooling-select"
+                    class="sr-only">Escolaridad</label> <select id="schooling-select"
+                    class="filter-input w-full font-semibold">
+                    <option value="">Escolaridad</option>
+                </select> </div>
+            <div class="w-full sm:w-auto flex-grow md:basis-2/6 lg:basis-1/3"> <label for="tech-select"
+                    class="sr-only">Tecnología</label> <select id="tech-select"
+                    class="filter-input w-full font-semibold">
+                    <option value="">Tecnología</option>
+                </select> </div>
+            <div class="w-full sm:w-auto flex-grow md:basis-2/6 lg:basis-1/3"> <label for="sdg-select"
+                    class="sr-only">ODS</label> <select id="sdg-select" class="filter-input w-full font-semibold">
+                    <option value="">ODS</option>
+                </select> </div>
+            <div class="w-full sm:w-auto flex-grow-0"> <button id="clear-filters-btn"
+                    class="btn btn-danger w-full sm:w-auto"> Limpiar Filtros </button> </div>
+        </section>
+
+        <main>
+            <div id="project-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8">
+                <p id="loading-message" class="text-center col-span-full font-sans font-semibold">Cargando...</p>
+                <p id="no-results-message" class="text-center col-span-full font-sans font-semibold"
+                    style="display: none;">Sin resultados.</p>
+            </div>
+        </main>
+
+        <!-- Template Tarjeta Proyecto -->
+        <template id="project-card-template">
+            <article
+                class="bg-gnius-dark-2 rounded-lg overflow-hidden shadow-lg transition duration-300 ease-in-out hover:scale-[1.02] hover:shadow-cyan-glow flex flex-col">
+                <a href="#" data-card-link class="block flex flex-col flex-grow">
+                    <div class="aspect-video overflow-hidden flex-shrink-0 relative">
+                        <img data-card-img src="https://picsum.photos/seed/placeholder/640/360" alt=""
+                            class="w-full h-full object-cover">
+                        <div class="sdg-overlay absolute bottom-2 right-2 bg-black/40 backdrop-blur-sm px-2 py-1 rounded-lg flex items-center space-x-1.5"
+                            style="display: none;">
+                            <span class="sdg-overlay-label font-condensed font-semibold text-[14px]">ODS
+                                Cubiertos:</span> <!-- Condensed Semibold 14px -->
+                            <div data-card-sdgs class="flex flex-wrap justify-end gap-1"> </div>
+                        </div>
+                    </div>
+                    <div class="p-4 flex flex-col flex-grow font-sans" data-card-content> <!-- Base Sans -->
+                        <h3 data-card-title class="text-2xl font-bold mb-2 truncate text-gnius-yellow font-sans">Título
+                        </h3> <!-- Sans Bold -->
+                        <div data-card-metadata class="mb-3 flex flex-wrap gap-1.5">
+                            <!-- Chips: Condensed Medium 12px -->
+                        </div>
+                        <p data-card-desc
+                            class="text-base text-gnius-light/80 mb-3 h-20 overflow-hidden font-sans font-medium">
+                            Desc...</p> <!-- Sans Medium -->
+                        <div data-card-students class="mb-4 flex flex-wrap gap-1 items-center">
+                            <!-- Chips: Condensed Semibold 12px -->
+                        </div>
+                        <div class="mt-auto text-right"> <span
+                                class="link-action text-gnius-cyan hover:text-gnius-yellow font-sans font-semibold">Ver
+                                Detalles <i class="fa-solid fa-arrow-right-long ml-1 text-xs"></i></span>
+                            <!-- Sans Semibold --> </div>
+                    </div>
+                </a>
+            </article>
+        </template>
+
+        <!-- Paginación -->
+        <nav id="pagination-controls" class="mt-12 flex justify-center items-center gap-4 font-sans font-normal"
+            style="display: none;">
+            <button id="prev-page-btn" class="btn btn-primary" disabled> <i class="fa-solid fa-angle-left mr-1"></i>
+                Anterior </button>
+            <span id="page-info" class="text-gnius-light text-base">Página 1 de 1</span>
+            <button id="next-page-btn" class="btn btn-primary" disabled> Siguiente <i
+                    class="fa-solid fa-angle-right ml-1"></i> </button>
+        </nav>
+        <!-- Footer -->
+        <footer class="mt-16 text-center text-sm text-gnius-light/60 font-sans font-normal">
+            <p>© <span id="current-year"></span> Gnius Club. Todos los derechos reservados.</p>
+        </footer>
+
+    </div> <!-- Fin container -->
+
+    <!-- Botón Flotante Leyenda ODS -->
+    <button id="show-sdg-legend-btn" class="fixed bottom-5 left-5 z-40 btn-float-legend"
+        aria-label="Mostrar Leyenda ODS"> <i class="fa-solid fa-list-ul"></i> </button>
+
+    <!-- Modal Leyenda ODS -->
+    <div id="sdg-legend-modal"
+        class="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50 modal-overlay hidden">
+        <div
+            class="bg-gnius-dark-2 rounded-lg shadow-xl overflow-hidden border border-gnius-gray-dark w-full max-w-3xl max-h-[85vh] flex flex-col modal-content">
+            <div class="flex justify-between items-center p-4 border-b border-gnius-gray-dark">
+                <h2 class="text-2xl font-bold text-gnius-light font-condensed"> <a href="..." target="_blank"
+                        rel="noopener noreferrer" class="hover:text-gnius-cyan"> Objetivos de Desarrollo Sostenible
+                        (ODS) <i class="fa-solid fa-arrow-up-right-from-square fa-xs ml-1"></i> </a> </h2>
+                <button id="sdg-modal-close-btn" class="text-gnius-light/50 hover:text-gnius-red text-2xl leading-none"
+                    aria-label="Cerrar">×</button>
+            </div>
+            <div class="p-4 overflow-y-auto flex-grow legend-modal-body">
+                <ul id="sdg-legend-modal-content" class="space-y-3"> </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/ods-data.js"></script>
+    <script src="js/main.js"></script> <!-- Usar v4.19 -->
+</body>
+
+</html>

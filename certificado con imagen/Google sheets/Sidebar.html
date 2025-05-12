@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <base target="_top">
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 15px;
+            background-color: #f8f9fa;
+        }
+
+        #jsonOutput {
+            width: 95%;
+            height: 400px;
+            white-space: pre;
+            overflow: auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: #fff;
+            font-family: monospace;
+            font-size: 12px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        #copyButton {
+            padding: 8px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        #copyButton:hover {
+            background-color: #0056b3;
+        }
+
+        #copyButton:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+
+        #status {
+            margin-top: 15px;
+            font-style: italic;
+            color: #555;
+        }
+
+        .error {
+            color: red;
+            font-weight: bold;
+            white-space: pre-wrap;
+        }
+
+        .warning {
+            color: orange;
+            white-space: pre-wrap;
+            margin-bottom: 5px;
+        }
+
+        /* Ajuste margen */
+        #validationMessages ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin-top: 5px;
+        }
+
+        /* Quitar viñetas */
+        #validationMessages li {
+            margin-bottom: 5px;
+            padding-left: 1.2em;
+            text-indent: -1.2em;
+        }
+
+        /* Indentación para icono */
+        #validationMessages li.error::before {
+            content: "❗️";
+            margin-right: 0.5em;
+            color: red;
+        }
+
+        /* Icono error */
+        #validationMessages li.warning::before {
+            content: "⚠️";
+            margin-right: 0.5em;
+            color: orange;
+        }
+
+        /* Icono warning */
+    </style>
+</head>
+
+<body>
+    <h4>Generar JSON de Proyectos</h4>
+    <p>Haz clic en el botón para generar el JSON a partir de la hoja activa.</p>
+    <button id="generateButton" onclick="requestJson()">Generar JSON</button>
+
+    <div id="resultArea" style="display: none;">
+        <div id="validationMessages"></div>
+        <h5>Resultado JSON:</h5>
+        <textarea id="jsonOutput" readonly></textarea>
+        <button id="copyButton" onclick="copyJson()" disabled>Copiar al Portapapeles</button>
+        <div id="copyStatus"></div>
+    </div>
+
+    <div id="status">Listo.</div>
+
+    <script>
+        function requestJson() {
+            document.getElementById('status').textContent = 'Generando...';
+            document.getElementById('generateButton').disabled = true;
+            document.getElementById('resultArea').style.display = 'none';
+            document.getElementById('validationMessages').innerHTML = '';
+            document.getElementById('jsonOutput').value = '';
+            document.getElementById('copyButton').disabled = true;
+            document.getElementById('copyStatus').textContent = '';
+
+            google.script.run
+                .withSuccessHandler(displayResult)
+                .withFailureHandler(displayError)
+                .generateJson();
+        }
+
+        function displayResult(resultJsonString) {
+            document.getElementById('generateButton').disabled = false;
+            document.getElementById('status').textContent = '¡Generación completada!';
+            document.getElementById('resultArea').style.display = 'block';
+
+            let resultData;
+            try { resultData = JSON.parse(resultJsonString); }
+            catch (e) { displayError({ message: "Error al parsear JSON: " + e.message, response: resultJsonString }); return; }
+
+            if (resultData.error) {
+                displayError({ message: resultData.error }); // Mostrar error principal
+                if (resultData.validationMessages && resultData.validationMessages.length > 0) {
+                    displayValidationMessages(resultData.validationMessages); // Mostrar también validaciones si existen
+                }
+                document.getElementById('copyButton').disabled = true;
+                document.getElementById('jsonOutput').value = `Error: ${resultData.error}`; // Poner error en textarea
+            } else {
+                if (resultData.validationMessages && resultData.validationMessages.length > 0) {
+                    displayValidationMessages(resultData.validationMessages); // Mostrar validaciones
+                } else {
+                    document.getElementById('validationMessages').innerHTML = '<p style="color: green; font-style: italic;">Validación completada sin advertencias.</p>'; // Mensaje positivo
+                }
+
+                if (resultData.projects && resultData.projects.length > 0) {
+                    const prettyJson = JSON.stringify(resultData.projects, null, 2);
+                    document.getElementById('jsonOutput').value = prettyJson;
+                    document.getElementById('copyButton').disabled = false;
+                } else {
+                    document.getElementById('jsonOutput').value = 'No se generaron proyectos válidos (revisa los mensajes de validación o la hoja).';
+                    document.getElementById('copyButton').disabled = true;
+                }
+            }
+        }
+
+        function displayValidationMessages(messages) {
+            const messagesDiv = document.getElementById('validationMessages');
+            messagesDiv.innerHTML = '<strong>Mensajes de Validación:</strong>';
+            const list = document.createElement('ul');
+            messages.forEach(msg => {
+                const item = document.createElement('li');
+                item.textContent = msg;
+                // Clasificar mensaje
+                if (msg.toLowerCase().includes('error') || msg.toLowerCase().includes('falta') || msg.toLowerCase().includes('inválido') || msg.toLowerCase().includes('omitirá') || msg.toLowerCase().includes('incorrecto')) {
+                    item.className = 'error';
+                } else {
+                    item.className = 'warning';
+                }
+                list.appendChild(item);
+            });
+            messagesDiv.appendChild(list);
+            messagesDiv.style.border = '1px solid #eee'; // Borde ligero
+            messagesDiv.style.padding = '10px';
+            messagesDiv.style.marginBottom = '15px';
+            messagesDiv.style.maxHeight = '150px'; // Altura máxima con scroll
+            messagesDiv.style.overflowY = 'auto';
+            messagesDiv.style.backgroundColor = '#fff'; // Fondo blanco
+        }
+
+
+        function displayError(error) {
+            document.getElementById('generateButton').disabled = false;
+            document.getElementById('status').innerHTML = '<span class="error">Error durante la generación.</span>';
+            document.getElementById('resultArea').style.display = 'block';
+            const outputArea = document.getElementById('jsonOutput');
+            outputArea.value = 'Error: ' + error.message;
+            if (error.response) { outputArea.value += "\n\nRespuesta recibida:\n" + error.response; }
+            document.getElementById('validationMessages').innerHTML = `<div class="error"><strong>Error Crítico:</strong> ${error.message}</div>`; // Mostrar error crítico
+            document.getElementById('copyButton').disabled = true;
+            console.error('Error from Apps Script:', error);
+        }
+
+        function copyJson() {
+            const jsonText = document.getElementById('jsonOutput');
+            jsonText.select();
+            document.execCommand('copy');
+            document.getElementById('copyStatus').textContent = '¡Copiado!';
+            setTimeout(() => { document.getElementById('copyStatus').textContent = ''; }, 2000);
+        }
+    </script>
+</body>
+
+</html>

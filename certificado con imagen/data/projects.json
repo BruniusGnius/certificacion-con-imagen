@@ -1,0 +1,1745 @@
+[
+  {
+    "projectTitle": "EcoLadrillos Comunitarios",
+    "projectCategory": "Impacto Social",
+    "schooling": "Secundaria",
+    "introTitle": "Construyendo un Futuro Sostenible",
+    "introContent": "Proyecto para fabricar ecoladrillos con desechos plásticos y promover su uso en construcciones locales menores.",
+    "problemDescription": "Alta contaminación por plásticos PET y falta de materiales de construcción económicos para pequeñas infraestructuras comunitarias.",
+    "solutionProposed": "Capacitar a la comunidad para crear ecoladrillos (botellas PET rellenas de plásticos limpios y secos) y diseñar pequeños prototipos constructivos (bancas, jardineras).",
+    "innovationProcess": "<p><strong>Investigación:</strong> Sobre la técnica de ecoladrillos y su viabilidad.</p><p><strong>Talleres:</strong> Impartición de talleres de sensibilización y fabricación.</p><p><strong>Diseño:</strong> Creación de diseños simples para mobiliario urbano.</p><p><strong>Construcción:</strong> Prototipos construidos con la comunidad.</p>",
+    "slug": "ecoladrillos-comunitarios",
+    "projectDate": "2024-10-20",
+    "sdgIds": [1, 11, 12],
+    "coverImage": {
+      "url": "assets/img/eco-ladrillos/cover.jpg",
+      "altText": "Jóvenes apilando ecoladrillos coloridos."
+    },
+    "media": {
+      "type": "video",
+      "url": "https://www.youtube.com/embed/Z1RJmh_OqeA"
+    },
+    "projectRubricScores": {
+      "innovation": 3,
+      "collaboration": 3,
+      "impact": 3,
+      "techUse": 2,
+      "presentation": 3
+    },
+    "finalProjectGrade": 9,
+    "teamMembers": [
+      {
+        "name": "Ana Sofía López Herrera",
+        "role": "Líder del Proyecto",
+        "sbtLink": "https://verificador.gnius.mx/sbt/ana-sofia-lopez-herrera",
+        "certificateCourseName": "Innovación Social y Sostenibilidad",
+        "certificateBadgeName": "Prompt Sage",
+        "certificateLevel": "Master",
+        "certificateSkills": "Gestión Proyectos,Liderazgo Comunitario,Reciclaje Creativo,Comunicación",
+        "certificateCriteria": "Impacto Comunitario,Viabilidad,Participación",
+        "certificateCollege": "Escuela Secundaria Técnica 33",
+        "certificateIssueDate": "2024-10-15",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      },
+      {
+        "name": "Juan Carlos Pérez Gómez",
+        "role": "Diseñador Constructivo",
+        "sbtLink": "https://verificador.gnius.mx/sbt/juan-carlos-perez-gomez",
+        "certificateCourseName": "Innovación Social y Sostenibilidad",
+        "certificateBadgeName": "Design Architect",
+        "certificateLevel": "Master",
+        "certificateSkills": "Diseño Ecológico,Autocad (básico),Materiales Alternativos",
+        "certificateCriteria": "Diseño Funcional,Seguridad Estructural,Uso Materiales",
+        "certificateCollege": "Escuela Secundaria Técnica 33",
+        "certificateIssueDate": "2024-10-15",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      },
+      {
+        "name": "María Fernanda Vidal Cruz",
+        "role": "Encargada de Talleres",
+        "sbtLink": "https://verificador.gnius.mx/sbt/maria-fernanda-vidal-cruz",
+        "certificateCourseName": "Innovación Social y Sostenibilidad",
+        "certificateBadgeName": "Tech Voyager",
+        "certificateLevel": "Rookie",
+        "certificateSkills": "Educación Ambiental,Facilitación Grupos,Logística Eventos",
+        "certificateCriteria": "Calidad Talleres,Participación Asistentes,Materiales Didácticos",
+        "certificateCollege": "Escuela Secundaria Técnica 33",
+        "certificateIssueDate": "2024-10-15",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      },
+      {
+        "name": "Luis Mateo Rojas Díaz",
+        "role": "Comunicación y Difusión",
+        "sbtLink": "https://verificador.gnius.mx/sbt/luis-mateo-rojas-diaz",
+        "certificateCourseName": "Innovación Social y Sostenibilidad",
+        "certificateBadgeName": "Code Explorer",
+        "certificateLevel": "Rookie",
+        "certificateSkills": "Redes Sociales,Creación Contenido,Fotografía Básica",
+        "certificateCriteria": "Alcance Difusión,Claridad Mensaje,Material Visual",
+        "certificateCollege": "Escuela Secundaria Técnica 33",
+        "certificateIssueDate": "2024-10-15",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      }
+    ],
+    "technologies": [
+      {
+        "name": "Plástico PET",
+        "icon": "fa-solid fa-recycle",
+        "category": "Tool"
+      },
+      {
+        "name": "Construcción Sostenible",
+        "icon": "fa-solid fa-hard-hat",
+        "category": "Tool"
+      },
+      {
+        "name": "Participación Comunitaria",
+        "icon": "fa-solid fa-users",
+        "category": "Tool"
+      }
+    ],
+    "additionalResources": [
+      {
+        "title": "Manual de Ecoladrillos",
+        "url": "assets/docs/ecoladrillos-manual.pdf",
+        "type": "pdf"
+      },
+      {
+        "title": "Fotos del Taller",
+        "url": "https://photos.example.com/ecoladrillos",
+        "type": "website"
+      }
+    ],
+    "imageGallery": [
+      {
+        "url": "assets/img/eco-ladrillos/gallery1.jpg",
+        "altText": "Ecoladrillos listos para usarse.",
+        "caption": "Material"
+      },
+      {
+        "url": "assets/img/eco-ladrillos/gallery2.jpg",
+        "altText": "Banca construida con ecoladrillos.",
+        "caption": "Prototipo"
+      },
+      {
+        "url": "assets/img/eco-ladrillos/gallery3.jpg",
+        "altText": "Participantes del taller.",
+        "caption": "Comunidad"
+      }
+    ]
+  },
+  {
+    "projectTitle": "App 'Guardianes del Agua'",
+    "projectCategory": "Desarrollo Móvil",
+    "schooling": "Preparatoria",
+    "introTitle": "Cuida Cada Gota",
+    "introContent": "Aplicación móvil para reportar fugas de agua y concienciar sobre el ahorro mediante gamificación.",
+    "problemDescription": "Desperdicio de agua por fugas no reportadas y falta de conciencia sobre su uso eficiente.",
+    "solutionProposed": "Una app donde los usuarios pueden geolocalizar y reportar fugas, recibir consejos de ahorro y ganar puntos por acciones pro-agua.",
+    "innovationProcess": "<p><strong>Diseño UX/UI:</strong> Prototipos en Figma, diseño de interfaz intuitiva y sistema de recompensas.</p><p><strong>Desarrollo App:</strong> Uso de React Native para desarrollo multiplataforma.</p><p><strong>Backend:</strong> Firebase para base de datos de reportes y autenticación.</p>",
+    "slug": "app-guardianes-del-agua",
+    "projectDate": "2025-03-15",
+    "sdgIds": [6, 11, 14],
+    "coverImage": {
+      "url": "assets/img/guardianes-agua/cover.png",
+      "altText": "Pantalla de la app Guardianes del Agua con un mapa de reportes."
+    },
+    "media": {
+      "type": "video",
+      "url": "https://www.youtube.com/embed/QZQEUdalseI"
+    },
+    "projectRubricScores": {
+      "innovation": 3,
+      "collaboration": 3,
+      "impact": 3,
+      "techUse": 3,
+      "presentation": 3
+    },
+    "finalProjectGrade": 10,
+    "teamMembers": [
+      {
+        "name": "Valeria Gómez Sánchez",
+        "role": "Desarrolladora Principal React Native",
+        "sbtLink": "https://verificador.gnius.mx/sbt/valeria-gomez-sanchez",
+        "certificateCourseName": "Desarrollo Móvil Sostenible",
+        "certificateBadgeName": "App Maverick",
+        "certificateLevel": "Hacker",
+        "certificateSkills": "React Native,Firebase,JavaScript,APIs Geo",
+        "certificateCriteria": "Funcionalidad App,Experiencia Usuario,Integración Backend",
+        "certificateCollege": "CETiS No. 15",
+        "certificateIssueDate": "2025-03-10",
+        "certificatePreviewUrl": "assets/img/guardianes-agua/valeria-gomez-cert-preview.png",
+        "certificatePrintUrl": "assets/img/guardianes-agua/valeria-gomez-cert-print.pdf"
+      },
+      {
+        "name": "Diego Armando Luna Ríos",
+        "role": "Diseñador UI/UX y Gamificación",
+        "sbtLink": "https://verificador.gnius.mx/sbt/diego-armando-luna-rios",
+        "certificateCourseName": "Desarrollo Móvil Sostenible",
+        "certificateBadgeName": "Design Architect",
+        "certificateLevel": "Hacker",
+        "certificateSkills": "Figma,Diseño de Interacción,Principios de Gamificación,User Testing",
+        "certificateCriteria": "Interfaz Atractiva,Mecánicas de Juego,Motivación Usuario",
+        "certificateCollege": "CETiS No. 15",
+        "certificateIssueDate": "2025-03-10",
+        "certificatePreviewUrl": "assets/img/guardianes-agua/diego-luna-cert-preview.png",
+        "certificatePrintUrl": "assets/img/guardianes-agua/diego-luna-cert-print.pdf"
+      },
+      {
+        "name": "Sofía Camila Herrera Torres",
+        "role": "Investigación y Contenido",
+        "sbtLink": "https://verificador.gnius.mx/sbt/sofia-camila-herrera-torres",
+        "certificateCourseName": "Desarrollo Móvil Sostenible",
+        "certificateBadgeName": "Prompt Sage",
+        "certificateLevel": "Master",
+        "certificateSkills": "Investigación Hídrica,Redacción Contenido Educativo,Validación Datos",
+        "certificateCriteria": "Calidad Información,Relevancia Consejos,Fuentes Confiables",
+        "certificateCollege": "CETiS No. 15",
+        "certificateIssueDate": "2025-03-10",
+        "certificatePreviewUrl": "assets/img/guardianes-agua/sofia-herrera-cert-preview.png",
+        "certificatePrintUrl": "assets/img/guardianes-agua/sofia-herrera-cert-print.pdf"
+      },
+      {
+        "name": "Miguel Ángel Castillo Ortiz",
+        "role": "Marketing y Pruebas",
+        "sbtLink": "https://verificador.gnius.mx/sbt/miguel-angel-castillo-ortiz",
+        "certificateCourseName": "Desarrollo Móvil Sostenible",
+        "certificateBadgeName": "Micro Programmer",
+        "certificateLevel": "Master",
+        "certificateSkills": "Estrategia de Difusión,Pruebas Funcionales,Recopilación Feedback",
+        "certificateCriteria": "Adopción App,Reporte Bugs,Sugerencias Mejora",
+        "certificateCollege": "CETiS No. 15",
+        "certificateIssueDate": "2025-03-10",
+        "certificatePreviewUrl": "assets/img/guardianes-agua/miguel-castillo-cert-preview.png",
+        "certificatePrintUrl": "assets/img/guardianes-agua/miguel-castillo-cert-print.pdf"
+      }
+    ],
+    "technologies": [
+      {
+        "name": "React Native",
+        "icon": "fa-brands fa-react",
+        "category": "Software"
+      },
+      {
+        "name": "Firebase",
+        "icon": "fa-solid fa-fire",
+        "category": "Software"
+      },
+      {
+        "name": "Gamificación",
+        "icon": "fa-solid fa-gamepad",
+        "category": "Tool"
+      },
+      {
+        "name": "Figma",
+        "icon": "fa-brands fa-figma",
+        "category": "Tool"
+      }
+    ],
+    "additionalResources": [
+      {
+        "title": "Prototipo Interactivo",
+        "url": "https://figma.com/guardianesagua",
+        "type": "link"
+      }
+    ],
+    "imageGallery": [
+      {
+        "url": "assets/img/guardianes-agua/gallery1.png",
+        "altText": "Reporte de fuga en la app",
+        "caption": "Funcionalidad Principal"
+      },
+      {
+        "url": "assets/img/guardianes-agua/gallery2.png",
+        "altText": "Sección de consejos de ahorro",
+        "caption": "Contenido Educativo"
+      }
+    ]
+  },
+  {
+    "projectTitle": "Huerto Vertical Inteligente 'GreenWall'",
+    "projectCategory": "IoT / Robótica",
+    "schooling": "Secundaria",
+    "introTitle": "GreenWall: Cultiva en Vertical",
+    "introContent": "Diseño y construcción de un huerto vertical modular con riego automatizado y monitoreo de luz/humedad usando ESP32.",
+    "problemDescription": "Falta de espacio para cultivos tradicionales y necesidad de optimizar recursos (agua, luz) en entornos urbanos.",
+    "solutionProposed": "Un sistema modular de cultivo vertical con sensores de humedad, temperatura y luz. Un ESP32 controla el riego por goteo y luces LED suplementarias.",
+    "innovationProcess": "<p><strong>Diseño Modular:</strong> Creación de módulos apilables para el huerto.</p><p><strong>Electrónica:</strong> Integración de ESP32, sensores (DHT11, LDR, humedad suelo), relés para bomba y LEDs.</p><p><strong>Programación:</strong> Firmware en MicroPython/C++ para ESP32, lógica de control.</p><p><strong>Dashboard (Opcional):</strong> Visualización de datos con ThingsBoard o similar.</p>",
+    "slug": "huerto-vertical-inteligente-greenwall",
+    "projectDate": "2025-05-10",
+    "sdgIds": [2, 7, 12, 15],
+    "coverImage": {
+      "url": "assets/img/greenwall-iot/cover.jpg",
+      "altText": "Módulos de huerto vertical con plantas y luces LED."
+    },
+    "media": {
+      "type": "image",
+      "url": "assets/img/greenwall-iot/media.jpg",
+      "altText": "Dashboard mostrando datos de sensores del GreenWall."
+    },
+    "projectRubricScores": {
+      "innovation": 3,
+      "collaboration": 2,
+      "impact": 3,
+      "techUse": 3,
+      "presentation": 2
+    },
+    "finalProjectGrade": 9,
+    "teamMembers": [
+      {
+        "name": "Laura Jimena Ríos Castillo",
+        "role": "Líder, Programadora ESP32",
+        "sbtLink": "https://verificador.gnius.mx/sbt/laura-jimena-rios-castillo",
+        "certificateCourseName": "Automatización y Sistemas Embebidos",
+        "certificateBadgeName": "Expert Roboteer",
+        "certificateLevel": "Hacker",
+        "certificateSkills": "ESP32,MicroPython,Sensores Ambientales,Control Actuadores,MQTT",
+        "certificateCriteria": "Sistema Autónomo,Eficiencia Código,Integración Hardware-Software",
+        "certificateCollege": "Secundaria Tecnológica #52",
+        "certificateIssueDate": "2025-05-05",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      },
+      {
+        "name": "Carlos Andrés Mora Solano",
+        "role": "Diseño Mecánico y 3D",
+        "sbtLink": "https://verificador.gnius.mx/sbt/carlos-andres-mora-solano",
+        "certificateCourseName": "Automatización y Sistemas Embebidos",
+        "certificateBadgeName": "Design Architect",
+        "certificateLevel": "Master",
+        "certificateSkills": "Diseño CAD,Impresión 3D,Mecánica de Fluidos (básico),Ensamblaje",
+        "certificateCriteria": "Diseño Modular,Funcionalidad Riego,Estabilidad Estructura",
+        "certificateCollege": "Secundaria Tecnológica #52",
+        "certificateIssueDate": "2025-05-05",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      },
+      {
+        "name": "Valentina Sofía Pardo Vargas",
+        "role": "Encargada de Cultivo y Pruebas",
+        "sbtLink": "https://verificador.gnius.mx/sbt/valentina-sofia-pardo-vargas",
+        "certificateCourseName": "Automatización y Sistemas Embebidos",
+        "certificateBadgeName": "Tech Voyager",
+        "certificateLevel": "Master",
+        "certificateSkills": "Horticultura,Monitoreo Plantas,Análisis de Datos (sensores),Documentación Pruebas",
+        "certificateCriteria": "Salud Plantas,Optimización Parámetros,Validación Sistema",
+        "certificateCollege": "Secundaria Tecnológica #52",
+        "certificateIssueDate": "2025-05-05",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      },
+      {
+        "name": "Mateo Alejandro Navarro Gómez",
+        "role": "Electrónica y Conexiones",
+        "sbtLink": "https://verificador.gnius.mx/sbt/mateo-alejandro-navarro-gomez",
+        "certificateCourseName": "Automatización y Sistemas Embebidos",
+        "certificateBadgeName": "Micro Programmer",
+        "certificateLevel": "Rookie",
+        "certificateSkills": "Circuitos Electrónicos,Soldadura,Sensores,Relés,Seguridad Eléctrica",
+        "certificateCriteria": "Conexiones Fiables,Integridad Circuito,Diagnóstico Fallas",
+        "certificateCollege": "Secundaria Tecnológica #52",
+        "certificateIssueDate": "2025-05-05",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      }
+    ],
+    "technologies": [
+      {
+        "name": "ESP32",
+        "icon": "fa-solid fa-microchip",
+        "category": "Hardware"
+      },
+      {
+        "name": "MicroPython",
+        "icon": "fa-brands fa-python",
+        "category": "Software"
+      },
+      {
+        "name": "DHT11 Sensor",
+        "icon": "fa-solid fa-temperature-half",
+        "category": "Hardware"
+      },
+      {
+        "name": "Impresión 3D",
+        "icon": "fa-solid fa-print",
+        "category": "Tool"
+      }
+    ],
+    "additionalResources": [
+      {
+        "title": "Planos del Módulo",
+        "url": "assets/docs/greenwall-planos.pdf",
+        "type": "pdf"
+      }
+    ],
+    "imageGallery": [
+      {
+        "url": "assets/img/greenwall-iot/gallery1.jpg",
+        "altText": "Prototipo de un módulo del huerto.",
+        "caption": "Módulo Individual"
+      },
+      {
+        "url": "assets/img/greenwall-iot/gallery2.jpg",
+        "altText": "Circuito de control con ESP32.",
+        "caption": "Electrónica"
+      }
+    ]
+  },
+  {
+    "projectTitle": "Plataforma Educativa 'AprendeIA'",
+    "projectCategory": "Inteligencia Artificial / Web",
+    "schooling": "Preparatoria",
+    "introTitle": "AprendeIA: Descubre la IA",
+    "introContent": "Plataforma web interactiva con tutoriales básicos y demos de conceptos de IA (ej. clasificación simple, regresión).",
+    "problemDescription": "Dificultad para entender conceptos de IA. Falta de recursos interactivos en español.",
+    "solutionProposed": "Tutoriales guiados, visualizaciones interactivas (usando TensorFlow.js o p5.js) y pequeños quizzes para reforzar aprendizaje.",
+    "innovationProcess": "<p>Definición de temas y estructura de contenido.</p><p>Desarrollo de frontend interactivo (React/Vue).</p><p>Integración de librerías JS para IA.</p><p>Creación de contenido didáctico.</p>",
+    "slug": "plataforma-educativa-aprendeia",
+    "projectDate": "2024-12-01",
+    "sdgIds": [4, 9, 10],
+    "coverImage": {
+      "url": "https://picsum.photos/seed/aprende-ia-cover/1280/720",
+      "altText": "Interfaz de AprendeIA con módulos de aprendizaje."
+    },
+    "media": {
+      "type": "video",
+      "url": "https://www.youtube.com/embed/QZQEUdalseI"
+    },
+    "projectRubricScores": {
+      "innovation": 3,
+      "collaboration": 3,
+      "impact": 3,
+      "techUse": 3,
+      "presentation": 3
+    },
+    "finalProjectGrade": 10,
+    "teamMembers": [
+      {
+        "name": "David Alejandro Torres Pineda",
+        "role": "Desarrollador Frontend IA",
+        "certificateCourseName": "Introducción al Machine Learning Web",
+        "certificateBadgeName": "AI Paragon",
+        "certificateLevel": "Hacker",
+        "certificateSkills": "TensorFlow.js,React,JavaScript,Visualización Datos,UI/UX para Educación",
+        "certificateCriteria": "Interactividad Demos,Claridad Conceptos,Experiencia de Usuario",
+        "certificateCollege": "Prepa Gnius Tech",
+        "certificateIssueDate": "2024-11-25",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      },
+      {
+        "name": "Fernanda Isabel Gil Herrera",
+        "role": "Diseñadora Instruccional",
+        "certificateCourseName": "Introducción al Machine Learning Web",
+        "certificateBadgeName": "Prompt Sage",
+        "certificateLevel": "Master",
+        "certificateSkills": "Diseño Curricular,Creación Contenido Educativo,Evaluación Aprendizaje,Storytelling",
+        "certificateCriteria": "Estructura Pedagógica,Calidad Contenido,Engagement Estudiante",
+        "certificateCollege": "Prepa Gnius Tech",
+        "certificateIssueDate": "2024-11-25",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      },
+      {
+        "name": "Luis Ricardo Sánchez Luna",
+        "role": "Investigador IA, Contenido Técnico",
+        "certificateCourseName": "Introducción al Machine Learning Web",
+        "certificateBadgeName": "Algorithm Seeker",
+        "certificateLevel": "Master",
+        "certificateSkills": "Conceptos IA/ML,Python (para demos offline),Redacción Técnica,Validación Ejemplos",
+        "certificateCriteria": "Precisión Técnica,Relevancia Ejemplos,Explicaciones Claras",
+        "certificateCollege": "Prepa Gnius Tech",
+        "certificateIssueDate": "2024-11-25",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      },
+      {
+        "name": "Ana Karen Vidal Ortiz",
+        "role": "Diseñadora Gráfica, UX",
+        "certificateCourseName": "Introducción al Machine Learning Web",
+        "certificateBadgeName": "Design Architect",
+        "certificateLevel": "Rookie",
+        "certificateSkills": "Identidad Visual,Diseño Web Responsivo,Figma,Ilustración Digital",
+        "certificateCriteria": "Atractivo Visual,Usabilidad Plataforma,Consistencia Diseño",
+        "certificateCollege": "Prepa Gnius Tech",
+        "certificateIssueDate": "2024-11-25",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      }
+    ],
+    "technologies": [
+      {
+        "name": "TensorFlow.js",
+        "icon": "fa-solid fa-robot",
+        "category": "Software"
+      },
+      {
+        "name": "React",
+        "icon": "fa-brands fa-react",
+        "category": "Software"
+      },
+      {
+        "name": "p5.js",
+        "icon": "fa-solid fa-pen-fancy",
+        "category": "Software"
+      },
+      {
+        "name": "Educación STEM",
+        "icon": "fa-solid fa-brain",
+        "category": "Tool"
+      }
+    ],
+    "additionalResources": [
+      {
+        "title": "Demo Clasificador",
+        "url": "https://teachablemachine.withgoogle.com/",
+        "type": "link"
+      }
+    ],
+    "imageGallery": [
+      {
+        "url": "https://picsum.photos/seed/aprende-ia-gal1/800/600",
+        "altText": "Demo de clasificación de imágenes.",
+        "caption": "Clasificación"
+      },
+      {
+        "url": "https://picsum.photos/seed/aprende-ia-gal2/800/600",
+        "altText": "Tutorial interactivo sobre regresión lineal.",
+        "caption": "Regresión Lineal"
+      }
+    ]
+  },
+  {
+    "projectTitle": "Videojuego Serio 'EcoGuerreros'",
+    "projectCategory": "Desarrollo de Juegos / Educación",
+    "schooling": "Secundaria",
+    "introTitle": "EcoGuerreros: Salva el Planeta",
+    "introContent": "Juego de estrategia/simulación donde los jugadores toman decisiones para mitigar el cambio climático en una región virtual.",
+    "problemDescription": "Concienciar sobre la complejidad del cambio climático y la interconexión de acciones y consecuencias.",
+    "solutionProposed": "Simulación de factores ambientales, políticas, recursos y eventos. Los jugadores gestionan presupuestos y toman decisiones con impacto a largo plazo.",
+    "innovationProcess": "<p>Investigación sobre cambio climático y modelos de simulación.</p><p>Diseño de mecánicas de juego (estrategia, gestión de recursos).</p><p>Desarrollo en Godot Engine.</p><p>Creación de escenarios y eventos.</p>",
+    "slug": "videojuego-serio-ecoguerreros",
+    "projectDate": "2025-06-10",
+    "sdgIds": [4, 13, 15],
+    "coverImage": {
+      "url": "https://picsum.photos/seed/ecoguerreros-cover/1280/720",
+      "altText": "Pantalla del juego EcoGuerreros mostrando un mapa con indicadores ambientales."
+    },
+    "media": {
+      "type": "video",
+      "url": "https://www.youtube.com/embed/Z1RJmh_OqeA"
+    },
+    "projectRubricScores": {
+      "innovation": 2,
+      "collaboration": 3,
+      "impact": 3,
+      "techUse": 2,
+      "presentation": 3
+    },
+    "finalProjectGrade": 9,
+    "teamMembers": [
+      {
+        "name": "Mariana Paola Ortiz Mendoza",
+        "role": "Programadora Godot, Líder",
+        "certificateCourseName": "Diseño de Juegos Serios",
+        "certificateBadgeName": "Expert Roboteer",
+        "certificateLevel": "Master",
+        "certificateSkills": "Godot Engine,GDScript,Lógica de Simulación,Diseño de Sistemas Complejos,Balance de Juego",
+        "certificateCriteria": "Profundidad Simulación,Jugabilidad Atractiva,Impacto Educativo",
+        "certificateCollege": "Secundaria Albert Einstein",
+        "certificateIssueDate": "2025-06-05",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      },
+      {
+        "name": "Javier Andrés Castillo Pineda",
+        "role": "Investigador Ambiental, Contenido",
+        "certificateCourseName": "Diseño de Juegos Serios",
+        "certificateBadgeName": "Prompt Sage",
+        "certificateLevel": "Master",
+        "certificateSkills": "Cambio Climático,Sostenibilidad,Modelos Ambientales,Redacción Científica",
+        "certificateCriteria": "Precisión Datos,Relevancia Escenarios,Fundamentación Decisiones",
+        "certificateCollege": "Secundaria Albert Einstein",
+        "certificateIssueDate": "2025-06-05",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      },
+      {
+        "name": "Elena Sofía Luna Vidal",
+        "role": "Artista 2D/UI",
+        "certificateCourseName": "Diseño de Juegos Serios",
+        "certificateBadgeName": "Design Architect",
+        "certificateLevel": "Rookie",
+        "certificateSkills": "Arte 2D (conceptual),Diseño de Interfaz,Iconografía,Experiencia de Usuario (juegos)",
+        "certificateCriteria": "Claridad Visual,Navegación Intuitiva,Estética Coherente",
+        "certificateCollege": "Secundaria Albert Einstein",
+        "certificateIssueDate": "2025-06-05",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      },
+      {
+        "name": "Ricardo Mateo Gil Sánchez",
+        "role": "Sonido y Música",
+        "certificateCourseName": "Diseño de Juegos Serios",
+        "certificateBadgeName": "Code Explorer",
+        "certificateLevel": "Rookie",
+        "certificateSkills": "Composición Musical (ambiental),Diseño de Sonido (efectos),Integración Audio",
+        "certificateCriteria": "Inmersión Sonora,Calidad Audio,Adecuación Temática",
+        "certificateCollege": "Secundaria Albert Einstein",
+        "certificateIssueDate": "2025-06-05",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      }
+    ],
+    "technologies": [
+      {
+        "name": "Godot Engine",
+        "icon": "fa-solid fa-robot",
+        "category": "Software"
+      },
+      {
+        "name": "Simulación Ambiental",
+        "icon": "fa-solid fa-leaf",
+        "category": "Tool"
+      },
+      {
+        "name": "Diseño de Juegos Serios",
+        "icon": "fa-solid fa-brain",
+        "category": "Tool"
+      }
+    ],
+    "additionalResources": [
+      {
+        "title": "Paper sobre Juegos Serios",
+        "url": "https://seriousgames-society.org/papers",
+        "type": "link"
+      }
+    ],
+    "imageGallery": [
+      {
+        "url": "https://picsum.photos/seed/ecoguerreros-gal1/800/450",
+        "altText": "Mapa del juego con diferentes biomas.",
+        "caption": "Escenario Principal"
+      },
+      {
+        "url": "https://picsum.photos/seed/ecoguerreros-gal2/800/450",
+        "altText": "Panel de decisiones políticas.",
+        "caption": "Mecánica de Juego"
+      }
+    ]
+  },
+  {
+    "projectTitle": "Kit Robótico 'MicroBot Explorador'",
+    "projectCategory": "Robótica / Educación",
+    "schooling": "Primaria",
+    "introTitle": "MicroBot: Tu Primer Robot",
+    "introContent": "Kit de robótica de bajo costo basado en Micro:bit para que niños ensamblen y programen un robot móvil simple.",
+    "problemDescription": "Falta de kits robóticos accesibles y fáciles de usar para iniciación en primaria.",
+    "solutionProposed": "Chasis impreso en 3D, dos servomotores de rotación continua, sensor de ultrasonido, portapilas y Micro:bit. Guías de ensamblaje y programación por bloques.",
+    "innovationProcess": "<p>Diseño del chasis y componentes.</p><p>Creación de guías de ensamblaje ilustradas.</p><p>Desarrollo de ejemplos de código en MakeCode.</p><p>Pruebas con niños.</p>",
+    "slug": "kit-robotico-microbot-explorador",
+    "projectDate": "2024-09-05",
+    "sdgIds": [4, 9],
+    "coverImage": {
+      "url": "https://picsum.photos/seed/microbot-cover/1280/720",
+      "altText": "Niños ensamblando el MicroBot Explorador."
+    },
+    "media": {
+      "type": "image",
+      "url": "https://picsum.photos/seed/microbot-media/1280/720",
+      "altText": "MicroBot Explorador ensamblado con Micro:bit."
+    },
+    "projectRubricScores": {
+      "innovation": 3,
+      "collaboration": 3,
+      "impact": 2,
+      "techUse": 3,
+      "presentation": 2
+    },
+    "finalProjectGrade": 9,
+    "teamMembers": [
+      {
+        "name": "Andrés David Rojas Torres",
+        "role": "Diseñador 3D, Educador",
+        "certificateCourseName": "Robótica para Niños",
+        "certificateBadgeName": "Micro Programmer",
+        "certificateLevel": "Master",
+        "certificateSkills": "Impresión 3D (Tinkercad),Diseño para Ensamblaje,Micro:bit,MakeCode,Pedagogía STEM",
+        "certificateCriteria": "Facilidad Ensamblaje,Material Didáctico Claro,Motivación Infantil",
+        "certificateCollege": "Club de Pequeños Inventores",
+        "certificateIssueDate": "2024-09-01",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      },
+      {
+        "name": "Isabela Camila Flores Gil",
+        "role": "Pruebas con Usuarios, Documentación",
+        "certificateCourseName": "Robótica para Niños",
+        "certificateBadgeName": "Tech Voyager",
+        "certificateLevel": "Rookie",
+        "certificateSkills": "Observación Participante,Documentación Fotográfica,Redacción Sencilla,Logística Talleres",
+        "certificateCriteria": "Feedback Realista,Guías Comprensibles,Organización Pruebas",
+        "certificateCollege": "Club de Pequeños Inventores",
+        "certificateIssueDate": "2024-09-01",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      },
+      {
+        "name": "Mateo Sebastián Vidal Luna",
+        "role": "Electrónica Básica, Soporte",
+        "certificateCourseName": "Robótica para Niños",
+        "certificateBadgeName": "Robot Navigator",
+        "certificateLevel": "Rookie",
+        "certificateSkills": "Conexiones Micro:bit,Servomotores,Sensores Ultrasonido,Resolución Problemas Básicos",
+        "certificateCriteria": "Funcionamiento Robot,Soporte Técnico,Seguridad",
+        "certificateCollege": "Club de Pequeños Inventores",
+        "certificateIssueDate": "2024-09-01",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      },
+      {
+        "name": "Ximena Valentina Pardo Ortiz",
+        "role": "Diseño Gráfico Guías",
+        "certificateCourseName": "Robótica para Niños",
+        "certificateBadgeName": "Design Architect",
+        "certificateLevel": "Rookie",
+        "certificateSkills": "Ilustración Digital,Diseño Editorial (básico),Comunicación Visual para Niños",
+        "certificateCriteria": "Atractivo Visual Guías,Claridad Instrucciones Gráficas",
+        "certificateCollege": "Club de Pequeños Inventores",
+        "certificateIssueDate": "2024-09-01",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      }
+    ],
+    "technologies": [
+      {
+        "name": "Micro:bit",
+        "icon": "fa-solid fa-robot",
+        "category": "Hardware"
+      },
+      {
+        "name": "Impresión 3D",
+        "icon": "fa-solid fa-print",
+        "category": "Tool"
+      },
+      {
+        "name": "MakeCode",
+        "icon": "fa-solid fa-puzzle-piece",
+        "category": "Software"
+      },
+      {
+        "name": "Servomotor Continuo",
+        "icon": "fa-solid fa-fan",
+        "category": "Hardware"
+      }
+    ],
+    "additionalResources": [
+      {
+        "title": "Guía de Ensamblaje",
+        "url": "assets/docs/microbot-ensamblaje.pdf",
+        "type": "pdf"
+      }
+    ],
+    "imageGallery": [
+      {
+        "url": "https://picsum.photos/seed/microbot-gal1/800/600",
+        "altText": "Piezas impresas en 3D del chasis.",
+        "caption": "Componentes"
+      },
+      {
+        "url": "https://picsum.photos/seed/microbot-gal2/800/600",
+        "altText": "Niño programando MicroBot con MakeCode.",
+        "caption": "Programación"
+      }
+    ]
+  },
+  {
+    "projectTitle": "Plataforma 'AgroTech Comunitario'",
+    "projectCategory": "IoT / Agricultura",
+    "schooling": "Preparatoria",
+    "introTitle": "AgroTech: Innovación en el Campo",
+    "introContent": "Sistema de monitoreo y control para pequeños agricultores usando ESP8266, sensores de suelo y una app simple.",
+    "problemDescription": "Pequeños agricultores carecen de acceso a tecnología para optimizar riego y conocer condiciones de suelo.",
+    "solutionProposed": "Nodos con ESP8266, sensor de humedad de suelo, temperatura y DHT11. Datos enviados a app vía WiFi/MQTT para visualización y alertas básicas.",
+    "innovationProcess": "<p>Selección de sensores y microcontrolador.</p><p>Desarrollo firmware ESP8266 (Arduino IDE/Lua).</p><p>Creación de app móvil simple (MIT App Inventor o similar).</p><p>Pruebas en campo simulado.</p>",
+    "slug": "plataforma-agrotech-comunitario",
+    "projectDate": "2025-07-10",
+    "sdgIds": [1, 2, 8, 12],
+    "coverImage": {
+      "url": "https://picsum.photos/seed/agrotech-cover/1280/720",
+      "altText": "Sensor de humedad en campo de cultivo conectado a un nodo ESP8266."
+    },
+    "media": {
+      "type": "video",
+      "url": "https://www.youtube.com/embed/bMiwLs0pCB8"
+    },
+    "projectRubricScores": {
+      "innovation": 3,
+      "collaboration": 3,
+      "impact": 3,
+      "techUse": 2,
+      "presentation": 3
+    },
+    "finalProjectGrade": 9,
+    "teamMembers": [
+      {
+        "name": "Jorge Luis Herrera Castillo",
+        "role": "Desarrollador ESP8266",
+        "certificateCourseName": "Tecnología Agrícola de Precisión",
+        "certificateBadgeName": "Network Pioneer",
+        "certificateLevel": "Hacker",
+        "certificateSkills": "ESP8266,MQTT,Sensores Suelo,Arduino IDE,Bases de Datos (básico)",
+        "certificateCriteria": "Conectividad Fiable,Lectura Precisa Sensores,Autonomía Dispositivo",
+        "certificateCollege": "Instituto AgroTech del Valle",
+        "certificateIssueDate": "2025-07-05",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      },
+      {
+        "name": "Carolina Sofía Sánchez Ríos",
+        "role": "Desarrolladora App, Agronomía",
+        "certificateCourseName": "Tecnología Agrícola de Precisión",
+        "certificateBadgeName": "App Maverick",
+        "certificateLevel": "Master",
+        "certificateSkills": "MIT App Inventor,Principios de Agronomía,Análisis de Datos Agrícolas,Interfaz Usuario Móvil",
+        "certificateCriteria": "Utilidad App,Visualización Datos,Recomendaciones Agrícolas",
+        "certificateCollege": "Instituto AgroTech del Valle",
+        "certificateIssueDate": "2025-07-05",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      },
+      {
+        "name": "David Mateo Ortiz Luna",
+        "role": "Hardware y Montaje en Campo",
+        "certificateCourseName": "Tecnología Agrícola de Precisión",
+        "certificateBadgeName": "Tech Voyager",
+        "certificateLevel": "Master",
+        "certificateSkills": "Ensamblaje Nodos,Protección Intemperie,Paneles Solares (básico),Mantenimiento Hardware",
+        "certificateCriteria": "Robustez Nodos,Alimentación Sostenible,Instalación Campo",
+        "certificateCollege": "Instituto AgroTech del Valle",
+        "certificateIssueDate": "2025-07-05",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      },
+      {
+        "name": "Valeria Ximena Gil Pineda",
+        "role": "Validación y Enlace Comunitario",
+        "certificateCourseName": "Tecnología Agrícola de Precisión",
+        "certificateBadgeName": "Prompt Sage",
+        "certificateLevel": "Rookie",
+        "certificateSkills": "Comunicación Agricultores,Validación en Campo,Recopilación Necesidades,Documentación Impacto",
+        "certificateCriteria": "Adopción Tecnología,Mejoras Sugeridas,Impacto Real",
+        "certificateCollege": "Instituto AgroTech del Valle",
+        "certificateIssueDate": "2025-07-05",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      }
+    ],
+    "technologies": [
+      {
+        "name": "ESP8266",
+        "icon": "fa-solid fa-microchip",
+        "category": "Hardware"
+      },
+      {
+        "name": "Sensor Humedad Suelo",
+        "icon": "fa-solid fa-droplet",
+        "category": "Hardware"
+      },
+      {
+        "name": "MQTT",
+        "icon": "fa-solid fa-network-wired",
+        "category": "Software"
+      },
+      {
+        "name": "MIT App Inventor",
+        "icon": "fa-solid fa-mobile-alt",
+        "category": "Tool"
+      }
+    ],
+    "additionalResources": [
+      {
+        "title": "Paper Agricultura Precisión",
+        "url": "https://fao.org/precision-agriculture",
+        "type": "website"
+      }
+    ],
+    "imageGallery": [
+      {
+        "url": "https://picsum.photos/seed/agrotech-gal1/1024/768",
+        "altText": "Nodo sensor en campo.",
+        "caption": "Instalación"
+      },
+      {
+        "url": "https://picsum.photos/seed/agrotech-gal2/1024/768",
+        "altText": "App mostrando datos de humedad.",
+        "caption": "Aplicación Móvil"
+      }
+    ]
+  },
+  {
+    "projectTitle": "Mural Interactivo 'Historia Local' con AR",
+    "projectCategory": "Realidad Aumentada / Arte",
+    "schooling": "Secundaria",
+    "introTitle": "Mural AR: Revive la Historia",
+    "introContent": "Mural físico en la escuela que cobra vida con información histórica y modelos 3D mediante una app de Realidad Aumentada.",
+    "problemDescription": "Hacer la historia local más atractiva y memorable para los estudiantes.",
+    "solutionProposed": "Pintar un mural con marcadores AR integrados. Desarrollar una app (usando AR.js o Unity/ARFoundation) que reconozca los marcadores y superponga contenido.",
+    "innovationProcess": "<p>Investigación histórica y diseño del mural.</p><p>Pintura del mural y creación de marcadores.</p><p>Desarrollo de la app AR y contenido digital (modelos 3D, audios).</p>",
+    "slug": "mural-interactivo-historia-local-con-ar",
+    "projectDate": "2024-08-22",
+    "sdgIds": [4, 11, 16],
+    "coverImage": {
+      "url": "https://picsum.photos/seed/mural-ar-cover/1280/720",
+      "altText": "Estudiantes viendo un mural con un tablet que muestra elementos AR."
+    },
+    "media": {
+      "type": "image",
+      "url": "https://picsum.photos/seed/mural-ar-media/1280/720",
+      "altText": "Detalle del mural con un modelo 3D superpuesto en AR."
+    },
+    "projectRubricScores": {
+      "innovation": 2,
+      "collaboration": 3,
+      "impact": 3,
+      "techUse": 2,
+      "presentation": 3
+    },
+    "finalProjectGrade": 9,
+    "teamMembers": [
+      {
+        "name": "Camila Andrea Pineda Soler",
+        "role": "Artista Mural, Contenido AR",
+        "certificateCourseName": "Arte y Tecnología Educativa",
+        "certificateBadgeName": "Reality Master",
+        "certificateLevel": "Master",
+        "certificateSkills": "Pintura Mural,Diseño Gráfico,Creación Contenido AR (textos, imágenes),Investigación Histórica",
+        "certificateCriteria": "Calidad Artística Mural,Integración AR,Contenido Relevante",
+        "certificateCollege": "Escuela Secundaria Creativa #12",
+        "certificateIssueDate": "2024-08-18",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      },
+      {
+        "name": "Ricardo Javier Luna Sánchez",
+        "role": "Desarrollador AR",
+        "certificateCourseName": "Arte y Tecnología Educativa",
+        "certificateBadgeName": "Expert Roboteer",
+        "certificateLevel": "Hacker",
+        "certificateSkills": "AR.js,A-Frame,JavaScript,Modelos 3D (integración),Pruebas AR",
+        "certificateCriteria": "Funcionalidad AR,Detección Marcadores,Experiencia Usuario AR",
+        "certificateCollege": "Escuela Secundaria Creativa #12",
+        "certificateIssueDate": "2024-08-18",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      },
+      {
+        "name": "Sofía Valentina Herrera Gil",
+        "role": "Investigadora Histórica",
+        "certificateCourseName": "Arte y Tecnología Educativa",
+        "certificateBadgeName": "Algorithm Seeker",
+        "certificateLevel": "Rookie",
+        "certificateSkills": "Historia Local,Investigación Archivos,Redacción Guiones,Validación Contenido",
+        "certificateCriteria": "Precisión Histórica,Narrativa Atractiva,Fuentes Primarias",
+        "certificateCollege": "Escuela Secundaria Creativa #12",
+        "certificateIssueDate": "2024-08-18",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      },
+      {
+        "name": "Mateo Luis Vidal Castillo",
+        "role": "Modelador 3D (básico), Soporte",
+        "certificateCourseName": "Arte y Tecnología Educativa",
+        "certificateBadgeName": "Micro Programmer",
+        "certificateLevel": "Rookie",
+        "certificateSkills": "Blender (básico),Optimización Modelos 3D,Soporte Técnico,Documentación",
+        "certificateCriteria": "Modelos 3D Funcionales,Integración App,Asistencia Técnica",
+        "certificateCollege": "Escuela Secundaria Creativa #12",
+        "certificateIssueDate": "2024-08-18",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      }
+    ],
+    "technologies": [
+      {
+        "name": "AR.js",
+        "icon": "fa-solid fa-camera",
+        "category": "Software"
+      },
+      {
+        "name": "A-Frame",
+        "icon": "fa-solid fa-cubes",
+        "category": "Software"
+      },
+      {
+        "name": "Pintura Mural",
+        "icon": "fa-solid fa-paint-brush",
+        "category": "Tool"
+      },
+      {
+        "name": "Modelado 3D",
+        "icon": "fa-solid fa-cube",
+        "category": "Tool"
+      }
+    ],
+    "additionalResources": [
+      {
+        "title": "Ejemplos Murales AR",
+        "url": "https://Zappar.com/augmented-reality-murals/",
+        "type": "link"
+      }
+    ],
+    "imageGallery": [
+      {
+        "url": "https://picsum.photos/seed/mural-ar-gal1/800/600",
+        "altText": "Boceto del mural.",
+        "caption": "Diseño Conceptual"
+      },
+      {
+        "url": "https://picsum.photos/seed/mural-ar-gal2/800/600",
+        "altText": "Mural en proceso de pintura.",
+        "caption": "Creación Artística"
+      }
+    ]
+  },
+  {
+    "projectTitle": "Plataforma 'Conexión Estudiantil Pro'",
+    "projectCategory": "Desarrollo Web",
+    "schooling": "Preparatoria",
+    "introTitle": "Conexión Pro: Impulsa tu Futuro",
+    "introContent": "Versión avanzada de 'IdeaNet' con perfiles profesionales, bolsa de trabajo para pasantías y proyectos freelance para estudiantes.",
+    "problemDescription": "Conectar a estudiantes con oportunidades tempranas de experiencia laboral y profesional.",
+    "solutionProposed": "Perfiles tipo CV, búsqueda de pasantías/proyectos por habilidad/interés, sistema de evaluación de colaboraciones, integración con LinkedIn (opcional).",
+    "innovationProcess": "<p>Análisis de plataformas de empleo.</p><p>Diseño de funcionalidades y UX para perfiles profesionales y ofertas.</p><p>Desarrollo Full-Stack (ej. Django/Python o MERN stack).</p><p>Partnerships con empresas locales (simulado).</p>",
+    "slug": "plataforma-conexion-estudiantil-pro",
+    "projectDate": "2025-09-05",
+    "sdgIds": [1, 4, 8, 10, 17],
+    "coverImage": {
+      "url": "https://picsum.photos/seed/conexion-pro-cover/1280/720",
+      "altText": "Interfaz de Conexión Estudiantil Pro mostrando perfiles y ofertas."
+    },
+    "media": {
+      "type": "video",
+      "url": "https://www.youtube.com/embed/Z1RJmh_OqeA"
+    },
+    "projectRubricScores": {
+      "innovation": 3,
+      "collaboration": 3,
+      "impact": 3,
+      "techUse": 3,
+      "presentation": 3
+    },
+    "finalProjectGrade": 10,
+    "teamMembers": [
+      {
+        "name": "Gabriela Fernanda Torres Ortiz",
+        "role": "Líder de Proyecto, Backend Dev",
+        "certificateCourseName": "Desarrollo de Plataformas Profesionales",
+        "certificateBadgeName": "App Maverick",
+        "certificateLevel": "Hacker",
+        "certificateSkills": "Django,Python,PostgreSQL,APIs REST,Diseño de Sistemas",
+        "certificateCriteria": "Arquitectura Robusta,Seguridad Datos,Escalabilidad,Gestión de Equipos",
+        "certificateCollege": "Universidad Gnius (simulada)",
+        "certificateIssueDate": "2025-09-01",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      },
+      {
+        "name": "Juan Diego Pineda Castillo",
+        "role": "Frontend Dev (React/Vue)",
+        "certificateCourseName": "Desarrollo de Plataformas Profesionales",
+        "certificateBadgeName": "Code Explorer",
+        "certificateLevel": "Master",
+        "certificateSkills": "React,Redux/Vuex,Diseño Responsivo Avanzado,Optimización Rendimiento Web,Accesibilidad (WCAG)",
+        "certificateCriteria": "Interfaz Fluida,Experiencia de Usuario Óptima,Rendimiento",
+        "certificateCollege": "Universidad Gnius (simulada)",
+        "certificateIssueDate": "2025-09-01",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      },
+      {
+        "name": "Alejandro Mateo Soler Vidal",
+        "role": "Diseñador UX/UI, Investigación",
+        "certificateCourseName": "Desarrollo de Plataformas Profesionales",
+        "certificateBadgeName": "Design Architect",
+        "certificateLevel": "Master",
+        "certificateSkills": "Investigación de Mercado,User Personas,Customer Journey Mapping,Prototipado Avanzado (Figma/Adobe XD),Pruebas A/B",
+        "certificateCriteria": "Diseño Centrado en el Usuario,Conversión,Retención",
+        "certificateCollege": "Universidad Gnius (simulada)",
+        "certificateIssueDate": "2025-09-01",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      },
+      {
+        "name": "Ximena Sofía Gil Luna",
+        "role": "Marketing Digital, Contenido",
+        "certificateCourseName": "Desarrollo de Plataformas Profesionales",
+        "certificateBadgeName": "Prompt Sage",
+        "certificateLevel": "Rookie",
+        "certificateSkills": "SEO,SEM,Marketing de Contenidos,Email Marketing,Analítica Web",
+        "certificateCriteria": "Adquisición Usuarios,Engagement,Comunicación de Marca",
+        "certificateCollege": "Universidad Gnius (simulada)",
+        "certificateIssueDate": "2025-09-01",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      }
+    ],
+    "technologies": [
+      {
+        "name": "Django",
+        "icon": "fa-brands fa-python",
+        "category": "Software"
+      },
+      {
+        "name": "React",
+        "icon": "fa-brands fa-react",
+        "category": "Software"
+      },
+      {
+        "name": "PostgreSQL",
+        "icon": "fa-solid fa-database",
+        "category": "Software"
+      },
+      {
+        "name": "LinkedIn API",
+        "icon": "fa-brands fa-linkedin",
+        "category": "Tool"
+      }
+    ],
+    "additionalResources": [
+      {
+        "title": "Artículo sobre Redes Profesionales",
+        "url": "https://forbes.com/networking",
+        "type": "link"
+      }
+    ],
+    "imageGallery": [
+      {
+        "url": "https://picsum.photos/seed/conexion-pro-gal1/1024/768",
+        "altText": "Perfil profesional de estudiante.",
+        "caption": "Perfiles"
+      },
+      {
+        "url": "https://picsum.photos/seed/conexion-pro-gal2/1024/768",
+        "altText": "Bolsa de trabajo con filtros.",
+        "caption": "Ofertas"
+      }
+    ]
+  },
+  {
+    "projectTitle": "Asistente de Estudio 'StudyBuddy AI'",
+    "projectCategory": "IA / Educación",
+    "schooling": "Secundaria",
+    "introTitle": "StudyBuddy: Tu Compañero de Estudio AI",
+    "introContent": "Herramienta que resume textos largos, genera preguntas de repaso y crea flashcards a partir de apuntes o documentos.",
+    "problemDescription": "Estudiantes necesitan herramientas eficientes para procesar información y estudiar.",
+    "solutionProposed": "Uso de APIs de NLP (summarization, question generation como OpenAI GPT o similar, o modelos open-source más simples) integradas en una app web/escritorio.",
+    "innovationProcess": "<p>Investigación de APIs de NLP y técnicas de estudio.</p><p>Diseño de interfaz para carga de documentos y visualización de resultados.</p><p>Backend para procesar texto con la API.</p><p>Frontend para interacción.</p>",
+    "slug": "asistente-de-estudio-studybuddy-ai",
+    "projectDate": "2026-04-12",
+    "sdgIds": [4],
+    "coverImage": {
+      "url": "https://picsum.photos/seed/studybuddy-ai-cover/1280/720",
+      "altText": "Interfaz de StudyBuddy AI mostrando un texto resumido."
+    },
+    "media": {
+      "type": "image",
+      "url": "https://picsum.photos/seed/studybuddy-ai-media/1280/720",
+      "altText": "Ejemplo de flashcards generadas por StudyBuddy."
+    },
+    "projectRubricScores": {
+      "innovation": 3,
+      "collaboration": 2,
+      "impact": 3,
+      "techUse": 3,
+      "presentation": 2
+    },
+    "finalProjectGrade": 9,
+    "teamMembers": [
+      {
+        "name": "Camila Valentina Luna Ríos",
+        "role": "Desarrolladora IA (Python/NLP)",
+        "certificateCourseName": "IA para la Educación",
+        "certificateBadgeName": "AI Paragon",
+        "certificateLevel": "Hacker",
+        "certificateSkills": "Python,NLTK,Spacy,APIs GPT,Summarization,Question Generation",
+        "certificateCriteria": "Calidad Resúmenes,Relevancia Preguntas,Integración API",
+        "certificateCollege": "Instituto de Innovación Educativa",
+        "certificateIssueDate": "2026-04-08",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      },
+      {
+        "name": "Luis Andrés Pardo Sánchez",
+        "role": "Desarrollador Frontend",
+        "certificateCourseName": "IA para la Educación",
+        "certificateBadgeName": "Code Explorer",
+        "certificateLevel": "Master",
+        "certificateSkills": "JavaScript,HTML,CSS,Framework JS (Vue/React),Diseño UI/UX",
+        "certificateCriteria": "Interfaz Intuitiva,Facilidad de Uso,Visualización Resultados",
+        "certificateCollege": "Instituto de Innovación Educativa",
+        "certificateIssueDate": "2026-04-08",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      },
+      {
+        "name": "Ana Sofía Ortiz Gil",
+        "role": "Experta en Pedagogía, Contenido",
+        "certificateCourseName": "IA para la Educación",
+        "certificateBadgeName": "Prompt Sage",
+        "certificateLevel": "Master",
+        "certificateSkills": "Técnicas de Estudio,Diseño Instruccional,Validación Contenido Educativo,Pruebas con Estudiantes",
+        "certificateCriteria": "Efectividad Herramienta,Adaptación a Necesidades Estudiantiles",
+        "certificateCollege": "Instituto de Innovación Educativa",
+        "certificateIssueDate": "2026-04-08",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      },
+      {
+        "name": "Diego Mateo Herrera Vidal",
+        "role": "Marketing y Difusión",
+        "certificateCourseName": "IA para la Educación",
+        "certificateBadgeName": "Tech Voyager",
+        "certificateLevel": "Rookie",
+        "certificateSkills": "Marketing Educativo,Redes Sociales,Creación Tutoriales,Soporte Usuarios",
+        "certificateCriteria": "Adopción Herramienta,Feedback Usuarios,Material de Apoyo",
+        "certificateCollege": "Instituto de Innovación Educativa",
+        "certificateIssueDate": "2026-04-08",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      }
+    ],
+    "technologies": [
+      {
+        "name": "NLP",
+        "icon": "fa-solid fa-brain",
+        "category": "Tool"
+      },
+      {
+        "name": "GPT API",
+        "icon": "fa-solid fa-robot",
+        "category": "Software"
+      },
+      {
+        "name": "Python",
+        "icon": "fa-brands fa-python",
+        "category": "Software"
+      },
+      {
+        "name": "Summarization",
+        "icon": "fa-solid fa-file-alt",
+        "category": "Tool"
+      }
+    ],
+    "additionalResources": [
+      {
+        "title": "Artículo Técnicas de Estudio",
+        "url": "https://learningscientists.org",
+        "type": "link"
+      }
+    ],
+    "imageGallery": [
+      {
+        "url": "https://picsum.photos/seed/studybuddy-ai-gal1/1024/768",
+        "altText": "Texto original y resumen generado.",
+        "caption": "Resumen"
+      },
+      {
+        "url": "https://picsum.photos/seed/studybuddy-ai-gal2/1024/768",
+        "altText": "Preguntas generadas a partir de un texto.",
+        "caption": "Preguntas Repaso"
+      }
+    ]
+  },
+  {
+    "projectTitle": "Generador de Avatares Pixel 'PixelMe'",
+    "projectCategory": "Multimedia / Web",
+    "schooling": "Primaria",
+    "introTitle": "PixelMe: Crea tu Avatar Pixelado",
+    "introContent": "Herramienta web simple para que niños creen avatares pixel art personalizados seleccionando componentes (pelo, ojos, ropa).",
+    "problemDescription": "Fomentar creatividad y expresión digital en niños de forma sencilla y divertida.",
+    "solutionProposed": "Librería de componentes pixel art (pelo, ojos, boca, accesorios, ropa) en diferentes colores. Interfaz web para seleccionar y combinar. Exportar como PNG.",
+    "innovationProcess": "<p>Diseño de componentes pixel art.</p><p>Desarrollo de interfaz con HTML/CSS/JS.</p><p>Lógica para combinar capas de imágenes y exportar.</p>",
+    "slug": "generador-de-avatares-pixel-pixelme",
+    "projectDate": "2025-08-28",
+    "sdgIds": [9],
+    "coverImage": {
+      "url": "https://picsum.photos/seed/pixelme-cover/1280/720",
+      "altText": "Interfaz de PixelMe con opciones de personalización de avatar."
+    },
+    "media": {
+      "type": "video",
+      "url": "https://www.youtube.com/embed/bMiwLs0pCB8"
+    },
+    "projectRubricScores": {
+      "innovation": 2,
+      "collaboration": 3,
+      "impact": 1,
+      "techUse": 2,
+      "presentation": 3
+    },
+    "finalProjectGrade": 7,
+    "teamMembers": [
+      {
+        "name": "Isabela Ximena Soler Castillo",
+        "role": "Artista Pixel, Diseñadora UI",
+        "certificateCourseName": "Diseño Interactivo para Niños",
+        "certificateBadgeName": "Design Architect",
+        "certificateLevel": "Master",
+        "certificateSkills": "Pixel Art (Aseprite),Diseño de Interfaz para Niños,Experiencia de Usuario Lúdica,Ilustración Digital",
+        "certificateCriteria": "Variedad Componentes,Atractivo Visual,Facilidad de Uso",
+        "certificateCollege": "Estudio Creativo Pixelitos",
+        "certificateIssueDate": "2025-08-24",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      },
+      {
+        "name": "Mateo Andrés Pineda Luna",
+        "role": "Desarrollador JavaScript",
+        "certificateCourseName": "Diseño Interactivo para Niños",
+        "certificateBadgeName": "Code Explorer",
+        "certificateLevel": "Master",
+        "certificateSkills": "JavaScript,HTML5 Canvas,Manipulación de Imágenes (JS),Lógica de Combinación",
+        "certificateCriteria": "Funcionalidad Combinación,Exportación PNG,Rendimiento Web",
+        "certificateCollege": "Estudio Creativo Pixelitos",
+        "certificateIssueDate": "2025-08-24",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      },
+      {
+        "name": "Valentina Ana Gil Sánchez",
+        "role": "Pruebas con Niños, Contenido Adicional",
+        "certificateCourseName": "Diseño Interactivo para Niños",
+        "certificateBadgeName": "Tech Voyager",
+        "certificateLevel": "Rookie",
+        "certificateSkills": "Pruebas de Usabilidad con Niños,Ideación de Componentes,Documentación Sencilla",
+        "certificateCriteria": "Feedback Infantil,Propuestas de Mejora,Contenido Divertido",
+        "certificateCollege": "Estudio Creativo Pixelitos",
+        "certificateIssueDate": "2025-08-24",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      },
+      {
+        "name": "Luis Ricardo Ortiz Vidal",
+        "role": "Música y Sonidos Chiptune",
+        "certificateCourseName": "Diseño Interactivo para Niños",
+        "certificateBadgeName": "Micro Programmer",
+        "certificateLevel": "Rookie",
+        "certificateSkills": "Composición Chiptune,Efectos de Sonido Retro,Integración Audio Web",
+        "certificateCriteria": "Sonido Atractivo,Coherencia Estilo Pixel",
+        "certificateCollege": "Estudio Creativo Pixelitos",
+        "certificateIssueDate": "2025-08-24",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      }
+    ],
+    "technologies": [
+      {
+        "name": "Pixel Art",
+        "icon": "fa-solid fa-palette",
+        "category": "Tool"
+      },
+      {
+        "name": "JavaScript",
+        "icon": "fa-brands fa-js",
+        "category": "Software"
+      },
+      {
+        "name": "HTML5 Canvas",
+        "icon": "fa-solid fa-image",
+        "category": "Tool"
+      }
+    ],
+    "additionalResources": [
+      {
+        "title": "Tutorial Pixel Art",
+        "url": "https://lospec.com/pixel-art-tutorials",
+        "type": "link"
+      }
+    ],
+    "imageGallery": [
+      {
+        "url": "https://picsum.photos/seed/pixelme-gal1/800/450",
+        "altText": "Ejemplos de componentes de avatar.",
+        "caption": "Partes del Avatar"
+      },
+      {
+        "url": "https://picsum.photos/seed/pixelme-gal2/800/450",
+        "altText": "Avatar creado con la herramienta.",
+        "caption": "Resultado Final"
+      }
+    ]
+  },
+  {
+    "projectTitle": "Sistema de Alerta Temprana de Incendios Forestales (IoT)",
+    "projectCategory": "IoT / Impacto Social",
+    "schooling": "Preparatoria",
+    "introTitle": "AlertaForestal: Prevención Inteligente",
+    "introContent": "Red de sensores (temperatura, humedad, humo, CO2) en zonas boscosas que envían alertas a una central.",
+    "problemDescription": "Detección tardía de incendios forestales causa grandes daños. Se necesita alerta temprana.",
+    "solutionProposed": "Nodos LoRaWAN/Celular con sensores ambientales. Plataforma central recibe datos, algoritmos básicos de detección de anomalías, envío de alertas SMS/email.",
+    "innovationProcess": "<p>Diseño de nodos robustos y de bajo consumo.</p><p>Selección de sensores y protocolo de comunicación.</p><p>Desarrollo de firmware y plataforma de alertas.</p><p>Pruebas de campo y calibración.</p>",
+    "slug": "sistema-de-alerta-temprana-de-incendios-forestales-iot",
+    "projectDate": "2026-05-15",
+    "sdgIds": [11, 13, 15],
+    "coverImage": {
+      "url": "https://picsum.photos/seed/alertaforestal-cover/1280/720",
+      "altText": "Sensor en un árbol enviando datos."
+    },
+    "media": {
+      "type": "video",
+      "url": "https://www.youtube.com/embed/QZQEUdalseI"
+    },
+    "projectRubricScores": {
+      "innovation": 3,
+      "collaboration": 3,
+      "impact": 3,
+      "techUse": 3,
+      "presentation": 3
+    },
+    "finalProjectGrade": 10,
+    "teamMembers": [
+      {
+        "name": "Ana Karen Pineda Gil",
+        "role": "Ingeniera de Sistemas Embebidos",
+        "certificateCourseName": "Sistemas de Alerta Temprana IoT",
+        "certificateBadgeName": "Network Pioneer",
+        "certificateLevel": "Hacker",
+        "certificateSkills": "LoRaWAN,Sensores Ambientales (Humo, CO2, Temp),Microcontroladores (ESP32/STM32),Gestión de Energía,Firmware",
+        "certificateCriteria": "Confiabilidad Nodos,Autonomía Batería,Comunicación Larga Distancia",
+        "certificateCollege": "Guardianes del Bosque Tech",
+        "certificateIssueDate": "2026-05-10",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      },
+      {
+        "name": "Luis Mateo Castillo Soler",
+        "role": "Desarrollador Plataforma Alertas",
+        "certificateCourseName": "Sistemas de Alerta Temprana IoT",
+        "certificateBadgeName": "App Maverick",
+        "certificateLevel": "Hacker",
+        "certificateSkills": "Backend (Node.js/Python),Bases de Datos (TimeSeries),APIs Notificaciones (SMS/Email),Algoritmos Detección Anomalías",
+        "certificateCriteria": "Sistema Alertas Eficaz,Visualización Datos,Escalabilidad Plataforma",
+        "certificateCollege": "Guardianes del Bosque Tech",
+        "certificateIssueDate": "2026-05-10",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      },
+      {
+        "name": "Fernanda Ximena Luna Vidal",
+        "role": "Especialista GIS, Despliegue",
+        "certificateCourseName": "Sistemas de Alerta Temprana IoT",
+        "certificateBadgeName": "Tech Voyager",
+        "certificateLevel": "Master",
+        "certificateSkills": "Sistemas de Información Geográfica (GIS),Análisis de Riesgo Incendios,Logística Despliegue Campo,Mantenimiento Sensores",
+        "certificateCriteria": "Mapeo Zonas Riesgo,Optimización Ubicación Sensores,Operatividad Campo",
+        "certificateCollege": "Guardianes del Bosque Tech",
+        "certificateIssueDate": "2026-05-10",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      },
+      {
+        "name": "Diego Andrés Sánchez Herrera",
+        "role": "Comunicación y Enlace con Autoridades",
+        "certificateCourseName": "Sistemas de Alerta Temprana IoT",
+        "certificateBadgeName": "Prompt Sage",
+        "certificateLevel": "Master",
+        "certificateSkills": "Protocolos de Emergencia,Comunicación Interinstitucional,Divulgación Científica,Validación Sistema con Usuarios Finales",
+        "certificateCriteria": "Efectividad Comunicación Alertas,Coordinación Autoridades,Adopción Sistema",
+        "certificateCollege": "Guardianes del Bosque Tech",
+        "certificateIssueDate": "2026-05-10",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      }
+    ],
+    "technologies": [
+      {
+        "name": "LoRaWAN",
+        "icon": "fa-solid fa-broadcast-tower",
+        "category": "Hardware"
+      },
+      {
+        "name": "Sensor de Humo",
+        "icon": "fa-solid fa-fire-alt",
+        "category": "Hardware"
+      },
+      {
+        "name": "GPS",
+        "icon": "fa-solid fa-map-marker-alt",
+        "category": "Hardware"
+      },
+      {
+        "name": "Algoritmos Detección",
+        "icon": "fa-solid fa-brain",
+        "category": "Tool"
+      }
+    ],
+    "additionalResources": [
+      {
+        "title": "Artículo Detección Incendios",
+        "url": "https://www.nasa.gov/mission_pages/fires/main/missions/index.html",
+        "type": "link"
+      }
+    ],
+    "imageGallery": [
+      {
+        "url": "https://picsum.photos/seed/alertaforestal-gal1/800/600",
+        "altText": "Nodo sensor desplegado en bosque.",
+        "caption": "Sensor en Campo"
+      },
+      {
+        "url": "https://picsum.photos/seed/alertaforestal-gal2/800/600",
+        "altText": "Dashboard de alertas y mapa.",
+        "caption": "Plataforma Monitoreo"
+      }
+    ]
+  },
+  {
+    "projectTitle": "Laboratorio Virtual de Química 'ChemLab VR'",
+    "projectCategory": "Realidad Virtual / Educación",
+    "schooling": "Preparatoria",
+    "introTitle": "ChemLab VR: Experimenta sin Riesgos",
+    "introContent": "Entorno de RV para realizar experimentos de química de forma segura e interactiva.",
+    "problemDescription": "Limitaciones de laboratorios físicos (costo, seguridad, acceso).",
+    "solutionProposed": "Simulación de reacciones químicas, manejo de material de laboratorio virtual, guías de experimentos. Desarrollo en Unity/Unreal para VR.",
+    "innovationProcess": "<p>Diseño de experimentos y material de laboratorio 3D.</p><p>Programación de interacciones y simulaciones de reacciones.</p><p>Creación de interfaz de usuario para VR.</p><p>Pruebas con estudiantes y profesores de química.</p>",
+    "slug": "laboratorio-virtual-de-quimica-chemlab-vr",
+    "projectDate": "2025-10-01",
+    "sdgIds": [4, 9],
+    "coverImage": {
+      "url": "https://picsum.photos/seed/chemlab-vr-cover/1280/720",
+      "altText": "Estudiante con gafas VR interactuando en laboratorio virtual."
+    },
+    "media": {
+      "type": "image",
+      "url": "https://picsum.photos/seed/chemlab-vr-media/1280/720",
+      "altText": "Vista de un experimento de titulación en ChemLab VR."
+    },
+    "projectRubricScores": {
+      "innovation": 3,
+      "collaboration": 2,
+      "impact": 2,
+      "techUse": 3,
+      "presentation": 3
+    },
+    "finalProjectGrade": 9,
+    "teamMembers": [
+      {
+        "name": "Valentina Jimena Ortiz Pineda",
+        "role": "Desarrolladora VR (Unreal Engine)",
+        "certificateCourseName": "Desarrollo de Experiencias VR Educativas",
+        "certificateBadgeName": "Reality Master",
+        "certificateLevel": "Hacker",
+        "certificateSkills": "Unreal Engine,Blueprints/C++,Interacción VR,Simulación Físicas,Diseño Niveles VR",
+        "certificateCriteria": "Inmersión Realista,Interacciones Intuitivas,Precisión Simulaciones",
+        "certificateCollege": "Innovadores VR Edu",
+        "certificateIssueDate": "2025-09-25",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      },
+      {
+        "name": "Miguel Andrés Soler Gil",
+        "role": "Químico, Diseñador de Experimentos",
+        "certificateCourseName": "Desarrollo de Experiencias VR Educativas",
+        "certificateBadgeName": "Algorithm Seeker",
+        "certificateLevel": "Master",
+        "certificateSkills": "Química General e Inorgánica,Diseño de Prácticas de Laboratorio,Validación Científica,Seguridad Laboratorio (virtual)",
+        "certificateCriteria": "Fidelidad Científica,Valor Pedagógico,Seguridad Simulada",
+        "certificateCollege": "Innovadores VR Edu",
+        "certificateIssueDate": "2025-09-25",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      },
+      {
+        "name": "Ana Sofía Luna Castillo",
+        "role": "Artista 3D (Material de Laboratorio)",
+        "certificateCourseName": "Desarrollo de Experiencias VR Educativas",
+        "certificateBadgeName": "Design Architect",
+        "certificateLevel": "Master",
+        "certificateSkills": "Modelado 3D (Blender/Maya),Texturizado (Substance Painter),Optimización Modelos para VR,Iluminación Escenas VR",
+        "certificateCriteria": "Realismo Modelos,Optimización Rendimiento,Atmósfera Laboratorio",
+        "certificateCollege": "Innovadores VR Edu",
+        "certificateIssueDate": "2025-09-25",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      },
+      {
+        "name": "Javier Mateo Vidal Sánchez",
+        "role": "Diseñador UX/UI para VR",
+        "certificateCourseName": "Desarrollo de Experiencias VR Educativas",
+        "certificateBadgeName": "Prompt Sage",
+        "certificateLevel": "Rookie",
+        "certificateSkills": "Principios de UX para VR,Diseño de Interfaces 3D,Prototipado VR,Pruebas de Usabilidad VR",
+        "certificateCriteria": "Navegación Cómoda,Interacción Clara,Reducción Mareo",
+        "certificateCollege": "Innovadores VR Edu",
+        "certificateIssueDate": "2025-09-25",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      }
+    ],
+    "technologies": [
+      {
+        "name": "Unreal Engine",
+        "icon": "fa-solid fa-unreal",
+        "category": "Software"
+      },
+      {
+        "name": "VR",
+        "icon": "fa-solid fa-vr-cardboard",
+        "category": "Hardware"
+      },
+      {
+        "name": "Simulación Química",
+        "icon": "fa-solid fa-flask",
+        "category": "Tool"
+      },
+      {
+        "name": "Modelado 3D",
+        "icon": "fa-solid fa-shapes",
+        "category": "Tool"
+      }
+    ],
+    "additionalResources": [
+      {
+        "title": "Paper sobre Laboratorios VR",
+        "url": "https://www.researchgate.net/publication/33VR_ChemLab",
+        "type": "link"
+      }
+    ],
+    "imageGallery": [
+      {
+        "url": "https://picsum.photos/seed/chemlab-vr-gal1/1024/768",
+        "altText": "Material de laboratorio 3D.",
+        "caption": "Modelos 3D"
+      },
+      {
+        "url": "https://picsum.photos/seed/chemlab-vr-gal2/1024/768",
+        "altText": "Simulación de una reacción exotérmica.",
+        "caption": "Reacción Química"
+      }
+    ]
+  },
+  {
+    "projectTitle": "Red de Trueque Local 'Comunidad Intercambia'",
+    "projectCategory": "Impacto Social / Web",
+    "schooling": "Secundaria",
+    "introTitle": "Comunidad Intercambia: Trueque Moderno",
+    "introContent": "Plataforma web para facilitar el trueque de bienes y servicios entre miembros de una comunidad local.",
+    "problemDescription": "Fomentar la economía circular, reducir el consumismo y fortalecer los lazos comunitarios.",
+    "solutionProposed": "Sistema de publicación de ofertas y demandas, mensajería interna, sistema de reputación básico (opcional).",
+    "innovationProcess": "<p>Investigación sobre sistemas de trueque y necesidades locales.</p><p>Diseño de la plataforma y flujo de usuario.</p><p>Desarrollo con un framework web ligero (ej. Flask, Express).</p><p>Pruebas piloto en una comunidad pequeña.</p>",
+    "slug": "red-de-trueque-local-comunidad-intercambia",
+    "projectDate": "2024-07-15",
+    "sdgIds": [1, 8, 10, 12],
+    "coverImage": {
+      "url": "https://picsum.photos/seed/trueque-comunidad-cover/1280/720",
+      "altText": "Interfaz de la plataforma mostrando ofertas de trueque."
+    },
+    "media": {
+      "type": "video",
+      "url": "https://www.youtube.com/embed/Z1RJmh_OqeA"
+    },
+    "projectRubricScores": {
+      "innovation": 2,
+      "collaboration": 3,
+      "impact": 3,
+      "techUse": 2,
+      "presentation": 2
+    },
+    "finalProjectGrade": 8,
+    "teamMembers": [
+      {
+        "name": "Mariana Sofía Pardo Herrera",
+        "role": "Desarrolladora Web Principal",
+        "certificateCourseName": "Economía Circular Digital",
+        "certificateBadgeName": "App Maverick",
+        "certificateLevel": "Master",
+        "certificateSkills": "Python,Flask,HTML,CSS,JavaScript,SQLite",
+        "certificateCriteria": "Funcionalidad Plataforma,Seguridad Transacciones (básica),Interfaz Clara",
+        "certificateCollege": "Centro Comunitario El Encuentro",
+        "certificateIssueDate": "2024-07-10",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      },
+      {
+        "name": "Luis Fernando Gil Ortiz",
+        "role": "Diseñador UX, Moderador",
+        "certificateCourseName": "Economía Circular Digital",
+        "certificateBadgeName": "Design Architect",
+        "certificateLevel": "Master",
+        "certificateSkills": "Diseño de Experiencia de Usuario,Moderación Comunidades Online,Resolución de Conflictos,Comunicación",
+        "certificateCriteria": "Usabilidad Plataforma,Confianza Comunidad,Reglas Claras",
+        "certificateCollege": "Centro Comunitario El Encuentro",
+        "certificateIssueDate": "2024-07-10",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      },
+      {
+        "name": "David Alejandro Luna Vidal",
+        "role": "Promotor Comunitario, Pruebas",
+        "certificateCourseName": "Economía Circular Digital",
+        "certificateBadgeName": "Tech Voyager",
+        "certificateLevel": "Rookie",
+        "certificateSkills": "Organización Eventos Comunitarios,Difusión Local,Pruebas de Usuario,Recopilación Feedback",
+        "certificateCriteria": "Adopción Plataforma,Satisfacción Usuarios,Impacto Local",
+        "certificateCollege": "Centro Comunitario El Encuentro",
+        "certificateIssueDate": "2024-07-10",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      },
+      {
+        "name": "Ximena Camila Sánchez Castillo",
+        "role": "Contenido y Soporte",
+        "certificateCourseName": "Economía Circular Digital",
+        "certificateBadgeName": "Prompt Sage",
+        "certificateLevel": "Rookie",
+        "certificateSkills": "Redacción Guías de Usuario,Atención a Dudas,Creación de Contenido sobre Trueque",
+        "certificateCriteria": "Material de Ayuda Claro,Resolución Consultas,Fomento del Trueque",
+        "certificateCollege": "Centro Comunitario El Encuentro",
+        "certificateIssueDate": "2024-07-10",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      }
+    ],
+    "technologies": [
+      {
+        "name": "Flask",
+        "icon": "fa-brands fa-python",
+        "category": "Software"
+      },
+      {
+        "name": "SQLite",
+        "icon": "fa-solid fa-database",
+        "category": "Software"
+      },
+      {
+        "name": "Economía Circular",
+        "icon": "fa-solid fa-recycle",
+        "category": "Tool"
+      }
+    ],
+    "additionalResources": [
+      {
+        "title": "Artículo sobre Trueque",
+        "url": "https://www.thebalancemoney.com/bartering-315175",
+        "type": "link"
+      }
+    ],
+    "imageGallery": [
+      {
+        "url": "https://picsum.photos/seed/trueque-gal1/800/600",
+        "altText": "Oferta de trueque en la plataforma.",
+        "caption": "Ejemplo Oferta"
+      },
+      {
+        "url": "https://picsum.photos/seed/trueque-gal2/800/600",
+        "altText": "Perfil de usuario con historial.",
+        "caption": "Reputación Usuario"
+      }
+    ]
+  }
+]

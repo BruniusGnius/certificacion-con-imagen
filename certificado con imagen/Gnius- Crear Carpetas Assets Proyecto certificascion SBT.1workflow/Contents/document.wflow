@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AMApplicationBuild</key>
+	<string>528</string>
+	<key>AMApplicationVersion</key>
+	<string>2.10</string>
+	<key>AMDocumentVersion</key>
+	<string>2</string>
+	<key>actions</key>
+	<array>
+		<dict>
+			<key>action</key>
+			<dict>
+				<key>AMAccepts</key>
+				<dict>
+					<key>Container</key>
+					<string>List</string>
+					<key>Optional</key>
+					<true/>
+					<key>Types</key>
+					<array>
+						<string>com.apple.cocoa.string</string>
+					</array>
+				</dict>
+				<key>AMActionVersion</key>
+				<string>2.0.3</string>
+				<key>AMApplication</key>
+				<array>
+					<string>Automator</string>
+				</array>
+				<key>AMParameterProperties</key>
+				<dict>
+					<key>COMMAND_STRING</key>
+					<dict/>
+					<key>CheckedForUserDefaultShell</key>
+					<dict/>
+					<key>inputMethod</key>
+					<dict/>
+					<key>shell</key>
+					<dict/>
+					<key>source</key>
+					<dict/>
+				</dict>
+				<key>AMProvides</key>
+				<dict>
+					<key>Container</key>
+					<string>List</string>
+					<key>Types</key>
+					<array>
+						<string>com.apple.cocoa.string</string>
+					</array>
+				</dict>
+				<key>ActionBundlePath</key>
+				<string>/System/Library/Automator/Run Shell Script.action</string>
+				<key>ActionName</key>
+				<string>Ejecutar script de shell</string>
+				<key>ActionParameters</key>
+				<dict>
+					<key>COMMAND_STRING</key>
+					<string># El primer argumento ($1) es la ruta al archivo projects.json seleccionado
+json_file="$1"
+
+if [ ! -f "$json_file" ]; then
+  echo "Error: El archivo JSON no existe: $json_file"
+  osascript -e "display notification \"Error: Archivo JSON no encontrado: $json_file\" with title \"Error Script Automator\" sound name \"Basso\""
+  exit 1
+fi
+
+output_base_dir="$(dirname "$json_file")/project_assets_output"
+mkdir -p "$output_base_dir" # Asegurar que el directorio base de salida exista
+
+echo "Procesando JSON: $json_file"
+echo "Salida de carpetas y placeholders en: $output_base_dir/assets/img/"
+
+if ! command -v jq &amp;&gt; /dev/null; then
+    echo "jq no está instalado."
+    osascript -e 'display notification "jq no está instalado (brew install jq)." with title "Error Script Automator" sound name "Basso"'
+    exit 1
+fi
+
+# Archivos temporales para contadores
+tmp_success_file=$(mktemp)
+tmp_error_file=$(mktemp)
+tmp_processed_message_file=$(mktemp)
+
+echo 0 &gt; "$tmp_success_file"
+echo 0 &gt; "$tmp_error_file"
+echo "Archivos placeholder creados:\n" &gt; "$tmp_processed_message_file"
+
+# Función para crear un archivo placeholder.
+# Toma el directorio base del slug del proyecto y la URL original del JSON para el archivo.
+create_placeholder_file_in_slug_dir() {
+    local slug_project_dir="$1" # ej: project_assets_output/assets/img/ecoladrillos-comunitarios
+    local original_json_url="$2" # ej: assets/img/eco-ladrillos/cover.jpg o assets/img/eco-ladrillos/ana-cert.pdf
+
+    # Extraer solo el nombre del archivo (ej. cover.jpg o ana-cert.pdf) de la URL original del JSON
+    local filename=$(basename "$original_json_url")
+    # Construir la ruta final donde se creará el archivo placeholder
+    local final_filepath="$slug_project_dir/$filename"
+
+    # Asegurar que el directorio del slug exista (aunque ya debería haber sido creado antes)
+    mkdir -p "$slug_project_dir"
+
+    if touch "$final_filepath"; then
+        echo "  Creado: $final_filepath" &gt;&gt; "$tmp_processed_message_file"
+        echo $(( $(cat "$tmp_success_file") + 1 )) &gt; "$tmp_success_file"
+    else
+        echo "  ERROR al crear: $final_filepath" &gt;&gt; "$tmp_processed_message_file"
+        echo $(( $(cat "$tmp_error_file") + 1 )) &gt; "$tmp_error_file"
+    fi
+}
+
+jq -c '.[0:3][]' &lt; "$json_file" | while IFS= read -r project_json_line; do
+    slug_completo=$(echo "$project_json_line" | jq -r '.slug')
+    project_title=$(echo "$project_json_line" | jq -r '.projectTitle')
+
+    if [ -z "$slug_completo" ]; then
+        echo "WARN: Sin slug para proyecto, saltando..."
+        echo "WARN: Sin slug para un proyecto." &gt;&gt; "$tmp_processed_message_file"
+        echo $(( $(cat "$tmp_error_file") + 1 )) &gt; "$tmp_error_file"
+        continue
+    fi
+
+    # Directorio de salida para este proyecto, usando el slug completo
+    current_project_output_dir="$output_base_dir/assets/img/$slug_completo"
+    mkdir -p "$current_project_output_dir"
+    if [ $? -ne 0 ]; then
+        echo "ERROR: No se pudo crear directorio $current_project_output_dir" &gt;&gt; "$tmp_processed_message_file"
+        echo $(( $(cat "$tmp_error_file") + 1 )) &gt; "$tmp_error_file"
+        continue
+    fi
+
+    echo "Procesando: $project_title (Archivos irán a: $current_project_output_dir)"
+    echo "\nProyecto: $slug_completo ($project_title)" &gt;&gt; "$tmp_processed_message_file"
+
+    # Cover Image
+    cover_image_json_url=$(echo "$project_json_line" | jq -r '.coverImage.url')
+    if [ "$cover_image_json_url" != "null" ] &amp;&amp; [ -n "$cover_image_json_url" ]; then
+        create_placeholder_file_in_slug_dir "$current_project_output_dir" "$cover_image_json_url"
+    fi
+
+    # Media (si es imagen)
+    media_type=$(echo "$project_json_line" | jq -r '.media.type')
+    media_json_url=$(echo "$project_json_line" | jq -r '.media.url')
+    if [[ "$media_type" == "image" ]] &amp;&amp; [ "$media_json_url" != "null" ] &amp;&amp; [ -n "$media_json_url" ]; then
+        create_placeholder_file_in_slug_dir "$current_project_output_dir" "$media_json_url"
+    fi
+
+    # Image Gallery
+    echo "$project_json_line" | jq -c '.imageGallery[]?' | while IFS= read -r gallery_item_json; do
+        if [ -z "$gallery_item_json" ]; then continue; fi # Saltar si no hay galería o el item es nulo
+        gallery_json_url=$(echo "$gallery_item_json" | jq -r '.url')
+        if [ "$gallery_json_url" != "null" ] &amp;&amp; [ -n "$gallery_json_url" ]; then
+            create_placeholder_file_in_slug_dir "$current_project_output_dir" "$gallery_json_url"
+        fi
+    done
+
+    # Certificate Previews and Prints for each team member
+    echo "$project_json_line" | jq -c '.teamMembers[]?' | while IFS= read -r member_json; do
+        if [ -z "$member_json" ]; then continue; fi # Saltar si no hay miembros o el miembro es nulo
+
+        # member_name=$(echo "$member_json" | jq -r '.name') # Para logging más detallado si se quisiera
+
+        cert_preview_json_url=$(echo "$member_json" | jq -r '.certificatePreviewUrl')
+        if [ "$cert_preview_json_url" != "null" ] &amp;&amp; [ -n "$cert_preview_json_url" ]; then
+            create_placeholder_file_in_slug_dir "$current_project_output_dir" "$cert_preview_json_url"
+        fi
+
+        cert_print_json_url=$(echo "$member_json" | jq -r '.certificatePrintUrl')
+        # Los archivos de impresión pueden ser PDF, así que la función create_placeholder_file_in_slug_dir es genérica con 'touch'
+        if [ "$cert_print_json_url" != "null" ] &amp;&amp; [ -n "$cert_print_json_url" ]; then
+            create_placeholder_file_in_slug_dir "$current_project_output_dir" "$cert_print_json_url"
+        fi
+    done
+
+done # Fin del bucle principal de proyectos
+
+total_successes=$(cat "$tmp_success_file")
+total_errors=$(cat "$tmp_error_file")
+processed_message_content=$(cat "$tmp_processed_message_file")
+
+rm -f "$tmp_success_file" "$tmp_error_file" "$tmp_processed_message_file"
+
+echo "Proceso finalizado. Placeholders creados: $total_successes, Errores: $total_errors"
+
+final_notification_message="Placeholders: $total_successes OK, $total_errors Fallaron.\n\nDetalles:\n$processed_message_content"
+max_len=220 # Ajustar longitud máxima si es necesario
+if [ ${#final_notification_message} -gt $max_len ]; then
+  final_notification_message="${final_notification_message:0:$max_len}..."
+fi
+
+if [[ "$total_errors" -gt 0 ]]; then
+    osascript -e "display notification \"$final_notification_message\" with title \"Script Automator con Errores\" sound name \"Frog\""
+elif [[ "$total_successes" -gt 0 ]]; then
+    osascript -e "display notification \"$final_notification_message\" with title \"Script Automator Exitoso\" sound name \"Hero\""
+    open "$output_base_dir/assets/img"
+else
+    osascript -e "display notification \"No se crearon archivos placeholder. Revisa JSON/logs.\" with title \"Script Automator Sin Acciones\" sound name \"Pop\""
+fi</string>
+					<key>CheckedForUserDefaultShell</key>
+					<true/>
+					<key>inputMethod</key>
+					<integer>1</integer>
+					<key>shell</key>
+					<string>/bin/zsh</string>
+					<key>source</key>
+					<string></string>
+				</dict>
+				<key>BundleIdentifier</key>
+				<string>com.apple.RunShellScript</string>
+				<key>CFBundleVersion</key>
+				<string>2.0.3</string>
+				<key>CanShowSelectedItemsWhenRun</key>
+				<false/>
+				<key>CanShowWhenRun</key>
+				<true/>
+				<key>Category</key>
+				<array>
+					<string>AMCategoryUtilities</string>
+				</array>
+				<key>Class Name</key>
+				<string>RunShellScriptAction</string>
+				<key>InputUUID</key>
+				<string>ACC89B53-498F-4B95-BD5F-DEA762C12F30</string>
+				<key>Keywords</key>
+				<array>
+					<string>Shell</string>
+					<string>Script</string>
+					<string>Comando</string>
+					<string>Ejecutar</string>
+					<string>Unix</string>
+				</array>
+				<key>OutputUUID</key>
+				<string>2236E487-45CA-420E-9DDE-1054C27B87EA</string>
+				<key>UUID</key>
+				<string>2ADE8EBD-64CC-424F-B93F-562B0D5F9EC5</string>
+				<key>UnlocalizedApplications</key>
+				<array>
+					<string>Automator</string>
+				</array>
+				<key>arguments</key>
+				<dict>
+					<key>0</key>
+					<dict>
+						<key>default value</key>
+						<integer>0</integer>
+						<key>name</key>
+						<string>inputMethod</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>0</string>
+					</dict>
+					<key>1</key>
+					<dict>
+						<key>default value</key>
+						<false/>
+						<key>name</key>
+						<string>CheckedForUserDefaultShell</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>1</string>
+					</dict>
+					<key>2</key>
+					<dict>
+						<key>default value</key>
+						<string></string>
+						<key>name</key>
+						<string>source</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>2</string>
+					</dict>
+					<key>3</key>
+					<dict>
+						<key>default value</key>
+						<string></string>
+						<key>name</key>
+						<string>COMMAND_STRING</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>3</string>
+					</dict>
+					<key>4</key>
+					<dict>
+						<key>default value</key>
+						<string>/bin/sh</string>
+						<key>name</key>
+						<string>shell</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>4</string>
+					</dict>
+				</dict>
+				<key>isViewVisible</key>
+				<integer>1</integer>
+				<key>location</key>
+				<string>465.250000:305.000000</string>
+				<key>nibPath</key>
+				<string>/System/Library/Automator/Run Shell Script.action/Contents/Resources/Base.lproj/main.nib</string>
+			</dict>
+			<key>isViewVisible</key>
+			<integer>1</integer>
+		</dict>
+	</array>
+	<key>connectors</key>
+	<dict/>
+	<key>workflowMetaData</key>
+	<dict>
+		<key>applicationBundleID</key>
+		<string>com.apple.finder</string>
+		<key>applicationBundleIDsByPath</key>
+		<dict>
+			<key>/System/Library/CoreServices/Finder.app</key>
+			<string>com.apple.finder</string>
+		</dict>
+		<key>applicationPath</key>
+		<string>/System/Library/CoreServices/Finder.app</string>
+		<key>applicationPaths</key>
+		<array>
+			<string>/System/Library/CoreServices/Finder.app</string>
+		</array>
+		<key>backgroundColor</key>
+		<data>
+		YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0b3BYJG9i
+		amVjdHMSAAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVRyb290gAGpCwwXGBki
+		KCkwVSRudWxs1Q0ODxAREhMUFRZWJGNsYXNzW05TQ29sb3JOYW1lXE5TQ29s
+		b3JTcGFjZV1OU0NhdGFsb2dOYW1lV05TQ29sb3KACIADEAaAAoAEVlN5c3Rl
+		bV8QEXN5c3RlbU9yYW5nZUNvbG9y1RobDxwNHR4fIBJcTlNDb21wb25lbnRz
+		VU5TUkdCXxASTlNDdXN0b21Db2xvclNwYWNlSTEgMC41IDAgMU8QJjAuOTg5
+		MjMyMjQyMSAwLjQxNTMzMDQxIDAuMDMxODEwODc1OTgAEAGABYAI0yMkDSUm
+		J1ROU0lEVU5TSUNDEAeABoAHTxEMSAAADEhMaW5vAhAAAG1udHJSR0IgWFla
+		IAfOAAIACQAGADEAAGFjc3BNU0ZUAAAAAElFQyBzUkdCAAAAAAAAAAAAAAAA
+		AAD21gABAAAAANMtSFAgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+		AAAAAAAAAAAAAAAAAAAAAAAAEWNwcnQAAAFQAAAAM2Rlc2MAAAGEAAAAbHd0
+		cHQAAAHwAAAAFGJrcHQAAAIEAAAAFHJYWVoAAAIYAAAAFGdYWVoAAAIsAAAA
+		FGJYWVoAAAJAAAAAFGRtbmQAAAJUAAAAcGRtZGQAAALEAAAAiHZ1ZWQAAANM
+		AAAAhnZpZXcAAAPUAAAAJGx1bWkAAAP4AAAAFG1lYXMAAAQMAAAAJHRlY2gA
+		AAQwAAAADHJUUkMAAAQ8AAAIDGdUUkMAAAQ8AAAIDGJUUkMAAAQ8AAAIDHRl
+		eHQAAAAAQ29weXJpZ2h0IChjKSAxOTk4IEhld2xldHQtUGFja2FyZCBDb21w
+		YW55AABkZXNjAAAAAAAAABJzUkdCIElFQzYxOTY2LTIuMQAAAAAAAAAAAAAA
+		EnNSR0IgSUVDNjE5NjYtMi4xAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+		AAAAAAAAAAAAAAAAAAAAAAAAAAAAAABYWVogAAAAAAAA81EAAQAAAAEWzFhZ
+		WiAAAAAAAAAAAAAAAAAAAAAAWFlaIAAAAAAAAG+iAAA49QAAA5BYWVogAAAA
+		AAAAYpkAALeFAAAY2lhZWiAAAAAAAAAkoAAAD4QAALbPZGVzYwAAAAAAAAAW
+		SUVDIGh0dHA6Ly93d3cuaWVjLmNoAAAAAAAAAAAAAAAWSUVDIGh0dHA6Ly93
+		d3cuaWVjLmNoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+		AAAAAAAAAAAAAGRlc2MAAAAAAAAALklFQyA2MTk2Ni0yLjEgRGVmYXVsdCBS
+		R0IgY29sb3VyIHNwYWNlIC0gc1JHQgAAAAAAAAAAAAAALklFQyA2MTk2Ni0y
+		LjEgRGVmYXVsdCBSR0IgY29sb3VyIHNwYWNlIC0gc1JHQgAAAAAAAAAAAAAA
+		AAAAAAAAAAAAAABkZXNjAAAAAAAAACxSZWZlcmVuY2UgVmlld2luZyBDb25k
+		aXRpb24gaW4gSUVDNjE5NjYtMi4xAAAAAAAAAAAAAAAsUmVmZXJlbmNlIFZp
+		ZXdpbmcgQ29uZGl0aW9uIGluIElFQzYxOTY2LTIuMQAAAAAAAAAAAAAAAAAA
+		AAAAAAAAAAAAAAAAdmlldwAAAAAAE6T+ABRfLgAQzxQAA+3MAAQTCwADXJ4A
+		AAABWFlaIAAAAAAATAlWAFAAAABXH+dtZWFzAAAAAAAAAAEAAAAAAAAAAAAA
+		AAAAAAAAAAACjwAAAAJzaWcgAAAAAENSVCBjdXJ2AAAAAAAABAAAAAAFAAoA
+		DwAUABkAHgAjACgALQAyADcAOwBAAEUASgBPAFQAWQBeAGMAaABtAHIAdwB8
+		AIEAhgCLAJAAlQCaAJ8ApACpAK4AsgC3ALwAwQDGAMsA0ADVANsA4ADlAOsA
+		8AD2APsBAQEHAQ0BEwEZAR8BJQErATIBOAE+AUUBTAFSAVkBYAFnAW4BdQF8
+		AYMBiwGSAZoBoQGpAbEBuQHBAckB0QHZAeEB6QHyAfoCAwIMAhQCHQImAi8C
+		OAJBAksCVAJdAmcCcQJ6AoQCjgKYAqICrAK2AsECywLVAuAC6wL1AwADCwMW
+		AyEDLQM4A0MDTwNaA2YDcgN+A4oDlgOiA64DugPHA9MD4APsA/kEBgQTBCAE
+		LQQ7BEgEVQRjBHEEfgSMBJoEqAS2BMQE0wThBPAE/gUNBRwFKwU6BUkFWAVn
+		BXcFhgWWBaYFtQXFBdUF5QX2BgYGFgYnBjcGSAZZBmoGewaMBp0GrwbABtEG
+		4wb1BwcHGQcrBz0HTwdhB3QHhgeZB6wHvwfSB+UH+AgLCB8IMghGCFoIbgiC
+		CJYIqgi+CNII5wj7CRAJJQk6CU8JZAl5CY8JpAm6Cc8J5Qn7ChEKJwo9ClQK
+		agqBCpgKrgrFCtwK8wsLCyILOQtRC2kLgAuYC7ALyAvhC/kMEgwqDEMMXAx1
+		DI4MpwzADNkM8w0NDSYNQA1aDXQNjg2pDcMN3g34DhMOLg5JDmQOfw6bDrYO
+		0g7uDwkPJQ9BD14Peg+WD7MPzw/sEAkQJhBDEGEQfhCbELkQ1xD1ERMRMRFP
+		EW0RjBGqEckR6BIHEiYSRRJkEoQSoxLDEuMTAxMjE0MTYxODE6QTxRPlFAYU
+		JxRJFGoUixStFM4U8BUSFTQVVhV4FZsVvRXgFgMWJhZJFmwWjxayFtYW+hcd
+		F0EXZReJF64X0hf3GBsYQBhlGIoYrxjVGPoZIBlFGWsZkRm3Gd0aBBoqGlEa
+		dxqeGsUa7BsUGzsbYxuKG7Ib2hwCHCocUhx7HKMczBz1HR4dRx1wHZkdwx3s
+		HhYeQB5qHpQevh7pHxMfPh9pH5Qfvx/qIBUgQSBsIJggxCDwIRwhSCF1IaEh
+		ziH7IiciVSKCIq8i3SMKIzgjZiOUI8Ij8CQfJE0kfCSrJNolCSU4JWgllyXH
+		JfcmJyZXJocmtyboJxgnSSd6J6sn3CgNKD8ocSiiKNQpBik4KWspnSnQKgIq
+		NSpoKpsqzysCKzYraSudK9EsBSw5LG4soizXLQwtQS12Last4S4WLkwugi63
+		Lu4vJC9aL5Evxy/+MDUwbDCkMNsxEjFKMYIxujHyMioyYzKbMtQzDTNGM38z
+		uDPxNCs0ZTSeNNg1EzVNNYc1wjX9Njc2cjauNuk3JDdgN5w31zgUOFA4jDjI
+		OQU5Qjl/Obw5+To2OnQ6sjrvOy07azuqO+g8JzxlPKQ84z0iPWE9oT3gPiA+
+		YD6gPuA/IT9hP6I/4kAjQGRApkDnQSlBakGsQe5CMEJyQrVC90M6Q31DwEQD
+		REdEikTORRJFVUWaRd5GIkZnRqtG8Ec1R3tHwEgFSEtIkUjXSR1JY0mpSfBK
+		N0p9SsRLDEtTS5pL4kwqTHJMuk0CTUpNk03cTiVObk63TwBPSU+TT91QJ1Bx
+		ULtRBlFQUZtR5lIxUnxSx1MTU19TqlP2VEJUj1TbVShVdVXCVg9WXFapVvdX
+		RFeSV+BYL1h9WMtZGllpWbhaB1pWWqZa9VtFW5Vb5Vw1XIZc1l0nXXhdyV4a
+		XmxevV8PX2Ffs2AFYFdgqmD8YU9homH1YklinGLwY0Njl2PrZEBklGTpZT1l
+		kmXnZj1mkmboZz1nk2fpaD9olmjsaUNpmmnxakhqn2r3a09rp2v/bFdsr20I
+		bWBtuW4SbmtuxG8eb3hv0XArcIZw4HE6cZVx8HJLcqZzAXNdc7h0FHRwdMx1
+		KHWFdeF2Pnabdvh3VnezeBF4bnjMeSp5iXnnekZ6pXsEe2N7wnwhfIF84X1B
+		faF+AX5ifsJ/I3+Ef+WAR4CogQqBa4HNgjCCkoL0g1eDuoQdhICE44VHhauG
+		DoZyhteHO4efiASIaYjOiTOJmYn+imSKyoswi5aL/IxjjMqNMY2Yjf+OZo7O
+		jzaPnpAGkG6Q1pE/kaiSEZJ6kuOTTZO2lCCUipT0lV+VyZY0lp+XCpd1l+CY
+		TJi4mSSZkJn8mmia1ZtCm6+cHJyJnPedZJ3SnkCerp8dn4uf+qBpoNihR6G2
+		oiailqMGo3aj5qRWpMelOKWpphqmi6b9p26n4KhSqMSpN6mpqhyqj6sCq3Wr
+		6axcrNCtRK24ri2uoa8Wr4uwALB1sOqxYLHWskuywrM4s660JbSctRO1irYB
+		tnm28Ldot+C4WbjRuUq5wro7urW7LrunvCG8m70VvY++Cr6Evv+/er/1wHDA
+		7MFnwePCX8Lbw1jD1MRRxM7FS8XIxkbGw8dBx7/IPci8yTrJuco4yrfLNsu2
+		zDXMtc01zbXONs62zzfPuNA50LrRPNG+0j/SwdNE08bUSdTL1U7V0dZV1tjX
+		XNfg2GTY6Nls2fHadtr724DcBdyK3RDdlt4c3qLfKd+v4DbgveFE4cziU+Lb
+		42Pj6+Rz5PzlhOYN5pbnH+ep6DLovOlG6dDqW+rl63Dr++yG7RHtnO4o7rTv
+		QO/M8Fjw5fFy8f/yjPMZ86f0NPTC9VD13vZt9vv3ivgZ+Kj5OPnH+lf65/t3
+		/Af8mP0p/br+S/7c/23//9IqKywtWiRjbGFzc25hbWVYJGNsYXNzZXNcTlND
+		b2xvclNwYWNloi4vXE5TQ29sb3JTcGFjZVhOU09iamVjdNIqKzEyV05TQ29s
+		b3KiMS8ACAARABoAJAApADIANwBJAEwAUQBTAF0AYwBuAHUAgQCOAJwApACm
+		AKgAqgCsAK4AtQDJANQA4QDnAPwBBgEvATEBMwE1ATwBQQFHAUkBSwFNDZkN
+		ng2pDbINvw3CDc8N2A3dDeUAAAAAAAACAQAAAAAAAAAzAAAAAAAAAAAAAAAA
+		AAAN6A==
+		</data>
+		<key>backgroundColorName</key>
+		<string>systemOrangeColor</string>
+		<key>inputTypeIdentifier</key>
+		<string>com.apple.Automator.fileSystemObject</string>
+		<key>outputTypeIdentifier</key>
+		<string>com.apple.Automator.nothing</string>
+		<key>presentationMode</key>
+		<integer>15</integer>
+		<key>processesInput</key>
+		<false/>
+		<key>serviceApplicationBundleID</key>
+		<string>com.apple.finder</string>
+		<key>serviceApplicationPath</key>
+		<string>/System/Library/CoreServices/Finder.app</string>
+		<key>serviceInputTypeIdentifier</key>
+		<string>com.apple.Automator.fileSystemObject</string>
+		<key>serviceOutputTypeIdentifier</key>
+		<string>com.apple.Automator.nothing</string>
+		<key>serviceProcessesInput</key>
+		<false/>
+		<key>systemImageName</key>
+		<string>NSTouchBarDocuments</string>
+		<key>useAutomaticInputType</key>
+		<false/>
+		<key>workflowTypeIdentifier</key>
+		<string>com.apple.Automator.servicesMenu</string>
+	</dict>
+</dict>
+</plist>
