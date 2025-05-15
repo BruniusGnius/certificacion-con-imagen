@@ -540,7 +540,7 @@ function renderRubricBars(rubricScores) {
     innovation: "Innovación",
     collaboration: "Colaboración",
     impact: "Impacto",
-    techuse: "Uso de Tecnología",
+    techUse: "Uso de Tecnología",
     presentation: "Presentación",
   };
   let foundValidScores = false;
@@ -585,8 +585,21 @@ function renderRubricBars(rubricScores) {
       "mt-4",
       "font-medium"
     );
-    legend.textContent =
-      "* Criterios evaluados: 1=Insuficiente, 2=Satisfactorio, 3=Excelente";
+    // === NUEVO CÓDIGO PARA OBTENER COLORES CSS ===
+    const rootStyles = getComputedStyle(document.documentElement);
+    const color1 = rootStyles.getPropertyValue("--rubric-color-1").trim();
+    const color2 = rootStyles.getPropertyValue("--rubric-color-2").trim();
+    const color3 = rootStyles.getPropertyValue("--rubric-color-3").trim();
+
+    // Aplicando margin-left: 16px, margin-right: 4px, Y position: relative; top: -1px; para ajustar la alineación vertical
+    const swatchHtml1 = `<span style="display: inline-block; width: 12px; height: 12px; border-radius: 3px; background-color: ${color1}; margin-left: 16px; margin-right: 4px; vertical-align: middle; position: relative; top: -1px;"></span>`; // Añadido position: relative; top: -1px;
+    const swatchHtml2 = `<span style="display: inline-block; width: 12px; height: 12px; border-radius: 3px; background-color: ${color2}; margin-left: 16px; margin-right: 4px; vertical-align: middle; position: relative; top: -1px;"></span>`; // Añadido position: relative; top: -1px;
+    const swatchHtml3 = `<span style="display: inline-block; width: 12px; height: 12px; border-radius: 3px; background-color: ${color3}; margin-left: 16px; margin-right: 4px; vertical-align: middle; position: relative; top: -1px;"></span>`; // Añadido position: relative; top: -1px;
+
+    // Modifica la línea legend.innerHTML para incluir los swatches
+    // Modifica la línea legend.innerHTML para incluir los swatches
+    legend.innerHTML = `* Criterios evaluados:${swatchHtml1} <strong>Newbie</strong>,${swatchHtml2} <strong>Guru</strong>,${swatchHtml3} <strong>Wizard</strong>`;
+
     container.appendChild(legend);
   }
 }
