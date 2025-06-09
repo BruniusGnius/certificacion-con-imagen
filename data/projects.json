@@ -1,5 +1,157 @@
 [
   {
+    "projectTitle": "Hermes. Alarma preventiva de incendios forestales",
+    "projectCategory": "Robótica con Impacto Social",
+    "schooling": "Primaria",
+    "introTitle": "Hermes: Dispositivo mensajero que alerta sobre incendios forestales",
+    "introContent": "Hermes es un sistema de alerta temprana basado en Micro:bit. Detecta aumentos de temperatura en bosques (superiores a 50°C) y envía notificaciones con coordenadas a una aplicación móvil para una rápida respuesta a incendios.",
+    "problemDescription": "Los incendios forestales representan una grave amenaza ambiental y para las comunidades cercanas. En 2019, un incendio en el Bosque de la Primavera calcinó 2,200 hectáreas. La detección temprana es crucial para mitigar los daños y facilitar el control del fuego.",
+    "solutionProposed": "Hermes es un sistema de alarma que utiliza una red de dispositivos Micro:bit distribuidos en el bosque. Cada dispositivo, protegido y parcialmente enterrado, monitorea continuamente la temperatura. Si un sensor detecta una temperatura superior a los 50°C, alerta a otros Micro:bits cercanos mediante comunicación por radio y envía una señal a una central (a través de una aplicación móvil) indicando la ubicación exacta del posible incendio (coordenadas en un mapa), permitiendo una respuesta rápida de los equipos de emergencia.",
+    "innovationProcess": "<p><strong>Conceptualización:</strong> Identificación del problema de los incendios forestales y la necesidad de sistemas de detección temprana más eficientes y accesibles.</p><p><strong>Diseño del Sistema:</strong> Planificación del uso de Micro:bits, sensores de temperatura integrados, comunicación por radio entre dispositivos y una interfaz de alerta para usuarios (aplicación móvil).</p><p><strong>Prototipado y Programación:</strong> Desarrollo de la lógica de programación en MakeCode para Micro:bit, incluyendo la lectura de temperatura, el umbral de alerta, la comunicación por radio (envío y recepción de mensajes) y la activación de indicadores visuales en el Micro:bit.</p><p><strong>Desarrollo de Interfaz de Usuario:</strong> Diseño de una maqueta de aplicación móvil que muestra la alerta, la ubicación del incendio en un mapa (tipo Google Maps), las coordenadas y la temperatura detectada.</p><p><strong>Pruebas y Refinamiento:</strong> Verificación del funcionamiento de los sensores, la comunicación entre los Micro:bits y la simulación del envío de alertas.</p>",
+    "slug": "hermes-alarma-incendios-forestales",
+    "projectDate": "2024-05-10",
+    "sdgIds": [11, 13, 15],
+    "coverImage": {
+      "url": "assets/img/hermes/cover.jpg",
+      "altText": "Jóvenes apilando ecoladrillos coloridos."
+    },
+    "media": {
+      "type": "video",
+      "url": "https://youtu.be/P15mGMbc2XI"
+    },
+    "projectRubricScores": {
+      "innovation": 3,
+      "collaboration": 3,
+      "impact": 3,
+      "techUse": 2,
+      "presentation": 3
+    },
+    "finalProjectGrade": 9,
+    "teamMembers": [
+      {
+        "name": "Carlos",
+        "role": "Líder del Proyecto, Desarrollador Principal",
+        "sbtLink": "https://verificador.gnius.mx/sbt/ana-sofia-lopez-herrera",
+        "certificateCourseName": "Robótica con Impacto Social",
+        "certificateBadgeName": "Robot Navigator",
+        "certificateLevel": "Hacker",
+        "certificateSkills": "Programación Micro:bit, Sensores de Temperatura, Comunicación por Radio, Diseño de Sistemas, Presentación de Proyectos",
+        "certificateCriteria": "Originalidad de la Solución, Viabilidad Técnica, Impacto Potencial del Proyecto, Claridad en la Exposición",
+        "certificateCollege": "Centro Escolar México (CEM)",
+        "certificateIssueDate": "2024-10-15",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      },
+      {
+        "name": "Patricia Zorrilla",
+        "role": "Diseñadora Constructiva",
+        "sbtLink": "https://verificador.gnius.mx/sbt/juan-carlos-perez-gomez",
+        "certificateCourseName": "Robótica con Impacto Social",
+        "certificateBadgeName": "Robot Navigator",
+        "certificateLevel": "Hacker",
+        "certificateSkills": "Programación Micro:bit, Sensores de Temperatura, Comunicación por Radio, Diseño de Sistemas, Presentación de Proyectos",
+        "certificateCriteria": "Originalidad de la Solución, Viabilidad Técnica, Impacto Potencial del Proyecto, Claridad en la Exposición",
+        "certificateCollege": "Centro Escolar México (CEM)",
+        "certificateIssueDate": "2024-10-15",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      },
+      {
+        "name": "Rudy Laddaga",
+        "role": "Co-desarrollador, Diseño conceptual",
+        "sbtLink": "https://verificador.gnius.mx/sbt/maria-fernanda-vidal-cruz",
+        "certificateCourseName": "Robótica con Impacto Social",
+        "certificateBadgeName": "Robot Navigator",
+        "certificateLevel": "Hacker",
+        "certificateSkills": "Programación Micro:bit, Sensores de Temperatura, Comunicación por Radio, Diseño de Sistemas, Presentación de Proyectos",
+        "certificateCriteria": "Originalidad de la Solución, Viabilidad Técnica, Impacto Potencial del Proyecto, Claridad en la Exposición",
+        "certificateCollege": "Centro Escolar México (CEM)",
+        "certificateIssueDate": "2024-10-15",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      },
+      {
+        "name": "Ricardo Rubio Carpinteyro",
+        "role": "Co-desarrollador, Diseño conceptual",
+        "sbtLink": "https://verificador.gnius.mx/sbt/luis-mateo-rojas-diaz",
+        "certificateCourseName": "Robótica con Impacto Social",
+        "certificateBadgeName": "Robot Navigator",
+        "certificateLevel": "Hacker",
+        "certificateSkills": "Programación Micro:bit, Sensores de Temperatura, Comunicación por Radio, Diseño de Sistemas, Presentación de Proyectos",
+        "certificateCriteria": "Originalidad de la Solución, Viabilidad Técnica, Impacto Potencial del Proyecto, Claridad en la Exposición",
+        "certificateCollege": "Centro Escolar México (CEM)",
+        "certificateIssueDate": "2024-10-15",
+        "certificatePreviewUrl": "assets/img/certificado.png",
+        "certificatePrintUrl": "assets/img/certificado.png"
+      }
+    ],
+    "technologies": [
+      {
+        "name": "Micro:bit",
+        "icon": "fas fa-microchip",
+        "category": "Hardware"
+      },
+      {
+        "name": "Sensor de Temperatura (integrado en Micro:bit)",
+        "icon": "fas fa-thermometer-half",
+        "category": "Hardware"
+      },
+      {
+        "name": "Radio Comunicación (Micro:bit)",
+        "icon": "fas fa-broadcast-tower",
+        "category": "Communication"
+      },
+      {
+        "name": "MakeCode (Programación por bloques)",
+        "icon": "fas fa-cubes",
+        "category": "Software"
+      },
+      {
+        "name": "Aplicación Móvil (concepto)",
+        "icon": "fas fa-mobile-alt",
+        "category": "Software"
+      },
+      {
+        "name": "Google Maps (integración en app)",
+        "icon": "fas fa-map-marked-alt",
+        "category": "API/Software"
+      }
+    ],
+    "additionalResources": [],
+    "imageGallery": [
+      {
+        "url": "assets/img/hermes/hermeseaquema1.jpg",
+        "altText": "Esquema de funcionamiento, paso 1",
+        "caption": "Esquema de funcionamiento, paso 1"
+      },
+      {
+        "url": "assets/img/hermes/hermeseaquema2.jpg",
+        "altText": "Esquema de funcionamiento, paso 2",
+        "caption": "Esquema de funcionamiento, paso 2."
+      },
+      {
+        "url": "assets/img/hermes/hermeseaquema3.jpg",
+        "altText": "Esquema de funcionamiento, paso 3.",
+        "caption": "Esquema de funcionamiento, paso 3."
+      },
+      {
+        "url": "assets/img/hermes/hermeseaquema4.jpg",
+        "altText": "Esquema de funcionamiento, paso 4.",
+        "caption": "Esquema de funcionamiento, paso 4."
+      },
+      {
+        "url": "assets/img/hermes/programacion-MakeCode.jpg",
+        "altText": "Programación Micro:bit con MakeCode",
+        "caption": "Programación Micro:bit con MakeCode"
+      },
+      {
+        "url": "assets/img/hermes/hardware2.jpg",
+        "altText": "Hardware usado",
+        "caption": "Hardware: Microbit, cables, sensor."
+      }
+    ]
+  },
+  {
     "projectTitle": "EcoLadrillos Comunitarios",
     "projectCategory": "Impacto Social",
     "schooling": "Secundaria",
