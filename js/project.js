@@ -114,7 +114,19 @@ function populateProjectData(project) {
       }
     });
   }
-
+  // --- Lógica para el Indicador de Nominación en Hero de project.html ---
+  const nominationIndicatorHero = document.querySelector(
+    "[data-nomination-indicator-hero]"
+  );
+  if (nominationIndicatorHero) {
+    if (project.isNominated === true) {
+      // Asegúrate que 'project' sea la variable que contiene los datos del proyecto actual
+      nominationIndicatorHero.classList.remove("hidden");
+    } else {
+      nominationIndicatorHero.classList.add("hidden");
+    }
+  }
+  // --- Fin de la Lógica para el Indicador de Nominación en Hero ---
   const heroMediaContainer = document.getElementById("hero-media");
   const secondaryEvidenceSection = document.getElementById(
     "secondary-evidence-section"

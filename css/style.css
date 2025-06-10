@@ -21,6 +21,8 @@
   --rubric-color-1: var(--gnius-red); /* Insuficiente */
   --rubric-color-2: var(--gnius-yellow); /* Satisfactorio */
   --rubric-color-3: var(--gnius-green); /* Excelente */
+
+  --gnius-gold: #ffc107; /* O el dorado que prefieras, ej. --gnius-yellow */
 }
 /* 3. Custom Base Styles */
 body {
@@ -665,4 +667,44 @@ select.filter-input {
 .btn-float-legend {
   @apply fixed bottom-5 left-5 z-40 bg-gnius-yellow text-gnius-dark-1 rounded-full h-12 w-12 flex items-center justify-center shadow-lg hover:bg-yellow-300 focus:outline-none focus:ring-2 focus:ring-gnius-yellow focus:ring-offset-2 focus:ring-offset-gnius-dark-1;
   font-size: 1.25rem;
+}
+/* --- ESTILOS PARA INDICADOR DE NOMINACIÓN --- */
+.nomination-indicator-wrapper {
+  pointer-events: none; /* Para que no interfiera con el hover de la tarjeta/elemento base */
+}
+
+/* Contenedor del listón solo para dimensionar el área de la esquina y permitir overflow hidden del visual */
+.nomination-ribbon-container {
+  /* No necesita estilos específicos más allá de los de Tailwind, pero la clase existe para estructura */
+}
+
+/* El listón visual en sí (el elemento rotado) */
+.nomination-ribbon-visual .ribbon-shape {
+  /* Tailwind se encarga del color de fondo (bg-gnius-gold), transformaciones y sombra */
+  /* --gnius-gold debe estar definido en :root o Tailwind config */
+}
+
+/* Contenedor de la medalla y texto, para permitir interacción si se desea */
+.medal-and-text-container {
+  pointer-events: auto; /* Permite hover/click en medalla/texto si fuera necesario */
+}
+
+.nomination-medal {
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.4));
+  /* El borde, color de fondo, etc., se aplican con Tailwind en el HTML */
+}
+
+.nomination-text {
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+  padding-right: 4px; /* Pequeño espacio a la derecha del texto para que no pegue al borde del contenedor */
+  font-family: "Saira Semi Condensed", sans-serif; /* Asegurar la fuente correcta */
+}
+
+/* Opcional: Efecto hover para la tarjeta nominada (ajustado para contenedor de imagen) */
+/* Si el contenedor de la imagen de la tarjeta tiene una clase específica, úsala. */
+/* Asumiendo que el wrapper de la imagen de la tarjeta tiene la clase 'aspect-video' o una específica que la envuelva */
+.aspect-video:has(.nomination-indicator-wrapper:not(.hidden)):hover
+  .nomination-medal {
+  transform: scale(1.05);
+  transition: transform 0.2s ease-in-out;
 }

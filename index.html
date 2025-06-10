@@ -21,7 +21,17 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: { 'gnius-dark-1': '#0F0F0F', 'gnius-dark-2': '#1F1F1F', 'gnius-light': '#F0F0F0', 'gnius-yellow': '#FFD700', 'gnius-cyan': '#00FFFF', 'gnius-red': '#FF0000', 'gnius-gray-light': '#555555', 'gnius-gray-dark': '#333333', },
+                    colors: {
+                        'gnius-dark-1': '#0F0F0F',
+                        'gnius-dark-2': '#1F1F1F',
+                        'gnius-light': '#F0F0F0',
+                        'gnius-yellow': '#FFD700',
+                        'gnius-cyan': '#00FFFF',
+                        'gnius-red': '#FF0000',
+                        'gnius-gray-light': '#555555',
+                        'gnius-gray-dark': '#333333',
+                        'gnius-gold': '#FFC107', // <--- AÑADIR O VERIFICAR ESTA LÍNEA
+                    },
                     fontFamily: { 'sans': ['Saira Semi Condensed', 'sans-serif'], 'condensed': ['Saira Condensed', 'sans-serif'], },
                     fontWeight: { 'normal': '400', 'medium': '500', 'semibold': '600', 'bold': '700' },
                     boxShadow: { 'cyan-glow-sm': '0 0 15px 3px rgba(0, 255, 255, 0.3)', 'cyan-glow': '0 0 20px 5px rgba(0, 255, 255, 0.3)', }
@@ -80,7 +90,30 @@
             <article
                 class="bg-gnius-dark-2 rounded-lg overflow-hidden shadow-lg transition duration-300 ease-in-out hover:scale-[1.02] hover:shadow-cyan-glow flex flex-col">
                 <a href="#" data-card-link class="block flex flex-col flex-grow">
-                    <div class="aspect-video overflow-hidden flex-shrink-0 relative">
+                    <div class="aspect-video overflow-hidden flex-shrink-0 relative"> <!-- ESTE ES EL DIV -->
+                        <!-- INICIO: Indicador de Nominado para Tarjeta -->
+                        <div class="nomination-indicator-wrapper absolute top-0 left-0 w-auto h-auto z-10 hidden"
+                            data-nomination-indicator-card>
+                            <!-- Contenedor del listón para definir el área de la esquina -->
+                            <div class="nomination-ribbon-container relative w-[80px] h-[80px] md:w-[90px] md:h-[90px]">
+                                <!-- Este es el lienzo donde se dibuja el listón rotado, overflow-hidden lo corta -->
+                                <div
+                                    class="nomination-ribbon-visual absolute top-[-25px] left-[-35px] w-[120px] h-[120px] md:top-[-30px] md:left-[-40px] md:w-[140px] md:h-[140px] overflow-hidden">
+                                    <!-- El listón amarillo en sí. h-6/h-7 es su "grosor". -->
+                                    <div
+                                        class="ribbon-shape w-full h-6 md:h-7 bg-gnius-gold transform rotate-[-45deg] translate-y-[30px] translate-x-[-30px] md:translate-y-[35px] md:translate-x-[-40px] shadow-md">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Medalla y texto, posicionados sobre el listón -->
+                            <div
+                                class="medal-and-text-container absolute top-1 left-1 md:top-1.5 md:left-1.5 flex items-center space-x-1 md:space-x-1.5">
+                                <img src="assets/img/badges/insignia-nominado.png" alt="Nominado"
+                                    class="nomination-medal w-9 h-9 md:w-10 md:h-10 rounded-full object-contain bg-gnius-dark-2 p-0.5 border border-gnius-gold">
+                                <span class="nomination-text text-xs md:text-sm font-bold text-white">Nominado</span>
+                            </div>
+                        </div>
+                        <!-- FIN: Indicador de Nominado para Tarjeta -->
                         <img data-card-img src="https://picsum.photos/seed/placeholder/640/360" alt=""
                             class="w-full h-full object-cover">
                         <div class="sdg-overlay absolute bottom-2 right-2 bg-black/40 backdrop-blur-sm px-2 py-1 rounded-lg flex items-center space-x-1.5"

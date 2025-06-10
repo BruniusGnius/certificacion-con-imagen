@@ -339,6 +339,18 @@ const createProjectCard = (project) => {
     } else {
       sdgOverlayContainer.style.display = "none";
     }
+    // --- Lógica para el Indicador de Nominación en la Tarjeta ---
+    const nominationIndicator = cardClone.querySelector(
+      "[data-nomination-indicator-card]"
+    );
+    if (nominationIndicator) {
+      if (project.isNominated === true) {
+        nominationIndicator.classList.remove("hidden");
+      } else {
+        nominationIndicator.classList.add("hidden"); // Asegurar que esté oculto si no está nominado o la propiedad no existe
+      }
+    }
+    // --- Fin de la Lógica para el Indicador de Nominación ---
 
     // Metadata (Clases CSS + JS añaden fuente/peso)
     metadataContainer.innerHTML = "";

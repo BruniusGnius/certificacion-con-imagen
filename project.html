@@ -31,7 +31,8 @@
                         'gnius-green': '#4CAF50', // Verde para semáforo Excelente
                         'gnius-gray-light': '#555555',
                         'gnius-gray-dark': '#333333',
-                        'gnius-border': 'var(--gnius-gray-light)', // Referencia interna
+                        'gnius-border': 'var(--gnius-gray-light)',
+                        'gnius-gold': '#FFC107', // Referencia interna
                     },
                     fontFamily: {
                         'sans': ['Saira Semi Condensed', 'sans-serif'], // Principal
@@ -70,7 +71,7 @@
 
     <div class="container mx-auto px-4 py-8 text-lg"> <!-- Tamaño base texto aumentado -->
 
-        <header class="mb-8 flex justify-between items-center">
+        <header class="mb-8 flex justify-between items-center relative z-30 bg-black">
             <a href="index.html">
                 <img src="assets/img/gnius_logo_placeholder.png" alt="Gnius Club Logo" class="h-12 w-auto">
             </a>
@@ -94,36 +95,61 @@
             <!-- === HERO SECTION === -->
             <!-- ================== -->
             <section class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 mb-12 md:mb-16 items-center">
-                <!-- Columna Izquierda: Texto (Añadido 'relative' para posicionar badges) -->
+
+                <!-- Columna Izquierda: Texto (ESTA ES LA QUE MODIFICAMOS) -->
                 <div class="order-2 md:order-1 h-full relative">
-                    <!-- Badges ODS (Posicionados Absolutamente arriba a la derecha de esta columna) -->
-                    <div id="hero-sdg-badges" class="mb-8 flex flex-wrap gap-2 justify-end z-10">
-                        <!-- JS inserta badges aquí -->
+
+                    <!-- Contenedor para Indicadores Superiores -->
+                    <div class="absolute top-0 left-0 right-0 flex items-start justify-between z-20 p-2 md:p-3">
+                        <!-- Indicador de Nominación Simplificado (Izquierda) -->
+                        <div class="nomination-indicator-wrapper-simple hidden flex-shrink-0"
+                            data-nomination-indicator-hero>
+                            <div
+                                class="medal-and-text-container flex items-center space-x-1.5 md:space-x-2 bg-gnius-dark-1/50 backdrop-blur-sm pr-3 pl-1 py-1 rounded-full border border-gnius-gold/70">
+                                <img src="assets/img/badges/insignia-nominado.png" alt="Nominado"
+                                    class="nomination-medal w-8 h-8 md:w-10 md:h-10 rounded-full object-contain">
+                                <span
+                                    class="nomination-text text-sm md:text-base font-bold text-gnius-gold">Nominado</span>
+                            </div>
+                        </div>
+
+                        <!-- Badges ODS (Derecha) -->
+                        <div id="hero-sdg-badges-container" class="flex-grow flex justify-end">
+                            <div id="hero-sdg-badges" class="flex flex-wrap gap-1 md:gap-2 justify-end">
+                                <!-- JS inserta badges ODS aquí -->
+                            </div>
+                        </div>
                     </div>
-                    <!-- Contenedor Principal del Texto (con padding top para no quedar detrás de badges) -->
-                    <div class="flex-grow flex flex-col justify-center pt-14 md:pt-0">
-                        <!-- Aumentado pt-14 para asegurar espacio para badges -->
+
+                    <!-- Contenido Principal del Texto -->
+                    <div class="flex-grow flex flex-col justify-center pt-16 md:pt-16 lg:pt-20 relative z-10">
                         <h1 id="project-title" class="text-4xl lg:text-5xl font-black text-gnius-cyan mb-3">[Título
                             Proyecto]</h1>
                         <div id="project-metadata" class="mb-6 flex flex-wrap gap-2">
+                            <!-- JS inserta metadatos aquí -->
                         </div>
                         <h2 id="intro-title" class="text-2xl lg:text-3xl font-bold text-gnius-yellow mb-3">[Intro
                             Título]</h2>
                         <div id="intro-content"
                             class="prose prose-lg prose-invert max-w-none text-gnius-light-text/90 font-medium">
+                            <!-- JS inserta contenido intro aquí -->
                         </div>
                     </div>
                 </div>
-                <!-- Columna Derecha: Media Principal -->
+
+                <!-- Columna Derecha: Media Principal (ESTA DEBE PERMANECER IGUAL) -->
                 <div class="order-1 md:order-2 bg-gnius-dark-2 rounded-lg overflow-hidden min-h-[200px]">
-                    <div class="relative w-full" style="padding-bottom: 56.25%;">
+                    <div class="relative w-full" style="padding-bottom: 56.25%;"> <!-- Mantiene aspect ratio 16:9 -->
                         <div id="hero-media"
                             class="absolute top-0 left-0 w-full h-full flex items-center justify-center">
                             <span class="text-gnius-gray-light italic text-base font-medium">Cargando media...</span>
+                            <!-- JS inserta el iframe del video o la imagen aquí -->
                         </div>
                     </div>
                 </div>
+
             </section>
+            <!-- === FIN HERO SECTION === -->
 
             <!-- ======================================== -->
             <!-- === SECCION 1: EVALUACION & ODS INFO === -->
