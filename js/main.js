@@ -1,4 +1,4 @@
-// js/main.js - v4.19 (Verificado - Sin cambios funcionales)
+// js/main.js - v4.26 (Borde inferior dinámico en tarjeta)
 
 // --- DOM Elements ---
 const projectList = document.getElementById("project-list"),
@@ -7,6 +7,7 @@ const projectList = document.getElementById("project-list"),
   schoolingSelect = document.getElementById("schooling-select"),
   techSelect = document.getElementById("tech-select"),
   sdgSelect = document.getElementById("sdg-select"),
+  statusSelect = document.getElementById("status-select"),
   clearFiltersBtn = document.getElementById("clear-filters-btn"),
   loadingMessage = document.getElementById("loading-message"),
   noResultsMessage = document.getElementById("no-results-message"),
@@ -46,11 +47,9 @@ const fetchData = async (url) => {
   }
 };
 
-// --- Initialization ---
+// --- Initialization & Data Loading ---
 document.addEventListener("DOMContentLoaded", async () => {
-  if (currentYearSpan) {
-    currentYearSpan.textContent = new Date().getFullYear();
-  }
+  if (currentYearSpan) currentYearSpan.textContent = new Date().getFullYear();
   if (!projectCardTemplate?.content) {
     console.error("CRITICAL: Template not found!");
     if (loadingMessage) loadingMessage.textContent = "Error plantilla.";
@@ -67,12 +66,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
   await loadInitialData();
   setupEventListeners();
-  if (showSdgLegendBtn && sdgLegendModal && sdgModalCloseBtn) {
+  if (showSdgLegendBtn && sdgLegendModal && sdgModalCloseBtn)
     setupSdgLegendModal();
-  }
 });
-
-// --- Data Loading and Processing ---
 const loadInitialData = async () => {
   if (loadingMessage) loadingMessage.style.display = "block";
   if (noResultsMessage) noResultsMessage.style.display = "none";
@@ -94,48 +90,36 @@ const loadInitialData = async () => {
   if (loadingMessage) loadingMessage.style.display = "none";
 };
 
-// --- Populate Filters (con orden escolaridad) ---
+// --- Populate Filters, Filtering, Pagination, etc. ---
 const populateFilters = () => {
-  const categories = new Set();
-  const schoolingLevels = new Set();
-  const technologies = new Set();
+  const categories = new Set(),
+    schoolingLevels = new Set(),
+    technologies = new Set(),
+    statuses = new Set();
   allProjects.forEach((project) => {
     if (project.projectCategory) categories.add(project.projectCategory);
     if (project.schooling) schoolingLevels.add(project.schooling);
-    if (project.technologies) {
+    if (project.technologies)
       project.technologies.forEach(
         (tech) => tech.name && technologies.add(tech.name)
       );
-    }
+    if (project.projectStatus) statuses.add(project.projectStatus);
   });
   const schoolingOrder = ["Primaria", "Secundaria", "Preparatoria"];
   const sortedSchooling = Array.from(schoolingLevels).sort((a, b) => {
-    const indexA = schoolingOrder.indexOf(a);
-    const indexB = schoolingOrder.indexOf(b);
+    const indexA = schoolingOrder.indexOf(a),
+      indexB = schoolingOrder.indexOf(b);
     if (indexA === -1 && indexB === -1) return a.localeCompare(b);
     if (indexA === -1) return 1;
     if (indexB === -1) return -1;
     return indexA - indexB;
   });
-  populateSelect(
-    document.getElementById("category-select"),
-    categories,
-    "Categoría"
-  );
-  populateSelect(
-    document.getElementById("schooling-select"),
-    sortedSchooling,
-    "Escolaridad",
-    false
-  );
-  populateSelect(
-    document.getElementById("tech-select"),
-    technologies,
-    "Tecnología"
-  );
-  populateSdgSelect(document.getElementById("sdg-select"), "ODS");
+  populateSelect(statusSelect, statuses, "Estado del proyecto", false);
+  populateSelect(categorySelect, categories, "Categoría");
+  populateSelect(schoolingSelect, sortedSchooling, "Escolaridad", false);
+  populateSelect(techSelect, technologies, "Tecnología");
+  populateSdgSelect(sdgSelect, "ODS");
 };
-
 const populateSelect = (
   selectElement,
   items,
@@ -159,11 +143,9 @@ const populateSelect = (
   if (
     currentValue &&
     Array.from(selectElement.options).some((opt) => opt.value === currentValue)
-  ) {
+  )
     selectElement.value = currentValue;
-  }
 };
-
 const populateSdgSelect = (selectElement, defaultOptionText) => {
   if (!selectElement || typeof odsData === "undefined") return;
   const currentValue = selectElement.value;
@@ -181,40 +163,41 @@ const populateSdgSelect = (selectElement, defaultOptionText) => {
   if (
     currentValue &&
     selectElement.querySelector(`option[value="${currentValue}"]`)
-  ) {
+  )
     selectElement.value = currentValue;
-  }
 };
-
-// --- Filtering Logic ---
 const applyFiltersAndRender = () => {
-  const searchTerm = searchInput?.value.toLowerCase().trim() ?? "";
-  const selectedCategory = categorySelect?.value ?? "";
-  const selectedSchooling = schoolingSelect?.value ?? "";
-  const selectedTech = techSelect?.value ?? "";
-  const selectedSdg = sdgSelect?.value ? parseInt(sdgSelect.value, 10) : "";
+  const searchTerm = searchInput?.value.toLowerCase().trim() ?? "",
+    selectedCategory = categorySelect?.value ?? "",
+    selectedSchooling = schoolingSelect?.value ?? "",
+    selectedTech = techSelect?.value ?? "",
+    selectedSdg = sdgSelect?.value ? parseInt(sdgSelect.value, 10) : "",
+    selectedStatus = statusSelect?.value ?? "";
   try {
     filteredProjects = allProjects.filter((project) => {
       const titleMatch =
-        project.projectTitle?.toLowerCase().includes(searchTerm) ?? false;
-      const studentMatch =
-        project.teamMembers?.some((member) =>
-          member.name?.toLowerCase().includes(searchTerm)
-        ) ?? false;
-      const categoryMatch =
-        !selectedCategory || project.projectCategory === selectedCategory;
-      const schoolingMatch =
-        !selectedSchooling || project.schooling === selectedSchooling;
-      const techMatch =
-        !selectedTech ||
-        project.technologies?.some((tech) => tech.name === selectedTech);
-      const sdgMatch = !selectedSdg || project.sdgIds?.includes(selectedSdg);
+          project.projectTitle?.toLowerCase().includes(searchTerm) ?? !1,
+        studentMatch =
+          project.teamMembers?.some((member) =>
+            member.name?.toLowerCase().includes(searchTerm)
+          ) ?? !1,
+        categoryMatch =
+          !selectedCategory || project.projectCategory === selectedCategory,
+        schoolingMatch =
+          !selectedSchooling || project.schooling === selectedSchooling,
+        techMatch =
+          !selectedTech ||
+          project.technologies?.some((tech) => tech.name === selectedTech),
+        sdgMatch = !selectedSdg || project.sdgIds?.includes(selectedSdg),
+        statusMatch =
+          !selectedStatus || project.projectStatus === selectedStatus;
       return (
         (titleMatch || studentMatch) &&
         categoryMatch &&
         schoolingMatch &&
         techMatch &&
-        sdgMatch
+        sdgMatch &&
+        statusMatch
       );
     });
   } catch (error) {
@@ -225,16 +208,14 @@ const applyFiltersAndRender = () => {
   renderProjects();
   updatePaginationControls();
 };
-
-// --- Rendering ---
 const renderProjects = () => {
   if (!projectList || !noResultsMessage) return;
   projectList.innerHTML = "";
   noResultsMessage.style.display =
     filteredProjects.length === 0 ? "block" : "none";
   if (filteredProjects.length > 0) {
-    const startIndex = (currentPage - 1) * projectsPerPage;
-    const endIndex = startIndex + projectsPerPage;
+    const startIndex = (currentPage - 1) * projectsPerPage,
+      endIndex = startIndex + projectsPerPage;
     const projectsToRender = filteredProjects.slice(startIndex, endIndex);
     projectsToRender.forEach((project) => {
       try {
@@ -249,8 +230,94 @@ const renderProjects = () => {
     });
   }
 };
-
-// Renderizar Leyenda ODS como LISTA dentro del MODAL
+const updatePaginationControls = () => {
+  if (!paginationControls) return;
+  const totalPages = Math.ceil(filteredProjects.length / projectsPerPage);
+  if (totalPages <= 1) {
+    paginationControls.style.display = "none";
+    return;
+  }
+  paginationControls.style.display = "flex";
+  if (pageInfo) pageInfo.textContent = `Página ${currentPage} de ${totalPages}`;
+  if (prevPageBtn) prevPageBtn.disabled = currentPage === 1;
+  if (nextPageBtn) nextPageBtn.disabled = currentPage === totalPages;
+};
+const goToPage = (page) => {
+  const totalPages = Math.ceil(filteredProjects.length / projectsPerPage);
+  if (page < 1 || page > totalPages) return;
+  currentPage = page;
+  renderProjects();
+  updatePaginationControls();
+  if (projectList) {
+    const mainContainer = document.querySelector(".container");
+    if (mainContainer)
+      mainContainer.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+};
+const setupEventListeners = () => {
+  if (searchInput) searchInput.addEventListener("input", applyFiltersAndRender);
+  if (categorySelect)
+    categorySelect.addEventListener("change", applyFiltersAndRender);
+  if (schoolingSelect)
+    schoolingSelect.addEventListener("change", applyFiltersAndRender);
+  if (techSelect) techSelect.addEventListener("change", applyFiltersAndRender);
+  if (sdgSelect) sdgSelect.addEventListener("change", applyFiltersAndRender);
+  if (statusSelect)
+    statusSelect.addEventListener("change", applyFiltersAndRender);
+  if (clearFiltersBtn) {
+    clearFiltersBtn.addEventListener("click", () => {
+      if (searchInput) searchInput.value = "";
+      if (categorySelect) categorySelect.value = "";
+      if (schoolingSelect) schoolingSelect.value = "";
+      if (techSelect) techSelect.value = "";
+      if (sdgSelect) sdgSelect.value = "";
+      if (statusSelect) statusSelect.value = "";
+      applyFiltersAndRender();
+    });
+  }
+  if (prevPageBtn) {
+    prevPageBtn.addEventListener("click", () => {
+      if (currentPage > 1) goToPage(currentPage - 1);
+    });
+  }
+  if (nextPageBtn) {
+    nextPageBtn.addEventListener("click", () => {
+      const totalPages = Math.ceil(filteredProjects.length / projectsPerPage);
+      if (currentPage < totalPages) goToPage(currentPage + 1);
+    });
+  }
+};
+const setupSdgLegendModal = () => {
+  if (!showSdgLegendBtn || !sdgLegendModal || !sdgModalCloseBtn) return;
+  const openModal = () => {
+    sdgLegendModal.classList.remove("hidden");
+    void sdgLegendModal.offsetWidth;
+    sdgLegendModal.classList.add("visible");
+    document.body.style.overflow = "hidden";
+  };
+  const closeModal = () => {
+    sdgLegendModal.classList.remove("visible");
+    document.body.style.overflow = "";
+  };
+  sdgLegendModal.addEventListener("transitionend", (e) => {
+    if (
+      e.target === sdgLegendModal &&
+      e.propertyName === "opacity" &&
+      !sdgLegendModal.classList.contains("visible")
+    ) {
+      sdgLegendModal.classList.add("hidden");
+    }
+  });
+  showSdgLegendBtn.addEventListener("click", openModal);
+  sdgModalCloseBtn.addEventListener("click", closeModal);
+  sdgLegendModal.addEventListener("click", (e) => {
+    if (e.target === sdgLegendModal) closeModal();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && sdgLegendModal.classList.contains("visible"))
+      closeModal();
+  });
+};
 const renderSdgLegend = () => {
   if (!sdgLegendModalContent || typeof odsData === "undefined") return;
   sdgLegendModalContent.innerHTML = "";
@@ -268,7 +335,7 @@ const renderSdgLegend = () => {
     square.title = `ODS ${sdg.num}: ${sdg.title}`;
     square.style.color = getContrastYIQ(sdg.color);
     const title = document.createElement("span");
-    title.className = "sdg-legend-title-list font-condensed font-semibold"; // <-- Asegurado semibold
+    title.className = "sdg-legend-title-list font-condensed font-semibold";
     title.textContent = sdg.title;
     listItem.appendChild(square);
     listItem.appendChild(title);
@@ -276,21 +343,23 @@ const renderSdgLegend = () => {
   });
 };
 
-// Crear Tarjeta de Proyecto
+// --- createProjectCard (CON CAMBIOS EN EL BORDE) ---
 const createProjectCard = (project) => {
-  if (!projectCardTemplate?.content) {
-    return null;
-  }
+  if (!projectCardTemplate?.content) return null;
   const cardClone = projectCardTemplate.content.cloneNode(true);
-  const linkElement = cardClone.querySelector("[data-card-link]");
-  const imgElement = cardClone.querySelector("[data-card-img]");
-  const titleElement = cardClone.querySelector("[data-card-title]");
-  const sdgContainer = cardClone.querySelector("[data-card-sdgs]");
-  const metadataContainer = cardClone.querySelector("[data-card-metadata]");
-  const descElement = cardClone.querySelector("[data-card-desc]");
-  const studentsContainer = cardClone.querySelector("[data-card-students]");
-  const sdgOverlayContainer = cardClone.querySelector(".sdg-overlay");
+  // CAMBIO: Se selecciona el nuevo elemento <article>
+  const articleElement = cardClone.querySelector("[data-card-article]");
+  const linkElement = cardClone.querySelector("[data-card-link]"),
+    imgElement = cardClone.querySelector("[data-card-img]"),
+    titleElement = cardClone.querySelector("[data-card-title]"),
+    sdgContainer = cardClone.querySelector("[data-card-sdgs]"),
+    metadataContainer = cardClone.querySelector("[data-card-metadata]"),
+    descElement = cardClone.querySelector("[data-card-desc]"),
+    studentsContainer = cardClone.querySelector("[data-card-students]"),
+    sdgOverlayContainer = cardClone.querySelector(".sdg-overlay"),
+    statusContainer = cardClone.querySelector("[data-card-status]");
   if (
+    !articleElement ||
     !linkElement ||
     !imgElement ||
     !titleElement ||
@@ -298,13 +367,24 @@ const createProjectCard = (project) => {
     !metadataContainer ||
     !descElement ||
     !studentsContainer ||
-    !sdgOverlayContainer
+    !sdgOverlayContainer ||
+    !statusContainer
   ) {
     console.error("Template elements missing.");
     return null;
   }
 
   try {
+    // CAMBIO: Lógica para el borde de color dinámico
+    if (project.projectStatus) {
+      const lowerCaseStatus = project.projectStatus.toLowerCase();
+      if (lowerCaseStatus === "idea") {
+        articleElement.style.borderColor = "var(--gnius-orange)";
+      } else if (lowerCaseStatus === "prototipo") {
+        articleElement.style.borderColor = "var(--gnius-violet)";
+      }
+    }
+
     linkElement.href = `project.html?slug=${project.slug || ""}`;
     imgElement.src =
       project.coverImage?.url || "assets/img/gnius_logo_placeholder.png";
@@ -313,9 +393,8 @@ const createProjectCard = (project) => {
     imgElement.onerror = () => {
       imgElement.src = "assets/img/gnius_logo_placeholder.png";
     };
-    titleElement.textContent = project.projectTitle || "Sin Título"; // Clases en HTML
+    titleElement.textContent = project.projectTitle || "Sin Título";
 
-    // ODS Overlay
     sdgContainer.innerHTML = "";
     if (
       project.sdgIds &&
@@ -328,7 +407,7 @@ const createProjectCard = (project) => {
         if (sdgInfo) {
           const square = document.createElement("span");
           square.className =
-            "sdg-indicator-square-small font-condensed font-bold"; // Clases fuente/peso
+            "sdg-indicator-square-small font-condensed font-bold";
           square.textContent = sdgInfo.num;
           square.style.backgroundColor = sdgInfo.color;
           square.title = `ODS ${sdgInfo.num}: ${sdgInfo.title}`;
@@ -340,7 +419,17 @@ const createProjectCard = (project) => {
       sdgOverlayContainer.style.display = "none";
     }
 
-    // Metadata (Clases CSS + JS añaden fuente/peso)
+    const nominationIndicator = cardClone.querySelector(
+      "[data-nomination-indicator-card]"
+    );
+    if (nominationIndicator) {
+      if (project.isNominated === true) {
+        nominationIndicator.classList.remove("hidden");
+      } else {
+        nominationIndicator.classList.add("hidden");
+      }
+    }
+
     metadataContainer.innerHTML = "";
     if (project.projectCategory) {
       const chip = document.createElement("span");
@@ -357,13 +446,11 @@ const createProjectCard = (project) => {
       metadataContainer.appendChild(chip);
     }
 
-    // Descripción (Clase font-medium en HTML)
     descElement.textContent = project.introContent
       ? project.introContent.substring(0, 100) +
         (project.introContent.length > 100 ? "..." : "")
       : "Sin descripción.";
 
-    // Estudiantes (Clase font-semibold en CSS)
     studentsContainer.innerHTML = "";
     const maxStudentsToShow = 4;
     if (project.teamMembers && project.teamMembers.length > 0) {
@@ -389,6 +476,12 @@ const createProjectCard = (project) => {
       chip.textContent = "Equipo no especificado";
       studentsContainer.appendChild(chip);
     }
+
+    if (project.projectStatus) {
+      statusContainer.innerHTML = createStatusIndicator(project.projectStatus);
+    } else {
+      statusContainer.innerHTML = "";
+    }
   } catch (error) {
     console.error(
       `Error asignando datos para ${project?.projectTitle}:`,
@@ -396,111 +489,11 @@ const createProjectCard = (project) => {
     );
     return null;
   }
+
   return cardClone;
 };
 
-// --- Pagination ---
-const updatePaginationControls = () => {
-  if (!paginationControls) return;
-  const totalPages = Math.ceil(filteredProjects.length / projectsPerPage);
-  if (totalPages <= 1) {
-    paginationControls.style.display = "none";
-    return;
-  }
-  paginationControls.style.display = "flex";
-  if (pageInfo) pageInfo.textContent = `Página ${currentPage} de ${totalPages}`;
-  if (prevPageBtn) prevPageBtn.disabled = currentPage === 1;
-  if (nextPageBtn) nextPageBtn.disabled = currentPage === totalPages;
-};
-const goToPage = (page) => {
-  const totalPages = Math.ceil(filteredProjects.length / projectsPerPage);
-  if (page < 1 || page > totalPages) {
-    return;
-  }
-  currentPage = page;
-  renderProjects();
-  updatePaginationControls();
-  if (projectList) {
-    const mainContainer = document.querySelector(".container");
-    if (mainContainer) {
-      mainContainer.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  }
-};
-
-// --- Event Listeners ---
-const setupEventListeners = () => {
-  if (searchInput) searchInput.addEventListener("input", applyFiltersAndRender);
-  if (categorySelect)
-    categorySelect.addEventListener("change", applyFiltersAndRender);
-  if (schoolingSelect)
-    schoolingSelect.addEventListener("change", applyFiltersAndRender);
-  if (techSelect) techSelect.addEventListener("change", applyFiltersAndRender);
-  if (sdgSelect) sdgSelect.addEventListener("change", applyFiltersAndRender);
-  if (clearFiltersBtn) {
-    clearFiltersBtn.addEventListener("click", () => {
-      if (searchInput) searchInput.value = "";
-      if (categorySelect) categorySelect.value = "";
-      if (schoolingSelect) schoolingSelect.value = "";
-      if (techSelect) techSelect.value = "";
-      if (sdgSelect) sdgSelect.value = "";
-      applyFiltersAndRender();
-    });
-  }
-  if (prevPageBtn) {
-    prevPageBtn.addEventListener("click", () => {
-      if (currentPage > 1) {
-        goToPage(currentPage - 1);
-      }
-    });
-  }
-  if (nextPageBtn) {
-    nextPageBtn.addEventListener("click", () => {
-      const totalPages = Math.ceil(filteredProjects.length / projectsPerPage);
-      if (currentPage < totalPages) {
-        goToPage(currentPage + 1);
-      }
-    });
-  }
-};
-
-// --- Lógica Modal Leyenda ODS ---
-const setupSdgLegendModal = () => {
-  if (!showSdgLegendBtn || !sdgLegendModal || !sdgModalCloseBtn) return;
-  const openModal = () => {
-    sdgLegendModal.classList.remove("hidden");
-    void sdgLegendModal.offsetWidth;
-    sdgLegendModal.classList.add("visible");
-    document.body.style.overflow = "hidden";
-  };
-  const closeModal = () => {
-    sdgLegendModal.classList.remove("visible");
-    document.body.style.overflow = "";
-  };
-  sdgLegendModal.addEventListener("transitionend", (e) => {
-    if (
-      e.target === sdgLegendModal &&
-      e.propertyName === "opacity" &&
-      !sdgLegendModal.classList.contains("visible")
-    ) {
-      sdgLegendModal.classList.add("hidden");
-    }
-  });
-  showSdgLegendBtn.addEventListener("click", openModal);
-  sdgModalCloseBtn.addEventListener("click", closeModal);
-  sdgLegendModal.addEventListener("click", (e) => {
-    if (e.target === sdgLegendModal) {
-      closeModal();
-    }
-  });
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && sdgLegendModal.classList.contains("visible")) {
-      closeModal();
-    }
-  });
-};
-
-// --- Helper para Contraste de Color ---
+// --- Helper Functions ---
 function getContrastYIQ(hexcolor) {
   hexcolor = hexcolor?.replace("#", "") ?? "";
   if (hexcolor.length !== 6) return "#ffffff";
@@ -508,9 +501,36 @@ function getContrastYIQ(hexcolor) {
     var r = parseInt(hexcolor.substr(0, 2), 16),
       g = parseInt(hexcolor.substr(2, 2), 16),
       b = parseInt(hexcolor.substr(4, 2), 16);
-    var yiq = (r * 299 + g * 587 + b * 114) / 1000;
+    var yiq = (r * 299 + g * 587 + b * 114) / 1e3;
     return yiq >= 135 ? "#1a1a1a" : "#ffffff";
   } catch (e) {
     return "#ffffff";
   }
+}
+
+function createStatusIndicator(status) {
+  if (!status) return "";
+  const lowerCaseStatus = status.toLowerCase();
+
+  let iconClass = "";
+  let modifierClass = "";
+
+  if (lowerCaseStatus === "idea") {
+    iconClass = "fa-solid fa-lightbulb";
+    modifierClass = "status-idea";
+  } else if (lowerCaseStatus === "prototipo") {
+    iconClass = "fa-solid fa-gears";
+    modifierClass = "status-prototipo";
+  } else {
+    return "";
+  }
+
+  return `
+        <div class="status-indicator-card ${modifierClass}">
+            <div class="icon-wrapper">
+                <i class="${iconClass}"></i>
+            </div>
+            <p class="status-text">${status}</p>
+        </div>
+    `;
 }

@@ -2,15 +2,17 @@
   {
     "projectTitle": "Hermes. Alarma preventiva de incendios forestales",
     "projectCategory": "Robótica con Impacto Social",
-    "schooling": "Robot Navigator",
+    "schooling": "Primaria",
     "introTitle": "Hermes: Dispositivo mensajero que alerta sobre incendios forestales",
     "introContent": "Hermes es un sistema de alerta temprana basado en Micro:bit. Detecta aumentos de temperatura en bosques (superiores a 50°C) y envía notificaciones con coordenadas a una aplicación móvil para una rápida respuesta a incendios.",
     "problemDescription": "Los incendios forestales representan una grave amenaza ambiental y para las comunidades cercanas. En 2019, un incendio en el Bosque de la Primavera calcinó 2,200 hectáreas. La detección temprana es crucial para mitigar los daños y facilitar el control del fuego.",
     "solutionProposed": "Hermes es un sistema de alarma que utiliza una red de dispositivos Micro:bit distribuidos en el bosque. Cada dispositivo, protegido y parcialmente enterrado, monitorea continuamente la temperatura. Si un sensor detecta una temperatura superior a los 50°C, alerta a otros Micro:bits cercanos mediante comunicación por radio y envía una señal a una central (a través de una aplicación móvil) indicando la ubicación exacta del posible incendio (coordenadas en un mapa), permitiendo una respuesta rápida de los equipos de emergencia.",
     "innovationProcess": "<p><strong>Conceptualización:</strong> Identificación del problema de los incendios forestales y la necesidad de sistemas de detección temprana más eficientes y accesibles.</p><p><strong>Diseño del Sistema:</strong> Planificación del uso de Micro:bits, sensores de temperatura integrados, comunicación por radio entre dispositivos y una interfaz de alerta para usuarios (aplicación móvil).</p><p><strong>Prototipado y Programación:</strong> Desarrollo de la lógica de programación en MakeCode para Micro:bit, incluyendo la lectura de temperatura, el umbral de alerta, la comunicación por radio (envío y recepción de mensajes) y la activación de indicadores visuales en el Micro:bit.</p><p><strong>Desarrollo de Interfaz de Usuario:</strong> Diseño de una maqueta de aplicación móvil que muestra la alerta, la ubicación del incendio en un mapa (tipo Google Maps), las coordenadas y la temperatura detectada.</p><p><strong>Pruebas y Refinamiento:</strong> Verificación del funcionamiento de los sensores, la comunicación entre los Micro:bits y la simulación del envío de alertas.</p>",
+    "projectStatus": "Prototipo",
     "slug": "hermes-alarma-incendios-forestales",
     "projectDate": "2024-05-10",
     "sdgIds": [11, 13, 15],
+    "isNominated": true,
     "coverImage": {
       "url": "assets/img/hermes/cover.jpg",
       "altText": "Jóvenes apilando ecoladrillos coloridos."
@@ -19,6 +21,7 @@
       "type": "video",
       "url": "https://youtu.be/P15mGMbc2XI"
     },
+
     "projectRubricScores": {
       "innovation": 3,
       "collaboration": 3,
@@ -160,9 +163,11 @@
     "problemDescription": "Alta contaminación por plásticos PET y falta de materiales de construcción económicos para pequeñas infraestructuras comunitarias.",
     "solutionProposed": "Capacitar a la comunidad para crear ecoladrillos (botellas PET rellenas de plásticos limpios y secos) y diseñar pequeños prototipos constructivos (bancas, jardineras).",
     "innovationProcess": "<p><strong>Investigación:</strong> Sobre la técnica de ecoladrillos y su viabilidad.</p><p><strong>Talleres:</strong> Impartición de talleres de sensibilización y fabricación.</p><p><strong>Diseño:</strong> Creación de diseños simples para mobiliario urbano.</p><p><strong>Construcción:</strong> Prototipos construidos con la comunidad.</p>",
+    "projectStatus": "Idea",
     "slug": "ecoladrillos-comunitarios",
     "projectDate": "2024-10-20",
     "sdgIds": [1, 11, 12],
+    "isNominated": false,
     "coverImage": {
       "url": "assets/img/eco-ladrillos/cover.jpg",
       "altText": "Jóvenes apilando ecoladrillos coloridos."
@@ -296,6 +301,7 @@
     "slug": "app-guardianes-del-agua",
     "projectDate": "2025-03-15",
     "sdgIds": [6, 11, 14],
+    "isNominated": true,
     "coverImage": {
       "url": "assets/img/guardianes-agua/cover.png",
       "altText": "Pantalla de la app Guardianes del Agua con un mapa de reportes."
@@ -677,6 +683,7 @@
     "slug": "videojuego-serio-ecoguerreros",
     "projectDate": "2025-06-10",
     "sdgIds": [4, 13, 15],
+    "isNominated": false,
     "coverImage": {
       "url": "https://picsum.photos/seed/ecoguerreros-cover/1280/720",
       "altText": "Pantalla del juego EcoGuerreros mostrando un mapa con indicadores ambientales."
