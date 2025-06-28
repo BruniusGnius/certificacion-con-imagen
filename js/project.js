@@ -77,18 +77,15 @@ function populateProjectData(project) {
     );
   }
 
-  const statusStepperContainer = document.getElementById(
-    "project-status-stepper"
+  // Lógica para renderizar la nueva Píldora de Estado
+  const statusPillContainer = document.getElementById(
+    "project-status-pill-container"
   );
-  if (statusStepperContainer && project.projectStatus) {
-    statusStepperContainer.innerHTML = createStatusStepper(
-      project.projectStatus
-    );
-    statusStepperContainer.style.display = "flex";
-  } else if (statusStepperContainer) {
-    statusStepperContainer.style.display = "none";
+  if (statusPillContainer && project.projectStatus) {
+    statusPillContainer.innerHTML = createStatusPill(project.projectStatus);
   }
 
+  // --- HERO ODS BADGES (ESTRUCTURA RESTAURADA: NÚMERO + ICONO) ---
   const heroSdgBadgesContainer = document.getElementById("hero-sdg-badges");
   heroSdgBadgesContainer.innerHTML = "";
   if (
@@ -605,33 +602,30 @@ function getContrastYIQ(hexcolor) {
   }
 }
 
-function createStatusStepper(status) {
+// Nueva función para crear la Píldora de Estado
+function createStatusPill(status) {
   if (!status) return "";
   const lowerCaseStatus = status.toLowerCase();
-  const isIdea = lowerCaseStatus === "idea";
-  const isPrototipo = lowerCaseStatus === "prototipo";
 
-  const ideaState = isIdea ? "active" : isPrototipo ? "completed" : "inactive";
-  const protoState = isPrototipo ? "active" : "inactive";
-  const lineState = isPrototipo ? "completed" : "inactive";
+  let iconClass = "";
+  let modifierClass = "";
+
+  if (lowerCaseStatus === "idea") {
+    iconClass = "fa-solid fa-lightbulb";
+    modifierClass = "status-idea";
+  } else if (lowerCaseStatus === "prototipo") {
+    iconClass = "fa-solid fa-gears";
+    modifierClass = "status-prototipo";
+  } else {
+    return "";
+  }
 
   return `
-        <div class="status-stepper-detailed">
-            <div class="status-node ${ideaState}">
-                <div class="status-icon-wrapper">
-                    <i class="fa-solid fa-lightbulb"></i>
-                </div>
-                <p class="status-label">Idea</p>
-            </div>
-            <div class="status-connector-line ${lineState}"></div>
-            <div class="status-node prototipo ${protoState}">
-                <div class="status-icon-wrapper">
-                    <i class="fa-solid fa-gears"></i>
-                </div>
-                <p class="status-label">Prototipo</p>
-            </div>
-        </div>
-    `;
+      <div class="status-pill ${modifierClass}">
+          <i class="${iconClass}"></i>
+          <span class="status-text">${status}</span>
+      </div>
+  `;
 }
 
 document.addEventListener("DOMContentLoaded", loadProjectDetails);

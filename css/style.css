@@ -1,4 +1,4 @@
-/* css/style.css - v6.35 (FINAL, COMPLETO Y RESTAURADO) */
+/* css/style.css - v6.38 (FINAL DEFINITIVO Y COMPLETO - Fusión correcta y restauración de estilos del modal) */
 @import url("https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@400;500;600;700;800;900&family=Saira+Semi+Condensed:wght@400;500;600;700;800;900&display=swap");
 
 /* === VARIABLES GLOBALES === */
@@ -8,10 +8,10 @@
   --gnius-light: #ffffff;
   --gnius-light-text: #f0f0f0;
   --gnius-yellow: #ffd700;
-  --gnius-cyan: #00ffff;
+  --gnius-cyan: #00bbff;
   --gnius-red: #ff0000;
   --gnius-green: #4caf50;
-  --gnius-violet: #8731fa;
+  --gnius-violet: #a15aff;
   --gnius-orange: #fd6925; /* Color para el estado 'Idea' */
   --gnius-gray-light: #555555;
   --gnius-gray-dark: #333333;
@@ -61,8 +61,26 @@ h6 {
   color: var(--gnius-light-text);
   font-weight: 500;
 }
+.prose code {
+  background-color: var(--gnius-gray-dark);
+  color: var(--gnius-yellow);
+  padding: 0.1em 0.4em;
+  border-radius: 0.25rem;
+  font-size: 0.9em;
+  font-family: "Saira Condensed", monospace;
+}
+.chartjs-tooltip,
+.chartjs-tooltip *,
+#gaugeChart + p,
+.chartjs-point-label,
+.rubric-score-text {
+  font-family: "Saira Condensed", sans-serif !important;
+}
 
 /* === COMPONENTES GENERALES === */
+.font-bold {
+  font-weight: 800 !important;
+}
 
 /* --- Botones --- */
 .btn {
@@ -73,9 +91,12 @@ h6 {
 .btn-primary {
   @apply bg-gnius-cyan text-gnius-dark-1 hover:bg-cyan-300 focus:ring-gnius-cyan;
 }
+
+/* REGLA RESTAURADA */
 .btn-danger {
   @apply bg-gnius-red text-gnius-light-text hover:bg-red-700 focus:ring-gnius-red;
 }
+
 .btn:disabled {
   @apply opacity-50 cursor-not-allowed;
 }
@@ -83,11 +104,13 @@ h6 {
 /* --- Enlaces --- */
 .link-action {
   @apply text-sm font-semibold transition duration-150 ease-in-out;
+  font-family: "Saira Semi Condensed", sans-serif;
 }
 .certificate-link {
   display: inline-flex;
   align-items: center;
   color: var(--gnius-yellow);
+  font-family: "Saira Semi Condensed", sans-serif;
   font-weight: 600;
   font-size: 0.875rem;
   transition: color 0.15s ease-in-out;
@@ -108,8 +131,10 @@ h6 {
   align-items: center;
   justify-content: center;
   line-height: 1.25;
+  text-align: center;
   white-space: nowrap;
   margin: 0.1rem;
+  font-family: "Saira Semi Condensed", sans-serif;
 }
 .chip-gray {
   background-color: var(--gnius-border);
@@ -137,7 +162,12 @@ h6 {
   line-height: 1.1 !important;
   border-width: 1px;
   border-style: solid;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 9999px;
+  text-align: center;
+  white-space: nowrap;
   margin: 2px;
 }
 .chip-cyan-muted-border {
@@ -155,8 +185,11 @@ h6 {
   font-weight: 600 !important;
   font-size: 0.75rem !important;
 }
+.student-chip i {
+  margin-right: 0.25rem;
+}
 
-/* --- ESTILOS DE CHIPS DE TECNOLOGÍA (RESTAURADOS) --- */
+/* --- Chips de Tecnología --- */
 .tech-chip-container {
   display: inline-flex;
   align-items: center;
@@ -213,7 +246,7 @@ h6 {
   color: var(--gnius-light-text);
 }
 
-/* --- REGLAS DE LAYOUT RESTAURADAS --- */
+/* --- Layout y Modal Genérico --- */
 .aside-section {
   padding: 1.5rem;
   background-color: var(--gnius-dark-2);
@@ -227,10 +260,38 @@ h6 {
 .gallery-item:hover {
   transform: scale(1.03);
 }
+#imageModal #modalCloseBtn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 20;
+  line-height: 1;
+}
+#imageModal #modalImage {
+  display: block;
+}
+#imageModal #modalCaption {
+  font-family: "Saira Semi Condensed", sans-serif;
+  font-weight: 500;
+  scrollbar-width: thin;
+  scrollbar-color: var(--gnius-cyan) var(--gnius-gray-dark);
+}
+#imageModal #modalCaption::-webkit-scrollbar {
+  width: 8px;
+}
+#imageModal #modalCaption::-webkit-scrollbar-track {
+  background: var(--gnius-gray-dark);
+  border-radius: 4px;
+}
+#imageModal #modalCaption::-webkit-scrollbar-thumb {
+  background-color: var(--gnius-cyan);
+  border-radius: 4px;
+  border: 2px solid var(--gnius-gray-dark);
+}
 
 /* === INDEX.HTML === */
 
-/* --- Indicador de Nominación en Tarjeta --- */
+/* --- Indicador de Nominación --- */
 .nomination-indicator-wrapper {
   pointer-events: none;
 }
@@ -242,6 +303,11 @@ h6 {
 }
 .nomination-text {
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+.aspect-video:has(.nomination-indicator-wrapper:not(.hidden)):hover
+  .nomination-medal {
+  transform: scale(1.05);
+  transition: transform 0.2s ease-in-out;
 }
 
 /* --- ODS Overlay en Tarjeta --- */
@@ -263,7 +329,7 @@ h6 {
   font-weight: 600;
 }
 
-/* --- INDICADOR DE ESTADO EN TARJETA (V4 - ICONO ÚNICO + TEXTO, SIN SHADOW) --- */
+/* --- Indicador de Estado en Tarjeta (V4) --- */
 .status-indicator-card {
   display: flex;
   align-items: center;
@@ -284,11 +350,11 @@ h6 {
 }
 .status-indicator-card .status-text {
   font-family: "Saira Condensed", sans-serif;
-  font-size: 0.875rem;
+  font-size: 1rem;
   font-weight: 700;
   transition: color 0.3s ease;
+  text-transform: uppercase;
 }
-/* Estado Idea */
 .status-indicator-card.status-idea .icon-wrapper {
   background-color: var(--gnius-orange);
 }
@@ -298,7 +364,6 @@ h6 {
 .status-indicator-card.status-idea .status-text {
   color: var(--gnius-orange);
 }
-/* Estado Prototipo */
 .status-indicator-card.status-prototipo .icon-wrapper {
   background-color: var(--gnius-violet);
 }
@@ -309,7 +374,7 @@ h6 {
   color: var(--gnius-violet);
 }
 
-/* --- Modal Leyenda ODS --- */
+/* --- ESTILOS DEL MODAL DE ODS (RESTAURADOS Y VERIFICADOS) --- */
 .modal-overlay {
   opacity: 0;
   visibility: hidden;
@@ -320,19 +385,60 @@ h6 {
   visibility: visible;
   transition: opacity 0.3s ease-in-out;
 }
-#sdg-legend-modal .modal-content {
+.modal-overlay .modal-content {
   opacity: 0;
   transform: scale(0.95);
   transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
-.btn-float-legend {
-  @apply fixed bottom-5 left-5 z-40 bg-gnius-yellow text-gnius-dark-1 rounded-full h-12 w-12 flex items-center justify-center shadow-lg hover:bg-yellow-300 focus:outline-none focus:ring-2 focus:ring-gnius-yellow focus:ring-offset-2 focus:ring-offset-gnius-dark-1;
-  font-size: 1.25rem;
+.modal-overlay.visible .modal-content {
+  transform: scale(1);
+  opacity: 1;
+}
+#sdg-legend-modal .sdg-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+#sdg-legend-modal .sdg-legend-square-list {
+  width: 1.75rem;
+  height: 1.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  flex-shrink: 0;
+  font-family: "Saira Condensed", sans-serif;
+  font-weight: 700;
+  color: white;
+}
+#sdg-legend-modal .sdg-legend-title-list {
+  font-size: 1rem;
+  font-family: "Saira Semi Condensed", sans-serif;
+  font-weight: 600;
+  color: var(--gnius-light-text);
+}
+.legend-modal-body {
+  scrollbar-width: thin;
+  scrollbar-color: var(--gnius-cyan) var(--gnius-gray-dark);
+}
+.legend-modal-body::-webkit-scrollbar {
+  width: 8px;
+}
+.legend-modal-body::-webkit-scrollbar-track {
+  background: var(--gnius-gray-dark);
+  border-radius: 4px;
+}
+.legend-modal-body::-webkit-scrollbar-thumb {
+  background-color: var(--gnius-cyan);
+  border-radius: 4px;
+  border: 2px solid var(--gnius-gray-dark);
 }
 
 /* === PROJECT.HTML === */
 
-/* --- Indicador de Estado Detallado (RESTAURADO Y ACTUALIZADO) --- */
+/* --- Indicador de Estado Detallado --- */
 .status-stepper-detailed {
   display: flex;
   align-items: center;
@@ -424,7 +530,7 @@ h6 {
   );
 }
 
-/* --- Hero ODS Badges y Panel ODS Detalle (RESTAURADOS) --- */
+/* --- Hero ODS Badges y Panel Detalle --- */
 .sdg-hero-badge {
   width: auto;
   min-width: 60px;
@@ -453,7 +559,6 @@ h6 {
   font-family: "Saira Condensed", sans-serif;
   font-weight: 700;
   font-size: 0.9rem;
-  line-height: 1;
   color: var(--sdg-contrast-color, white);
 }
 .sdg-hero-badge-icon {
@@ -498,7 +603,6 @@ h6 {
   font-family: "Saira Condensed", sans-serif;
   font-weight: 900;
   font-size: 1.75rem;
-  line-height: 1;
   margin-bottom: 0.15rem;
 }
 .sdg-panel-item .sdg-panel-item-title {
@@ -511,7 +615,6 @@ h6 {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 /* --- Rúbrica y Gráficas --- */
@@ -576,4 +679,53 @@ h6 {
   font-weight: 800;
   font-size: 0.9rem;
   line-height: 1.2;
+}
+/* --- ESTILOS PARA LA PÍLDORA DE ESTADO (project.html) --- */
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem; /* 8px */
+  height: 32px; /* Misma altura que los badges ODS */
+  padding-left: 0.5rem; /* 8px */
+  padding-right: 0.75rem; /* 12px */
+  border-radius: 999px;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.status-pill i {
+  font-size: 0.9rem; /* 14.4px */
+}
+
+.status-pill .status-text {
+  font-family: "Saira Condensed", sans-serif;
+  font-size: 1.1rem; /* 14px */
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* Estado Idea */
+.status-pill.status-idea {
+  background-color: rgb(253, 105, 37); /* Fondo naranja translúcido */
+  border-color: rgb(253, 174, 37);
+  border-width: 2px;
+  min-width: 100px;
+}
+.status-pill.status-idea i,
+.status-pill.status-idea .status-text {
+  color: #fff;
+  margin-left: 5px;
+}
+
+/* Estado Prototipo */
+.status-pill.status-prototipo {
+  background-color: rgb(175, 26, 255); /* Fondo violeta translúcido */
+  border-color: rgb(200, 158, 255);
+  border-width: 2px;
+  color: #0f0f0f;
+}
+.status-pill.status-prototipo i,
+.status-pill.status-prototipo .status-text {
+  color: #fff;
 }

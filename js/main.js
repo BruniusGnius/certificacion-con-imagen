@@ -1,4 +1,4 @@
-// js/main.js - v4.25 (Indicador V4 - Icono Único + Texto en Tarjeta)
+// js/main.js - v4.26 (Borde inferior dinámico en tarjeta)
 
 // --- DOM Elements ---
 const projectList = document.getElementById("project-list"),
@@ -69,7 +69,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (showSdgLegendBtn && sdgLegendModal && sdgModalCloseBtn)
     setupSdgLegendModal();
 });
-
 const loadInitialData = async () => {
   if (loadingMessage) loadingMessage.style.display = "block";
   if (noResultsMessage) noResultsMessage.style.display = "none";
@@ -115,13 +114,12 @@ const populateFilters = () => {
     if (indexB === -1) return -1;
     return indexA - indexB;
   });
-  populateSelect(statusSelect, statuses, "Estado", false);
+  populateSelect(statusSelect, statuses, "Estado del proyecto", false);
   populateSelect(categorySelect, categories, "Categoría");
   populateSelect(schoolingSelect, sortedSchooling, "Escolaridad", false);
   populateSelect(techSelect, technologies, "Tecnología");
   populateSdgSelect(sdgSelect, "ODS");
 };
-
 const populateSelect = (
   selectElement,
   items,
@@ -148,7 +146,6 @@ const populateSelect = (
   )
     selectElement.value = currentValue;
 };
-
 const populateSdgSelect = (selectElement, defaultOptionText) => {
   if (!selectElement || typeof odsData === "undefined") return;
   const currentValue = selectElement.value;
@@ -169,7 +166,6 @@ const populateSdgSelect = (selectElement, defaultOptionText) => {
   )
     selectElement.value = currentValue;
 };
-
 const applyFiltersAndRender = () => {
   const searchTerm = searchInput?.value.toLowerCase().trim() ?? "",
     selectedCategory = categorySelect?.value ?? "",
@@ -212,7 +208,6 @@ const applyFiltersAndRender = () => {
   renderProjects();
   updatePaginationControls();
 };
-
 const renderProjects = () => {
   if (!projectList || !noResultsMessage) return;
   projectList.innerHTML = "";
@@ -235,7 +230,6 @@ const renderProjects = () => {
     });
   }
 };
-
 const updatePaginationControls = () => {
   if (!paginationControls) return;
   const totalPages = Math.ceil(filteredProjects.length / projectsPerPage);
@@ -248,7 +242,6 @@ const updatePaginationControls = () => {
   if (prevPageBtn) prevPageBtn.disabled = currentPage === 1;
   if (nextPageBtn) nextPageBtn.disabled = currentPage === totalPages;
 };
-
 const goToPage = (page) => {
   const totalPages = Math.ceil(filteredProjects.length / projectsPerPage);
   if (page < 1 || page > totalPages) return;
@@ -261,7 +254,6 @@ const goToPage = (page) => {
       mainContainer.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 };
-
 const setupEventListeners = () => {
   if (searchInput) searchInput.addEventListener("input", applyFiltersAndRender);
   if (categorySelect)
@@ -295,7 +287,6 @@ const setupEventListeners = () => {
     });
   }
 };
-
 const setupSdgLegendModal = () => {
   if (!showSdgLegendBtn || !sdgLegendModal || !sdgModalCloseBtn) return;
   const openModal = () => {
@@ -327,7 +318,6 @@ const setupSdgLegendModal = () => {
       closeModal();
   });
 };
-
 const renderSdgLegend = () => {
   if (!sdgLegendModalContent || typeof odsData === "undefined") return;
   sdgLegendModalContent.innerHTML = "";
@@ -353,9 +343,12 @@ const renderSdgLegend = () => {
   });
 };
 
+// --- createProjectCard (CON CAMBIOS EN EL BORDE) ---
 const createProjectCard = (project) => {
   if (!projectCardTemplate?.content) return null;
   const cardClone = projectCardTemplate.content.cloneNode(true);
+  // CAMBIO: Se selecciona el nuevo elemento <article>
+  const articleElement = cardClone.querySelector("[data-card-article]");
   const linkElement = cardClone.querySelector("[data-card-link]"),
     imgElement = cardClone.querySelector("[data-card-img]"),
     titleElement = cardClone.querySelector("[data-card-title]"),
@@ -366,6 +359,7 @@ const createProjectCard = (project) => {
     sdgOverlayContainer = cardClone.querySelector(".sdg-overlay"),
     statusContainer = cardClone.querySelector("[data-card-status]");
   if (
+    !articleElement ||
     !linkElement ||
     !imgElement ||
     !titleElement ||
@@ -379,7 +373,18 @@ const createProjectCard = (project) => {
     console.error("Template elements missing.");
     return null;
   }
+
   try {
+    // CAMBIO: Lógica para el borde de color dinámico
+    if (project.projectStatus) {
+      const lowerCaseStatus = project.projectStatus.toLowerCase();
+      if (lowerCaseStatus === "idea") {
+        articleElement.style.borderColor = "var(--gnius-orange)";
+      } else if (lowerCaseStatus === "prototipo") {
+        articleElement.style.borderColor = "var(--gnius-violet)";
+      }
+    }
+
     linkElement.href = `project.html?slug=${project.slug || ""}`;
     imgElement.src =
       project.coverImage?.url || "assets/img/gnius_logo_placeholder.png";
@@ -389,6 +394,7 @@ const createProjectCard = (project) => {
       imgElement.src = "assets/img/gnius_logo_placeholder.png";
     };
     titleElement.textContent = project.projectTitle || "Sin Título";
+
     sdgContainer.innerHTML = "";
     if (
       project.sdgIds &&
@@ -412,16 +418,18 @@ const createProjectCard = (project) => {
     } else {
       sdgOverlayContainer.style.display = "none";
     }
+
     const nominationIndicator = cardClone.querySelector(
       "[data-nomination-indicator-card]"
     );
     if (nominationIndicator) {
-      if (project.isNominated === !0) {
+      if (project.isNominated === true) {
         nominationIndicator.classList.remove("hidden");
       } else {
         nominationIndicator.classList.add("hidden");
       }
     }
+
     metadataContainer.innerHTML = "";
     if (project.projectCategory) {
       const chip = document.createElement("span");
@@ -437,10 +445,12 @@ const createProjectCard = (project) => {
       chip.textContent = project.schooling;
       metadataContainer.appendChild(chip);
     }
+
     descElement.textContent = project.introContent
       ? project.introContent.substring(0, 100) +
         (project.introContent.length > 100 ? "..." : "")
       : "Sin descripción.";
+
     studentsContainer.innerHTML = "";
     const maxStudentsToShow = 4;
     if (project.teamMembers && project.teamMembers.length > 0) {
@@ -479,9 +489,11 @@ const createProjectCard = (project) => {
     );
     return null;
   }
+
   return cardClone;
 };
 
+// --- Helper Functions ---
 function getContrastYIQ(hexcolor) {
   hexcolor = hexcolor?.replace("#", "") ?? "";
   if (hexcolor.length !== 6) return "#ffffff";
