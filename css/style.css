@@ -1,37 +1,35 @@
-/* css/style.css - v6.29 (Final Certificate Pill Styles) */
-/* 1. Import Google Fonts (Saira Semi Condensed y Saira Condensed) */
+/* css/style.css - v6.35 (FINAL, COMPLETO Y RESTAURADO) */
 @import url("https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@400;500;600;700;800;900&family=Saira+Semi+Condensed:wght@400;500;600;700;800;900&display=swap");
-/* 2. Definición de Variables de Color Gnius */
+
+/* === VARIABLES GLOBALES === */
 :root {
   --gnius-dark-1: #0f0f0f;
   --gnius-dark-2: #1f1f1f;
-  --gnius-light: #ffffff; /* Blanco puro */
-  --gnius-light-text: #f0f0f0; /* Texto un poco menos brillante */
+  --gnius-light: #ffffff;
+  --gnius-light-text: #f0f0f0;
   --gnius-yellow: #ffd700;
   --gnius-cyan: #00ffff;
   --gnius-red: #ff0000;
-  --gnius-green: #4caf50; /* Verde estándar para semáforo */
-  --gnius-violet: #8731fa; /* Color violáceo para borde nivel */
+  --gnius-green: #4caf50;
+  --gnius-violet: #8731fa;
+  --gnius-orange: #fd6925; /* Color para el estado 'Idea' */
   --gnius-gray-light: #555555;
   --gnius-gray-dark: #333333;
   --gnius-border: var(--gnius-gray-light);
-  --color-text-base: var(--gnius-light-text);
-  --color-bg-base: var(--gnius-dark-1);
-  /* Colores específicos Rúbrica (Verde/Amarillo/Rojo) */
-  --rubric-color-1: var(--gnius-red); /* Insuficiente */
-  --rubric-color-2: var(--gnius-yellow); /* Satisfactorio */
-  --rubric-color-3: var(--gnius-green); /* Excelente */
-
-  --gnius-gold: #ffc107; /* O el dorado que prefieras, ej. --gnius-yellow */
+  --rubric-color-1: var(--gnius-red);
+  --rubric-color-2: var(--gnius-yellow);
+  --rubric-color-3: var(--gnius-green);
+  --gnius-gold: #ffc107;
 }
-/* 3. Custom Base Styles */
+
+/* === ESTILOS BASE === */
 body {
-  background-color: var(--color-bg-base);
-  color: var(--color-text-base);
-  font-family: "Saira Semi Condensed", sans-serif; /* Fuente Principal */
+  background-color: var(--gnius-dark-1);
+  color: var(--gnius-light-text);
+  font-family: "Saira Semi Condensed", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-weight: 500; /* Peso base Medium */
+  font-weight: 500;
 }
 p,
 li,
@@ -59,58 +57,48 @@ h5,
 h6 {
   font-weight: 700;
 }
-p
-  a:not([class*="button"]):not([class*="btn"]):not([class*="chip"]):not(
-    .certificate-link
-  ),
-.prose a,
-ul#resources-list li a {
-  color: var(--gnius-cyan);
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
-  transition: color 0.15s ease-in-out;
-  font-weight: 600;
-}
-p
-  a:not([class*="button"]):not([class*="btn"]):not([class*="chip"]):not(
-    .certificate-link
-  ):hover,
-.prose a:hover,
-ul#resources-list li a:hover {
-  color: var(--gnius-yellow);
-}
 .prose {
   color: var(--gnius-light-text);
   font-weight: 500;
+}
+
+/* === COMPONENTES GENERALES === */
+
+/* --- Botones --- */
+.btn {
+  @apply inline-flex items-center justify-center px-5 py-2 border border-transparent text-base rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gnius-dark-1 transition ease-in-out duration-150;
+  font-weight: 600;
   font-family: "Saira Semi Condensed", sans-serif;
 }
-.prose strong,
-.prose b {
-  font-weight: 700;
-  color: inherit;
+.btn-primary {
+  @apply bg-gnius-cyan text-gnius-dark-1 hover:bg-cyan-300 focus:ring-gnius-cyan;
 }
-.prose code {
-  background-color: var(--gnius-gray-dark);
+.btn-danger {
+  @apply bg-gnius-red text-gnius-light-text hover:bg-red-700 focus:ring-gnius-red;
+}
+.btn:disabled {
+  @apply opacity-50 cursor-not-allowed;
+}
+
+/* --- Enlaces --- */
+.link-action {
+  @apply text-sm font-semibold transition duration-150 ease-in-out;
+}
+.certificate-link {
+  display: inline-flex;
+  align-items: center;
   color: var(--gnius-yellow);
-  padding: 0.1em 0.4em;
-  border-radius: 0.25rem;
-  font-size: 0.9em;
-  font-family: "Saira Condensed", monospace;
-  font-weight: 500;
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: color 0.15s ease-in-out;
+  text-decoration: none;
 }
-.chartjs-tooltip,
-.chartjs-tooltip *,
-#gaugeChart + p,
-.chartjs-point-label,
-.rubric-score-text {
-  font-family: "Saira Condensed", sans-serif !important;
+.certificate-link:hover {
+  color: color-mix(in srgb, var(--gnius-yellow) 80%, white);
+  text-decoration: underline;
 }
-/* 4. Custom Component Styles */
-.font-bold {
-  font-weight: 800 !important;
-}
-/* --- CHIP STYLES (Usados en Certificado para Habilidades/Criterios) --- */
+
+/* --- Chips --- */
 .chip {
   padding: 0.25rem 0.75rem;
   border-radius: 9999px;
@@ -120,22 +108,8 @@ ul#resources-list li a:hover {
   align-items: center;
   justify-content: center;
   line-height: 1.25;
-  text-align: center;
   white-space: nowrap;
   margin: 0.1rem;
-  font-family: "Saira Semi Condensed", sans-serif;
-}
-.chip-yellow {
-  background-color: var(--gnius-yellow);
-  color: #111111;
-}
-.chip-cyan {
-  background-color: var(--gnius-cyan);
-  color: #111111;
-}
-.chip-red {
-  background-color: var(--gnius-red);
-  color: var(--gnius-light-text);
 }
 .chip-gray {
   background-color: var(--gnius-border);
@@ -146,14 +120,14 @@ ul#resources-list li a:hover {
   color: var(--gnius-cyan);
   background-color: transparent;
   padding: calc(0.25rem - 1px) calc(0.75rem - 1px);
-  font-size: 0.65rem; /* text-xs */
+  font-size: 0.65rem;
 }
 .chip-yellow-outline {
   border: 1px solid var(--gnius-yellow);
   color: var(--gnius-yellow);
   background-color: transparent;
   padding: calc(0.25rem - 1px) calc(0.75rem - 1px);
-  font-size: 0.65rem; /* text-xs */
+  font-size: 0.65rem;
 }
 .chip-metadata {
   font-family: "Saira Condensed", sans-serif !important;
@@ -163,12 +137,7 @@ ul#resources-list li a:hover {
   line-height: 1.1 !important;
   border-width: 1px;
   border-style: solid;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
   border-radius: 9999px;
-  text-align: center;
-  white-space: nowrap;
   margin: 2px;
 }
 .chip-cyan-muted-border {
@@ -185,11 +154,9 @@ ul#resources-list li a:hover {
   font-family: "Saira Condensed", sans-serif !important;
   font-weight: 600 !important;
   font-size: 0.75rem !important;
-  @apply chip;
 }
-.student-chip i {
-  margin-right: 0.25rem;
-}
+
+/* --- ESTILOS DE CHIPS DE TECNOLOGÍA (RESTAURADOS) --- */
 .tech-chip-container {
   display: inline-flex;
   align-items: center;
@@ -245,6 +212,8 @@ ul#resources-list li a:hover {
   background-color: var(--gnius-red);
   color: var(--gnius-light-text);
 }
+
+/* --- REGLAS DE LAYOUT RESTAURADAS --- */
 .aside-section {
   padding: 1.5rem;
   background-color: var(--gnius-dark-2);
@@ -258,89 +227,209 @@ ul#resources-list li a:hover {
 .gallery-item:hover {
   transform: scale(1.03);
 }
-.modal-content {
+
+/* === INDEX.HTML === */
+
+/* --- Indicador de Nominación en Tarjeta --- */
+.nomination-indicator-wrapper {
+  pointer-events: none;
+}
+.medal-and-text-container {
+  pointer-events: auto;
+}
+.nomination-medal {
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.4));
+}
+.nomination-text {
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+/* --- ODS Overlay en Tarjeta --- */
+.sdg-indicator-square-small {
+  width: 1.125rem;
+  height: 1.125rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+  font-size: 0.625rem;
+  color: white;
+  font-family: "Saira Condensed", sans-serif;
+  font-weight: 700;
+}
+.sdg-overlay .sdg-overlay-label {
+  font-size: 0.75rem;
+  font-family: "Saira Condensed", sans-serif;
+  font-weight: 600;
+}
+
+/* --- INDICADOR DE ESTADO EN TARJETA (V4 - ICONO ÚNICO + TEXTO, SIN SHADOW) --- */
+.status-indicator-card {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.status-indicator-card .icon-wrapper {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+.status-indicator-card .icon-wrapper i {
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+.status-indicator-card .status-text {
+  font-family: "Saira Condensed", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 700;
+  transition: color 0.3s ease;
+}
+/* Estado Idea */
+.status-indicator-card.status-idea .icon-wrapper {
+  background-color: var(--gnius-orange);
+}
+.status-indicator-card.status-idea i {
+  color: var(--gnius-light-text);
+}
+.status-indicator-card.status-idea .status-text {
+  color: var(--gnius-orange);
+}
+/* Estado Prototipo */
+.status-indicator-card.status-prototipo .icon-wrapper {
+  background-color: var(--gnius-violet);
+}
+.status-indicator-card.status-prototipo i {
+  color: var(--gnius-light-text);
+}
+.status-indicator-card.status-prototipo .status-text {
+  color: var(--gnius-violet);
+}
+
+/* --- Modal Leyenda ODS --- */
+.modal-overlay {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, visibility 0s linear 0.3s;
+}
+.modal-overlay.visible {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease-in-out;
+}
+#sdg-legend-modal .modal-content {
   opacity: 0;
   transform: scale(0.95);
   transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
-#imageModal #modalCloseBtn {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-  z-index: 20;
-  line-height: 1;
+.btn-float-legend {
+  @apply fixed bottom-5 left-5 z-40 bg-gnius-yellow text-gnius-dark-1 rounded-full h-12 w-12 flex items-center justify-center shadow-lg hover:bg-yellow-300 focus:outline-none focus:ring-2 focus:ring-gnius-yellow focus:ring-offset-2 focus:ring-offset-gnius-dark-1;
+  font-size: 1.25rem;
 }
-#imageModal #modalImage {
-  display: block;
-}
-#imageModal #modalCaption {
-  font-family: "Saira Semi Condensed", sans-serif;
-  font-weight: 500;
-  scrollbar-width: thin;
-  scrollbar-color: var(--gnius-cyan) var(--gnius-gray-dark);
-}
-#imageModal #modalCaption::-webkit-scrollbar {
-  width: 8px;
-}
-#imageModal #modalCaption::-webkit-scrollbar-track {
-  background: var(--gnius-gray-dark);
-  border-radius: 4px;
-}
-#imageModal #modalCaption::-webkit-scrollbar-thumb {
-  background-color: var(--gnius-cyan);
-  border-radius: 4px;
-  border: 2px solid var(--gnius-gray-dark);
-}
-.btn {
-  @apply inline-flex items-center justify-center px-5 py-2 border border-transparent text-base rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gnius-dark-1 transition ease-in-out duration-150;
-  font-weight: 600;
-  font-family: "Saira Semi Condensed", sans-serif;
-}
-.btn-primary {
-  @apply bg-gnius-cyan text-gnius-dark-1 hover:bg-cyan-300 focus:ring-gnius-cyan;
-}
-.btn-secondary {
-  @apply bg-gnius-yellow text-gnius-dark-1 hover:bg-yellow-300 focus:ring-gnius-yellow;
-}
-.btn-danger {
-  @apply bg-gnius-red text-gnius-light-text hover:bg-red-700 focus:ring-gnius-red;
-}
-.btn-neutral {
-  @apply bg-gnius-gray-dark text-gnius-light-text hover:bg-gnius-gray-light focus:ring-gnius-gray-light;
-}
-.btn:disabled {
-  @apply opacity-50 cursor-not-allowed;
-}
-.link-action {
-  @apply text-sm font-semibold transition duration-150 ease-in-out;
-  font-family: "Saira Semi Condensed", sans-serif;
-}
-.certificate-link {
-  display: inline-flex;
+
+/* === PROJECT.HTML === */
+
+/* --- Indicador de Estado Detallado (RESTAURADO Y ACTUALIZADO) --- */
+.status-stepper-detailed {
+  display: flex;
   align-items: center;
-  color: var(--gnius-yellow);
-  font-family: "Saira Semi Condensed", sans-serif;
+  justify-content: space-around;
+  padding: 1rem 0;
+  width: 100%;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.status-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+.status-node .status-icon-wrapper {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid var(--gnius-gray-dark);
+  transition: all 0.3s ease-in-out;
+}
+.status-node .status-icon-wrapper i {
+  font-size: 1.75rem;
+  color: var(--gnius-gray-dark);
+  transition: all 0.3s ease-in-out;
+}
+.status-label {
+  font-family: "Saira Condensed", sans-serif;
+  font-size: 1rem;
   font-weight: 600;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  transition: color 0.15s ease-in-out;
-  text-decoration: none;
+  color: var(--gnius-gray-dark);
+  transition: all 0.3s ease-in-out;
 }
-.certificate-link:hover {
-  color: color-mix(in srgb, var(--gnius-yellow) 80%, white);
-  text-decoration: underline;
+.status-connector-line {
+  height: 3px;
+  flex-grow: 1;
+  background-color: var(--gnius-gray-dark);
+  border-radius: 2px;
+  margin: 0 1rem;
+  transform: translateY(-1.75rem);
+  transition: all 0.3s ease-in-out;
 }
-.certificate-link i.fa-award {
-  margin-right: 0.25rem;
-  font-size: 1em;
+.status-node.inactive .status-icon-wrapper i,
+.status-node.inactive .status-label {
+  color: var(--gnius-gray-dark);
 }
-/* --- ODS HERO BADGES (PROJECT.HTML - HORIZONTAL REDISEÑO) --- */
+.status-node.completed .status-icon-wrapper {
+  background-color: var(--gnius-orange);
+  border-color: var(--gnius-orange);
+}
+.status-node.completed .status-icon-wrapper i {
+  color: var(--gnius-light-text);
+}
+.status-node.completed .status-label {
+  color: var(--gnius-light-text);
+}
+.status-node.active .status-icon-wrapper {
+  background-color: var(--gnius-orange);
+  border-color: var(--gnius-orange);
+}
+.status-node.active .status-icon-wrapper i {
+  color: var(--gnius-light-text);
+}
+.status-node.active .status-label {
+  color: var(--gnius-orange);
+  font-weight: 700;
+}
+.status-node.prototipo.active .status-icon-wrapper {
+  border-color: var(--gnius-violet);
+  background-color: var(--gnius-violet);
+}
+.status-node.prototipo.active .status-icon-wrapper i {
+  color: var(--gnius-light);
+}
+.status-node.prototipo.active .status-label {
+  color: var(--gnius-violet);
+}
+.status-connector-line.completed {
+  background: linear-gradient(
+    to right,
+    var(--gnius-orange),
+    var(--gnius-violet)
+  );
+}
+
+/* --- Hero ODS Badges y Panel ODS Detalle (RESTAURADOS) --- */
 .sdg-hero-badge {
   width: auto;
   min-width: 60px;
   height: 32px;
   border-radius: 4px;
-  overflow: hidden;
   display: inline-flex;
   align-items: center;
   padding: 0 0.5rem;
@@ -365,7 +454,6 @@ ul#resources-list li a:hover {
   font-weight: 700;
   font-size: 0.9rem;
   line-height: 1;
-  flex-shrink: 0;
   color: var(--sdg-contrast-color, white);
 }
 .sdg-hero-badge-icon {
@@ -373,9 +461,7 @@ ul#resources-list li a:hover {
   width: auto;
   max-width: 18px;
   object-fit: contain;
-  flex-shrink: 0;
 }
-/* --- PANEL ODS DETALLE (PROJECT.HTML - CSS GRID, ALTURA FIJA, SOLO NÚMERO Y TÍTULO) --- */
 .sdg-panel-item {
   display: flex;
   flex-direction: column;
@@ -386,9 +472,7 @@ ul#resources-list li a:hover {
   padding: 0.4rem;
   border-radius: 0.25rem;
   text-decoration: none;
-  overflow: hidden;
-  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out,
-    opacity 0.3s ease-out;
+  transition: all 0.2s ease-out;
   position: relative;
 }
 .sdg-panel-item.active {
@@ -410,15 +494,6 @@ ul#resources-list li a:hover {
   transform: scale(1.01);
   border-color: var(--gnius-border);
 }
-.sdg-panel-item .sdg-panel-item-text-container {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  flex-grow: 1;
-}
 .sdg-panel-item .sdg-panel-item-number {
   font-family: "Saira Condensed", sans-serif;
   font-weight: 900;
@@ -426,64 +501,23 @@ ul#resources-list li a:hover {
   line-height: 1;
   margin-bottom: 0.15rem;
 }
-.sdg-panel-item.active .sdg-panel-item-number {
-  color: var(--sdg-contrast-color);
-}
-.sdg-panel-item.inactive .sdg-panel-item-number {
-  color: var(--gnius-gray-light);
-}
 .sdg-panel-item .sdg-panel-item-title {
   font-family: "Saira Condensed", sans-serif;
   font-weight: 700;
   font-size: 0.7rem;
   line-height: 1.15;
   text-transform: uppercase;
-  width: 100%;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.sdg-panel-item.active .sdg-panel-item-title {
-  color: var(--sdg-contrast-color);
-}
-.sdg-panel-item.inactive .sdg-panel-item-title {
-  color: var(--gnius-gray-light);
-}
-.general-ods-logo-tile {
-  background-color: var(--gnius-dark-2) !important;
-  border: 1px solid var(--gnius-gray-dark) !important;
-  opacity: 0.8;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.general-ods-logo-tile:hover {
-  transform: scale(1.01);
-  opacity: 1;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
-}
-.general-ods-logo-tile .sdg-panel-item-icon-container {
-  height: 100%;
-  margin-bottom: 0;
-}
-.general-ods-logo-tile .sdg-panel-item-icon {
-  max-width: 70%;
-  max-height: 70%;
-  filter: none !important;
-}
-/* Gauge Chart Container */
-#gaugeChartContainer {
-  /* Clases Tailwind definen tamaño */
-}
+
+/* --- Rúbrica y Gráficas --- */
 #gauge-score-text {
   font-family: "Saira Condensed", sans-serif;
-  font-weight: 900; /* Black */ /* Tamaño y posición definidos en HTML */
-}
-/* Rubric Bar Chart Styles */
-.rubric-criterion {
-  margin-bottom: 0.75rem;
+  font-weight: 900;
 }
 .rubric-bar-chart-wrapper {
   height: 1rem;
@@ -491,7 +525,6 @@ ul#resources-list li a:hover {
   border-radius: 0.25rem;
   overflow: hidden;
   width: 100%;
-  position: relative;
 }
 .rubric-bar {
   height: 100%;
@@ -508,203 +541,39 @@ ul#resources-list li a:hover {
   color: rgba(0, 0, 0, 0.7);
   font-family: "Saira Condensed", sans-serif !important;
 }
-.rubric-bar-1 {
-  background-color: var(--rubric-color-1);
-}
-.rubric-bar-2 {
-  background-color: var(--rubric-color-2);
-}
-.rubric-bar-3 {
-  background-color: var(--rubric-color-3);
-}
-.rubric-bar-2 .rubric-score-text,
-.rubric-bar-3 .rubric-score-text {
-  color: rgba(0, 0, 0, 0.8);
-}
-/* --- ESTILOS PARA PÍLDORAS DE INSIGNIA/NIVEL (CERTIFICATE.HTML - ESTILO USUARIO) --- */
+
+/* === CERTIFICATE.HTML === */
 .certificate-info-pill {
   display: inline-flex;
   align-items: center;
   position: relative;
-  /* Padding: Top/Bottom .5rem, Right 1rem. Left se ajusta para el texto. */
-  padding-top: 0.25rem; /* Ajusta para centrar verticalmente el texto */
+  padding-top: 0.25rem;
   padding-bottom: 0.32rem;
-  padding-right: 1rem; /* Espacio a la derecha del texto */
-  /* Padding Izquierdo: (30px para la mitad de la imagen que está DENTRO) + (0.5rem espacio texto) */
+  padding-right: 1rem;
   padding-left: 2rem;
-  margin-left: 30px; /* Compensa los 30px de la imagen que sobresalen */
-  /* Solo redondear esquinas derechas */
+  margin-left: 30px;
   border-top-right-radius: 9999px;
   border-bottom-right-radius: 9999px;
-  border-top-left-radius: 0; /* Esquina recta */
-  border-bottom-left-radius: 0; /* Esquina recta */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
   margin-top: 10px;
   margin-bottom: 10px;
-  /* Borde base (JS lo modificará) */
-  border-width: 3px; /* Grosor del borde deseado */
+  border-width: 3px;
   border-style: solid;
-  border-color: transparent; /* JS cambiará esto o usará background-image para degradado */
-  /* background-color es aplicado por Tailwind en HTML (ej. bg-gnius-yellow) o transparente por JS */
+  border-color: transparent;
 }
 .certificate-pill-image {
   width: 60px;
   height: 60px;
   object-fit: contain;
   position: absolute;
-  left: -30px; /* Mitad de la imagen fuera */
+  left: -30px;
   top: 50%;
-  transform: translateY(-50%); /* Centrado vertical perfecto de la imagen */
-  z-index: 10; /* Encima de la píldora */
+  transform: translateY(-50%);
+  z-index: 10;
 }
 .certificate-pill-text {
   font-family: "Saira Semi Condensed", sans-serif;
-  font-weight: 800; /* Extrabold */
-  font-size: 0.9rem; /* 14.4px */
+  font-weight: 800;
+  font-size: 0.9rem;
   line-height: 1.2;
-  color: var(
-    --gnius-light-text
-  ); /* Color de texto blanco por defecto para la píldora de Nivel */
-  /* Para la píldora de Insignia, Tailwind aplicará text-gnius-dark-1 en el HTML */
-}
-/* --- Estilos Específicos Iteración 2 (Index Page - Filtros y ODS) --- */
-.filter-input {
-  @apply block w-full bg-gnius-dark-1 border-gnius-gray-light text-gnius-light-text placeholder-gnius-gray-light rounded-md shadow-sm focus:ring-gnius-cyan focus:border-gnius-cyan text-sm py-2 px-3;
-  font-weight: 500;
-  font-family: "Saira Semi Condensed", sans-serif;
-}
-.filter-input::placeholder {
-  font-weight: 500;
-  color: var(--gnius-gray-light);
-}
-select.filter-input {
-  @apply pr-8 bg-no-repeat;
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23555555' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
-  background-position: right 0.5rem center;
-  background-size: 1.5em 1.5em;
-  -webkit-appearance: none;
-  appearance: none;
-}
-.sdg-indicator-square-small {
-  width: 1.125rem;
-  height: 1.125rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 2px;
-  font-size: 0.625rem;
-  line-height: 1;
-  color: white;
-  font-family: "Saira Condensed", sans-serif;
-  font-weight: 700;
-}
-.sdg-overlay .sdg-overlay-label {
-  font-size: 0.75rem;
-  font-family: "Saira Condensed", sans-serif;
-  font-weight: 600;
-}
-.modal-overlay {
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease-in-out, visibility 0s linear 0.3s;
-}
-.modal-overlay.visible {
-  opacity: 1;
-  visibility: visible;
-  transition: opacity 0.3s ease-in-out;
-}
-.modal-overlay.visible .modal-content {
-  transform: scale(1);
-  opacity: 1;
-}
-#sdg-legend-modal .modal-content {
-  opacity: 0;
-  transform: scale(0.95);
-  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-}
-#sdg-legend-modal .sdg-legend-item {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-#sdg-legend-modal .sdg-legend-square-list {
-  width: 1.75rem;
-  height: 1.75rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 0.25rem;
-  font-size: 0.875rem;
-  line-height: 1;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
-  flex-shrink: 0;
-  font-family: "Saira Condensed", sans-serif;
-  font-weight: 700;
-  color: white;
-}
-#sdg-legend-modal .sdg-legend-title-list {
-  font-size: 1rem;
-  font-family: "Saira Semi Condensed", sans-serif;
-  font-weight: 600;
-  color: var(--gnius-light-text);
-}
-.legend-modal-body {
-  scrollbar-width: thin;
-  scrollbar-color: var(--gnius-cyan) var(--gnius-gray-dark);
-}
-.legend-modal-body::-webkit-scrollbar {
-  width: 8px;
-}
-.legend-modal-body::-webkit-scrollbar-track {
-  background: var(--gnius-gray-dark);
-  border-radius: 4px;
-}
-.legend-modal-body::-webkit-scrollbar-thumb {
-  background-color: var(--gnius-cyan);
-  border-radius: 4px;
-  border: 2px solid var(--gnius-gray-dark);
-}
-.btn-float-legend {
-  @apply fixed bottom-5 left-5 z-40 bg-gnius-yellow text-gnius-dark-1 rounded-full h-12 w-12 flex items-center justify-center shadow-lg hover:bg-yellow-300 focus:outline-none focus:ring-2 focus:ring-gnius-yellow focus:ring-offset-2 focus:ring-offset-gnius-dark-1;
-  font-size: 1.25rem;
-}
-/* --- ESTILOS PARA INDICADOR DE NOMINACIÓN --- */
-.nomination-indicator-wrapper {
-  pointer-events: none; /* Para que no interfiera con el hover de la tarjeta/elemento base */
-}
-
-/* Contenedor del listón solo para dimensionar el área de la esquina y permitir overflow hidden del visual */
-.nomination-ribbon-container {
-  /* No necesita estilos específicos más allá de los de Tailwind, pero la clase existe para estructura */
-}
-
-/* El listón visual en sí (el elemento rotado) */
-.nomination-ribbon-visual .ribbon-shape {
-  /* Tailwind se encarga del color de fondo (bg-gnius-gold), transformaciones y sombra */
-  /* --gnius-gold debe estar definido en :root o Tailwind config */
-}
-
-/* Contenedor de la medalla y texto, para permitir interacción si se desea */
-.medal-and-text-container {
-  pointer-events: auto; /* Permite hover/click en medalla/texto si fuera necesario */
-}
-
-.nomination-medal {
-  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.4));
-  /* El borde, color de fondo, etc., se aplican con Tailwind en el HTML */
-}
-
-.nomination-text {
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
-  padding-right: 4px; /* Pequeño espacio a la derecha del texto para que no pegue al borde del contenedor */
-  font-family: "Saira Semi Condensed", sans-serif; /* Asegurar la fuente correcta */
-}
-
-/* Opcional: Efecto hover para la tarjeta nominada (ajustado para contenedor de imagen) */
-/* Si el contenedor de la imagen de la tarjeta tiene una clase específica, úsala. */
-/* Asumiendo que el wrapper de la imagen de la tarjeta tiene la clase 'aspect-video' o una específica que la envuelva */
-.aspect-video:has(.nomination-indicator-wrapper:not(.hidden)):hover
-  .nomination-medal {
-  transform: scale(1.05);
-  transition: transform 0.2s ease-in-out;
 }

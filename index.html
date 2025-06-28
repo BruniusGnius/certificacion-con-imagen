@@ -14,8 +14,8 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
+    <!-- Tailwind CSS (line-clamp plugin añadido) -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
     <!-- Tailwind Config -->
     <script>
         tailwind.config = {
@@ -30,7 +30,7 @@
                         'gnius-red': '#FF0000',
                         'gnius-gray-light': '#555555',
                         'gnius-gray-dark': '#333333',
-                        'gnius-gold': '#FFC107', // <--- AÑADIR O VERIFICAR ESTA LÍNEA
+                        'gnius-gold': '#FFC107',
                     },
                     fontFamily: { 'sans': ['Saira Semi Condensed', 'sans-serif'], 'condensed': ['Saira Condensed', 'sans-serif'], },
                     fontWeight: { 'normal': '400', 'medium': '500', 'semibold': '600', 'bold': '700' },
@@ -40,7 +40,7 @@
         }
     </script>
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body class="bg-gnius-dark-1 text-gnius-light font-sans font-normal">
@@ -51,26 +51,35 @@
 
         <!-- Filtros / Búsqueda -->
         <section id="filters" class="mb-6 p-4 bg-gnius-dark-2 rounded-lg flex flex-row flex-wrap items-center gap-4">
+            <!-- CAMBIO: Clases de estilo aplicadas directamente para restaurar la apariencia oscura -->
             <div class="w-full md:basis-3/6 lg:basis-1/3 flex-grow-[1.5]"> <label for="search-input"
                     class="sr-only">Buscar</label> <input type="text" id="search-input"
-                    placeholder="Buscar proyecto o estudiante..." class="filter-input w-full font-semibold"> </div>
+                    placeholder="Buscar proyecto o estudiante..."
+                    class="block w-full bg-gnius-dark-1 border-gnius-gray-light text-gnius-light-text placeholder-gnius-gray-light rounded-md shadow-sm focus:ring-gnius-cyan focus:border-gnius-cyan text-sm py-2 px-3 font-semibold">
+            </div>
+            <div class="w-full sm:w-auto flex-grow md:basis-2/6 lg:basis-1/4"> <label for="status-select"
+                    class="sr-only">Estado</label> <select id="status-select"
+                    class="block w-full bg-gnius-dark-1 border-gnius-gray-light text-gnius-light-text placeholder-gnius-gray-light rounded-md shadow-sm focus:ring-gnius-cyan focus:border-gnius-cyan text-sm py-2 px-3 font-semibold">
+                    <option value="">Estado</option>
+                </select> </div>
             <div class="w-full sm:w-auto flex-grow md:basis-2/6 lg:basis-1/4"> <label for="category-select"
                     class="sr-only">Categoría</label> <select id="category-select"
-                    class="filter-input w-full font-semibold">
+                    class="block w-full bg-gnius-dark-1 border-gnius-gray-light text-gnius-light-text placeholder-gnius-gray-light rounded-md shadow-sm focus:ring-gnius-cyan focus:border-gnius-cyan text-sm py-2 px-3 font-semibold">
                     <option value="">Categoría</option>
                 </select> </div>
             <div class="w-full sm:w-auto flex-grow md:basis-2/6 lg:basis-1/4"> <label for="schooling-select"
                     class="sr-only">Escolaridad</label> <select id="schooling-select"
-                    class="filter-input w-full font-semibold">
+                    class="block w-full bg-gnius-dark-1 border-gnius-gray-light text-gnius-light-text placeholder-gnius-gray-light rounded-md shadow-sm focus:ring-gnius-cyan focus:border-gnius-cyan text-sm py-2 px-3 font-semibold">
                     <option value="">Escolaridad</option>
                 </select> </div>
             <div class="w-full sm:w-auto flex-grow md:basis-2/6 lg:basis-1/3"> <label for="tech-select"
                     class="sr-only">Tecnología</label> <select id="tech-select"
-                    class="filter-input w-full font-semibold">
+                    class="block w-full bg-gnius-dark-1 border-gnius-gray-light text-gnius-light-text placeholder-gnius-gray-light rounded-md shadow-sm focus:ring-gnius-cyan focus:border-gnius-cyan text-sm py-2 px-3 font-semibold">
                     <option value="">Tecnología</option>
                 </select> </div>
             <div class="w-full sm:w-auto flex-grow md:basis-2/6 lg:basis-1/3"> <label for="sdg-select"
-                    class="sr-only">ODS</label> <select id="sdg-select" class="filter-input w-full font-semibold">
+                    class="sr-only">ODS</label> <select id="sdg-select"
+                    class="block w-full bg-gnius-dark-1 border-gnius-gray-light text-gnius-light-text placeholder-gnius-gray-light rounded-md shadow-sm focus:ring-gnius-cyan focus:border-gnius-cyan text-sm py-2 px-3 font-semibold">
                     <option value="">ODS</option>
                 </select> </div>
             <div class="w-full sm:w-auto flex-grow-0"> <button id="clear-filters-btn"
@@ -90,22 +99,18 @@
             <article
                 class="bg-gnius-dark-2 rounded-lg overflow-hidden shadow-lg transition duration-300 ease-in-out hover:scale-[1.02] hover:shadow-cyan-glow flex flex-col">
                 <a href="#" data-card-link class="block flex flex-col flex-grow">
-                    <div class="aspect-video overflow-hidden flex-shrink-0 relative"> <!-- ESTE ES EL DIV -->
+                    <div class="aspect-video overflow-hidden flex-shrink-0 relative">
                         <!-- INICIO: Indicador de Nominado para Tarjeta -->
                         <div class="nomination-indicator-wrapper absolute top-0 left-0 w-auto h-auto z-10 hidden"
                             data-nomination-indicator-card>
-                            <!-- Contenedor del listón para definir el área de la esquina -->
                             <div class="nomination-ribbon-container relative w-[80px] h-[80px] md:w-[90px] md:h-[90px]">
-                                <!-- Este es el lienzo donde se dibuja el listón rotado, overflow-hidden lo corta -->
                                 <div
                                     class="nomination-ribbon-visual absolute top-[-25px] left-[-35px] w-[120px] h-[120px] md:top-[-30px] md:left-[-40px] md:w-[140px] md:h-[140px] overflow-hidden">
-                                    <!-- El listón amarillo en sí. h-6/h-7 es su "grosor". -->
                                     <div
                                         class="ribbon-shape w-full h-6 md:h-7 bg-gnius-gold transform rotate-[-45deg] translate-y-[30px] translate-x-[-30px] md:translate-y-[35px] md:translate-x-[-40px] shadow-md">
                                     </div>
                                 </div>
                             </div>
-                            <!-- Medalla y texto, posicionados sobre el listón -->
                             <div
                                 class="medal-and-text-container absolute top-1 left-1 md:top-1.5 md:left-1.5 flex items-center space-x-1 md:space-x-1.5">
                                 <img src="assets/img/badges/insignia-nominado.png" alt="Nominado"
@@ -119,26 +124,26 @@
                         <div class="sdg-overlay absolute bottom-2 right-2 bg-black/40 backdrop-blur-sm px-2 py-1 rounded-lg flex items-center space-x-1.5"
                             style="display: none;">
                             <span class="sdg-overlay-label font-condensed font-semibold text-[14px]">ODS
-                                Cubiertos:</span> <!-- Condensed Semibold 14px -->
+                                Cubiertos:</span>
                             <div data-card-sdgs class="flex flex-wrap justify-end gap-1"> </div>
                         </div>
                     </div>
-                    <div class="p-4 flex flex-col flex-grow font-sans" data-card-content> <!-- Base Sans -->
+                    <div class="p-4 flex flex-col flex-grow font-sans" data-card-content>
                         <h3 data-card-title class="text-2xl font-bold mb-2 truncate text-gnius-yellow font-sans">Título
-                        </h3> <!-- Sans Bold -->
+                        </h3>
                         <div data-card-metadata class="mb-3 flex flex-wrap gap-1.5">
-                            <!-- Chips: Condensed Medium 12px -->
                         </div>
-                        <p data-card-desc
-                            class="text-base text-gnius-light/80 mb-3 h-20 overflow-hidden font-sans font-medium">
-                            Desc...</p> <!-- Sans Medium -->
+                        <p data-card-desc class="text-base text-gnius-light/80 mb-3 font-sans font-medium line-clamp-3">
+                            Desc...</p>
                         <div data-card-students class="mb-4 flex flex-wrap gap-1 items-center">
-                            <!-- Chips: Condensed Semibold 12px -->
                         </div>
-                        <div class="mt-auto text-right"> <span
+                        <div data-card-status class="pt-2 mt-auto">
+                            <!-- JS insertará el stepper aquí -->
+                        </div>
+                        <div class="mt-4 text-right"> <span
                                 class="link-action text-gnius-cyan hover:text-gnius-yellow font-sans font-semibold">Ver
                                 Detalles <i class="fa-solid fa-arrow-right-long ml-1 text-xs"></i></span>
-                            <!-- Sans Semibold --> </div>
+                        </div>
                     </div>
                 </a>
             </article>
@@ -170,8 +175,10 @@
         <div
             class="bg-gnius-dark-2 rounded-lg shadow-xl overflow-hidden border border-gnius-gray-dark w-full max-w-3xl max-h-[85vh] flex flex-col modal-content">
             <div class="flex justify-between items-center p-4 border-b border-gnius-gray-dark">
-                <h2 class="text-2xl font-bold text-gnius-light font-condensed"> <a href="..." target="_blank"
-                        rel="noopener noreferrer" class="hover:text-gnius-cyan"> Objetivos de Desarrollo Sostenible
+                <h2 class="text-2xl font-bold text-gnius-light font-condensed"> <a
+                        href="https://www.un.org/sustainabledevelopment/es/objetivos-de-desarrollo-sostenible/"
+                        target="_blank" rel="noopener noreferrer" class="hover:text-gnius-cyan"> Objetivos de Desarrollo
+                        Sostenible
                         (ODS) <i class="fa-solid fa-arrow-up-right-from-square fa-xs ml-1"></i> </a> </h2>
                 <button id="sdg-modal-close-btn" class="text-gnius-light/50 hover:text-gnius-red text-2xl leading-none"
                     aria-label="Cerrar">×</button>
@@ -183,7 +190,7 @@
     </div>
 
     <script src="js/ods-data.js"></script>
-    <script src="js/main.js"></script> <!-- Usar v4.19 -->
+    <script src="js/main.js"></script>
 </body>
 
 </html>

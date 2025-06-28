@@ -27,7 +27,7 @@
                         'gnius-cyan': '#00FFFF',
                         'gnius-red': '#FF0000',
                         'gnius-green': '#4CAF50',
-                        'gnius-violet': '#8731fa', // Color para borde nivel
+                        'gnius-violet': '#8731fa',
                         'gnius-gray-light': '#555555',
                         'gnius-gray-dark': '#333333',
                         'gnius-border': 'var(--gnius-gray-light)',
@@ -49,7 +49,7 @@
                         'violet-glow': '0 0 20px 5px rgba(135, 49, 250, 0.3)',
                     },
                     aspectRatio: {
-                        '1200/926': '1200 / 926', // Proporción certificado
+                        '1200/926': '1200 / 926',
                         '16/9': '16 / 9', '1/1': '1 / 1', '4/3': '4 / 3', '3/2': '3 / 2'
                     },
                 }
@@ -78,7 +78,9 @@
 
         <main id="certificate-details" class="hidden  p-6 md:p-8 rounded-lg shadow-lg">
 
-            <h1 class="text-3xl md:text-4xl font-black text-gnius-light mb-10 text-center md:text-left">Certificado de
+            <!-- CAMBIO: Tamaño de fuente responsivo añadido -->
+            <h1 class="text-2xl sm:text-3xl md:text-4xl font-black text-gnius-light mb-10 text-center md:text-left">
+                Certificado de
                 Proyecto de Innovación</h1>
 
             <div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
@@ -90,7 +92,6 @@
                         <img id="certificate-preview-image" src="" alt="Previsualización del certificado del estudiante"
                             class="max-w-full max-h-full object-contain">
                     </div>
-                    <!-- Contenedor de botones alineado a la derecha -->
                     <div class="mt-6 flex flex-col sm:flex-row items-center sm:justify-end gap-4 sm:gap-6">
                         <a id="view-project-button" href="project.html"
                             class="link-action text-gnius-cyan hover:text-gnius-yellow inline-flex items-center text-base underline">
@@ -105,39 +106,34 @@
 
                 <!-- Columna Derecha/Abajo: Datos / Metadatos -->
                 <aside class="lg:w-1/3 space-y-6 p-6 bg-gnius-dark-2 rounded-lg">
-                    <h2 id="student-name" class="text-3xl font-bold text-gnius-light">[Nombre Estudiante]</h2>
+                    <!-- CAMBIO: Tamaño de fuente responsivo añadido -->
+                    <h2 id="student-name" class="text-2xl sm:text-3xl font-bold text-gnius-light">[Nombre Estudiante]
+                    </h2>
 
                     <div>
                         <p class="text-sm font-semibold text-gnius-light-text/80 mb-1">Curso Asociado:</p>
                         <p id="course-name" class="font-semibold text-xl text-gnius-yellow">[Nombre Curso]</p>
                     </div>
 
-                    <!-- Píldora para Insignia -->
                     <div>
                         <p class="text-sm font-semibold text-gnius-light-text/80 mb-1">Insignia Obtenida:</p>
-                        <div id="badge-container" class="certificate-info-pill "><!-- {/* JS cambiará
-                        border-color */}-->
+                        <div id="badge-container" class="certificate-info-pill">
                             <img id="badge-image" src="" alt="Insignia" class="certificate-pill-image hidden">
-                            <span id="badge-name" class="certificate-pill-text text-gnius-light-text">[Insignia]</span> <!--{/*
-                        Texto oscuro para fondo amarillo */}-->
+                            <span id="badge-name" class="certificate-pill-text text-gnius-light-text">[Insignia]</span>
                         </div>
                     </div>
 
-                    <!-- Píldora para Nivel -->
                     <div>
                         <p class="text-sm font-semibold text-gnius-light-text/80 mb-1">Nivel Alcanzado:</p>
-                        <div id="level-container" class="certificate-info-pill"> <!--{/* Sin bg-*, JS pondrá borde violáceo
-                        y será fondo transparente */}-->
+                        <div id="level-container" class="certificate-info-pill">
                             <img id="level-image" src="" alt="Nivel" class="certificate-pill-image hidden">
-                            <span id="level" class="certificate-pill-text text-gnius-light-text">[Nivel]</span> <!--{/*
-                        Texto claro para fondo transparente */}-->
+                            <span id="level" class="certificate-pill-text text-gnius-light-text">[Nivel]</span>
                         </div>
                     </div>
 
                     <div>
                         <p class="text-sm font-semibold text-gnius-light-text/80 mb-2">Habilidades Demostradas:</p>
                         <div id="skills-list" class="flex flex-wrap gap-1.5">
-                            <!--{/* JS crea chips .chip-cyan-outline .text-xs */}-->
                         </div>
                     </div>
 
@@ -145,7 +141,6 @@
                         <p class="text-sm font-semibold text-gnius-light-text/80 mb-2">Criterios de Evaluación Clave:
                         </p>
                         <div id="criteria-list" class="flex flex-wrap gap-1.5">
-                            <!-- {/* JS crea chips .chip-yellow-outline .text-xs */} -->
                         </div>
                     </div>
 
