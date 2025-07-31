@@ -1,4 +1,4 @@
-// js/project.js - v4.14 (Corregir Hero ODS Badges, Mantener Panel ODS Num+Título)
+// js/project.js - v4.18 (Stepper Detallado con Iconos y Colores V2)
 
 let gaugeChartInstance = null;
 
@@ -55,7 +55,7 @@ async function loadProjectDetails() {
 
 function populateProjectData(project) {
   setTextContent("project-title", project.projectTitle);
-  setTextContent("intro-title", project.introTitle);
+  setHTMLContent("intro-title", project.introTitle);
   setHTMLContent("intro-content", project.introContent);
   setHTMLContent("problem-description", project.problemDescription);
   setHTMLContent("solution-proposed", project.solutionProposed);
@@ -77,6 +77,14 @@ function populateProjectData(project) {
     );
   }
 
+  // Lógica para renderizar la nueva Píldora de Estado
+  const statusPillContainer = document.getElementById(
+    "project-status-pill-container"
+  );
+  if (statusPillContainer && project.projectStatus) {
+    statusPillContainer.innerHTML = createStatusPill(project.projectStatus);
+  }
+
   // --- HERO ODS BADGES (ESTRUCTURA RESTAURADA: NÚMERO + ICONO) ---
   const heroSdgBadgesContainer = document.getElementById("hero-sdg-badges");
   heroSdgBadgesContainer.innerHTML = "";
@@ -86,33 +94,40 @@ function populateProjectData(project) {
     typeof odsData !== "undefined"
   ) {
     project.sdgIds.slice(0, 4).forEach((id) => {
-      // Mostrar hasta 4 badges
       const ods = odsData[id];
       if (ods) {
         const badgeLink = document.createElement("a");
         badgeLink.href = ods.url || "#";
         badgeLink.target = "_blank";
         badgeLink.rel = "noopener noreferrer";
-        badgeLink.classList.add("sdg-hero-badge"); // Estilos principales en CSS
+        badgeLink.classList.add("sdg-hero-badge");
         badgeLink.setAttribute("aria-label", `ODS ${id}: ${ods.title}`);
         badgeLink.title = `ODS ${id}: ${ods.title}`;
-        badgeLink.style.backgroundColor = ods.color; // Color de fondo del ODS
-        // Variable para que CSS pueda usar el color de contraste calculado
+        badgeLink.style.backgroundColor = ods.color;
         badgeLink.style.setProperty(
           "--sdg-contrast-color",
           getContrastYIQ(ods.color)
         );
-
-        // Estructura interna: Número a la izquierda, Icono a la derecha
         badgeLink.innerHTML = `
-                    <div class="sdg-hero-badge-inner">
-                        <span class="sdg-hero-badge-number">${id}</span>
-                        <img src="${ods.imageUrl}" alt="${ods.title}" class="sdg-hero-badge-icon">
-                    </div>
-                `;
+            <div class="sdg-hero-badge-inner">
+                <span class="sdg-hero-badge-number">${id}</span>
+                <img src="${ods.imageUrl}" alt="${ods.title}" class="sdg-hero-badge-icon">
+            </div>
+        `;
         heroSdgBadgesContainer.appendChild(badgeLink);
       }
     });
+  }
+
+  const nominationIndicatorHero = document.querySelector(
+    "[data-nomination-indicator-hero]"
+  );
+  if (nominationIndicatorHero) {
+    if (project.isNominated === true) {
+      nominationIndicatorHero.classList.remove("hidden");
+    } else {
+      nominationIndicatorHero.classList.add("hidden");
+    }
   }
 
   const heroMediaContainer = document.getElementById("hero-media");
@@ -181,10 +196,6 @@ function populateProjectData(project) {
     renderRubricBars(project.projectRubricScores);
   } else {
     evaluationSection.style.display = "none";
-    console.warn(
-      "Datos de evaluación incompletos o inválidos para el proyecto:",
-      project.slug
-    );
   }
 
   const innovationSection = document.getElementById(
@@ -197,11 +208,9 @@ function populateProjectData(project) {
     innovationSection.style.display = "none";
   }
 
-  // --- SECCIÓN DETALLES ODS (PANEL CON TODOS LOS ODS - SOLO NÚMERO Y TÍTULO) ---
   const sdgDetailsSection = document.getElementById("sdg-details-section");
   const sdgDetailsGrid = document.getElementById("sdg-details-grid");
   sdgDetailsGrid.innerHTML = "";
-
   if (typeof odsData !== "undefined") {
     for (let id = 1; id <= 17; id++) {
       const ods = odsData[id];
@@ -223,25 +232,23 @@ function populateProjectData(project) {
           getContrastYIQ(ods.color)
         );
         tileLink.style.setProperty("--sdg-base-color", ods.color);
-
-        // Estructura solo número y título para los 17 ODS
         tileLink.innerHTML = `
-                    <div class="sdg-panel-item-text-container">
-                        <span class="sdg-panel-item-number">${id}</span>
-                        <span class="sdg-panel-item-title">${ods.title.toUpperCase()}</span>
-                    </div>
-                `;
+            <div class="sdg-panel-item-text-container">
+                <span class="sdg-panel-item-number">${id}</span>
+                <span class="sdg-panel-item-title">${ods.title.toUpperCase()}</span>
+            </div>
+        `;
         sdgDetailsGrid.appendChild(tileLink);
       }
     }
-
     const generalOdsLogoTile = document.createElement("a");
     generalOdsLogoTile.href =
       "https://www.un.org/sustainabledevelopment/es/objetivos-de-desarrollo-sostenible/";
     generalOdsLogoTile.target = "_blank";
     generalOdsLogoTile.rel = "noopener noreferrer";
-    generalOdsLogoTile.classList.add("sdg-panel-item", "general-ods-logo-tile");
     generalOdsLogoTile.classList.add(
+      "sdg-panel-item",
+      "general-ods-logo-tile",
       "col-span-full",
       "sm:col-span-full",
       "md:col-span-3"
@@ -249,16 +256,14 @@ function populateProjectData(project) {
     generalOdsLogoTile.style.backgroundColor = "var(--gnius-dark-2)";
     generalOdsLogoTile.style.borderColor = "var(--gnius-gray-dark)";
     generalOdsLogoTile.innerHTML = `
-            <div class="sdg-panel-item-icon-container" style="height: 100%; margin-bottom: 0; width:100%; display:flex; justify-content:center; align-items:center;">
-                <img src="assets/img/ods/SDG-ONU-LOGO.png" alt="Objetivos de Desarrollo Sostenible Gnius Club" class="sdg-panel-item-icon" style="max-height: 80%; max-width: 80%;">
-            </div>
-        `;
+        <div class="sdg-panel-item-icon-container" style="height: 100%; margin-bottom: 0; width:100%; display:flex; justify-content:center; align-items:center;">
+            <img src="assets/img/ods/SDG-ONU-LOGO.png" alt="Objetivos de Desarrollo Sostenible Gnius Club" class="sdg-panel-item-icon" style="max-height: 80%; max-width: 80%;">
+        </div>
+    `;
     sdgDetailsGrid.appendChild(generalOdsLogoTile);
-
     sdgDetailsSection.style.display = "block";
   } else {
     sdgDetailsSection.style.display = "none";
-    console.warn("odsData no está definido, no se pueden renderizar los ODS.");
   }
 
   const gallerySection = document.getElementById("gallery-section");
@@ -276,11 +281,11 @@ function populateProjectData(project) {
         "relative",
         "group"
       );
-      galleryItem.innerHTML = `
-                <img src="${img.url}" alt="${img.altText}" data-caption="${
+      galleryItem.innerHTML = `<img src="${img.url}" alt="${
+        img.altText
+      }" data-caption="${
         img.caption || ""
-      }" class="w-full h-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-105">
-                <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-opacity duration-300"></div>`;
+      }" class="w-full h-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-105"><div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-opacity duration-300"></div>`;
       galleryItem.addEventListener("click", () =>
         openImageModal(img.url, img.altText, img.caption)
       );
@@ -305,13 +310,13 @@ function populateProjectData(project) {
         "border-gnius-gray-dark/50"
       );
       listItem.innerHTML = `
-                <div class="flex-grow mr-4">
-                    <p class="font-semibold text-base text-gnius-light">${member.name}</p>
-                    <p class="text-sm text-gnius-light/70 font-medium">${member.role}</p>
-                </div>
-                <a href="certificate.html?slug=${project.slug}&memberIndex=${index}" class="certificate-link flex-shrink-0">
-                    <i class="fa-solid fa-award"></i> Ver Certificado
-                </a>`;
+          <div class="flex-grow mr-4">
+              <p class="font-semibold text-base text-gnius-light">${member.name}</p>
+              <p class="text-sm text-gnius-light/70 font-medium">${member.role}</p>
+          </div>
+          <a href="certificate.html?slug=${project.slug}&memberIndex=${index}" class="certificate-link flex-shrink-0">
+              <i class="fa-solid fa-award"></i> Ver Certificado
+          </a>`;
       teamList.appendChild(listItem);
     });
   }
@@ -332,11 +337,11 @@ function populateProjectData(project) {
       const iconClass = getResourceIcon(resource.type);
       const listItem = document.createElement("li");
       listItem.innerHTML = `
-                <a href="${resource.url}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-sm font-semibold hover:text-gnius-yellow transition-colors duration-150 group">
-                    <i class="${iconClass} fa-fw mr-2 text-gnius-cyan text-base"></i>
-                    <span class="underline decoration-transparent group-hover:decoration-gnius-yellow transition">${resource.title}</span>
-                    <i class="fa-solid fa-arrow-up-right-from-square fa-xs ml-2 opacity-60"></i>
-                </a>`;
+          <a href="${resource.url}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-sm font-semibold hover:text-gnius-yellow transition-colors duration-150 group">
+              <i class="${iconClass} fa-fw mr-2 text-gnius-cyan text-base"></i>
+              <span class="underline decoration-transparent group-hover:decoration-gnius-yellow transition">${resource.title}</span>
+              <i class="fa-solid fa-arrow-up-right-from-square fa-xs ml-2 opacity-60"></i>
+          </a>`;
       resourcesList.appendChild(listItem);
     });
     resourcesSection.style.display = "block";
@@ -348,12 +353,10 @@ function populateProjectData(project) {
 function setTextContent(id, text) {
   const element = document.getElementById(id);
   if (element) element.textContent = text || "";
-  else console.warn(`Elemento con ID "${id}" no encontrado.`);
 }
 function setHTMLContent(id, html) {
   const element = document.getElementById(id);
   if (element) element.innerHTML = html || "";
-  else console.warn(`Elemento con ID "${id}" no encontrado.`);
 }
 function createChip(text, colorClass, additionalClasses = []) {
   const classes = ["chip", colorClass, ...additionalClasses].join(" ");
@@ -423,7 +426,6 @@ function getResourceIcon(type) {
       return "fa-solid fa-file-lines";
   }
 }
-
 function setupImageModal() {
   const modal = document.getElementById("imageModal");
   const closeBtn = document.getElementById("modalCloseBtn");
@@ -467,29 +469,20 @@ function closeImageModal() {
     document.body.style.overflow = "";
   }, 300);
 }
-
 function renderGaugeChart(grade) {
   const gaugeCtx = document.getElementById("gaugeChart")?.getContext("2d");
   const scoreTextElement = document.getElementById("gauge-score-text");
-  if (!gaugeCtx || !scoreTextElement) {
-    console.warn("Canvas/Texto Gauge no encontrado.");
-    return;
-  }
+  if (!gaugeCtx || !scoreTextElement) return;
   const displayGradeText = typeof grade === "number" ? grade.toFixed(1) : "-.-";
   scoreTextElement.textContent = displayGradeText;
   scoreTextElement.style.color = "var(--gnius-light)";
-  if (gaugeChartInstance) {
-    gaugeChartInstance.destroy();
-  }
+  if (gaugeChartInstance) gaugeChartInstance.destroy();
   const maxGrade = 10;
   const numericGrade = typeof grade === "number" ? grade : 0;
   const displayGradeValue = Math.min(Math.max(numericGrade, 0), maxGrade);
   let gaugeColorVar = "--gnius-green";
-  if (displayGradeValue < 5) {
-    gaugeColorVar = "--gnius-red";
-  } else if (displayGradeValue < 8) {
-    gaugeColorVar = "--gnius-yellow";
-  }
+  if (displayGradeValue < 5) gaugeColorVar = "--gnius-red";
+  else if (displayGradeValue < 8) gaugeColorVar = "--gnius-yellow";
   let gaugeColor = "#4CAF50";
   let bgColor = "#333333";
   try {
@@ -531,16 +524,13 @@ function renderGaugeChart(grade) {
 }
 function renderRubricBars(rubricScores) {
   const container = document.getElementById("rubric-criteria-container");
-  if (!container) {
-    console.warn("Contenedor de barras de rúbrica no encontrado.");
-    return;
-  }
+  if (!container) return;
   container.innerHTML = "";
   const criteriaMap = {
     innovation: "Innovación",
     collaboration: "Colaboración",
     impact: "Impacto",
-    techuse: "Uso de Tecnología",
+    techUse: "Uso de Tecnología",
     presentation: "Presentación",
   };
   let foundValidScores = false;
@@ -570,11 +560,7 @@ function renderRubricBars(rubricScores) {
         criterionDiv.classList.add("rubric-criterion");
         criterionDiv.innerHTML = `<p class="text-sm font-semibold text-gnius-light-text/90 mb-1 font-sans">${criteriaMap[key]}</p><div class="rubric-bar-chart-wrapper"><div class="rubric-bar rubric-bar-${score}" style="width: ${percentage}%; background-color: ${color};"><span class="rubric-score-text text-xs">${score}</span></div></div>`;
         container.appendChild(criterionDiv);
-      } else {
-        console.warn(`Score inválido (${score}) para criterio '${key}'.`);
       }
-    } else {
-      console.warn(`Score faltante/inválido para criterio '${key}'.`);
     }
   }
   if (foundValidScores) {
@@ -585,8 +571,14 @@ function renderRubricBars(rubricScores) {
       "mt-4",
       "font-medium"
     );
-    legend.textContent =
-      "* Criterios evaluados: 1=Insuficiente, 2=Satisfactorio, 3=Excelente";
+    const rootStyles = getComputedStyle(document.documentElement);
+    const color1 = rootStyles.getPropertyValue("--rubric-color-1").trim();
+    const color2 = rootStyles.getPropertyValue("--rubric-color-2").trim();
+    const color3 = rootStyles.getPropertyValue("--rubric-color-3").trim();
+    const swatchHtml1 = `<span style="display: inline-block; width: 12px; height: 12px; border-radius: 3px; background-color: ${color1}; margin-left: 16px; margin-right: 4px; vertical-align: middle; position: relative; top: -1px;"></span>`;
+    const swatchHtml2 = `<span style="display: inline-block; width: 12px; height: 12px; border-radius: 3px; background-color: ${color2}; margin-left: 16px; margin-right: 4px; vertical-align: middle; position: relative; top: -1px;"></span>`;
+    const swatchHtml3 = `<span style="display: inline-block; width: 12px; height: 12px; border-radius: 3px; background-color: ${color3}; margin-left: 16px; margin-right: 4px; vertical-align: middle; position: relative; top: -1px;"></span>`;
+    legend.innerHTML = `* Criterios evaluados:${swatchHtml1} <strong>Newbie</strong>,${swatchHtml2} <strong>Guru</strong>,${swatchHtml3} <strong>Wizard</strong>`;
     container.appendChild(legend);
   }
 }
@@ -606,9 +598,34 @@ function getContrastYIQ(hexcolor) {
     const yiq = (r * 299 + g * 587 + b * 114) / 1000;
     return yiq >= 135 ? "#111111" : "#FFFFFF";
   } catch (e) {
-    console.error("Error calculando contraste YIQ:", hexcolor, e);
     return "#FFFFFF";
   }
+}
+
+// Nueva función para crear la Píldora de Estado
+function createStatusPill(status) {
+  if (!status) return "";
+  const lowerCaseStatus = status.toLowerCase();
+
+  let iconClass = "";
+  let modifierClass = "";
+
+  if (lowerCaseStatus === "idea") {
+    iconClass = "fa-solid fa-lightbulb";
+    modifierClass = "status-idea";
+  } else if (lowerCaseStatus === "prototipo") {
+    iconClass = "fa-solid fa-gears";
+    modifierClass = "status-prototipo";
+  } else {
+    return "";
+  }
+
+  return `
+      <div class="status-pill ${modifierClass}">
+          <i class="${iconClass}"></i>
+          <span class="status-text">${status}</span>
+      </div>
+  `;
 }
 
 document.addEventListener("DOMContentLoaded", loadProjectDetails);
