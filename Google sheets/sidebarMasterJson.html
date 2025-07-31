@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <base target="_top">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+
+        #json-output {
+            font-family: monospace;
+            font-size: 11px;
+            white-space: pre;
+            background-color: #2d3748;
+            color: #e2e8f0;
+        }
+
+        #status-message,
+        #validation-messages {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 p-4">
+    <div class="space-y-4">
+        <h3 class="text-xl font-bold text-gray-800">Generador JSON</h3>
+
+        <button id="generate-btn"
+            class="w-full bg-blue-600 text-white font-bold py-2 px-4 rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-150">
+            Generar JSON de Nuevos Proyectos
+        </button>
+
+        <div>
+            <h4 class="font-semibold text-gray-700">Estado:</h4>
+            <div id="status-message" class="text-sm text-gray-600 mt-1 p-2 bg-gray-200 rounded">Listo.</div>
+        </div>
+
+        <div>
+            <h4 class="font-semibold text-gray-700">Mensajes de Validación:</h4>
+            <div id="validation-messages"
+                class="text-sm text-yellow-800 bg-yellow-100 border-l-4 border-yellow-500 p-3 rounded mt-1">
+                Aquí aparecerán advertencias o errores...
+            </div>
+        </div>
+
+        <div class="flex justify-between items-center">
+            <h4 class="font-semibold text-gray-700">Resultado JSON:</h4>
+            <button id="copy-btn"
+                class="text-sm bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-1 px-3 rounded" disabled>
+                Copiar
+            </button>
+        </div>
+
+        <textarea id="json-output" class="w-full h-64 border border-gray-300 rounded p-2"
+            readonly>El JSON generado aparecerá aquí...</textarea>
+    </div>
+
+    <script>
+        const generateBtn = document.getElementById('generate-btn');
+        const copyBtn = document.getElementById('copy-btn');
+        const statusMsg = document.getElementById('status-message');
+        const validationMsg = document.getElementById('validation-messages');
+        const jsonOutput = document.getElementById('json-output');
+
+        generateBtn.addEventListener('click', () => {
+            statusMsg.textContent = 'Generando... Por favor, espera.';
+            validationMsg.textContent = '';
+            generateBtn.disabled = true;
+            copyBtn.disabled = true;
+
+            google.script.run
+                .withSuccessHandler(handleSuccess)
+                .withFailureHandler(handleFailure)
+                .processFormResponses();
+        });
+
+        copyBtn.addEventListener('click', () => {
+            jsonOutput.select();
+            document.execCommand('copy');
+            statusMsg.textContent = '¡Copiado al portapapeles!';
+            setTimeout(() => { statusMsg.textContent = 'Listo.'; }, 2000);
+        });
+
+        function handleSuccess(result) {
+            statusMsg.textContent = '¡Generación completada!';
+            jsonOutput.value = result.jsonString;
+            validationMsg.textContent = result.validationMessages || 'Validación completada sin mensajes.';
+
+            if (result.jsonString && result.jsonString.length > 2) { // Mayor que '[]'
+                copyBtn.disabled = false;
+            }
+            generateBtn.disabled = false;
+        }
+
+        function handleFailure(error) {
+            statusMsg.textContent = '¡Error en la generación!';
+            validationMsg.textContent = 'ERROR: ' + error.message;
+            jsonOutput.value = 'No se pudo generar el JSON. Revisa los mensajes de validación.';
+            generateBtn.disabled = false;
+        }
+    </script>
+</body>
+
+</html>
