@@ -51,11 +51,17 @@
         <header class="mb-8"> <img src="assets/img/gnius_logo_placeholder.png" alt="Gnius Club Logo"
                 class="h-12 w-auto"> </header>
 
-        <!-- Filtros / Búsqueda (ESTRUCTURA FINAL BASADA EN TU REFERENCIA) -->
+        <!-- Filtros / Búsqueda -->
         <section id="filters" class="mb-6 p-4 bg-gnius-dark-2 rounded-lg flex flex-row flex-wrap items-center gap-4">
             <div class="w-full md:basis-3/6 lg:basis-1/3 flex-grow-[1.5]"> <label for="search-input"
-                    class="sr-only">Buscar</label> <input type="text" id="search-input"
+                    class="sr-only">Buscar por Título/Estudiante</label> <input type="text" id="search-input"
                     placeholder="Buscar proyecto o estudiante..."
+                    class="block w-full bg-gnius-dark-1 border-gnius-gray-light text-gnius-light-text placeholder-gnius-gray-light rounded-md shadow-sm focus:ring-gnius-cyan focus:border-gnius-cyan text-sm py-2 px-3 font-semibold">
+            </div>
+            <!-- Campo de búsqueda por ID -->
+            <div class="w-full sm:w-auto flex-grow md:basis-2/6 lg:basis-1/4">
+                <label for="id-search-input" class="sr-only">Buscar por ID</label>
+                <input type="text" id="id-search-input" placeholder="Buscar por ID (ej. G25-PXX-001)..."
                     class="block w-full bg-gnius-dark-1 border-gnius-gray-light text-gnius-light-text placeholder-gnius-gray-light rounded-md shadow-sm focus:ring-gnius-cyan focus:border-gnius-cyan text-sm py-2 px-3 font-semibold">
             </div>
             <div class="w-full sm:w-auto flex-grow md:basis-2/6 lg:basis-1/6"> <label for="status-select"
@@ -121,7 +127,7 @@
                             </div>
                         </div>
                         <img data-card-img src="https://picsum.photos/seed/placeholder/640/360" alt=""
-                            class="w-full h-full object-cover">
+                            class="w-full h-full object-scale-down">
                         <div class="sdg-overlay absolute bottom-2 right-2 bg-black/40 backdrop-blur-sm px-2 py-1 rounded-lg flex items-center space-x-1.5"
                             style="display: none;">
                             <span class="sdg-overlay-label font-condensed font-semibold text-[14px]">ODS
