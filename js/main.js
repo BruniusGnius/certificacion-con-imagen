@@ -337,6 +337,7 @@ const renderSdgLegend = () => {
 
 // --- Card Creation and Helper Functions ---
 // --- Card Creation and Helper Functions ---
+// --- Card Creation and Helper Functions ---
 const createProjectCard = (project) => {
   if (!projectCardTemplate?.content) return null;
   const cardClone = projectCardTemplate.content.cloneNode(true);
@@ -378,7 +379,8 @@ const createProjectCard = (project) => {
     const lowerCaseStatus = project.projectStatus.toLowerCase();
     if (lowerCaseStatus === "idea") {
       articleElement.style.borderColor = "var(--gnius-orange)";
-    } else if (lowerCase - status === "prototipo") {
+    } else if (lowerCaseStatus === "prototipo") {
+      // <-- CORRECCIÓN AQUÍ: Era "lowerCase-status"
       articleElement.style.borderColor = "var(--gnius-violet)";
     }
   }
@@ -386,23 +388,10 @@ const createProjectCard = (project) => {
   // Populate card content
   linkElement.href = `project.html?slug=${project.slug || ""}`;
 
-  // ==================================================================
-  // ========= INICIO DE LA OPTIMIZACIÓN DE CARGA DE IMAGEN ===========
-  // ==================================================================
-
-  // 1. Lazy Loading: El navegador solo descargará la imagen cuando esté
-  //    a punto de entrar en la pantalla.
+  // Optimización de carga de imagen
   imgElement.loading = "lazy";
-
-  // 2. Decoding Asíncrono: Ayuda a que la decodificación de la imagen
-  //    (el proceso de prepararla para ser mostrada) no bloquee otras tareas.
   imgElement.decoding = "async";
 
-  // ==================================================================
-  // ========== FIN DE LA OPTIMIZACIÓN DE CARGA DE IMAGEN =============
-  // ==================================================================
-
-  // Ahora, después de configurar la carga, asignamos la fuente de la imagen.
   imgElement.src =
     project.coverImage?.url || "assets/img/gnius_logo_placeholder.png";
   imgElement.alt =
