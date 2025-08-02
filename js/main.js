@@ -336,6 +336,7 @@ const renderSdgLegend = () => {
 };
 
 // --- Card Creation and Helper Functions ---
+// --- Card Creation and Helper Functions ---
 const createProjectCard = (project) => {
   if (!projectCardTemplate?.content) return null;
   const cardClone = projectCardTemplate.content.cloneNode(true);
@@ -377,13 +378,31 @@ const createProjectCard = (project) => {
     const lowerCaseStatus = project.projectStatus.toLowerCase();
     if (lowerCaseStatus === "idea") {
       articleElement.style.borderColor = "var(--gnius-orange)";
-    } else if (lowerCaseStatus === "prototipo") {
+    } else if (lowerCase - status === "prototipo") {
       articleElement.style.borderColor = "var(--gnius-violet)";
     }
   }
 
   // Populate card content
   linkElement.href = `project.html?slug=${project.slug || ""}`;
+
+  // ==================================================================
+  // ========= INICIO DE LA OPTIMIZACIÓN DE CARGA DE IMAGEN ===========
+  // ==================================================================
+
+  // 1. Lazy Loading: El navegador solo descargará la imagen cuando esté
+  //    a punto de entrar en la pantalla.
+  imgElement.loading = "lazy";
+
+  // 2. Decoding Asíncrono: Ayuda a que la decodificación de la imagen
+  //    (el proceso de prepararla para ser mostrada) no bloquee otras tareas.
+  imgElement.decoding = "async";
+
+  // ==================================================================
+  // ========== FIN DE LA OPTIMIZACIÓN DE CARGA DE IMAGEN =============
+  // ==================================================================
+
+  // Ahora, después de configurar la carga, asignamos la fuente de la imagen.
   imgElement.src =
     project.coverImage?.url || "assets/img/gnius_logo_placeholder.png";
   imgElement.alt =
@@ -392,6 +411,7 @@ const createProjectCard = (project) => {
   imgElement.onerror = () => {
     imgElement.src = "assets/img/problemas-imagenes-placeholder.png";
   };
+
   titleElement.textContent = project.projectTitle || "Sin Título";
 
   // SDG indicators
