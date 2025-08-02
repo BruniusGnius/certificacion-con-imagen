@@ -281,11 +281,13 @@ function populateProjectData(project) {
         "relative",
         "group"
       );
-      galleryItem.innerHTML = `<img src="${img.url}" alt="${
-        img.altText
-      }" data-caption="${
-        img.caption || ""
-      }" class="w-full h-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-105"><div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-opacity duration-300"></div>`;
+      const placeholder = "assets/img/problemas-imagenes-placeholder.png";
+      galleryItem.innerHTML = `<img src="${img.url || placeholder}" 
+                              alt="${img.altText}" 
+                              data-caption="${img.caption || ""}" 
+                              class="w-full h-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-105"
+                              onerror="this.onerror=null; this.src='${placeholder}';">
+                         <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-opacity duration-300"></div>`;
       galleryItem.addEventListener("click", () =>
         openImageModal(img.url, img.altText, img.caption)
       );
@@ -376,10 +378,16 @@ function createTechChip(tech) {
   }</span><span class="tech-inner-chip ${categoryClass}">${categoryClean}</span></div>`;
 }
 function createImageElement(src, alt, useContain = true) {
+  const placeholder = "assets/img/problemas-imagenes-placeholder.png";
   const objectFitClass = useContain ? "object-contain" : "object-cover";
-  return `<img src="${src || ""}" alt="${
-    alt || "Imagen descriptiva"
-  }" class="w-full h-full ${objectFitClass}">`;
+  // Añadimos el evento onerror directamente en el string HTML.
+  // Si la imagen original falla, se intenta cargar el placeholder.
+  // También añadimos un segundo onerror en el placeholder para evitar bucles infinitos
+  // si el propio placeholder no se encuentra.
+  return `<img src="${src || placeholder}" 
+               alt="${alt || "Imagen descriptiva"}" 
+               class="w-full h-full ${objectFitClass}" 
+               onerror="this.onerror=null; this.src='${placeholder}';">`;
 }
 function createVideoEmbed(url) {
   if (!url)
