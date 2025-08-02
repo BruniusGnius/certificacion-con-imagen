@@ -66,7 +66,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     setupSdgLegendModal();
   }
 });
-
 const loadInitialData = async () => {
   if (loadingMessage) loadingMessage.style.display = "block";
   if (noResultsMessage) noResultsMessage.style.display = "none";
@@ -78,6 +77,9 @@ const loadInitialData = async () => {
     populateFilters();
     if (sdgLegendModalContent) renderSdgLegend();
     applyFiltersAndRender();
+
+    // Aquí se inicia el observador para la precarga de imágenes
+    setupPrefetchObserver();
   } else {
     if (loadingMessage)
       loadingMessage.textContent =
@@ -91,7 +93,6 @@ const loadInitialData = async () => {
   }
   if (loadingMessage) loadingMessage.style.display = "none";
 };
-
 // --- Filter Population, Application, and Rendering ---
 const populateFilters = () => {
   const categories = new Set(),
@@ -478,6 +479,65 @@ const createProjectCard = (project) => {
 
   return cardClone;
 };
+// En js/main.js, añade esta nueva función
+
+// --- Prefetching Logic ---
+const prefetchedPages = new Set(); // Para no precargar la misma página varias veces
+
+const setupPrefetchObserver = () => {
+  if (!paginationControls) return;
+
+  const observerOptions = {
+    root: null, // Observa en relación con el viewport
+    rootMargin: "0px",
+    threshold: 0.1, // Se activa cuando al menos el 10% del elemento es visible
+  };
+
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const nextPage = currentPage + 1;
+        const totalPages = Math.ceil(filteredProjects.length / projectsPerPage);
+
+        // Si hay una página siguiente y no la hemos precargado ya
+        if (nextPage <= totalPages && !prefetchedPages.has(nextPage)) {
+          console.log(`Prefetching resources for page ${nextPage}`);
+
+          // Marcarla como precargada
+          prefetchedPages.add(nextPage);
+
+          // Calcular qué imágenes precargar
+          const startIndex = (nextPage - 1) * projectsPerPage;
+          const endIndex = startIndex + projectsPerPage;
+          const projectsToPrefetch = filteredProjects.slice(
+            startIndex,
+            endIndex
+          );
+
+          projectsToPrefetch.forEach((project) => {
+            if (project.coverImage?.url) {
+              // Crear una etiqueta <link rel="prefetch"> y añadirla al <head>
+              const link = document.createElement("link");
+              link.rel = "prefetch";
+              link.href = project.coverImage.url;
+              link.as = "image";
+              document.head.appendChild(link);
+            }
+          });
+
+          // Opcional: Desconectar el observador si ya no hay más páginas que precargar
+          if (nextPage >= totalPages) {
+            observer.disconnect();
+          }
+        }
+      }
+    });
+  }, observerOptions);
+
+  // Empezar a observar los controles de paginación
+  observer.observe(paginationControls);
+};
+// En js/main.js, modifica la función loadInitialData
 
 function getContrastYIQ(hexcolor) {
   hexcolor = (hexcolor || "").replace("#", "");
