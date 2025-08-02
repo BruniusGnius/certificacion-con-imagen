@@ -394,7 +394,8 @@ const createProjectCard = (project) => {
   imgElement.decoding = "async";
 
   imgElement.src =
-    project.coverImage?.url || "assets/img/gnius_logo_placeholder.png";
+    project.coverImage?.url ||
+    "assets/img/problemas-imagenes-placeholder-sm.jpg";
   imgElement.alt =
     project.coverImage?.altText ||
     `Portada para ${project.projectTitle || "proyecto"}`;
