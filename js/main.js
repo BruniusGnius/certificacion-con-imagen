@@ -15,7 +15,8 @@ const noResultsMessage = document.getElementById("no-results-message");
 const paginationControls = document.getElementById("pagination-controls");
 const prevPageBtn = document.getElementById("prev-page-btn");
 const nextPageBtn = document.getElementById("next-page-btn");
-const pageInfo = document.getElementById("page-info");
+const pageInput = document.getElementById("page-input"); // <-- AÑADIR ESTA LÍNEA
+const pageInfoTotal = document.getElementById("page-info-total"); // <-- AÑADIR ESTA LÍNEA
 const projectCardTemplate = document.getElementById("project-card-template");
 const currentYearSpan = document.getElementById("current-year");
 const showSdgLegendBtn = document.getElementById("show-sdg-legend-btn");
@@ -223,12 +224,24 @@ const renderProjects = () => {
 const updatePaginationControls = () => {
   if (!paginationControls) return;
   const totalPages = Math.ceil(filteredProjects.length / projectsPerPage);
+
   if (totalPages <= 1) {
     paginationControls.style.display = "none";
     return;
   }
+
   paginationControls.style.display = "flex";
-  if (pageInfo) pageInfo.textContent = `Página ${currentPage} de ${totalPages}`;
+
+  // Actualizar el nuevo input y el span
+  if (pageInput) {
+    pageInput.value = currentPage;
+    pageInput.max = totalPages;
+  }
+  if (pageInfoTotal) {
+    pageInfoTotal.textContent = `de ${totalPages}`;
+  }
+
+  // Habilitar/deshabilitar botones de Anterior/Siguiente
   if (prevPageBtn) prevPageBtn.disabled = currentPage === 1;
   if (nextPageBtn) nextPageBtn.disabled = currentPage === totalPages;
 };
@@ -271,15 +284,40 @@ const setupEventListeners = () => {
     });
   }
 
-  if (prevPageBtn)
+  if (prevPageBtn) {
     prevPageBtn.addEventListener("click", () => {
       if (currentPage > 1) goToPage(currentPage - 1);
     });
-  if (nextPageBtn)
+  }
+  if (nextPageBtn) {
     nextPageBtn.addEventListener("click", () => {
       const totalPages = Math.ceil(filteredProjects.length / projectsPerPage);
       if (currentPage < totalPages) goToPage(currentPage + 1);
     });
+  }
+
+  // --- NUEVA LÓGICA PARA EL INPUT DE PÁGINA ---
+  if (pageInput) {
+    const handlePageJump = () => {
+      const totalPages = Math.ceil(filteredProjects.length / projectsPerPage);
+      let pageNum = parseInt(pageInput.value, 10);
+
+      // Validar y corregir el número de página
+      if (isNaN(pageNum)) {
+        pageNum = 1; // Si no es un número, ir a la página 1
+      } else if (pageNum < 1) {
+        pageNum = 1; // Si es menor que 1, ir a la página 1
+      } else if (pageNum > totalPages) {
+        pageNum = totalPages; // Si es mayor que el total, ir a la última página
+      }
+
+      goToPage(pageNum);
+    };
+
+    // Escuchar el evento 'change' (cuando el usuario presiona Enter o hace clic fuera)
+    pageInput.addEventListener("change", handlePageJump);
+  }
+  // --- FIN DE LA NUEVA LÓGICA ---
 };
 
 const setupSdgLegendModal = () => {

@@ -158,11 +158,24 @@
         <!-- Paginación -->
         <nav id="pagination-controls" class="mt-12 flex justify-center items-center gap-4 font-sans font-normal"
             style="display: none;">
-            <button id="prev-page-btn" class="btn btn-primary" disabled> <i class="fa-solid fa-angle-left mr-1"></i>
-                Anterior </button>
-            <span id="page-info" class="text-gnius-light text-base">Página 1 de 1</span>
-            <button id="next-page-btn" class="btn btn-primary" disabled> Siguiente <i
-                    class="fa-solid fa-angle-right ml-1"></i> </button>
+            <button id="prev-page-btn" class="btn btn-primary" disabled>
+                <i class="fa-solid fa-angle-left mr-1"></i>
+                Anterior
+            </button>
+
+            <!-- NUEVO GRUPO DE INPUT PARA SALTO DE PÁGINA -->
+            <div class="flex items-center gap-2 text-gnius-light text-base">
+                <label for="page-input" class="sr-only">Ir a la página</label>
+                <input type="number" id="page-input" min="1"
+                    class="bg-gnius-dark-1 border-gnius-gray-light rounded-md shadow-sm focus:ring-gnius-cyan focus:border-gnius-cyan text-center font-semibold w-16 p-2 h-10">
+                <span id="page-info-total">de 1</span>
+            </div>
+            <!-- FIN DEL NUEVO GRUPO -->
+
+            <button id="next-page-btn" class="btn btn-primary" disabled>
+                Siguiente
+                <i class="fa-solid fa-angle-right ml-1"></i>
+            </button>
         </nav>
         <!-- Footer -->
         <footer class="mt-16 text-center text-sm text-gnius-light/60 font-sans font-normal">
