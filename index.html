@@ -135,7 +135,13 @@
                             <div data-card-sdgs class="flex flex-wrap justify-end gap-1"> </div>
                         </div>
                     </div>
-                    <div class="p-4 flex flex-col flex-grow font-sans" data-card-content>
+                    <div class="pt-8 px-4 pb-4 flex flex-col flex-grow font-sans relative" data-card-content>
+                        <!-- NUEVO: Contenedor para el Project ID -->
+                        <div data-card-project-id
+                            class="absolute top-2 right-3 bg-gnius-dark-1/70 backdrop-blur-sm px-2 py-[1px] rounded-md text-[10px] font-mono text-gnius-light/80">
+                            <!-- El ID se insertará aquí -->
+                        </div>
+
                         <h3 data-card-title class="text-2xl font-bold mb-2 truncate text-gnius-yellow font-sans">Título
                         </h3>
                         <div data-card-metadata class="mb-3 flex flex-wrap gap-1.5">

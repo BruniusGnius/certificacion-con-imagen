@@ -62,6 +62,13 @@ function populateProjectData(project) {
 
   const metadataContainer = document.getElementById("project-metadata");
   metadataContainer.innerHTML = "";
+  if (project.projectId) {
+    metadataContainer.innerHTML += createChip(
+      `<i class="fa-solid fa-hashtag fa-xs mr-1"></i>${project.projectId}`,
+      "chip-gray-muted-border", // Usamos el nuevo estilo neutro
+      ["chip-metadata", "font-condensed", "font-medium", "text-[12px]"]
+    );
+  }
   if (project.projectCategory) {
     metadataContainer.innerHTML += createChip(
       project.projectCategory,
@@ -360,9 +367,10 @@ function setHTMLContent(id, html) {
   const element = document.getElementById(id);
   if (element) element.innerHTML = html || "";
 }
-function createChip(text, colorClass, additionalClasses = []) {
+function createChip(htmlContent, colorClass, additionalClasses = []) {
   const classes = ["chip", colorClass, ...additionalClasses].join(" ");
-  return `<span class="${classes}">${text}</span>`;
+  // Usamos un template literal para construir el HTML completo del span
+  return `<span class="${classes}">${htmlContent}</span>`;
 }
 function createTechChip(tech) {
   const validCategories = ["Hardware", "Software", "Tool"];

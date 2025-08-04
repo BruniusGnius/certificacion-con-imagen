@@ -393,6 +393,7 @@ const createProjectCard = (project) => {
   const nominationIndicator = cardClone.querySelector(
     "[data-nomination-indicator-card]"
   );
+  const projectIdElement = cardClone.querySelector("[data-card-project-id]");
 
   if (
     !articleElement ||
@@ -515,9 +516,26 @@ const createProjectCard = (project) => {
   statusContainer.innerHTML = project.projectStatus
     ? createStatusIndicator(project.projectStatus)
     : "";
+  // ... (código existente para el Status Indicator)
+  statusContainer.innerHTML = project.projectStatus
+    ? createStatusIndicator(project.projectStatus)
+    : "";
+
+  // === INICIA CÓDIGO NUEVO ===
+  // Poblar el Project ID si existe
+  if (projectIdElement) {
+    if (project.projectId) {
+      projectIdElement.textContent = project.projectId;
+    } else {
+      // Oculta el contenedor del ID si el proyecto no tiene uno
+      projectIdElement.style.display = "none";
+    }
+  }
+  // === TERMINA CÓDIGO NUEVO ===
 
   return cardClone;
 };
+
 // En js/main.js, añade esta nueva función
 
 // --- Prefetching Logic ---

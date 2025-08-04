@@ -245,7 +245,11 @@ h6 {
   background-color: var(--gnius-red);
   color: var(--gnius-light-text);
 }
-
+.chip-gray-muted-border {
+  border-color: rgba(128, 128, 128, 0.4);
+  color: rgba(240, 240, 240, 0.9);
+  background-color: transparent !important;
+}
 /* --- Layout y Modal Genérico --- */
 .aside-section {
   padding: 1.5rem;
