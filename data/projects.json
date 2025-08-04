@@ -5352,7 +5352,7 @@
       },
       {
         "name": "Naomi Martín del Campo Cortes",
-        "role": "Diseñador creativo, editor y diseñador 3D",
+        "role": "Diseñador creativo, editor y Diseñador 3D",
         "sbtLink": null,
         "certificateCourseName": "Sustain Blossom",
         "certificateBadgeName": "Design Architect",
@@ -5645,7 +5645,7 @@
     "teamMembers": [
       {
         "name": "Isabella Zoé Elizalde Ruíz",
-        "role": "Creador, diseñador y progamador",
+        "role": "Creador, Diseñador y progamador",
         "sbtLink": null,
         "certificateCourseName": "Sistema de riego automático",
         "certificateBadgeName": "Robot Navigator",
@@ -5659,7 +5659,7 @@
       },
       {
         "name": "Ana Karen Mendoza Martínez",
-        "role": "Creador, diseñador y progamador",
+        "role": "Creador, Diseñador y progamador",
         "sbtLink": null,
         "certificateCourseName": "Sistema de riego automático",
         "certificateBadgeName": "Robot Navigator",
@@ -6305,49 +6305,7 @@
       },
       {
         "name": "Paula Isabella Ramírez Lucero",
-        "role": null,
-        "sbtLink": null,
-        "certificateCourseName": "Imprimiendo Sueños",
-        "certificateBadgeName": "Design Architect",
-        "certificateLevel": "Hacker",
-        "certificateSkills": "Modelado 3D,Diseño 3D,Impresión 3D",
-        "certificateCriteria": "Excelencia en Innovación",
-        "certificateCollege": "Monte Rosa",
-        "certificateIssueDate": "2025-06-26",
-        "certificatePreviewUrl": "assets/img/certificado.png",
-        "certificatePrintUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "No hay",
-        "role": "No hay",
-        "sbtLink": null,
-        "certificateCourseName": "Imprimiendo Sueños",
-        "certificateBadgeName": "Design Architect",
-        "certificateLevel": "Hacker",
-        "certificateSkills": "Modelado 3D,Diseño 3D,Impresión 3D",
-        "certificateCriteria": "Excelencia en Innovación",
-        "certificateCollege": "Monte Rosa",
-        "certificateIssueDate": "2025-06-26",
-        "certificatePreviewUrl": "assets/img/certificado.png",
-        "certificatePrintUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "No hay",
-        "role": "No hay",
-        "sbtLink": null,
-        "certificateCourseName": "Imprimiendo Sueños",
-        "certificateBadgeName": "Design Architect",
-        "certificateLevel": "Hacker",
-        "certificateSkills": "Modelado 3D,Diseño 3D,Impresión 3D",
-        "certificateCriteria": "Excelencia en Innovación",
-        "certificateCollege": "Monte Rosa",
-        "certificateIssueDate": "2025-06-26",
-        "certificatePreviewUrl": "assets/img/certificado.png",
-        "certificatePrintUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "No hay",
-        "role": "No hay",
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Imprimiendo Sueños",
         "certificateBadgeName": "Design Architect",
@@ -6999,7 +6957,7 @@
     "introContent": "<p>El proyecto <strong>Clima Inteligente</strong> busca resolver el problema del calor excesivo en habitaciones durante temporadas calurosas, de forma <em>automatizada y eficiente</em>. Los alumnos diseñaron un sistema con un <strong>micro:bit</strong> programado para activar un ventilador cuando detecta que la temperatura supera los 27°C. Una vez que la temperatura baja a 27°C o menos, el ventilador se apaga automáticamente.</p><p>Este sistema evita que los ventiladores estén encendidos todo el día innecesariamente, lo cual <strong>reduce el consumo eléctrico, mejora el confort de las personas y contribuye al cuidado del medio ambiente</strong>. Es una solución accesible, con componentes básicos, pero con <em>gran impacto práctico y sustentable</em>.</p>",
     "coverImage": {
       "url": "assets/img/fresh-room/cover.png",
-      "altText": "Se explica el problema del uso excesivo de ventiladores y la solución tecnológica creada: un sistema con micro:bit que automatiza el encendido de un ventilador cuando la temperatura supera los 27 °C. A la derecha se destaca el impacto ambiental, educativo y energético del proyecto. Incluye fotos del prototipo, los estudiantes y una habitación como contexto. Al pie se indican los ODS vinculados y un subtítulo inspirador."
+      "altText": "Se explica el problema del uso excesivo de ventiladores y la solución tecnológica creada: un sistema con micro:bit que automatiza el encendido de un ventilador cuando la temperatura supera los 27 °C. A la derecha se destaca el impacto ambiental, educativo y energético del proyecto. Incluye fotos del prototipo, los estudiantes y una habitación como contexto. Al pie se indican los ODS vinculados y un subtítulo inspirador."
     },
     "problemDescription": "<p>Los estudiantes identificaron que muchas personas dejan <strong>ventiladores encendidos constantemente</strong> en épocas de calor, lo que genera <em>desperdicio de energía eléctrica, costos innecesarios y contribuye al calentamiento global</em>. Buscaron una manera de automatizar el uso del ventilador para que se encienda solo cuando realmente se necesita.</p>",
     "solutionProposed": "<p>La solución fue crear un <strong>sistema de control de temperatura</strong> con <strong>micro:bit y sensor</strong>, que activa un ventilador únicamente cuando se superan los 27ºC, apagándose automáticamente al llegar a esa temperatura. Esto logra <em>eficiencia energética y comodidad sin intervención humana constante</em>.</p>",
@@ -7007,7 +6965,7 @@
     "media": {
       "type": "image",
       "url": "assets/img/fresh-room/cover.png",
-      "altText": "Diagrama simple del proyecto Clima Inteligente. En el centro se encuentra una tarjeta micro:bit conectada a un sensor de temperatura a la izquierda y a un ventilador a la derecha. Las conexiones indican que, al detectar una temperatura mayor a 27 °C, el sistema activa automáticamente el ventilador. El diseño es claro, con fondo beige, íconos minimalistas y etiquetas comprensibles que ilustran el funcionamiento del sistema automatizado."
+      "altText": "Diagrama simple del proyecto Clima Inteligente. En el centro se encuentra una tarjeta micro:bit conectada a un sensor de temperatura a la izquierda y a un ventilador a la derecha. Las conexiones indican que, al detectar una temperatura mayor a 27 °C, el sistema activa automáticamente el ventilador. El diseño es claro, con fondo beige, íconos minimalistas y etiquetas comprensibles que ilustran el funcionamiento del sistema automatizado."
     },
     "teamMembers": [
       {
@@ -8891,7 +8849,7 @@
       },
       {
         "name": "Luciana Yáñez Pineda",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Roby",
         "certificateBadgeName": "Robot Navigator",
@@ -8905,7 +8863,7 @@
       },
       {
         "name": "Aitana Ramírez Morales",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Roby",
         "certificateBadgeName": "Robot Navigator",
@@ -8919,7 +8877,7 @@
       },
       {
         "name": "Emma Hernández Falcón",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Roby",
         "certificateBadgeName": "Robot Navigator",
@@ -9052,7 +9010,7 @@
       },
       {
         "name": "Analía Galicia Mata",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Puraficatodo",
         "certificateBadgeName": "Robot Navigator",
@@ -9066,7 +9024,7 @@
       },
       {
         "name": "Santiago Serrano Ruiz",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Puraficatodo",
         "certificateBadgeName": "Robot Navigator",
@@ -9199,7 +9157,7 @@
       },
       {
         "name": "Traviesa Meléndez Laura Traviesa",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "R2-D2(Arturito)",
         "certificateBadgeName": "Robot Navigator",
@@ -9213,7 +9171,7 @@
       },
       {
         "name": "Rocha Palacios José Luis",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "R2-D2(Arturito)",
         "certificateBadgeName": "Robot Navigator",
@@ -9227,7 +9185,7 @@
       },
       {
         "name": "Moreno Castillo Leonardo",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "R2-D2(Arturito)",
         "certificateBadgeName": "Robot Navigator",
@@ -9241,21 +9199,7 @@
       },
       {
         "name": "Varela Márquez Frida",
-        "role": null,
-        "sbtLink": null,
-        "certificateCourseName": "R2-D2(Arturito)",
-        "certificateBadgeName": "Robot Navigator",
-        "certificateLevel": "Master",
-        "certificateSkills": "Scratch/Blockly,Microcontroladores,Automatización,Comunicación Efectiva",
-        "certificateCriteria": "Cumplimiento de Objetivos",
-        "certificateCollege": "Greenvalley School",
-        "certificateIssueDate": "2025-07-01",
-        "certificatePreviewUrl": "assets/img/certificado.png",
-        "certificatePrintUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "frida.varela@greenvalley.edu.mx",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "R2-D2(Arturito)",
         "certificateBadgeName": "Robot Navigator",
@@ -9354,7 +9298,7 @@
     "teamMembers": [
       {
         "name": "Pellico Alonso Ana Lucía",
-        "role": "diseñadores",
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "IF.E2",
         "certificateBadgeName": "Robot Navigator",
@@ -9368,7 +9312,7 @@
       },
       {
         "name": "Sosa Rhode Maximilian Lysander",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "IF.E2",
         "certificateBadgeName": "Robot Navigator",
@@ -9382,7 +9326,7 @@
       },
       {
         "name": "López Hernández María José",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "IF.E2",
         "certificateBadgeName": "Robot Navigator",
@@ -9396,7 +9340,7 @@
       },
       {
         "name": "Baigts Cosio Patricio",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "IF.E2",
         "certificateBadgeName": "Robot Navigator",
@@ -9410,7 +9354,7 @@
       },
       {
         "name": "Ramírez Bernal Íker",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "IF.E2",
         "certificateBadgeName": "Robot Navigator",
@@ -9548,7 +9492,7 @@
       },
       {
         "name": "Lopez Arellano Lima Alonso",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Cangri Clean 2000",
         "certificateBadgeName": "Robot Navigator",
@@ -9562,7 +9506,7 @@
       },
       {
         "name": "Aburto Nava Regina",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Cangri Clean 2000",
         "certificateBadgeName": "Robot Navigator",
@@ -9681,7 +9625,7 @@
     "teamMembers": [
       {
         "name": "Sainz Sampedro Amelia",
-        "role": "diseñador",
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "8-bit",
         "certificateBadgeName": "Robot Navigator",
@@ -9695,7 +9639,7 @@
       },
       {
         "name": "Vieyra Segura Vanessa",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "8-bit",
         "certificateBadgeName": "Robot Navigator",
@@ -9709,7 +9653,7 @@
       },
       {
         "name": "López Martínez Elian",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "8-bit",
         "certificateBadgeName": "Robot Navigator",
@@ -9723,7 +9667,7 @@
       },
       {
         "name": "De la Barreda Lopez Emilio Marcello",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "8-bit",
         "certificateBadgeName": "Robot Navigator",
@@ -9737,7 +9681,7 @@
       },
       {
         "name": "Casillas Hernández Lia",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "8-bit",
         "certificateBadgeName": "Robot Navigator",
@@ -9856,7 +9800,7 @@
     "teamMembers": [
       {
         "name": "Edgar Meza Mateo",
-        "role": "diseñador",
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Robot star",
         "certificateBadgeName": "Robot Navigator",
@@ -9870,7 +9814,7 @@
       },
       {
         "name": "Domínguez Nolasco Matías",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Robot star",
         "certificateBadgeName": "Robot Navigator",
@@ -9884,7 +9828,7 @@
       },
       {
         "name": "Álvarez Graf Alejandro",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Robot star",
         "certificateBadgeName": "Robot Navigator",
@@ -10017,7 +9961,7 @@
       },
       {
         "name": "Luis Lopez Ivanna",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Airclean-bot",
         "certificateBadgeName": "Robot Navigator",
@@ -10031,7 +9975,7 @@
       },
       {
         "name": "Sellon Gongora Patricio",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Airclean-bot",
         "certificateBadgeName": "Robot Navigator",
@@ -10164,7 +10108,7 @@
       },
       {
         "name": "Annia Muñoz San Justo",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Bubblebot",
         "certificateBadgeName": "Robot Navigator",
@@ -10178,7 +10122,7 @@
       },
       {
         "name": "Andrea Sánchez González",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Bubblebot",
         "certificateBadgeName": "Robot Navigator",
@@ -10192,7 +10136,7 @@
       },
       {
         "name": "Aitana Vázquez Pumarino",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Bubblebot",
         "certificateBadgeName": "Robot Navigator",
@@ -10206,7 +10150,7 @@
       },
       {
         "name": "Aitana Ocejo Ruíz",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Bubblebot",
         "certificateBadgeName": "Robot Navigator",
@@ -10364,7 +10308,7 @@
       },
       {
         "name": "Valentina Corona Cos",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Robot incuvador",
         "certificateBadgeName": "Robot Navigator",
@@ -10378,7 +10322,7 @@
       },
       {
         "name": "Victoria Argüelles Góngora",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Robot incuvador",
         "certificateBadgeName": "Robot Navigator",
@@ -10392,7 +10336,7 @@
       },
       {
         "name": "Edlyn Alexa Mares Grajeda",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Robot incuvador",
         "certificateBadgeName": "Robot Navigator",
@@ -10406,7 +10350,7 @@
       },
       {
         "name": "Franco Pérez Luna",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Robot incuvador",
         "certificateBadgeName": "Robot Navigator",
@@ -10554,7 +10498,7 @@
       },
       {
         "name": "Luciene Cervantes Abraham",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Mineral Lightbulb",
         "certificateBadgeName": "Robot Navigator",
@@ -10568,7 +10512,7 @@
       },
       {
         "name": "Ximena Ramírez Sánchez",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Mineral Lightbulb",
         "certificateBadgeName": "Robot Navigator",
@@ -10582,7 +10526,7 @@
       },
       {
         "name": "Regina Torres López",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Mineral Lightbulb",
         "certificateBadgeName": "Robot Navigator",
@@ -10596,7 +10540,7 @@
       },
       {
         "name": "Martin Hernández Angeles",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Mineral Lightbulb",
         "certificateBadgeName": "Robot Navigator",
@@ -10734,7 +10678,7 @@
       },
       {
         "name": "Constanza Ortega",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Magnetic levitation",
         "certificateBadgeName": "Robot Navigator",
@@ -10748,7 +10692,7 @@
       },
       {
         "name": "Dorian Yves Gómez Carrera",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Magnetic levitation",
         "certificateBadgeName": "Robot Navigator",
@@ -10762,7 +10706,7 @@
       },
       {
         "name": "Pablo Emiliano Ortíz Mota",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Magnetic levitation",
         "certificateBadgeName": "Robot Navigator",
@@ -10905,7 +10849,7 @@
       },
       {
         "name": "Porfirio Ramírez Hernández",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Robot Pancrasio filtrador de agua",
         "certificateBadgeName": "Robot Navigator",
@@ -10919,7 +10863,7 @@
       },
       {
         "name": "Varela Paul García Pavón",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Robot Pancrasio filtrador de agua",
         "certificateBadgeName": "Robot Navigator",
@@ -10933,7 +10877,7 @@
       },
       {
         "name": "Daniel Padilla González",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Robot Pancrasio filtrador de agua",
         "certificateBadgeName": "Robot Navigator",
@@ -10947,7 +10891,7 @@
       },
       {
         "name": "Marcela Morales Guerrero",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Robot Pancrasio filtrador de agua",
         "certificateBadgeName": "Robot Navigator",
@@ -11090,7 +11034,7 @@
       },
       {
         "name": "Olivier Licko Bruno",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Gadiboot",
         "certificateBadgeName": "Robot Navigator",
@@ -11104,7 +11048,7 @@
       },
       {
         "name": "Garcia Peralta Matilda Rocio",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Gadiboot",
         "certificateBadgeName": "Robot Navigator",
@@ -11247,7 +11191,7 @@
       },
       {
         "name": "Vieyra Segura Michelle",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Tornado",
         "certificateBadgeName": "Robot Navigator",
@@ -11261,7 +11205,7 @@
       },
       {
         "name": "Gutiérrez Palacios José María",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Tornado",
         "certificateBadgeName": "Robot Navigator",
@@ -11275,7 +11219,7 @@
       },
       {
         "name": "Méndez Reveles Francisco Kaled",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Tornado",
         "certificateBadgeName": "Robot Navigator",
@@ -11289,7 +11233,7 @@
       },
       {
         "name": "Cuevas Corona Ana Victoria",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Tornado",
         "certificateBadgeName": "Robot Navigator",
@@ -11418,7 +11362,7 @@
     "teamMembers": [
       {
         "name": "Bianchini Villa Manuel",
-        "role": "diseñador",
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "ReciBot 1.0",
         "certificateBadgeName": "Robot Navigator",
@@ -11432,7 +11376,7 @@
       },
       {
         "name": "Rodriguez Lopez Mia",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "ReciBot 1.0",
         "certificateBadgeName": "Robot Navigator",
@@ -11561,7 +11505,7 @@
     "teamMembers": [
       {
         "name": "Yañez Pineda Maria",
-        "role": "diseñador",
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Barry 2.7",
         "certificateBadgeName": "Robot Navigator",
@@ -11575,7 +11519,7 @@
       },
       {
         "name": "Lopez Arellano Lima Alonso",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Barry 2.7",
         "certificateBadgeName": "Robot Navigator",
@@ -11589,7 +11533,7 @@
       },
       {
         "name": "Luna Cervantes Renata",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Barry 2.7",
         "certificateBadgeName": "Robot Navigator",
@@ -11603,7 +11547,7 @@
       },
       {
         "name": "Meritano Gomez Odette",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Barry 2.7",
         "certificateBadgeName": "Robot Navigator",
@@ -11617,7 +11561,7 @@
       },
       {
         "name": "Sellon Gongora Patricio",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Barry 2.7",
         "certificateBadgeName": "Robot Navigator",
@@ -11631,7 +11575,7 @@
       },
       {
         "name": "Garza Fierro Carlos Eduardo",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Barry 2.7",
         "certificateBadgeName": "Robot Navigator",
@@ -11729,7 +11673,7 @@
     "teamMembers": [
       {
         "name": "Chávez Villegas Jessica Ivanna",
-        "role": "diseñador",
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Fleybot",
         "certificateBadgeName": "Robot Navigator",
@@ -11743,7 +11687,7 @@
       },
       {
         "name": "Merino Pérez Ana Sofía",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Fleybot",
         "certificateBadgeName": "Robot Navigator",
@@ -11757,7 +11701,7 @@
       },
       {
         "name": "Oliveros Hernández Mayte Alejandra",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Fleybot",
         "certificateBadgeName": "Robot Navigator",
@@ -11771,7 +11715,7 @@
       },
       {
         "name": "Luis Cervantes Mateo",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Fleybot",
         "certificateBadgeName": "Robot Navigator",
@@ -11785,7 +11729,7 @@
       },
       {
         "name": "Barroeta Andrade Emiliano",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Fleybot",
         "certificateBadgeName": "Robot Navigator",
@@ -11883,7 +11827,7 @@
     "teamMembers": [
       {
         "name": "María Guadalupe Machuca Jiménez",
-        "role": "diseñador",
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "The five seconds robots",
         "certificateBadgeName": "Robot Navigator",
@@ -11897,7 +11841,7 @@
       },
       {
         "name": "Emilio Alonso Hernández Cepeda",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "The five seconds robots",
         "certificateBadgeName": "Robot Navigator",
@@ -11911,7 +11855,7 @@
       },
       {
         "name": "Francisco Locoselli",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "The five seconds robots",
         "certificateBadgeName": "Robot Navigator",
@@ -11925,7 +11869,7 @@
       },
       {
         "name": "Leonel Quintanilla Lino",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "The five seconds robots",
         "certificateBadgeName": "Robot Navigator",
@@ -11939,7 +11883,7 @@
       },
       {
         "name": "Michelle Cabrera Flores",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "The five seconds robots",
         "certificateBadgeName": "Robot Navigator",
@@ -12072,7 +12016,7 @@
       },
       {
         "name": "Alexander Benavides Merino",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Compostin rockys",
         "certificateBadgeName": "Robot Navigator",
@@ -12086,7 +12030,7 @@
       },
       {
         "name": "Carlos Patricio García Díaz",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Compostin rockys",
         "certificateBadgeName": "Robot Navigator",
@@ -12100,7 +12044,7 @@
       },
       {
         "name": "Aarón García Reyes",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Compostin rockys",
         "certificateBadgeName": "Robot Navigator",
@@ -12114,7 +12058,7 @@
       },
       {
         "name": "Zamira Vargas Mizrahi",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Compostin rockys",
         "certificateBadgeName": "Robot Navigator",
@@ -12257,7 +12201,7 @@
       },
       {
         "name": "Naïma Sandoval Zaragoza",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Nafaluzsama 5.1",
         "certificateBadgeName": "Robot Navigator",
@@ -12271,7 +12215,7 @@
       },
       {
         "name": "Santino Galeazzi Galeazzi",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Nafaluzsama 5.1",
         "certificateBadgeName": "Robot Navigator",
@@ -12285,7 +12229,7 @@
       },
       {
         "name": "Juan Manuel Cárdenas Mitre Macip",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Nafaluzsama 5.1",
         "certificateBadgeName": "Robot Navigator",
@@ -12299,7 +12243,7 @@
       },
       {
         "name": "Luz Fernanda Verdín Ramírez",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Nafaluzsama 5.1",
         "certificateBadgeName": "Robot Navigator",
@@ -12442,7 +12386,7 @@
       },
       {
         "name": "Martínez López Alejandro",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Tsunami",
         "certificateBadgeName": "Robot Navigator",
@@ -12456,7 +12400,7 @@
       },
       {
         "name": "Quintanilla Lino Matteuz",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Tsunami",
         "certificateBadgeName": "Robot Navigator",
@@ -12470,7 +12414,7 @@
       },
       {
         "name": "Cuevas Corona Ana Victoria",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Tsunami",
         "certificateBadgeName": "Robot Navigator",
@@ -12484,7 +12428,7 @@
       },
       {
         "name": "Pino Mora Javier",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Tsunami",
         "certificateBadgeName": "Robot Navigator",
@@ -12627,7 +12571,7 @@
       },
       {
         "name": "Meritano Gomez Odette",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "-air-botdrop-",
         "certificateBadgeName": "Robot Navigator",
@@ -12641,7 +12585,7 @@
       },
       {
         "name": "Cortes Sanchez Abril Miranda",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "-air-botdrop-",
         "certificateBadgeName": "Robot Navigator",
@@ -12765,7 +12709,7 @@
     "teamMembers": [
       {
         "name": "Hernandez Romero Yaretzi",
-        "role": "diseñador",
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Helpbot",
         "certificateBadgeName": "Robot Navigator",
@@ -12779,7 +12723,7 @@
       },
       {
         "name": "Barradas Calderon Iker",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Helpbot",
         "certificateBadgeName": "Robot Navigator",
@@ -12793,7 +12737,7 @@
       },
       {
         "name": "Luna Cervantes Renata",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Helpbot",
         "certificateBadgeName": "Robot Navigator",
@@ -12807,7 +12751,7 @@
       },
       {
         "name": "Garza Fierro Carlos Eduardo",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Helpbot",
         "certificateBadgeName": "Robot Navigator",
@@ -12893,11 +12837,6 @@
         "url": "assets/img/helpbot/gallery-05.png",
         "altText": "",
         "caption": ""
-      },
-      {
-        "url": "assets/img/helpbot/gallery-06.png",
-        "altText": "",
-        "caption": ""
       }
     ],
     "projectRubricScores": {
@@ -12936,7 +12875,7 @@
     "teamMembers": [
       {
         "name": "Silke Oliver Licko",
-        "role": "diseñador",
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Robot de agua  Aquarockypup",
         "certificateBadgeName": "Robot Navigator",
@@ -12950,7 +12889,7 @@
       },
       {
         "name": "Natalia Giorge Sánchez",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Robot de agua  Aquarockypup",
         "certificateBadgeName": "Robot Navigator",
@@ -12964,7 +12903,7 @@
       },
       {
         "name": "Oscar Crisantos Pallares",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Robot de agua  Aquarockypup",
         "certificateBadgeName": "Robot Navigator",
@@ -12978,7 +12917,7 @@
       },
       {
         "name": "Santiago Lomelín Arroyo",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Robot de agua  Aquarockypup",
         "certificateBadgeName": "Robot Navigator",
@@ -12992,7 +12931,7 @@
       },
       {
         "name": "Hannah Kriki Ciofalo",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Robot de agua  Aquarockypup",
         "certificateBadgeName": "Robot Navigator",
@@ -13121,7 +13060,7 @@
     "teamMembers": [
       {
         "name": "Montserrat Amescua Cortes",
-        "role": "diseñador",
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Sentinella",
         "certificateBadgeName": "Prompt Sage",
@@ -13135,7 +13074,7 @@
       },
       {
         "name": "Maria Barranca Gutiérrez",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Sentinella",
         "certificateBadgeName": "Prompt Sage",
@@ -13149,7 +13088,7 @@
       },
       {
         "name": "Juan Pablo Flores Trujillo",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Sentinella",
         "certificateBadgeName": "Prompt Sage",
@@ -13163,7 +13102,7 @@
       },
       {
         "name": "Valentina Lafer Bojalil",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Sentinella",
         "certificateBadgeName": "Prompt Sage",
@@ -13262,7 +13201,7 @@
     "teamMembers": [
       {
         "name": "Anuar Hernández Mena",
-        "role": "diseñador",
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Abogapp",
         "certificateBadgeName": "Prompt Sage",
@@ -13276,7 +13215,7 @@
       },
       {
         "name": "Sofia Delfín Ortega",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Abogapp",
         "certificateBadgeName": "Prompt Sage",
@@ -13290,7 +13229,7 @@
       },
       {
         "name": "Victoria Guzmán Arroyo",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Abogapp",
         "certificateBadgeName": "Prompt Sage",
@@ -13389,7 +13328,7 @@
     "teamMembers": [
       {
         "name": "Enzo Galeazzi Galeazzi",
-        "role": "diseñador",
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Crimenet AI",
         "certificateBadgeName": "Prompt Sage",
@@ -13403,7 +13342,7 @@
       },
       {
         "name": "Iker Oyangurel Prieto",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Crimenet AI",
         "certificateBadgeName": "Prompt Sage",
@@ -13417,7 +13356,7 @@
       },
       {
         "name": "Renata Sermeño Cervantes",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Crimenet AI",
         "certificateBadgeName": "Prompt Sage",
@@ -13509,14 +13448,14 @@
     "solutionProposed": "<ul><li><strong>Procesamiento de Lenguaje Natural (PLN) Multilingüe</strong></li><li><strong>Reconocimiento y síntesis de voz</strong></li><li><strong>Geolocalización semántica</strong></li><li><strong>Sistemas de recomendación con IA</strong></li><li><strong>Machine learning</strong> para análisis de soluciones replicables</li><li>Integración con mapas interactivos, plataformas de audio y APIs climáticas</li></ul>",
     "innovationProcess": "<ul><li><strong>Mapeo comunitario con voz:</strong> Las comunidades pueden enviar audios o videos describiendo su situación; la IA los traduce, analiza y geolocaliza.</li><li><strong>Conector de expertos:</strong> Sugiere científicos, ONG y activistas disponibles para colaborar en contenido educativo.</li><li><strong>Generador de soluciones locales:</strong> Cruza datos del lugar con experiencias similares en el mundo para sugerir soluciones prácticas.</li><li><strong>Narrador climático:</strong> Transforma datos crudos (como hectáreas deforestadas) en <em>narrativas emocionales</em> con voz y música ambiental.</li></ul>",
     "media": {
-      "type": null,
-      "url": null,
+      "type": "image",
+      "url": "assets/img/reforest-ia/media.png",
       "altText": null
     },
     "teamMembers": [
       {
         "name": "Amir El Harreut Barradas",
-        "role": "diseñador",
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Reforest IA",
         "certificateBadgeName": "Prompt Sage",
@@ -13530,7 +13469,7 @@
       },
       {
         "name": "Lazarín Regina Leycegui Rivera",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Reforest IA",
         "certificateBadgeName": "Prompt Sage",
@@ -13544,7 +13483,7 @@
       },
       {
         "name": "Antonio González Cobian",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Reforest IA",
         "certificateBadgeName": "Prompt Sage",
@@ -13643,7 +13582,7 @@
     "teamMembers": [
       {
         "name": "Eumir Moreno Vargas",
-        "role": "diseñador",
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "AquaVolt",
         "certificateBadgeName": "Prompt Sage",
@@ -13657,7 +13596,7 @@
       },
       {
         "name": "Oswaldo Verdín Ramírez",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "AquaVolt",
         "certificateBadgeName": "Prompt Sage",
@@ -13671,7 +13610,7 @@
       },
       {
         "name": "Julianne Montiel León",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "AquaVolt",
         "certificateBadgeName": "Prompt Sage",
@@ -13784,7 +13723,7 @@
       },
       {
         "name": "Ander Delgado Vázquez",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Nexora",
         "certificateBadgeName": "Prompt Sage",
@@ -13798,7 +13737,7 @@
       },
       {
         "name": "Michele Mares Tager",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Nexora",
         "certificateBadgeName": "Prompt Sage",
@@ -13890,8 +13829,8 @@
     "solutionProposed": "<p><strong>¿Cómo funciona la app?</strong></p><p>La app funciona con <strong>registros policiales</strong> como historial de crímenes o patrones delictivos, <strong>datos en tiempo real</strong> como llamadas al 911 o cámaras de vigilancia, y <strong>geolocalización</strong> como GPS de sospechosos y mapas de crimen. A los policías les llegará una notificación del crimen mediante APIs de notificación que permiten mandar las alertas a las autoridades.</p>",
     "innovationProcess": "<p><strong>Visión a futuro</strong></p><p>Esperamos que la app sea de uso con las autoridades. Estamos seguros de que nuestra app sería de <em>mucha ayuda para mejorar la calidad de la seguridad en las calles</em>.</p>",
     "media": {
-      "type": null,
-      "url": null,
+      "type": "image",
+      "url": "assets/img/justitrax/media.png",
       "altText": null
     },
     "teamMembers": [
@@ -13911,7 +13850,7 @@
       },
       {
         "name": "Rebeca Villegas Sánchez",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Justitrax",
         "certificateBadgeName": "Prompt Sage",
@@ -13925,7 +13864,7 @@
       },
       {
         "name": "Valentina García Díaz Ana",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Justitrax",
         "certificateBadgeName": "Prompt Sage",
@@ -13939,7 +13878,7 @@
       },
       {
         "name": "Alessandro Galeazzi Berra",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Justitrax",
         "certificateBadgeName": "Prompt Sage",
@@ -14031,8 +13970,8 @@
     "solutionProposed": "<p><strong>Objetivo</strong></p><p>Proporcionar a la gente de <em>escasos recursos</em> o en <em>malas situaciones económicas</em> una oportunidad de trabajo o de educación.</p><p><strong>Objetivo 2</strong></p><p><em>Acabar con la pobreza en las calles, el hambre de familias</em> y que la gente ya no tenga que robar para mantener a su familia.</p>",
     "innovationProcess": "<p><strong>Visión</strong></p><p>Que nuestra empresa logre llegar muy lejos y sea una de las apps <em>más reconocidas y populares a nivel mundial</em>.</p><p><strong>Misión</strong></p><p>Que toda la gente tenga las <strong>mismas oportunidades</strong> aunque esté en situaciones difíciles como en la calle y que las ofertas sean <em>accesibles y seguras</em>.</p>",
     "media": {
-      "type": null,
-      "url": null,
+      "type": "image",
+      "url": "assets/img/easysearch-pobreza/media.png",
       "altText": null
     },
     "teamMembers": [
@@ -14052,7 +13991,7 @@
       },
       {
         "name": "Thiago Vázquez Pumarino",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "EasySearch POBREZA",
         "certificateBadgeName": "Prompt Sage",
@@ -14066,7 +14005,7 @@
       },
       {
         "name": "Emiliano Ramírez Morales",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "EasySearch POBREZA",
         "certificateBadgeName": "Prompt Sage",
@@ -14080,7 +14019,7 @@
       },
       {
         "name": "Luis Guillermo Salinas Aguilar",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "EasySearch POBREZA",
         "certificateBadgeName": "Prompt Sage",
@@ -14172,8 +14111,8 @@
     "solutionProposed": "<p><strong>Optimus Prime</strong> es un <strong>asistente de salud inteligente</strong> que vive en el celular y habla el idioma de la comunidad. Está diseñado para <em>empoderar a las personas a cuidar su salud</em>, aún si están lejos de un médico o tienen barreras de idioma, educación o conectividad.</p>",
     "innovationProcess": "<p><strong>Visión a futuro</strong></p><p>Nos gustaría que se convirtiera en una app funcional que <em>realmente ayude a las personas</em>, y pueda hacer un cambio en la salud de nuestro país, y tal vez de otros lugares, porque es importante que se pueda ayudar con su salud a todas las personas.</p>",
     "media": {
-      "type": null,
-      "url": null,
+      "type": "image",
+      "url": "assets/img/optimus-prime-tu-aliado-en-salud/media.png",
       "altText": null
     },
     "teamMembers": [
@@ -14193,7 +14132,7 @@
       },
       {
         "name": "Patricio Montiel Chayrez",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "OPTIMUS   PRIME Tu aliado en salud",
         "certificateBadgeName": "Prompt Sage",
@@ -14207,7 +14146,7 @@
       },
       {
         "name": "Rebeca Del Castillo Herrera",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "OPTIMUS   PRIME Tu aliado en salud",
         "certificateBadgeName": "Prompt Sage",
@@ -14306,7 +14245,7 @@
     "teamMembers": [
       {
         "name": "Tayra Romina Lima Bustillos",
-        "role": "diseñador",
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Amika",
         "certificateBadgeName": "Prompt Sage",
@@ -14320,7 +14259,7 @@
       },
       {
         "name": "Padme Regina Carlin Domínguez",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Amika",
         "certificateBadgeName": "Prompt Sage",
@@ -14334,7 +14273,7 @@
       },
       {
         "name": "Iker Castillejos Almaguer",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Amika",
         "certificateBadgeName": "Prompt Sage",
@@ -14426,14 +14365,14 @@
     "solutionProposed": "<p>La <strong>corrupción</strong> es un <em>problema serio</em> que necesita ser derrocado, ya que el desvío de recursos para uso personal afecta tanto al presente como al futuro. Por eso estamos trabajando en una app de una <strong>IA</strong> que te deja <strong>demandar casos de corrupción</strong> presentes en México. Trabajar con mi equipo fue difícil pero al final nos pusimos de acuerdo y <em>valió la pena el esfuerzo</em>.</p>",
     "innovationProcess": "<p>Realísticamente sabemos que si lo dejamos como un simple proyecto, como un simple proyecto se va a quedar. Pero sabemos que <em>nuestra idea puede salvar vidas y mejorar la economía</em>, así que si la ejecutamos bien y hacemos cambios suficientes podremos <strong>acabar con la corrupción</strong>.</p>",
     "media": {
-      "type": null,
-      "url": null,
+      "type": "image",
+      "url": "assets/img/anti-corrupcion/media.png",
       "altText": null
     },
     "teamMembers": [
       {
         "name": "Maria José Castro Jaramillo",
-        "role": "diseñador",
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Anti corrupción",
         "certificateBadgeName": "Prompt Sage",
@@ -14447,7 +14386,7 @@
       },
       {
         "name": "Natalia García Tirado",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Anti corrupción",
         "certificateBadgeName": "Prompt Sage",
@@ -14461,7 +14400,7 @@
       },
       {
         "name": "Santiago Lira Bautista",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Anti corrupción",
         "certificateBadgeName": "Prompt Sage",
@@ -14569,7 +14508,7 @@
       },
       {
         "name": "Isabella Montiel Chayrez",
-        "role": null,
+        "role": "DIseñadora",
         "sbtLink": null,
         "certificateCourseName": "Huellas Digitales, Derechos Reales: La IA como Aliada de los Animales",
         "certificateBadgeName": "Prompt Sage",
@@ -14677,7 +14616,7 @@
       },
       {
         "name": "Valentina De los Santos Vela",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "EQUITRACK   IA  Desigualdad economica",
         "certificateBadgeName": "Prompt Sage",
@@ -14691,7 +14630,7 @@
       },
       {
         "name": "Maximiliano Herrera Alipaz",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "EQUITRACK   IA  Desigualdad economica",
         "certificateBadgeName": "Prompt Sage",
@@ -14705,7 +14644,7 @@
       },
       {
         "name": "Santiago Pavón Torres",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "EQUITRACK   IA  Desigualdad economica",
         "certificateBadgeName": "Prompt Sage",
@@ -14792,8 +14731,8 @@
     "solutionProposed": "<p>A todo tipo de personas, pero está más enfocado en <em>niños y adolescentes</em>.</p>",
     "innovationProcess": "<p>Queremos que nuestra app crezca y <em>ayude a personas en su salud emocional</em>, ya que es un problema que le sucede a muchos.</p>",
     "media": {
-      "type": null,
-      "url": null,
+      "type": "image",
+      "url": "assets/img/emotisalud/media.png",
       "altText": null
     },
     "teamMembers": [
@@ -14813,7 +14752,7 @@
       },
       {
         "name": "Ivanna Méndez Ramírez",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Emotisalud",
         "certificateBadgeName": "Prompt Sage",
@@ -14827,7 +14766,7 @@
       },
       {
         "name": "Emanuel Zatarain Casas",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Emotisalud",
         "certificateBadgeName": "Prompt Sage",
@@ -14841,7 +14780,7 @@
       },
       {
         "name": "Isabela Villaseñor Álvarez",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Emotisalud",
         "certificateBadgeName": "Prompt Sage",
@@ -14949,7 +14888,7 @@
       },
       {
         "name": "Miranda Parra Garduño",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Eco-guardian",
         "certificateBadgeName": "Prompt Sage",
@@ -14963,7 +14902,7 @@
       },
       {
         "name": "Ana Beatriz Carriles Cubillas",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Eco-guardian",
         "certificateBadgeName": "Prompt Sage",
@@ -14977,7 +14916,7 @@
       },
       {
         "name": "Dante Nájera Zepeda",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Eco-guardian",
         "certificateBadgeName": "Prompt Sage",
@@ -15064,8 +15003,8 @@
     "solutionProposed": "<p><strong>Futuro que esperamos de la app</strong></p><ul><li>Funcionar <em>sin internet</em>.</li><li>Usarse en todo el país.</li><li>Conectarse con <strong>médicos y nutriólogos</strong>.</li><li>Ser una herramienta oficial del gobierno para <strong>combatir la obesidad infantil</strong>.</li></ul>",
     "innovationProcess": "<p><strong>SaludMex</strong> no es solo una app.</p><p>Es una <em>amiga que escucha, enseña y motiva con cariño</em>. Queremos que los niños mexicanos crezcan <strong>sanos, felices y acompañados</strong>.</p>",
     "media": {
-      "type": null,
-      "url": null,
+      "type": "image",
+      "url": "assets/img/salud-mex/media.png",
       "altText": null
     },
     "teamMembers": [
@@ -15085,7 +15024,7 @@
       },
       {
         "name": "Giordi Montes Zorrilla",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Salud Mex",
         "certificateBadgeName": "Prompt Sage",
@@ -15099,7 +15038,7 @@
       },
       {
         "name": "Alexa Díaz Sanchez",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Salud Mex",
         "certificateBadgeName": "Prompt Sage",
@@ -15207,7 +15146,7 @@
       },
       {
         "name": "Maite Jaimes Gomez",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Kuska",
         "certificateBadgeName": "Prompt Sage",
@@ -15221,7 +15160,7 @@
       },
       {
         "name": "Jorge Emiliano De los Santos Vela",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Kuska",
         "certificateBadgeName": "Prompt Sage",
@@ -15315,7 +15254,7 @@
     "teamMembers": [
       {
         "name": "Edgar Omar García Betanzos",
-        "role": "diseñador",
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Safezone ia",
         "certificateBadgeName": "Prompt Sage",
@@ -15329,7 +15268,7 @@
       },
       {
         "name": "Andrés Morales Huerta",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Safezone ia",
         "certificateBadgeName": "Prompt Sage",
@@ -15343,7 +15282,7 @@
       },
       {
         "name": "Daniela Santa María Varela",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Safezone ia",
         "certificateBadgeName": "Prompt Sage",
@@ -15357,7 +15296,7 @@
       },
       {
         "name": "Julieta Kopistinski Ramírez",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Safezone ia",
         "certificateBadgeName": "Prompt Sage",
@@ -15444,8 +15383,8 @@
     "solutionProposed": "<p>A cualquier persona que camine por la ciudad: <em>estudiantes, trabajadores, mujeres, adultos mayores</em>.</p><p>Especialmente útil para personas en horarios nocturnos o en zonas de alta incidencia.</p><p>También <strong>fortalece la seguridad comunitaria</strong> al compartir datos de incidentes de forma anónima.</p>",
     "innovationProcess": "<ul><li>Integración con <strong>cámaras urbanas y drones autónomos</strong>.</li><li>Colaboración con <strong>cuerpos de seguridad locales</strong>.</li><li>Expansión a otros países de América Latina con problemas similares.</li><li>Incorporación de <strong>IA conversacional</strong> para acompañar al usuario mientras camina.</li></ul>",
     "media": {
-      "type": null,
-      "url": null,
+      "type": "image",
+      "url": "assets/img/seguridad-ciudadana-mx/media.png",
       "altText": null
     },
     "teamMembers": [
@@ -15465,7 +15404,7 @@
       },
       {
         "name": "Sebastián Alexis Cedillo Ortiz",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Seguridad ciudadana mx",
         "certificateBadgeName": "Prompt Sage",
@@ -15479,7 +15418,7 @@
       },
       {
         "name": "Emiliano López Soriano",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Seguridad ciudadana mx",
         "certificateBadgeName": "Prompt Sage",
@@ -15530,11 +15469,6 @@
         "url": "assets/img/seguridad-ciudadana-mx/gallery-05.png",
         "altText": "",
         "caption": ""
-      },
-      {
-        "url": "assets/img/seguridad-ciudadana-mx/gallery-06.png",
-        "altText": "",
-        "caption": ""
       }
     ],
     "projectRubricScores": {
@@ -15573,7 +15507,7 @@
     "teamMembers": [
       {
         "name": "Iván Moreno Heiras",
-        "role": "diseñador",
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Alza la voz",
         "certificateBadgeName": "Prompt Sage",
@@ -15587,7 +15521,7 @@
       },
       {
         "name": "Andrea Hernández Pacheco",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Alza la voz",
         "certificateBadgeName": "Prompt Sage",
@@ -15601,7 +15535,7 @@
       },
       {
         "name": "Juan Pablo Cisneros Pulgarin",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Alza la voz",
         "certificateBadgeName": "Prompt Sage",
@@ -15615,7 +15549,7 @@
       },
       {
         "name": "Said Moranchel Cedillo",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Alza la voz",
         "certificateBadgeName": "Prompt Sage",
@@ -15702,8 +15636,8 @@
     "solutionProposed": "<p>Nuestra visión es <em>llegar a los teléfonos de todo el mundo</em> para tener un <strong>equilibrio ambiental</strong> en donde todos sean conscientes y tomen acción sobre nuestro planeta y entorno. La meta es tener a muchas personas que nos apoyen económicamente. Tendremos un <strong>reto súper viral</strong> en donde se hablará de la app y influencers compartirán sus actividades de acuerdo a la aplicación.</p>",
     "innovationProcess": "<p>En conclusión, nuestra app tiene <em>mucho potencial</em>, es <strong>sustentable</strong> y busca un <strong>futuro mejor para todos</strong>. A través del marketing digital podríamos alcanzar una fama mundial y un planeta en equilibrio.</p>",
     "media": {
-      "type": null,
-      "url": null,
+      "type": "image",
+      "url": "assets/img/arbora/media.png",
       "altText": null
     },
     "teamMembers": [
@@ -15723,7 +15657,7 @@
       },
       {
         "name": "Maria José Montes Zorrilla",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Arbora",
         "certificateBadgeName": "Prompt Sage",
@@ -15817,7 +15751,7 @@
     "teamMembers": [
       {
         "name": "Matías Rojas García",
-        "role": "diseñador",
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Vibe ai",
         "certificateBadgeName": "Prompt Sage",
@@ -15831,7 +15765,7 @@
       },
       {
         "name": "Vanessa Manera Bonifaz",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Vibe ai",
         "certificateBadgeName": "Prompt Sage",
@@ -15845,7 +15779,7 @@
       },
       {
         "name": "Matteo Munguía Broissin",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Vibe ai",
         "certificateBadgeName": "Prompt Sage",
@@ -15859,7 +15793,7 @@
       },
       {
         "name": "María José Muñoz Netzahualcóyotl",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Vibe ai",
         "certificateBadgeName": "Prompt Sage",
@@ -15873,7 +15807,7 @@
       },
       {
         "name": "Sofía Constanza González Hernández",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Vibe ai",
         "certificateBadgeName": "Prompt Sage",
@@ -15960,1155 +15894,14 @@
     "solutionProposed": "<p>La app está diseñada para ayudar a:</p><ul><li>Personas que quieren comenzar a <em>cuidar el medio ambiente</em> pero no saben cómo.</li><li>Estudiantes, docentes y padres que buscan <strong>herramientas educativas</strong>.</li><li>Comunidades que quieren organizar <strong>acciones colectivas sostenibles</strong>.</li></ul>",
     "innovationProcess": "<p>Visualizamos una <strong>comunidad global conectada</strong> por la conciencia ambiental, donde millones de personas utilicen la app para <em>transformar sus hábitos y generar un impacto positivo</em>. En el futuro, queremos integrar funciones como conexión con ONGs, huella de carbono personalizada y recompensas reales por cumplir metas ecológicas.</p>",
     "media": {
-      "type": null,
-      "url": null,
-      "altText": null
-    },
-    "teamMembers": [
-      {
-        "name": "Valentina Rangel Almaraz",
-        "role": "diseñador",
-        "sbtLink": null,
-        "certificateCourseName": "EcoAccion",
-        "certificateBadgeName": "Prompt Sage",
-        "certificateLevel": "Rookie",
-        "certificateSkills": "Modelos de IA,Machine Learning",
-        "certificateCriteria": "Cumplimiento de Objetivos",
-        "certificateCollege": "Greenvalley School",
-        "certificateIssueDate": "2025-07-01",
-        "certificatePreviewUrl": "assets/img/certificado.png",
-        "certificatePrintUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Emilia Castañeda Rojas",
-        "role": null,
-        "sbtLink": null,
-        "certificateCourseName": "EcoAccion",
-        "certificateBadgeName": "Prompt Sage",
-        "certificateLevel": "Rookie",
-        "certificateSkills": "Modelos de IA,Machine Learning",
-        "certificateCriteria": "Cumplimiento de Objetivos",
-        "certificateCollege": "Greenvalley School",
-        "certificateIssueDate": "2025-07-01",
-        "certificatePreviewUrl": "assets/img/certificado.png",
-        "certificatePrintUrl": "assets/img/certificado.png"
-      }
-    ],
-    "technologies": [
-      {
-        "name": "Modelos de IA",
-        "icon": "fa-solid fa-brain",
-        "category": "Software"
-      },
-      {
-        "name": "Machine Learning",
-        "icon": "fa-solid fa-brain",
-        "category": "Software"
-      }
-    ],
-    "additionalResources": [],
-    "imageGallery": [
-      {
-        "url": "assets/img/ecoaccion/gallery-01.png",
-        "altText": "",
-        "caption": ""
-      },
-      {
-        "url": "assets/img/ecoaccion/gallery-02.png",
-        "altText": "",
-        "caption": ""
-      },
-      {
-        "url": "assets/img/ecoaccion/gallery-03.png",
-        "altText": "",
-        "caption": ""
-      },
-      {
-        "url": "assets/img/ecoaccion/gallery-04.png",
-        "altText": "",
-        "caption": ""
-      },
-      {
-        "url": "assets/img/ecoaccion/gallery-05.png",
-        "altText": "",
-        "caption": ""
-      },
-      {
-        "url": "assets/img/ecoaccion/gallery-06.png",
-        "altText": "",
-        "caption": ""
-      }
-    ],
-    "projectRubricScores": {
-      "innovation": 1,
-      "techUse": 1,
-      "impact": 2,
-      "collaboration": 2,
-      "presentation": 2
-    },
-    "finalProjectGrade": 4,
-    "projectStatus": "Idea",
-    "isNominated": false
-  },
-
-  {
-    "projectTitle": "Eco-guardian",
-    "slug": "eco-guardian",
-    "projectId": "G25-EXX-112",
-    "projectCategory": "Prompt Sage",
-    "schooling": "Preparatoria",
-    "projectDate": "2025-07-01",
-    "sdgIds": [13],
-    "introTitle": "Eco-guardian",
-    "introContent": "<p><strong>EcoGuardian</strong> sería una <strong>IA</strong> integrada con <strong>drones y sensores terrestres</strong>, diseñada para patrullar y proteger ecosistemas críticos, como selvas, sabanas y arrecifes.</p>",
-    "coverImage": {
-      "url": "assets/img/eco-guardian/cover.png",
-      "altText": "PORTADA"
-    },
-    "problemDescription": "<p>Drones equipados con <strong>cámaras térmicas y sensores ambientales</strong> sobrevolarían zonas protegidas.</p><p>La IA analizaría en tiempo real imágenes, sonidos y cambios de temperatura para detectar:</p><ul><li>Animales heridos o atrapados.</li><li>Presencia humana sospechosa (como cazadores furtivos).</li><li>Cambios anormales en el ecosistema (como incendios, derrames, deforestación).</li></ul><p>Al detectar una amenaza, <strong>EcoGuardian</strong> alertaría automáticamente a los guardabosques locales o autoridades.</p>",
-    "solutionProposed": "<p><strong>EcoGuardian</strong> sería una <strong>IA</strong> integrada con <strong>drones y sensores terrestres</strong>, diseñada para patrullar y proteger ecosistemas críticos, como selvas, sabanas y arrecifes. Su misión es garantizar la <em>vigilancia y protección automatizada</em> del medio ambiente, utilizando tecnología avanzada para detectar amenazas en tiempo real.</p>",
-    "innovationProcess": "<p>Ayuda a:</p><ul><li><strong>Guardabosques y autoridades ambientales</strong>, mejorando su capacidad de reacción y eficiencia.</li><li><strong>Animales en peligro</strong>, al permitir una respuesta más rápida ante amenazas.</li></ul>",
-    "media": {
-      "type": null,
-      "url": null,
-      "altText": null
-    },
-    "teamMembers": [
-      {
-        "name": "Valentina Posada Martinez",
-        "role": "Diseñador",
-        "sbtLink": null,
-        "certificateCourseName": "Eco-guardian",
-        "certificateBadgeName": "Prompt Sage",
-        "certificateLevel": "Rookie",
-        "certificateSkills": "Modelos de IA,Machine Learning,Liderazgo y Colaboración",
-        "certificateCriteria": "Cumplimiento de Objetivos",
-        "certificateCollege": "Greenvalley School",
-        "certificateIssueDate": "2025-07-01",
-        "certificatePreviewUrl": "assets/img/certificado.png",
-        "certificatePrintUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Miranda Parra Garduño",
-        "role": null,
-        "sbtLink": null,
-        "certificateCourseName": "Eco-guardian",
-        "certificateBadgeName": "Prompt Sage",
-        "certificateLevel": "Rookie",
-        "certificateSkills": "Modelos de IA,Machine Learning,Liderazgo y Colaboración",
-        "certificateCriteria": "Cumplimiento de Objetivos",
-        "certificateCollege": "Greenvalley School",
-        "certificateIssueDate": "2025-07-01",
-        "certificatePreviewUrl": "assets/img/certificado.png",
-        "certificatePrintUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Ana Beatriz Carriles Cubillas",
-        "role": null,
-        "sbtLink": null,
-        "certificateCourseName": "Eco-guardian",
-        "certificateBadgeName": "Prompt Sage",
-        "certificateLevel": "Rookie",
-        "certificateSkills": "Modelos de IA,Machine Learning,Liderazgo y Colaboración",
-        "certificateCriteria": "Cumplimiento de Objetivos",
-        "certificateCollege": "Greenvalley School",
-        "certificateIssueDate": "2025-07-01",
-        "certificatePreviewUrl": "assets/img/certificado.png",
-        "certificatePrintUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Dante Nájera Zepeda",
-        "role": null,
-        "sbtLink": null,
-        "certificateCourseName": "Eco-guardian",
-        "certificateBadgeName": "Prompt Sage",
-        "certificateLevel": "Rookie",
-        "certificateSkills": "Modelos de IA,Machine Learning,Liderazgo y Colaboración",
-        "certificateCriteria": "Cumplimiento de Objetivos",
-        "certificateCollege": "Greenvalley School",
-        "certificateIssueDate": "2025-07-01",
-        "certificatePreviewUrl": "assets/img/certificado.png",
-        "certificatePrintUrl": "assets/img/certificado.png"
-      }
-    ],
-    "technologies": [
-      {
-        "name": "Modelos de IA",
-        "icon": "fa-solid fa-brain",
-        "category": "Software"
-      },
-      {
-        "name": "Machine Learning",
-        "icon": "fa-solid fa-brain",
-        "category": "Software"
-      }
-    ],
-    "additionalResources": [],
-    "imageGallery": [
-      {
-        "url": "assets/img/eco-guardian/gallery-01.png",
-        "altText": "",
-        "caption": ""
-      },
-      {
-        "url": "assets/img/eco-guardian/gallery-02.png",
-        "altText": "",
-        "caption": ""
-      },
-      {
-        "url": "assets/img/eco-guardian/gallery-03.png",
-        "altText": "",
-        "caption": ""
-      },
-      {
-        "url": "assets/img/eco-guardian/gallery-04.png",
-        "altText": "",
-        "caption": ""
-      },
-      {
-        "url": "assets/img/eco-guardian/gallery-05.png",
-        "altText": "",
-        "caption": ""
-      },
-      {
-        "url": "assets/img/eco-guardian/gallery-06.png",
-        "altText": "",
-        "caption": ""
-      }
-    ],
-    "projectRubricScores": {
-      "innovation": 2,
-      "techUse": 2,
-      "impact": 2,
-      "collaboration": 3,
-      "presentation": 2
-    },
-    "finalProjectGrade": 6,
-    "projectStatus": "Prototipo",
-    "isNominated": false
-  },
-  {
-    "projectTitle": "Salud Mex",
-    "slug": "salud-mex",
-    "projectId": "G25-SMX-113",
-    "projectCategory": "Prompt Sage",
-    "schooling": "Preparatoria",
-    "projectDate": "2025-07-01",
-    "sdgIds": [3],
-    "introTitle": "Salud Mex",
-    "introContent": "<p>Cuando un niño o una familia entra a la app, responde preguntas simples sobre su edad, hábitos, emociones y lo que suele comer.</p><p>Con esa información, la app crea un <strong>plan personalizado y divertido</strong> para mejorar su salud.</p><p>Cada día, la app ofrece:</p><ul><li><strong>Comidas saludables</strong> con recetas fáciles y adaptadas a lo que hay en casa.</li><li><strong>Retos físicos divertidos</strong>, como juegos o ejercicios cortos para moverse más.</li><li><strong>Actividades emocionales</strong> para que los niños expresen cómo se sienten, aprendan a calmarse o motivarse.</li><li><strong>Mini lecciones interactivas</strong> que enseñan buenos hábitos con juegos, canciones y cuentos.</li><li><strong>Recomendaciones para las familias</strong>, para que puedan apoyar al niño sin regaños ni presión.</li></ul><p>Todo el contenido se adapta automáticamente al progreso del niño y se puede usar tanto en casa como en la escuela.</p>",
-    "coverImage": {
-      "url": "assets/img/salud-mex/cover.png",
-      "altText": "PORTADA"
-    },
-    "problemDescription": "<p><strong>A quién ayuda la app</strong></p><ul><li>A niños y niñas mexicanos con <strong>sobrepeso</strong>.</li><li>A familias que quieren <em>mejorar sus hábitos</em>.</li><li>A escuelas que promueven la salud y la educación integral.</li></ul>",
-    "solutionProposed": "<p><strong>Futuro que esperamos de la app</strong></p><ul><li>Funcionar <em>sin internet</em>.</li><li>Usarse en todo el país.</li><li>Conectarse con <strong>médicos y nutriólogos</strong>.</li><li>Ser una herramienta oficial del gobierno para <strong>combatir la obesidad infantil</strong>.</li></ul>",
-    "innovationProcess": "<p><strong>SaludMex</strong> no es solo una app.</p><p>Es una <em>amiga que escucha, enseña y motiva con cariño</em>. Queremos que los niños mexicanos crezcan <strong>sanos, felices y acompañados</strong>.</p>",
-    "media": {
-      "type": null,
-      "url": null,
-      "altText": null
-    },
-    "teamMembers": [
-      {
-        "name": "Alessandro Moya Zago",
-        "role": "Diseñador",
-        "sbtLink": null,
-        "certificateCourseName": "Salud Mex",
-        "certificateBadgeName": "Prompt Sage",
-        "certificateLevel": "Rookie",
-        "certificateSkills": "Modelos de IA,Machine Learning,Liderazgo y Colaboración",
-        "certificateCriteria": "Cumplimiento de Objetivos",
-        "certificateCollege": "Greenvalley School",
-        "certificateIssueDate": "2025-07-01",
-        "certificatePreviewUrl": "assets/img/certificado.png",
-        "certificatePrintUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Giordi Montes Zorrilla",
-        "role": null,
-        "sbtLink": null,
-        "certificateCourseName": "Salud Mex",
-        "certificateBadgeName": "Prompt Sage",
-        "certificateLevel": "Rookie",
-        "certificateSkills": "Modelos de IA,Machine Learning,Liderazgo y Colaboración",
-        "certificateCriteria": "Cumplimiento de Objetivos",
-        "certificateCollege": "Greenvalley School",
-        "certificateIssueDate": "2025-07-01",
-        "certificatePreviewUrl": "assets/img/certificado.png",
-        "certificatePrintUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Alexa Díaz Sanchez",
-        "role": null,
-        "sbtLink": null,
-        "certificateCourseName": "Salud Mex",
-        "certificateBadgeName": "Prompt Sage",
-        "certificateLevel": "Rookie",
-        "certificateSkills": "Modelos de IA,Machine Learning,Liderazgo y Colaboración",
-        "certificateCriteria": "Cumplimiento de Objetivos",
-        "certificateCollege": "Greenvalley School",
-        "certificateIssueDate": "2025-07-01",
-        "certificatePreviewUrl": "assets/img/certificado.png",
-        "certificatePrintUrl": "assets/img/certificado.png"
-      }
-    ],
-    "technologies": [
-      {
-        "name": "Modelos de IA",
-        "icon": "fa-solid fa-brain",
-        "category": "Software"
-      },
-      {
-        "name": "Machine Learning",
-        "icon": "fa-solid fa-brain",
-        "category": "Software"
-      }
-    ],
-    "additionalResources": [],
-    "imageGallery": [
-      {
-        "url": "assets/img/salud-mex/gallery-01.png",
-        "altText": "",
-        "caption": ""
-      },
-      {
-        "url": "assets/img/salud-mex/gallery-02.png",
-        "altText": "",
-        "caption": ""
-      },
-      {
-        "url": "assets/img/salud-mex/gallery-03.png",
-        "altText": "",
-        "caption": ""
-      },
-      {
-        "url": "assets/img/salud-mex/gallery-04.png",
-        "altText": "",
-        "caption": ""
-      },
-      {
-        "url": "assets/img/salud-mex/gallery-05.png",
-        "altText": "",
-        "caption": ""
-      },
-      {
-        "url": "assets/img/salud-mex/gallery-06.png",
-        "altText": "",
-        "caption": ""
-      }
-    ],
-    "projectRubricScores": {
-      "innovation": 2,
-      "techUse": 2,
-      "impact": 2,
-      "collaboration": 3,
-      "presentation": 2
-    },
-    "finalProjectGrade": 6,
-    "projectStatus": "Prototipo",
-    "isNominated": false
-  },
-  {
-    "projectTitle": "Kuska",
-    "slug": "kuska",
-    "projectId": "G25-KXX-114",
-    "projectCategory": "Prompt Sage",
-    "schooling": "Preparatoria",
-    "projectDate": "2025-07-01",
-    "sdgIds": [4],
-    "introTitle": "Kuska",
-    "introContent": "<p>Creamos una aplicación que puede <strong>registrar el avance y aprendizaje</strong> de un estudiante <em>sin necesidad de Internet</em>. Los niños aprenden con <strong>juegos, actividades, lecturas y videos recreativos</strong> para estimular sus aprendizajes, cada uno tiene un nivel específico para la edad o curso que cursan.</p>",
-    "coverImage": {
-      "url": "assets/img/kuska/cover.png",
-      "altText": "PORTADA"
-    },
-    "problemDescription": "<p>Nuestra App <strong>detecta zonas en las que hay falta de educación</strong>, luego permite descargar <strong>módulos educativos</strong> como materias hechos para servir <em>sin Internet</em> (videos, actividades) y guarda su progreso.</p>",
-    "solutionProposed": "<p>A los niños con <strong>falta de educación</strong> por <em>falta de internet en zonas rurales</em> y sin apoyo educativo de adultos o maestros.</p>",
-    "innovationProcess": "<p>Ser referentes en el uso de <strong>inteligencia artificial</strong> para llevar <em>educación de calidad a zonas rurales</em>, reduciendo la brecha educativa y empoderando a niñas y niños para construir un <strong>futuro más justo e inclusivo</strong>.</p>",
-    "media": {
-      "type": null,
-      "url": null,
-      "altText": null
-    },
-    "teamMembers": [
-      {
-        "name": "Ana Brenda Mora Vargas",
-        "role": "Diseñador",
-        "sbtLink": null,
-        "certificateCourseName": "Kuska",
-        "certificateBadgeName": "Prompt Sage",
-        "certificateLevel": "Master",
-        "certificateSkills": "Modelos de IA,Machine Learning",
-        "certificateCriteria": "Excelencia en Innovación",
-        "certificateCollege": "Greenvalley School",
-        "certificateIssueDate": "2025-07-01",
-        "certificatePreviewUrl": "assets/img/certificado.png",
-        "certificatePrintUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Maite Jaimes Gomez",
-        "role": null,
-        "sbtLink": null,
-        "certificateCourseName": "Kuska",
-        "certificateBadgeName": "Prompt Sage",
-        "certificateLevel": "Master",
-        "certificateSkills": "Modelos de IA,Machine Learning",
-        "certificateCriteria": "Excelencia en Innovación",
-        "certificateCollege": "Greenvalley School",
-        "certificateIssueDate": "2025-07-01",
-        "certificatePreviewUrl": "assets/img/certificado.png",
-        "certificatePrintUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Jorge Emiliano De los Santos Vela",
-        "role": null,
-        "sbtLink": null,
-        "certificateCourseName": "Kuska",
-        "certificateBadgeName": "Prompt Sage",
-        "certificateLevel": "Master",
-        "certificateSkills": "Modelos de IA,Machine Learning",
-        "certificateCriteria": "Excelencia en Innovación",
-        "certificateCollege": "Greenvalley School",
-        "certificateIssueDate": "2025-07-01",
-        "certificatePreviewUrl": "assets/img/certificado.png",
-        "certificatePrintUrl": "assets/img/certificado.png"
-      }
-    ],
-    "technologies": [
-      {
-        "name": "Modelos de IA",
-        "icon": "fa-solid fa-brain",
-        "category": "Software"
-      },
-      {
-        "name": "Machine Learning",
-        "icon": "fa-solid fa-brain",
-        "category": "Software"
-      }
-    ],
-    "additionalResources": [],
-    "imageGallery": [
-      {
-        "url": "assets/img/kuska/gallery-01.png",
-        "altText": "",
-        "caption": ""
-      },
-      {
-        "url": "assets/img/kuska/gallery-02.png",
-        "altText": "",
-        "caption": ""
-      },
-      {
-        "url": "assets/img/kuska/gallery-03.png",
-        "altText": "",
-        "caption": ""
-      },
-      {
-        "url": "assets/img/kuska/gallery-04.png",
-        "altText": "",
-        "caption": ""
-      },
-      {
-        "url": "assets/img/kuska/gallery-05.png",
-        "altText": "",
-        "caption": ""
-      },
-      {
-        "url": "assets/img/kuska/gallery-06.png",
-        "altText": "",
-        "caption": ""
-      }
-    ],
-    "projectRubricScores": {
-      "innovation": 3,
-      "techUse": 2,
-      "impact": 2,
-      "collaboration": 2,
-      "presentation": 2
-    },
-    "finalProjectGrade": 7,
-    "projectStatus": "Prototipo",
-    "isNominated": false
-  },
-  {
-    "projectTitle": "Safezone ia",
-    "slug": "safezone-ia",
-    "projectId": "G25-SXX-115",
-    "projectCategory": "Prompt Sage",
-    "schooling": "Preparatoria",
-    "projectDate": "2025-07-01",
-    "sdgIds": [16],
-    "introTitle": "Safezone ia",
-    "introContent": "<p>Es una app de <strong>seguridad inteligente</strong> que detecta peligros en <em>tiempo real</em> usando <strong>inteligencia artificial</strong>.</p>",
-    "coverImage": {
-      "url": "assets/img/safezone-ia/cover.png",
-      "altText": "PORTADA"
-    },
-    "problemDescription": "<ul><li>Usa <strong>micrófonos inteligentes</strong> para detectar sonidos como gritos, palabras de auxilio o tonos de voz que indican peligro.</li><li><strong>Observa:</strong> Las cámaras analizan movimientos sospechosos, peleas, intrusiones o caídas usando visión por computadora.</li><li><strong>Detecta:</strong> Sensores registran cambios como humo, calor extremo, golpes o movimientos bruscos. La inteligencia artificial combina toda esta información y decide si hay una amenaza.</li></ul>",
-    "solutionProposed": "<p>Nuestra visión a futuro es que <em>miles de personas utilicen nuestra aplicación</em> haciendo mucho más seguras las calles.</p>",
-    "innovationProcess": "<p><strong>Safezone</strong> es más que una app, es una <em>herramienta inteligente para proteger lo más valioso</em>, ayudando a prevenir delitos antes de que ocurran, buscando crear espacios más tranquilos, conectados y seguros.</p>",
-    "media": {
-      "type": null,
-      "url": null,
-      "altText": null
-    },
-    "teamMembers": [
-      {
-        "name": "Edgar Omar García Betanzos",
-        "role": "diseñador",
-        "sbtLink": null,
-        "certificateCourseName": "Safezone ia",
-        "certificateBadgeName": "Prompt Sage",
-        "certificateLevel": "Master",
-        "certificateSkills": "Modelos de IA,Machine Learning,Uso Avanzado de Tecnología",
-        "certificateCriteria": "Cumplimiento de Objetivos",
-        "certificateCollege": "Greenvalley School",
-        "certificateIssueDate": "2025-07-01",
-        "certificatePreviewUrl": "assets/img/certificado.png",
-        "certificatePrintUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Andrés Morales Huerta",
-        "role": null,
-        "sbtLink": null,
-        "certificateCourseName": "Safezone ia",
-        "certificateBadgeName": "Prompt Sage",
-        "certificateLevel": "Master",
-        "certificateSkills": "Modelos de IA,Machine Learning,Uso Avanzado de Tecnología",
-        "certificateCriteria": "Cumplimiento de Objetivos",
-        "certificateCollege": "Greenvalley School",
-        "certificateIssueDate": "2025-07-01",
-        "certificatePreviewUrl": "assets/img/certificado.png",
-        "certificatePrintUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Daniela Santa María Varela",
-        "role": null,
-        "sbtLink": null,
-        "certificateCourseName": "Safezone ia",
-        "certificateBadgeName": "Prompt Sage",
-        "certificateLevel": "Master",
-        "certificateSkills": "Modelos de IA,Machine Learning,Uso Avanzado de Tecnología",
-        "certificateCriteria": "Cumplimiento de Objetivos",
-        "certificateCollege": "Greenvalley School",
-        "certificateIssueDate": "2025-07-01",
-        "certificatePreviewUrl": "assets/img/certificado.png",
-        "certificatePrintUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Julieta Kopistinski Ramírez",
-        "role": null,
-        "sbtLink": null,
-        "certificateCourseName": "Safezone ia",
-        "certificateBadgeName": "Prompt Sage",
-        "certificateLevel": "Master",
-        "certificateSkills": "Modelos de IA,Machine Learning,Uso Avanzado de Tecnología",
-        "certificateCriteria": "Cumplimiento de Objetivos",
-        "certificateCollege": "Greenvalley School",
-        "certificateIssueDate": "2025-07-01",
-        "certificatePreviewUrl": "assets/img/certificado.png",
-        "certificatePrintUrl": "assets/img/certificado.png"
-      }
-    ],
-    "technologies": [
-      {
-        "name": "Modelos de IA",
-        "icon": "fa-solid fa-brain",
-        "category": "Software"
-      },
-      {
-        "name": "Machine Learning",
-        "icon": "fa-solid fa-brain",
-        "category": "Software"
-      }
-    ],
-    "additionalResources": [],
-    "imageGallery": [
-      {
-        "url": "assets/img/safezone-ia/gallery-01.png",
-        "altText": "",
-        "caption": ""
-      },
-      {
-        "url": "assets/img/safezone-ia/gallery-02.png",
-        "altText": "",
-        "caption": ""
-      },
-      {
-        "url": "assets/img/safezone-ia/gallery-03.png",
-        "altText": "",
-        "caption": ""
-      },
-      {
-        "url": "assets/img/safezone-ia/gallery-04.png",
-        "altText": "",
-        "caption": ""
-      },
-      {
-        "url": "assets/img/safezone-ia/gallery-05.png",
-        "altText": "",
-        "caption": ""
-      },
-      {
-        "url": "assets/img/safezone-ia/gallery-06.png",
-        "altText": "",
-        "caption": ""
-      }
-    ],
-    "projectRubricScores": {
-      "innovation": 2,
-      "techUse": 3,
-      "impact": 2,
-      "collaboration": 2,
-      "presentation": 2
-    },
-    "finalProjectGrade": 7,
-    "projectStatus": "Prototipo",
-    "isNominated": false
-  },
-  {
-    "projectTitle": "Seguridad ciudadana mx",
-    "slug": "seguridad-ciudadana-mx",
-    "projectId": "G25-SCX-116",
-    "projectCategory": "Prompt Sage",
-    "schooling": "Preparatoria",
-    "projectDate": "2025-07-01",
-    "sdgIds": [16],
-    "introTitle": "Seguridad ciudadana mx",
-    "introContent": "<p>Es una aplicación móvil que utiliza <strong>inteligencia artificial</strong> para <strong>prevenir y reaccionar</strong> ante situaciones de inseguridad en <em>tiempo real</em>. Combina <strong>geolocalización, reconocimiento de voz, análisis predictivo y alertas comunitarias</strong> para crear una red de apoyo y respuesta ciudadana.</p>",
-    "coverImage": {
-      "url": "assets/img/seguridad-ciudadana-mx/cover.png",
-      "altText": "PORTADA"
-    },
-    "problemDescription": "<p>El usuario activa la app al salir a la calle.</p><ul><li>La IA monitorea su ubicación, detecta <strong>zonas de riesgo</strong> y sugiere <strong>rutas más seguras</strong>.</li><li>En caso de emergencia (voz o botón de pánico), se activa una alerta que:</li><ul><li>Notifica a contactos de confianza.</li><li>Llama a servicios de emergencia.</li><li>Muestra incidentes recientes en la zona.</li></ul><li>La IA aprende de los reportes y mejora las recomendaciones con el tiempo.</li></ul>",
-    "solutionProposed": "<p>A cualquier persona que camine por la ciudad: <em>estudiantes, trabajadores, mujeres, adultos mayores</em>.</p><p>Especialmente útil para personas en horarios nocturnos o en zonas de alta incidencia.</p><p>También <strong>fortalece la seguridad comunitaria</strong> al compartir datos de incidentes de forma anónima.</p>",
-    "innovationProcess": "<ul><li>Integración con <strong>cámaras urbanas y drones autónomos</strong>.</li><li>Colaboración con <strong>cuerpos de seguridad locales</strong>.</li><li>Expansión a otros países de América Latina con problemas similares.</li><li>Incorporación de <strong>IA conversacional</strong> para acompañar al usuario mientras camina.</li></ul>",
-    "media": {
-      "type": null,
-      "url": null,
-      "altText": null
-    },
-    "teamMembers": [
-      {
-        "name": "Camila Contreras Carvajal",
-        "role": "Diseñador",
-        "sbtLink": null,
-        "certificateCourseName": "Seguridad ciudadana mx",
-        "certificateBadgeName": "Prompt Sage",
-        "certificateLevel": "Master",
-        "certificateSkills": "Modelos de IA,Machine Learning,Colaboración en Equipo,Uso Avanzado de Tecnología",
-        "certificateCriteria": "Cumplimiento de Objetivos",
-        "certificateCollege": "Greenvalley School",
-        "certificateIssueDate": "2025-07-01",
-        "certificatePreviewUrl": "assets/img/certificado.png",
-        "certificatePrintUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Sebastián Alexis Cedillo Ortiz",
-        "role": null,
-        "sbtLink": null,
-        "certificateCourseName": "Seguridad ciudadana mx",
-        "certificateBadgeName": "Prompt Sage",
-        "certificateLevel": "Master",
-        "certificateSkills": "Modelos de IA,Machine Learning,Colaboración en Equipo,Uso Avanzado de Tecnología",
-        "certificateCriteria": "Cumplimiento de Objetivos",
-        "certificateCollege": "Greenvalley School",
-        "certificateIssueDate": "2025-07-01",
-        "certificatePreviewUrl": "assets/img/certificado.png",
-        "certificatePrintUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Emiliano López Soriano",
-        "role": null,
-        "sbtLink": null,
-        "certificateCourseName": "Seguridad ciudadana mx",
-        "certificateBadgeName": "Prompt Sage",
-        "certificateLevel": "Master",
-        "certificateSkills": "Modelos de IA,Machine Learning,Colaboración en Equipo,Uso Avanzado de Tecnología",
-        "certificateCriteria": "Cumplimiento de Objetivos",
-        "certificateCollege": "Greenvalley School",
-        "certificateIssueDate": "2025-07-01",
-        "certificatePreviewUrl": "assets/img/certificado.png",
-        "certificatePrintUrl": "assets/img/certificado.png"
-      }
-    ],
-    "technologies": [
-      {
-        "name": "Modelos de IA",
-        "icon": "fa-solid fa-brain",
-        "category": "Software"
-      },
-      {
-        "name": "Machine Learning",
-        "icon": "fa-solid fa-brain",
-        "category": "Software"
-      }
-    ],
-    "additionalResources": [],
-    "imageGallery": [
-      {
-        "url": "assets/img/seguridad-ciudadana-mx/gallery-01.png",
-        "altText": "",
-        "caption": ""
-      },
-      {
-        "url": "assets/img/seguridad-ciudadana-mx/gallery-02.png",
-        "altText": "",
-        "caption": ""
-      },
-      {
-        "url": "assets/img/seguridad-ciudadana-mx/gallery-03.png",
-        "altText": "",
-        "caption": ""
-      },
-      {
-        "url": "assets/img/seguridad-ciudadana-mx/gallery-04.png",
-        "altText": "",
-        "caption": ""
-      },
-      {
-        "url": "assets/img/seguridad-ciudadana-mx/gallery-05.png",
-        "altText": "",
-        "caption": ""
-      },
-      {
-        "url": "assets/img/seguridad-ciudadana-mx/gallery-06.png",
-        "altText": "",
-        "caption": ""
-      }
-    ],
-    "projectRubricScores": {
-      "innovation": 2,
-      "techUse": 3,
-      "impact": 2,
-      "collaboration": 3,
-      "presentation": 3
-    },
-    "finalProjectGrade": 7,
-    "projectStatus": "Prototipo",
-    "isNominated": false
-  },
-  {
-    "projectTitle": "Alza la voz",
-    "slug": "alza-la-voz",
-    "projectId": "G25-AVX-117",
-    "projectCategory": "Prompt Sage",
-    "schooling": "Preparatoria",
-    "projectDate": "2025-07-01",
-    "sdgIds": [16],
-    "introTitle": "Alza la voz",
-    "introContent": "<p>Una app diseñada para <strong>proteger y empoderar</strong> a personas que sufren violencia por ser quienes son.</p><p><strong>Funciones principales:</strong></p><ul><li>🆘 <strong>Botón de emergencia</strong></li><li>📝 <strong>Denuncias anónimas</strong></li><li>🧠 <strong>Chat con IA</strong> entrenada para responder a personas LGBTQ+, mujeres y otras minorías.</li><li>📚 <strong>Guías de qué hacer</strong> según el tipo de violencia y lugar (escuela, casa, calle).</li><li>📡 <strong>Sistema de alerta</strong> a contactos seguros.</li><li>🛡 <strong>Modo incógnito</strong>, para proteger al usuario.</li></ul>",
-    "coverImage": {
-      "url": "assets/img/alza-la-voz/cover.png",
-      "altText": "Portada"
-    },
-    "problemDescription": "<p>Inicia con <strong>código secreto</strong> o <em>“modo camuflaje”</em>.</p><p>Tiene un menú con:</p><ul><li>🆘 <strong>Botón de ayuda rápida</strong></li><li>💬 <strong>Chat con IA</strong> que responde con <em>empatía</em> y da opciones según el caso</li><li>📄 <strong>Denuncia anónima</strong> (con o sin pruebas)</li><li>📚 <strong>Recursos legales</strong>, psicológicos y de contacto</li></ul><p>Permite configurar contactos de confianza, y crear rutas de escape o planes de emergencia.</p>",
-    "solutionProposed": "<p>🏳️‍🌈 Personas <strong>LGBTQ+</strong> que sufren acoso, amenazas o rechazo.</p><p>👩 Mujeres que viven <strong>violencia de género</strong>.</p><p>✊ Personas <strong>racializadas o indígenas</strong> que sufren discriminación.</p><p>♿ Personas con <strong>discapacidad</strong> que son ignoradas o maltratadas.</p><p>🧠 Jóvenes que no encuentran <em>espacios seguros</em> para expresarse.</p>",
-    "innovationProcess": "<p>Crear alianzas con:</p><ul><li><strong>ONG’s de derechos humanos</strong></li><li><strong>Escuelas, centros de salud y colectivos activistas</strong></li></ul><p>Integrar llamadas a servicios de emergencia desde la app.</p><p>Traducir la app a <strong>lenguas indígenas</strong> y lenguaje inclusivo.</p><p>Hacer que la IA aprenda de experiencias reales para dar <em>respuestas más humanas y seguras</em>.</p>",
-    "media": {
-      "type": null,
-      "url": null,
-      "altText": null
-    },
-    "teamMembers": [
-      {
-        "name": "Iván Moreno Heiras",
-        "role": "diseñador",
-        "sbtLink": null,
-        "certificateCourseName": "Alza la voz",
-        "certificateBadgeName": "Prompt Sage",
-        "certificateLevel": "Master",
-        "certificateSkills": "Modelos de IA,Machine Learning,Liderazgo y Colaboración",
-        "certificateCriteria": "Cumplimiento de Objetivos",
-        "certificateCollege": "Greenvalley School",
-        "certificateIssueDate": "2025-07-01",
-        "certificatePreviewUrl": "assets/img/certificado.png",
-        "certificatePrintUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Andrea Hernández Pacheco",
-        "role": null,
-        "sbtLink": null,
-        "certificateCourseName": "Alza la voz",
-        "certificateBadgeName": "Prompt Sage",
-        "certificateLevel": "Master",
-        "certificateSkills": "Modelos de IA,Machine Learning,Liderazgo y Colaboración",
-        "certificateCriteria": "Cumplimiento de Objetivos",
-        "certificateCollege": "Greenvalley School",
-        "certificateIssueDate": "2025-07-01",
-        "certificatePreviewUrl": "assets/img/certificado.png",
-        "certificatePrintUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Juan Pablo Cisneros Pulgarin",
-        "role": null,
-        "sbtLink": null,
-        "certificateCourseName": "Alza la voz",
-        "certificateBadgeName": "Prompt Sage",
-        "certificateLevel": "Master",
-        "certificateSkills": "Modelos de IA,Machine Learning,Liderazgo y Colaboración",
-        "certificateCriteria": "Cumplimiento de Objetivos",
-        "certificateCollege": "Greenvalley School",
-        "certificateIssueDate": "2025-07-01",
-        "certificatePreviewUrl": "assets/img/certificado.png",
-        "certificatePrintUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Said Moranchel Cedillo",
-        "role": null,
-        "sbtLink": null,
-        "certificateCourseName": "Alza la voz",
-        "certificateBadgeName": "Prompt Sage",
-        "certificateLevel": "Master",
-        "certificateSkills": "Modelos de IA,Machine Learning,Liderazgo y Colaboración",
-        "certificateCriteria": "Cumplimiento de Objetivos",
-        "certificateCollege": "Greenvalley School",
-        "certificateIssueDate": "2025-07-01",
-        "certificatePreviewUrl": "assets/img/certificado.png",
-        "certificatePrintUrl": "assets/img/certificado.png"
-      }
-    ],
-    "technologies": [
-      {
-        "name": "Modelos de IA",
-        "icon": "fa-solid fa-brain",
-        "category": "Software"
-      },
-      {
-        "name": "Machine Learning",
-        "icon": "fa-solid fa-brain",
-        "category": "Software"
-      }
-    ],
-    "additionalResources": [],
-    "imageGallery": [
-      {
-        "url": "assets/img/alza-la-voz/gallery-01.png",
-        "altText": "",
-        "caption": ""
-      },
-      {
-        "url": "assets/img/alza-la-voz/gallery-02.png",
-        "altText": "",
-        "caption": ""
-      },
-      {
-        "url": "assets/img/alza-la-voz/gallery-03.png",
-        "altText": "",
-        "caption": ""
-      },
-      {
-        "url": "assets/img/alza-la-voz/gallery-04.png",
-        "altText": "",
-        "caption": ""
-      },
-      {
-        "url": "assets/img/alza-la-voz/gallery-05.png",
-        "altText": "",
-        "caption": ""
-      },
-      {
-        "url": "assets/img/alza-la-voz/gallery-06.png",
-        "altText": "",
-        "caption": ""
-      }
-    ],
-    "projectRubricScores": {
-      "innovation": 2,
-      "techUse": 2,
-      "impact": 2,
-      "collaboration": 3,
-      "presentation": 3
-    },
-    "finalProjectGrade": 7,
-    "projectStatus": "Prototipo",
-    "isNominated": false
-  },
-  {
-    "projectTitle": "Arbora",
-    "slug": "arbora",
-    "projectId": "G25-AXX-118",
-    "projectCategory": "Prompt Sage",
-    "schooling": "Preparatoria",
-    "projectDate": "2025-07-01",
-    "sdgIds": [13],
-    "introTitle": "Arbora",
-    "introContent": "<p>Nosotras somos muy conscientes sobre la <strong>deforestación</strong> y en esta app buscamos encontrar el <em>equilibrio de la tierra y de los bosques y árboles en general</em>, ya que son muy importantes para nosotros y para los seres vivos que nos rodean. Tendremos un <strong>marketing súper fuerte</strong>, tendremos cuentas en redes sociales para ganar recursos y haremos colaboraciones con influencers famosos con el propósito de invitar a más personas.</p>",
-    "coverImage": {
-      "url": "assets/img/arbora/cover.png",
-      "altText": "PORTADA"
-    },
-    "problemDescription": "<p>Esta aplicación tiene varias funciones y la app va a ser tan inteligente que va a mandar <strong>notificaciones</strong> a cada persona para poder <strong>regar plantas, plantar árboles y más</strong>. Cada notificación va a venir con opciones; podría ser que quiera plantas y la app te siga dando opciones de dónde comprar lo que quieras plantar.</p>",
-    "solutionProposed": "<p>Nuestra visión es <em>llegar a los teléfonos de todo el mundo</em> para tener un <strong>equilibrio ambiental</strong> en donde todos sean conscientes y tomen acción sobre nuestro planeta y entorno. La meta es tener a muchas personas que nos apoyen económicamente. Tendremos un <strong>reto súper viral</strong> en donde se hablará de la app y influencers compartirán sus actividades de acuerdo a la aplicación.</p>",
-    "innovationProcess": "<p>En conclusión, nuestra app tiene <em>mucho potencial</em>, es <strong>sustentable</strong> y busca un <strong>futuro mejor para todos</strong>. A través del marketing digital podríamos alcanzar una fama mundial y un planeta en equilibrio.</p>",
-    "media": {
-      "type": null,
-      "url": null,
-      "altText": null
-    },
-    "teamMembers": [
-      {
-        "name": "Zoe Trujillo Granda",
-        "role": "Diseñador",
-        "sbtLink": null,
-        "certificateCourseName": "Arbora",
-        "certificateBadgeName": "Prompt Sage",
-        "certificateLevel": "Master",
-        "certificateSkills": "Modelos de IA,Machine Learning",
-        "certificateCriteria": "Excelencia en Innovación",
-        "certificateCollege": "Greenvalley School",
-        "certificateIssueDate": "2025-07-01",
-        "certificatePreviewUrl": "assets/img/certificado.png",
-        "certificatePrintUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Maria José Montes Zorrilla",
-        "role": null,
-        "sbtLink": null,
-        "certificateCourseName": "Arbora",
-        "certificateBadgeName": "Prompt Sage",
-        "certificateLevel": "Master",
-        "certificateSkills": "Modelos de IA,Machine Learning",
-        "certificateCriteria": "Excelencia en Innovación",
-        "certificateCollege": "Greenvalley School",
-        "certificateIssueDate": "2025-07-01",
-        "certificatePreviewUrl": "assets/img/certificado.png",
-        "certificatePrintUrl": "assets/img/certificado.png"
-      }
-    ],
-    "technologies": [
-      {
-        "name": "Modelos de IA",
-        "icon": "fa-solid fa-brain",
-        "category": "Software"
-      },
-      {
-        "name": "Machine Learning",
-        "icon": "fa-solid fa-brain",
-        "category": "Software"
-      }
-    ],
-    "additionalResources": [],
-    "imageGallery": [
-      {
-        "url": "assets/img/arbora/gallery-01.png",
-        "altText": "",
-        "caption": ""
-      },
-      {
-        "url": "assets/img/arbora/gallery-02.png",
-        "altText": "",
-        "caption": ""
-      },
-      {
-        "url": "assets/img/arbora/gallery-03.png",
-        "altText": "",
-        "caption": ""
-      },
-      {
-        "url": "assets/img/arbora/gallery-04.png",
-        "altText": "",
-        "caption": ""
-      },
-      {
-        "url": "assets/img/arbora/gallery-05.png",
-        "altText": "",
-        "caption": ""
-      },
-      {
-        "url": "assets/img/arbora/gallery-06.png",
-        "altText": "",
-        "caption": ""
-      }
-    ],
-    "projectRubricScores": {
-      "innovation": 3,
-      "techUse": 2,
-      "impact": 2,
-      "collaboration": 3,
-      "presentation": 3
-    },
-    "finalProjectGrade": 7,
-    "projectStatus": "Prototipo",
-    "isNominated": false
-  },
-  {
-    "projectTitle": "Vibe ai",
-    "slug": "vibe-ai",
-    "projectId": "G25-VXX-119",
-    "projectCategory": "Prompt Sage",
-    "schooling": "Preparatoria",
-    "projectDate": "2025-07-01",
-    "sdgIds": [3],
-    "introTitle": "Vibe ai",
-    "introContent": "<p>Ver presentación.</p>",
-    "coverImage": {
-      "url": "assets/img/vibe-ai/cover.png",
-      "altText": "Portada"
-    },
-    "problemDescription": "<p>Ver presentación.</p>",
-    "solutionProposed": "<p>Ver presentación.</p>",
-    "innovationProcess": "<p>Ver presentación.</p>",
-    "media": {
-      "type": null,
-      "url": null,
-      "altText": null
-    },
-    "teamMembers": [
-      {
-        "name": "Matías Rojas García",
-        "role": "diseñador",
-        "sbtLink": null,
-        "certificateCourseName": "Vibe ai",
-        "certificateBadgeName": "Prompt Sage",
-        "certificateLevel": "Master",
-        "certificateSkills": "Modelos de IA,Machine Learning,Uso Avanzado de Tecnología",
-        "certificateCriteria": "Cumplimiento de Objetivos",
-        "certificateCollege": "Greenvalley School",
-        "certificateIssueDate": "2025-07-01",
-        "certificatePreviewUrl": "assets/img/certificado.png",
-        "certificatePrintUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Vanessa Manera Bonifaz",
-        "role": null,
-        "sbtLink": null,
-        "certificateCourseName": "Vibe ai",
-        "certificateBadgeName": "Prompt Sage",
-        "certificateLevel": "Master",
-        "certificateSkills": "Modelos de IA,Machine Learning,Uso Avanzado de Tecnología",
-        "certificateCriteria": "Cumplimiento de Objetivos",
-        "certificateCollege": "Greenvalley School",
-        "certificateIssueDate": "2025-07-01",
-        "certificatePreviewUrl": "assets/img/certificado.png",
-        "certificatePrintUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Matteo Munguía Broissin",
-        "role": null,
-        "sbtLink": null,
-        "certificateCourseName": "Vibe ai",
-        "certificateBadgeName": "Prompt Sage",
-        "certificateLevel": "Master",
-        "certificateSkills": "Modelos de IA,Machine Learning,Uso Avanzado de Tecnología",
-        "certificateCriteria": "Cumplimiento de Objetivos",
-        "certificateCollege": "Greenvalley School",
-        "certificateIssueDate": "2025-07-01",
-        "certificatePreviewUrl": "assets/img/certificado.png",
-        "certificatePrintUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "María José Muñoz Netzahualcóyotl",
-        "role": null,
-        "sbtLink": null,
-        "certificateCourseName": "Vibe ai",
-        "certificateBadgeName": "Prompt Sage",
-        "certificateLevel": "Master",
-        "certificateSkills": "Modelos de IA,Machine Learning,Uso Avanzado de Tecnología",
-        "certificateCriteria": "Cumplimiento de Objetivos",
-        "certificateCollege": "Greenvalley School",
-        "certificateIssueDate": "2025-07-01",
-        "certificatePreviewUrl": "assets/img/certificado.png",
-        "certificatePrintUrl": "assets/img/certificado.png"
-      },
-      {
-        "name": "Sofía Constanza González Hernández",
-        "role": null,
-        "sbtLink": null,
-        "certificateCourseName": "Vibe ai",
-        "certificateBadgeName": "Prompt Sage",
-        "certificateLevel": "Master",
-        "certificateSkills": "Modelos de IA,Machine Learning,Uso Avanzado de Tecnología",
-        "certificateCriteria": "Cumplimiento de Objetivos",
-        "certificateCollege": "Greenvalley School",
-        "certificateIssueDate": "2025-07-01",
-        "certificatePreviewUrl": "assets/img/certificado.png",
-        "certificatePrintUrl": "assets/img/certificado.png"
-      }
-    ],
-    "technologies": [
-      {
-        "name": "Modelos de IA",
-        "icon": "fa-solid fa-brain",
-        "category": "Software"
-      },
-      {
-        "name": "Machine Learning",
-        "icon": "fa-solid fa-brain",
-        "category": "Software"
-      }
-    ],
-    "additionalResources": [],
-    "imageGallery": [
-      {
-        "url": "assets/img/vibe-ai/gallery-01.png",
-        "altText": "",
-        "caption": ""
-      },
-      {
-        "url": "assets/img/vibe-ai/gallery-02.png",
-        "altText": "",
-        "caption": ""
-      },
-      {
-        "url": "assets/img/vibe-ai/gallery-03.png",
-        "altText": "",
-        "caption": ""
-      },
-      {
-        "url": "assets/img/vibe-ai/gallery-04.png",
-        "altText": "",
-        "caption": ""
-      },
-      {
-        "url": "assets/img/vibe-ai/gallery-05.png",
-        "altText": "",
-        "caption": ""
-      },
-      {
-        "url": "assets/img/vibe-ai/gallery-06.png",
-        "altText": "",
-        "caption": ""
-      }
-    ],
-    "projectRubricScores": {
-      "innovation": 2,
-      "techUse": 3,
-      "impact": 2,
-      "collaboration": 2,
-      "presentation": 2
-    },
-    "finalProjectGrade": 7,
-    "projectStatus": "Prototipo",
-    "isNominated": false
-  },
-  {
-    "projectTitle": "EcoAccion",
-    "slug": "ecoaccion",
-    "projectId": "G25-EXX-120",
-    "projectCategory": "Prompt Sage",
-    "schooling": "Preparatoria",
-    "projectDate": "2025-07-01",
-    "sdgIds": [13],
-    "introTitle": "EcoAccion",
-    "introContent": "<p>Nuestra app nace como una <strong>respuesta integral</strong> al problema del deterioro ambiental. Se trata de una aplicación <em>educativa, interactiva y motivacional</em> que no solo informa sobre el estado del medio ambiente, sino que brinda tips prácticos, retos semanales y herramientas para adoptar <strong>hábitos sostenibles</strong>. Su objetivo es conectar a las personas con el impacto real de sus acciones y guiarlas para formar una rutina amigable con el planeta.</p>",
-    "coverImage": {
+      "type": "image",
       "url": "assets/img/ecoaccion/cover.png",
-      "altText": "portada"
-    },
-    "problemDescription": "<p>La app se basa en tres pilares:</p><ul><li><strong>Información actualizada:</strong> ofrece datos sobre el estado del medio ambiente y consejos útiles.</li><li><strong>Gamificación:</strong> propone retos ecológicos diarios/semanales y premia los logros.</li><li><strong>Educación y comunidad:</strong> incluye artículos, videos y una red de usuarios donde se comparten logros, ideas y eventos ecológicos.</li></ul><p>Además, permite llevar un seguimiento de tus avances, crear metas personales y compartir tus progresos en redes sociales para <em>inspirar a otros</em>.</p>",
-    "solutionProposed": "<p>La app está diseñada para ayudar a:</p><ul><li>Personas que quieren comenzar a <em>cuidar el medio ambiente</em> pero no saben cómo.</li><li>Estudiantes, docentes y padres que buscan <strong>herramientas educativas</strong>.</li><li>Comunidades que quieren organizar <strong>acciones colectivas sostenibles</strong>.</li></ul>",
-    "innovationProcess": "<p>Visualizamos una <strong>comunidad global conectada</strong> por la conciencia ambiental, donde millones de personas utilicen la app para <em>transformar sus hábitos y generar un impacto positivo</em>. En el futuro, queremos integrar funciones como conexión con ONGs, huella de carbono personalizada y recompensas reales por cumplir metas ecológicas.</p>",
-    "media": {
-      "type": null,
-      "url": null,
       "altText": null
     },
     "teamMembers": [
       {
         "name": "Valentina Rangel Almaraz",
-        "role": "diseñador",
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "EcoAccion",
         "certificateBadgeName": "Prompt Sage",
@@ -17122,7 +15915,7 @@
       },
       {
         "name": "Emilia Castañeda Rojas",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "EcoAccion",
         "certificateBadgeName": "Prompt Sage",
@@ -17216,7 +16009,7 @@
     "teamMembers": [
       {
         "name": "Kihsha Audrey Carrera Ríos",
-        "role": "diseñador",
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "NutriRAiz",
         "certificateBadgeName": "Prompt Sage",
@@ -17230,7 +16023,7 @@
       },
       {
         "name": "Gretel Villanueva Lara",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "NutriRAiz",
         "certificateBadgeName": "Prompt Sage",
@@ -17244,7 +16037,7 @@
       },
       {
         "name": "Andrea Vaquera Garcia",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "NutriRAiz",
         "certificateBadgeName": "Prompt Sage",
@@ -17331,14 +16124,14 @@
     "solutionProposed": "<p>Está pensada para <strong>jóvenes, adultos y familias</strong> que desean mejorar su control financiero. También puede ser útil para estudiantes, emprendedores y trabajadores independientes.</p>",
     "innovationProcess": "<p>A futuro, la app integrará <strong>servicios financieros</strong> como comparación de préstamos, acceso a microahorros o inversión automatizada, y expandirá su alcance a distintos países y monedas. Además, buscará alianzas con <strong>instituciones educativas</strong> para promover la cultura financiera.</p>",
     "media": {
-      "type": null,
-      "url": null,
+      "type": "image",
+      "url": "assets/img/economic-app/cover.png",
       "altText": null
     },
     "teamMembers": [
       {
         "name": "Paulo Pérez Malagón",
-        "role": "diseñador",
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Economic APP",
         "certificateBadgeName": "Prompt Sage",
@@ -17352,7 +16145,7 @@
       },
       {
         "name": "José Julián Hernández Picazo",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Economic APP",
         "certificateBadgeName": "Prompt Sage",
@@ -17366,7 +16159,7 @@
       },
       {
         "name": "Pablo Hernández Frese",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Economic APP",
         "certificateBadgeName": "Prompt Sage",
@@ -17380,7 +16173,7 @@
       },
       {
         "name": "Adriana Valeria Carmona Reyes",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Economic APP",
         "certificateBadgeName": "Prompt Sage",
@@ -17474,7 +16267,7 @@
     "teamMembers": [
       {
         "name": "Ivanna Lizeth Del Valle Pérez",
-        "role": "diseñador",
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Unidos MX ‒ Tecnología con Corazón",
         "certificateBadgeName": "Prompt Sage",
@@ -17488,7 +16281,7 @@
       },
       {
         "name": "Renata Pérez Mondragón",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Unidos MX ‒ Tecnología con Corazón",
         "certificateBadgeName": "Prompt Sage",
@@ -17502,7 +16295,7 @@
       },
       {
         "name": "Melissa Flores Morales",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Unidos MX ‒ Tecnología con Corazón",
         "certificateBadgeName": "Prompt Sage",
@@ -17516,7 +16309,7 @@
       },
       {
         "name": "Isabella Díaz Gallegos",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Unidos MX ‒ Tecnología con Corazón",
         "certificateBadgeName": "Prompt Sage",
@@ -17610,7 +16403,7 @@
     "teamMembers": [
       {
         "name": "Dante Hernández Cepeda",
-        "role": "diseñador",
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "PrivAmi",
         "certificateBadgeName": "Prompt Sage",
@@ -17624,7 +16417,7 @@
       },
       {
         "name": "Iker Garza Gutiérrez",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "PrivAmi",
         "certificateBadgeName": "Prompt Sage",
@@ -17702,14 +16495,14 @@
     "projectDate": "2025-07-01",
     "sdgIds": [4],
     "introTitle": "EduConnect AI: Educación sin Barreras",
-    "introContent": "<ul><li><strong>Módulo Vigilancia Ética:</strong> IA + satélites → alertas de trabajo infantil.</li><li><strong>Módulo Transparencia:</strong> analiza datos de compras para detectar corrupción.</li><li><strong>Módulo Aula sin Límites:</strong> tutor offline adaptativo en dispositivos de bajo costo.</li><li><strong>Módulo Puente Social:</strong> match entre familias y programas de ayuda.</li></ul>",
+    "introContent": "<ul><li><strong>Módulo Vigilancia Ética:</strong> IA + satélites → alertas de trabajo infantil.</li><li><strong>Módulo Transparencia:</strong> analiza datos de compras para detectar corrupción.</li><li><strong>Módulo Aula sin Límites:</strong> tutor offline adaptativo en dispositivos de bajo costo.</li><li><strong>Módulo Puente Social:</strong> match entre familias y programas de ayuda.</li></ul>",
     "coverImage": {
       "url": "assets/img/educonnect-ai-educacion-sin-barreras/cover.png",
       "altText": "Portada"
     },
-    "problemDescription": "<ul><li>Niños en riesgo de <strong>trabajo infantil</strong>.</li><li>Estudiantes de escuelas rurales <em>sin conectividad</em>.</li><li>Docentes y administradores → informes de <strong>transparencia</strong>.</li><li>Gobiernos y ONGs → datos para políticas basadas en evidencia.</li><li>Comunidades en <strong>pobreza extrema</strong> → acceso a recursos.</li></ul>",
-    "solutionProposed": "<ul><li>Escalar a <em>más países y idiomas</em>.</li><li>Integrar <strong>IA generativa</strong> para contenidos educativos localizados.</li><li>Análisis predictivo de <strong>abandono escolar</strong> y riesgo social.</li><li>Colaboración con empresas para cadenas de suministro éticas.</li><li>Datos abiertos para investigadores y policymakers.</li></ul>",
-    "innovationProcess": "<ul><li><strong>Exiger + Hope for Justice:</strong> detecta trabajo infantil en cadenas de suministro.</li><li><strong>Machine Learning en compras públicas (U4/UNESCO):</strong> identifica contratos corruptos.</li><li><strong>Kolibri (Learning Equality):</strong> plataforma offline para aprendizaje en zonas rurales.</li><li><strong>AI Poverty Challenge (Robin Hood):</strong> apps para romper ciclos de pobreza.</li></ul>",
+    "problemDescription": "<ul><li>Niños en riesgo de <strong>trabajo infantil</strong>.</li><li>Estudiantes de escuelas rurales <em>sin conectividad</em>.</li><li>Docentes y administradores → informes de <strong>transparencia</strong>.</li><li>Gobiernos y ONGs → datos para políticas basadas en evidencia.</li><li>Comunidades en <strong>pobreza extrema</strong> → acceso a recursos.</li></ul>",
+    "solutionProposed": "<ul><li>Escalar a <em>más países y idiomas</em>.</li><li>Integrar <strong>IA generativa</strong> para contenidos educativos localizados.</li><li>Análisis predictivo de <strong>abandono escolar</strong> y riesgo social.</li><li>Colaboración con empresas para cadenas de suministro éticas.</li><li>Datos abiertos para investigadores y policymakers.</li></ul>",
+    "innovationProcess": "<ul><li><strong>Exiger + Hope for Justice:</strong> detecta trabajo infantil en cadenas de suministro.</li><li><strong>Machine Learning en compras públicas (U4/UNESCO):</strong> identifica contratos corruptos.</li><li><strong>Kolibri (Learning Equality):</strong> plataforma offline para aprendizaje en zonas rurales.</li><li><strong>AI Poverty Challenge (Robin Hood):</strong> apps para romper ciclos de pobreza.</li></ul>",
     "media": {
       "type": null,
       "url": null,
@@ -17718,9 +16511,9 @@
     "teamMembers": [
       {
         "name": "Victoria Álvarez Graf",
-        "role": "diseñador",
+        "role": "Diseñador",
         "sbtLink": null,
-        "certificateCourseName": "EduConnect AI: Educación sin Barreras",
+        "certificateCourseName": "EduConnect AI: Educación sin Barreras",
         "certificateBadgeName": "Prompt Sage",
         "certificateLevel": "Master",
         "certificateSkills": "Modelos de IA,Machine Learning,Uso Avanzado de Tecnología",
@@ -17732,9 +16525,9 @@
       },
       {
         "name": "Abril Gómez García",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
-        "certificateCourseName": "EduConnect AI: Educación sin Barreras",
+        "certificateCourseName": "EduConnect AI: Educación sin Barreras",
         "certificateBadgeName": "Prompt Sage",
         "certificateLevel": "Master",
         "certificateSkills": "Modelos de IA,Machine Learning,Uso Avanzado de Tecnología",
@@ -17746,9 +16539,9 @@
       },
       {
         "name": "Rodrigo Jiménez González",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
-        "certificateCourseName": "EduConnect AI: Educación sin Barreras",
+        "certificateCourseName": "EduConnect AI: Educación sin Barreras",
         "certificateBadgeName": "Prompt Sage",
         "certificateLevel": "Master",
         "certificateSkills": "Modelos de IA,Machine Learning,Uso Avanzado de Tecnología",
@@ -17760,9 +16553,9 @@
       },
       {
         "name": "Josué Bonilla Collado",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
-        "certificateCourseName": "EduConnect AI: Educación sin Barreras",
+        "certificateCourseName": "EduConnect AI: Educación sin Barreras",
         "certificateBadgeName": "Prompt Sage",
         "certificateLevel": "Master",
         "certificateSkills": "Modelos de IA,Machine Learning,Uso Avanzado de Tecnología",
@@ -17774,9 +16567,9 @@
       },
       {
         "name": "Miguel Ángel Pozos Sánchez",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
-        "certificateCourseName": "EduConnect AI: Educación sin Barreras",
+        "certificateCourseName": "EduConnect AI: Educación sin Barreras",
         "certificateBadgeName": "Prompt Sage",
         "certificateLevel": "Master",
         "certificateSkills": "Modelos de IA,Machine Learning,Uso Avanzado de Tecnología",
@@ -17861,14 +16654,14 @@
     "solutionProposed": "<p><em>“Cuando me muevo, me siento mejor.”</em></p><p>Muchas personas saben que el ejercicio ayuda, pero les cuesta empezar o mantener el hábito. La app lo hace <strong>más fácil y motivador</strong>.</p>",
     "innovationProcess": "<ol><li><strong>Fitbit Coach (IA de Fitbit):</strong> Analiza tus rutinas físicas y da recomendaciones personalizadas de ejercicio. Aprende de tus hábitos para motivarte a moverte más.</li><li><strong>Calm (IA integrada en app de meditación):</strong> Recomienda sesiones de meditación y respiración según tu estado emocional. Usa IA para detectar patrones de estrés y ansiedad.</li><li><strong>Apple Fitness+ (IA en Apple Watch):</strong> Registra datos en tiempo real y adapta tus entrenamientos. Motiva con feedback personalizado y retos.</li><li><strong>Wysa (IA emocional):</strong> Chatbot con IA que ayuda con salud mental, ansiedad y estrés. Ideal para personas que necesitan apoyo emocional inmediato.</li><li><strong>Peloton (IA en entrenamiento físico virtual):</strong> Ofrece entrenamientos en casa con IA que ajusta dificultad y estilo. Motiva con comunidad, rankings y seguimiento personalizado.</li></ol>",
     "media": {
-      "type": null,
-      "url": null,
+      "type": "image",
+      "url": "assets/img/sportmind/media.png",
       "altText": null
     },
     "teamMembers": [
       {
         "name": "Iker Garza Gutiérrez",
-        "role": "diseñador",
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Sportmind",
         "certificateBadgeName": "Prompt Sage",
@@ -17882,7 +16675,7 @@
       },
       {
         "name": "Gerardo Gamboa Guzmán",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Sportmind",
         "certificateBadgeName": "Prompt Sage",
@@ -17896,7 +16689,7 @@
       },
       {
         "name": "Zara Sofía Cabrero Piña",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Sportmind",
         "certificateBadgeName": "Prompt Sage",
@@ -17910,7 +16703,7 @@
       },
       {
         "name": "Tamara Walker Portilla",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Sportmind",
         "certificateBadgeName": "Prompt Sage",
@@ -18004,7 +16797,7 @@
     "teamMembers": [
       {
         "name": "Josué Bonilla Collado",
-        "role": "diseñador",
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Educación en México: Realidad, Retos y Futuro",
         "certificateBadgeName": "Prompt Sage",
@@ -18018,7 +16811,7 @@
       },
       {
         "name": "Abril Gómez García",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Educación en México: Realidad, Retos y Futuro",
         "certificateBadgeName": "Prompt Sage",
@@ -18032,7 +16825,7 @@
       },
       {
         "name": "Victoria Álvarez Graf",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Educación en México: Realidad, Retos y Futuro",
         "certificateBadgeName": "Prompt Sage",
@@ -18046,7 +16839,7 @@
       },
       {
         "name": "Miguel Ángel Pozos Sánchez",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Educación en México: Realidad, Retos y Futuro",
         "certificateBadgeName": "Prompt Sage",
@@ -18133,14 +16926,14 @@
     "solutionProposed": "<p>La aplicación está diseñada para <strong>identificar a las personas que utilicen lenguaje ofensivo</strong> contra las mujeres.</p>",
     "innovationProcess": "<p>Planeamos lanzarla luego para tener un par de años de preparación. No planea lucrar, entonces no será un éxito “millonario”, pero <em>servirá para la igualdad y equidad de género</em>.</p>",
     "media": {
-      "type": null,
-      "url": null,
+      "type": "image",
+      "url": "assets/img/violencia-en-los-videojuegos/cover.png",
       "altText": null
     },
     "teamMembers": [
       {
         "name": "Mateo Cano Andrade",
-        "role": "diseñador",
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Violencia en los videojuegos",
         "certificateBadgeName": "Prompt Sage",
@@ -18154,7 +16947,7 @@
       },
       {
         "name": "Santiago Padilla Cazares",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Violencia en los videojuegos",
         "certificateBadgeName": "Prompt Sage",
@@ -18168,7 +16961,7 @@
       },
       {
         "name": "Marcelo Galván Abella",
-        "role": null,
+        "role": "Diseñador",
         "sbtLink": null,
         "certificateCourseName": "Violencia en los videojuegos",
         "certificateBadgeName": "Prompt Sage",
@@ -18182,7 +16975,7 @@
       },
       {
         "name": "Elisa Pérez de la Torre",
-        "role": null,
+        "role": "Diseñadora",
         "sbtLink": null,
         "certificateCourseName": "Violencia en los videojuegos",
         "certificateBadgeName": "Prompt Sage",
