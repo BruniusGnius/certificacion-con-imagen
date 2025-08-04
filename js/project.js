@@ -54,6 +54,8 @@ async function loadProjectDetails() {
 }
 
 function populateProjectData(project) {
+  // Primero, actualizamos las metaetiquetas del <head> para el navegador del usuario
+  updateMetaTags(project);
   setTextContent("project-title", project.projectTitle);
   setHTMLContent("intro-title", project.introTitle);
   setHTMLContent("intro-content", project.introContent);
@@ -357,6 +359,55 @@ function populateProjectData(project) {
   } else {
     resourcesSection.style.display = "none";
   }
+}
+// open Graph Protocol
+function updateMetaTags(project) {
+  // Limpia el contenido HTML de la descripción para obtener texto plano
+  const tempDiv = document.createElement("div");
+  tempDiv.innerHTML =
+    project.introContent ||
+    "Un increíble proyecto de innovación de Gnius Club.";
+  const cleanDescription = tempDiv.textContent || tempDiv.innerText || "";
+
+  const pageTitle = `${project.projectTitle || "Proyecto"} - Gnius Club`;
+  const pageDescription =
+    cleanDescription.substring(0, 155) +
+    (cleanDescription.length > 155 ? "..." : "");
+
+  // Construir la URL completa de la imagen de portada
+  // window.location.origin nos da la base de la URL (ej: https://gnius-club.github.io)
+  const imageUrl = new URL(
+    project.coverImage?.url || "assets/img/gnius_social_preview.png",
+    window.location.href
+  ).href;
+
+  // Actualizar el título de la página
+  document.title = pageTitle;
+
+  // Actualizar etiquetas Open Graph
+  document
+    .querySelector('meta[property="og:title"]')
+    ?.setAttribute("content", pageTitle);
+  document
+    .querySelector('meta[property="og:description"]')
+    ?.setAttribute("content", pageDescription);
+  document
+    .querySelector('meta[property="og:image"]')
+    ?.setAttribute("content", imageUrl);
+  document
+    .querySelector('meta[property="og:url"]')
+    ?.setAttribute("content", window.location.href);
+
+  // Actualizar etiquetas de Twitter
+  document
+    .querySelector('meta[name="twitter:title"]')
+    ?.setAttribute("content", pageTitle);
+  document
+    .querySelector('meta[name="twitter:description"]')
+    ?.setAttribute("content", pageDescription);
+  document
+    .querySelector('meta[name="twitter:image"]')
+    ?.setAttribute("content", imageUrl);
 }
 
 function setTextContent(id, text) {
