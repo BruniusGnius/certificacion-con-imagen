@@ -390,7 +390,7 @@ const createProjectCard = (project) => {
     project.coverImage?.altText ||
     `Portada para ${project.projectTitle || "proyecto"}`;
   imgElement.onerror = () => {
-    imgElement.src = "assets/img/gnius_logo_placeholder.png";
+    imgElement.src = "assets/img/problemas-imagenes-placeholder.png";
   };
   titleElement.textContent = project.projectTitle || "Sin Título";
 
@@ -440,7 +440,7 @@ const createProjectCard = (project) => {
   }
 
   // Description
-  descElement.textContent = project.introContent || "Sin descripción.";
+  descElement.innerHTML = project.introContent || "Sin descripción.";
 
   // Student chips
   studentsContainer.innerHTML = "";
